@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeakLab VR - Public Speaking Simulator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== VARIABLES ===== */
+    :root {
+      /* Colors */
+      --primary-dark: #0a0f1f;
+      --secondary-dark: #0f172a;
+      --card-dark: #1e293b;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+
+      /* Accent Colors */
+      --accent-emerald: #10b981;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-amber: #f59e0b;
+
+      /* Gradients */
+      --gradient-primary: linear-gradient(135deg, var(--accent-emerald), var(--accent-blue));
+      --gradient-success: linear-gradient(135deg, #10b981, #34d399);
+      --gradient-warning: linear-gradient(135deg, #f59e0b, #fbbf24);
+      --gradient-premium: linear-gradient(135deg, #8b5cf6, #a78bfa);
+
+      /* Text Colors */
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+
+      /* Borders & Shadows */
+      --border-color: rgba(255, 255, 255, 0.08);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      /* Border Radius */
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+
+      /* Spacing */
+      --spacing-xs: 8px;
+      --spacing-sm: 12px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+
+      /* Font */
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* ===== RESET & BASE STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: var(--font-family);
+      background-color: var(--primary-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+        linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+      min-height: 100vh;
+      padding: var(--spacing-md);
+    }
+
+    /* ===== LAYOUT CONTAINERS ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .app-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    @media (max-width: 992px) {
+      .app-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md) 0;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      color: white;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.2) 100%);
+    }
+
+    .brand-text h1 {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--text-primary), var(--accent-emerald));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .brand-text p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* ===== USER PROFILE ===== */
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      background: var(--glass-bg);
+      border: 1px solid var(--border-color);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .user-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-emerald);
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-name {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .user-level {
+      font-size: 12px;
+      color: var(--accent-emerald);
+      background: rgba(16, 185, 129, 0.1);
+      padding: 2px var(--spacing-sm);
+      border-radius: 20px;
+      margin-top: 2px;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      background: var(--card-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      height: fit-content;
+    }
+
+    .auth-section {
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .section-title {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .guest-option {
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .guest-option:hover {
+      color: var(--accent-emerald);
+    }
+
+    /* ===== FORM ELEMENTS ===== */
+    .form-input {
+      width: 100%;
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-emerald);
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+    }
+
+    .button-group {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-sm);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+    }
+
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: white;
+      flex: 1;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      flex: 1;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+    }
+
+    .auth-footer {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: var(--spacing-md);
+    }
+
+    /* ===== NAVIGATION ===== */
+    .nav-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-md);
+      font-weight: 600;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .nav-item {
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      transform: translateX(4px);
+    }
+
+    .nav-item.active {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.1));
+      color: var(--text-primary);
+      border-left: 3px solid var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    /* ===== WELCOME BANNER ===== */
+    .welcome-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-lg);
+    }
+
+    .welcome-text h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-sm);
+      background: linear-gradient(90deg, var(--text-primary), var(--accent-emerald));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .welcome-text p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .session-stats {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      min-width: 180px;
+    }
+
+    .last-session {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .session-date {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .session-score {
+      font-size: 16px;
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    /* ===== STATS GRID ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+    }
+
+    .stat-card {
+      background: var(--card-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .stat-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .stat-icon {
+      font-size: 18px;
+    }
+
+    .stat-title {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: var(--spacing-md);
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    .stat-description {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: var(--spacing-sm);
+    }
+
+    /* ===== VR STAGE ===== */
+    .vr-stage-section {
+      background: var(--card-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+      display: flex;
+      gap: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .vr-preview {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .vr-container {
+      width: 100%;
+      height: 200px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--secondary-dark), var(--card-dark));
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vr-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+    }
+
+    .vr-icon {
+      font-size: 48px;
+      margin-bottom: var(--spacing-md);
+      color: var(--accent-emerald);
+    }
+
+    .vr-preview-text {
+      color: var(--text-secondary);
+      font-size: 14px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .vr-options {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .section-heading {
+      font-size: 18px;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-lg);
+      font-size: 14px;
+    }
+
+    /* ===== SCENARIO SELECTION ===== */
+    .scenario-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .scenario-btn {
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+
+    .scenario-btn:hover {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+    }
+
+    .scenario-btn.active {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+      font-weight: 500;
+    }
+
+    /* ===== ANALYSIS SECTION ===== */
+    .analysis-section {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: var(--spacing-lg);
+    }
+
+    @media (max-width: 992px) {
+      .analysis-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ai-analysis {
+      background: var(--card-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .ai-header {
+      font-size: 18px;
+      margin-bottom: var(--spacing-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .ai-icon {
+      color: var(--accent-emerald);
+    }
+
+    /* ===== METRICS GRID ===== */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .metric-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-sm);
+      font-size: 14px;
+    }
+
+    .metric-name {
+      color: var(--text-secondary);
+    }
+
+    .metric-value {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .metric-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .metric-fill {
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    /* ===== AI NOTES ===== */
+    .ai-notes {
+      background: rgba(16, 185, 129, 0.05);
+      border-left: 3px solid var(--accent-emerald);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      margin-top: var(--spacing-lg);
+    }
+
+    .ai-notes p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== RECOMMENDATIONS ===== */
+    .recommendations {
+      background: var(--card-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-top: var(--spacing-md);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .recommendations h4 {
+      font-size: 16px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .rec-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .rec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.2s;
+    }
+
+    .rec-item:hover {
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .rec-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rec-title {
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .rec-duration {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .rec-action {
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-sm);
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--accent-emerald);
+      font-size: 13px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .rec-action:hover {
+      background: rgba(16, 185, 129, 0.2);
+    }
+
+    /* ===== RIGHT SIDEBAR ===== */
+    .right-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    .sidebar-card {
+      background: var(--card-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .sidebar-card h4 {
+      font-size: 16px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* ===== HISTORY LIST ===== */
+    .history-list {
+      list-style: none;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md) 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .history-date {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .history-score {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ===== PROFILE DETAILS ===== */
+    .profile-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .profile-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .profile-label {
+      color: var(--text-secondary);
+    }
+
+    .profile-value {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      text-align: center;
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid var(--border-color);
+      margin-top: var(--spacing-xl);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* ===== UTILITY CLASSES ===== */
+    .text-gradient {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .text-accent {
+      color: var(--accent-emerald);
+    }
+
+    .text-muted {
+      color: var(--text-muted);
+    }
+
+    .mb-sm {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .mb-md {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .mb-lg {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .mt-sm {
+      margin-top: var(--spacing-sm);
+    }
+
+    .mt-md {
+      margin-top: var(--spacing-md);
+    }
+
+    .mt-lg {
+      margin-top: var(--spacing-lg);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.7;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide-in {
+      animation: slideIn 0.3s ease-out;
+    }
+
+    /* ===== CUSTOM SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ===== MOBILE RESPONSIVE STYLES ===== */
+    @media (max-width: 768px) {
+
+      /* Body & Container */
+      body {
+        padding: var(--spacing-sm);
+      }
+
+      .container {
+        padding: 0 var(--spacing-sm);
+      }
+
+      /* Header */
+      .app-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-md);
+        padding: var(--spacing-sm) 0;
+      }
+
+      .brand {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+      }
+
+      .user-profile {
+        justify-content: center;
+        padding: var(--spacing-md);
+      }
+
+      /* App Layout */
+      .app-layout {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-md);
+      }
+
+      /* Welcome Banner */
+      .welcome-banner {
+        padding: var(--spacing-lg);
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .action-buttons {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .action-buttons .btn {
+        flex: 1;
+        min-width: 140px;
+      }
+
+      .session-stats {
+        align-items: center;
+        width: 100%;
+        padding-top: var(--spacing-md);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+      }
+
+      .stat-card {
+        padding: var(--spacing-md);
+      }
+
+      .stat-value {
+        font-size: 28px;
+      }
+
+      /* VR Stage Section */
+      .vr-stage-section {
+        padding: var(--spacing-md);
+        flex-direction: column;
+      }
+
+      .vr-container {
+        height: 180px;
+        margin-bottom: var(--spacing-md);
+      }
+
+      .scenario-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .scenario-btn {
+        flex: 1;
+        min-width: 140px;
+        justify-content: center;
+        padding: var(--spacing-md) var(--spacing-sm);
+        font-size: 13px;
+      }
+
+      /* Analysis Section */
+      .analysis-section {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+
+      .ai-analysis {
+        padding: var(--spacing-md);
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+
+      .recommendations {
+        padding: var(--spacing-md);
+      }
+
+      .rec-item {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+      }
+
+      .rec-action {
+        width: 100%;
+      }
+
+      /* Right Sidebar */
+      .right-sidebar {
+        order: -1;
+      }
+
+      .sidebar-card {
+        padding: var(--spacing-md);
+      }
+
+      /* Navigation Menu */
+      .nav-menu {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xs);
+      }
+
+      .nav-item {
+        justify-content: center;
+        padding: var(--spacing-md) var(--spacing-sm);
+        font-size: 13px;
+      }
+
+      .nav-item span {
+        display: none;
+      }
+
+      .nav-item:hover {
+        transform: translateY(-2px);
+      }
+
+      /* Form Elements */
+      .auth-section {
+        padding: var(--spacing-md);
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      /* Footer */
+      .app-footer {
+        font-size: 12px;
+        padding: var(--spacing-md) 0;
+        margin-top: var(--spacing-lg);
+      }
+    }
+
+    /* Tablet Styles */
+    @media (min-width: 769px) and (max-width: 992px) {
+      .app-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+      }
+
+      .nav-item {
+        flex: 1;
+        min-width: 140px;
+        justify-content: center;
+      }
+
+      .analysis-section {
+        grid-template-columns: 1fr;
+      }
+
+      .right-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+      }
+    }
+
+    /* Small Mobile Styles */
+    @media (max-width: 480px) {
+      .scenario-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .action-buttons .btn {
+        width: 100%;
+      }
+
+      .nav-menu {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-item span {
+        display: inline;
+      }
+
+      .stat-card {
+        padding: var(--spacing-md) var(--spacing-sm);
+      }
+
+      .vr-stage-section {
+        padding: var(--spacing-md) var(--spacing-sm);
+      }
+
+      .brand-text h1 {
+        font-size: 20px;
+      }
+
+      .brand-text p {
+        font-size: 13px;
+      }
+    }
+
+    /* Touch-Friendly Adjustments */
+    @media (hover: none) and (pointer: coarse) {
+
+      .btn,
+      .scenario-btn,
+      .rec-action,
+      .nav-item {
+        min-height: 48px;
+      }
+
+      .form-input {
+        min-height: 48px;
+        font-size: 16px;
+        /* Prevents iOS zoom on focus */
+      }
+
+      /* Larger tap targets for mobile */
+      .metric-item,
+      .history-item {
+        padding: var(--spacing-sm) 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo">SL</div>
+        <div class="brand-text">
+          <h1>SpeakLab VR</h1>
+          <p>Simulator Public Speaking dengan Realitas Virtual</p>
+        </div>
+      </div>
+
+      <div class="user-profile">
+        <img src="bintang.jpg" alt="Profil Bintang Permana" class="user-avatar">
+        <div class="user-info">
+          <div class="user-name">Bintang Permana</div>
+          <div class="user-level">Level: Menengah</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <div class="app-layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <!-- Authentication Section -->
+        <section class="auth-section">
+          <div class="section-header">
+            <div class="section-title">Masuk / Daftar</div>
+            <div class="guest-option">Coba sebagai Tamu</div>
+          </div>
+
+          <input type="email" placeholder="Email" class="form-input">
+          <input type="password" placeholder="Kata Sandi" class="form-input">
+
+          <div class="button-group">
+            <button class="btn btn-primary">Masuk</button>
+            <button class="btn btn-secondary">Daftar</button>
+          </div>
+
+          <div class="auth-footer">Atau gunakan akun GitHub / Google</div>
+        </section>
+
+        <!-- Navigation Menu -->
+        <div class="navigation">
+          <div class="nav-title">Menu Navigasi</div>
+          <ul class="nav-menu">
+            <li class="nav-item active">
+              <i class="fas fa-chart-line"></i>
+              <span>Dashboard</span>
+            </li>
+            <li class="nav-item">
+              <i class="fas fa-dumbbell"></i>
+              <span>Latihan Saya</span>
+            </li>
+            <li class="nav-item">
+              <i class="fas fa-globe"></i>
+              <span>Skenario VR</span>
+            </li>
+            <li class="nav-item">
+              <i class="fas fa-history"></i>
+              <span>Riwayat & Progres</span>
+            </li>
+            <li class="nav-item">
+              <i class="fas fa-cog"></i>
+              <span>Pengaturan</span>
+            </li>
+            <li class="nav-item">
+              <i class="fas fa-trophy"></i>
+              <span>Pencapaian</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+        <!-- Welcome Banner -->
+        <section class="welcome-banner slide-in">
+          <div class="welcome-text">
+            <h2>Selamat datang, Bintang! 👋</h2>
+            <p>Waktunya meningkatkan kemampuan public speaking Anda. Pilih skenario VR, latih presentasi, dan dapatkan
+              analisis AI instan untuk performa Anda.</p>
+            <div class="action-buttons">
+              <button class="btn btn-primary">
+                <i class="fas fa-rocket"></i>
+                <span>Masuk ke Ruang VR</span>
+              </button>
+              <button class="btn btn-secondary">
+                <i class="fas fa-gamepad"></i>
+                <span>Coba Demo Cepat</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="session-stats">
+            <div class="last-session">Sesi Terakhir</div>
+            <div class="session-date">12 April 2025</div>
+            <div class="session-score text-accent">Skor: 78/100</div>
+          </div>
+        </section>
+
+        <!-- Stats Grid -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <i class="fas fa-chart-bar stat-icon"></i>
+              <div class="stat-title">Skor Keseluruhan</div>
+            </div>
+            <div class="stat-value text-accent">78/100</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 78%; background: var(--gradient-primary);"></div>
+            </div>
+            <div class="stat-description">Performa rata-rata dari semua sesi</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <i class="fas fa-volume-up stat-icon"></i>
+              <div class="stat-title">Intonasi & Suara</div>
+            </div>
+            <div class="stat-value" style="color: #10b981;">82/100</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 82%; background: var(--gradient-success);"></div>
+            </div>
+            <div class="stat-description">Kekuatan, kejelasan, dan variasi suara</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <i class="fas fa-hands stat-icon"></i>
+              <div class="stat-title">Gestur & Bahasa Tubuh</div>
+            </div>
+            <div class="stat-value" style="color: #f59e0b;">74/100</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 74%; background: var(--gradient-warning);"></div>
+            </div>
+            <div class="stat-description">Gestur alami dan kontak mata</div>
+          </div>
+        </section>
+
+        <!-- VR Stage Section -->
+        <section class="vr-stage-section">
+          <div class="vr-preview">
+            <div class="vr-container">
+              <div class="vr-icon">
+                <i class="fas fa-vr-cardboard"></i>
+              </div>
+              <div class="vr-preview-text">
+                <div>Pratinjau Lingkungan VR</div>
+                <div class="text-muted mt-sm">Auditorium dengan 50 virtual audience</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vr-options">
+            <h3 class="section-heading">Pilih Skenario Latihan</h3>
+            <p class="section-subtitle">Pilih jenis acara yang ingin Anda simulasi dalam lingkungan VR</p>
+
+            <div class="scenario-grid">
+              <button class="scenario-btn active">
+                <i class="fas fa-school"></i>
+                <span>Presentasi Kelas</span>
+              </button>
+              <button class="scenario-btn">
+                <i class="fas fa-microphone"></i>
+                <span>Pidato Formal</span>
+              </button>
+              <button class="scenario-btn">
+                <i class="fas fa-briefcase"></i>
+                <span>Wawancara Kerja</span>
+              </button>
+              <button class="scenario-btn">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Presentasi Tugas Akhir</span>
+              </button>
+              <button class="scenario-btn">
+                <i class="fas fa-users"></i>
+                <span>Rapat Bisnis</span>
+              </button>
+              <button class="scenario-btn">
+                <i class="fas fa-theater-masks"></i>
+                <span>TED-style Talk</span>
+              </button>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%;">
+              <i class="fas fa-rocket"></i>
+              <span>Mulai Sesi VR</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Analysis Section -->
+        <div class="analysis-section">
+          <div class="left-analysis">
+            <!-- AI Analysis -->
+            <div class="ai-analysis">
+              <h3 class="ai-header">
+                <i class="fas fa-robot ai-icon"></i>
+                <span>Analisis AI - Ringkasan Performa</span>
+              </h3>
+
+              <div class="metrics-grid">
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-name">Intonasi</span>
+                    <span class="metric-value">82</span>
+                  </div>
+                  <div class="metric-bar">
+                    <div class="metric-fill" style="width: 82%; background: var(--gradient-success);"></div>
+                  </div>
+                </div>
+
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-name">Gestur</span>
+                    <span class="metric-value">74</span>
+                  </div>
+                  <div class="metric-bar">
+                    <div class="metric-fill" style="width: 74%; background: var(--gradient-warning);"></div>
+                  </div>
+                </div>
+
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-name">Kecepatan Bicara</span>
+                    <span class="metric-value">68</span>
+                  </div>
+                  <div class="metric-bar">
+                    <div class="metric-fill" style="width: 68%; background: var(--gradient-premium);"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ai-notes">
+                <p><strong>Catatan AI:</strong> Intonasi Anda sudah baik, namun perlu memperbaiki kontak mata dengan
+                  audiens virtual. Coba kurangi pengulangan kata "jadi" dan "baik". Latih variasi nada suara pada bagian
+                  penutup presentasi.</p>
+              </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="recommendations">
+              <h4>Rekomendasi Latihan Hari Ini</h4>
+              <div class="rec-list">
+                <div class="rec-item">
+                  <div class="rec-content">
+                    <div class="rec-title">Latihan Intonasi & Penekanan</div>
+                    <div class="rec-duration">Durasi: 10 menit</div>
+                  </div>
+                  <button class="rec-action">Mulai</button>
+                </div>
+
+                <div class="rec-item">
+                  <div class="rec-content">
+                    <div class="rec-title">Kontak Mata dengan Audiens Virtual</div>
+                    <div class="rec-duration">Durasi: 5 menit</div>
+                  </div>
+                  <button class="rec-action">Mulai</button>
+                </div>
+
+                <div class="rec-item">
+                  <div class="rec-content">
+                    <div class="rec-title">Gestur Tangan yang Terarah</div>
+                    <div class="rec-duration">Durasi: 8 menit</div>
+                  </div>
+                  <button class="rec-action">Mulai</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Sidebar -->
+          <div class="right-sidebar">
+            <!-- Session History -->
+            <div class="sidebar-card">
+              <h4>Riwayat Sesi</h4>
+              <ul class="history-list">
+                <li class="history-item">
+                  <span class="history-date">12 April 2025</span>
+                  <span class="history-score text-accent">78</span>
+                </li>
+                <li class="history-item">
+                  <span class="history-date">9 April 2025</span>
+                  <span class="history-score">72</span>
+                </li>
+                <li class="history-item">
+                  <span class="history-date">1 April 2025</span>
+                  <span class="history-score">69</span>
+                </li>
+                <li class="history-item">
+                  <span class="history-date">28 Maret 2025</span>
+                  <span class="history-score">65</span>
+                </li>
+                <li class="history-item">
+                  <span class="history-date">22 Maret 2025</span>
+                  <span class="history-score">71</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Profile Details -->
+            <div class="sidebar-card">
+              <h4>Profil Singkat</h4>
+              <div class="profile-details">
+                <div class="profile-row">
+                  <span class="profile-label">Nama:</span>
+                  <span class="profile-value">Bintang Permana</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-label">Level:</span>
+                  <span class="profile-value text-accent">Menengah</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-label">Total Sesi:</span>
+                  <span class="profile-value">8 sesi</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-label">Bergabung:</span>
+                  <span class="profile-value">Mar 2025</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary" style="width: 100%;">
+                <i class="fas fa-user-edit"></i>
+                <span>Edit Profil</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <p>© 2025 SpeakLab VR. All rights reserved. | Simulator Public Speaking dengan Teknologi Realitas Virtual</p>
+      <p class="text-muted mt-sm">Versi Beta 1.2 | Pengembangan aktif</p>
+    </footer>
+  </div>
+
+  <script>
+    // ===== INTERACTIVITY =====
+    document.addEventListener('DOMContentLoaded', function () {
+      // Scenario Selection
+      const scenarioButtons = document.querySelectorAll('.scenario-btn');
+      scenarioButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          scenarioButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+
+          // Update VR preview based on selected scenario
+          updateVRPreview(this);
+        });
+
+        // Touch support for mobile
+        button.addEventListener('touchstart', function (e) {
+          if (window.innerWidth <= 768) {
+            this.style.transform = 'scale(0.98)';
+          }
+        });
+
+        button.addEventListener('touchend', function (e) {
+          if (window.innerWidth <= 768) {
+            this.style.transform = 'scale(1)';
+          }
+        });
+      });
+
+      // Recommendation Buttons
+      const recButtons = document.querySelectorAll('.rec-action');
+      recButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const exerciseName = this.closest('.rec-item').querySelector('.rec-title').textContent;
+          startExercise(this, exerciseName);
+        });
+
+        // Touch support
+        button.addEventListener('touchstart', function () {
+          this.style.opacity = '0.8';
+        });
+
+        button.addEventListener('touchend', function () {
+          this.style.opacity = '1';
+        });
+      });
+
+      // Login Button
+      const loginBtn = document.querySelector('.auth-section .btn-primary');
+      loginBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        simulateLogin(this);
+      });
+
+      // Guest Mode
+      const guestOption = document.querySelector('.guest-option');
+      guestOption.addEventListener('click', toggleGuestMode);
+
+      // Main VR Button
+      const mainVRButton = document.querySelector('.vr-options .btn-primary');
+      mainVRButton.addEventListener('click', startVRSession);
+
+      // Stat Cards Hover Effect (desktop only)
+      const statCards = document.querySelectorAll('.stat-card');
+      statCards.forEach(card => {
+        card.addEventListener('mouseenter', function () {
+          if (window.innerWidth > 768) {
+            this.style.transform = 'translateY(-4px)';
+          }
+        });
+
+        card.addEventListener('mouseleave', function () {
+          if (window.innerWidth > 768) {
+            this.style.transform = 'translateY(0)';
+          }
+        });
+
+        // Touch support for mobile
+        card.addEventListener('touchstart', function () {
+          if (window.innerWidth <= 768) {
+            this.style.transform = 'translateY(-2px)';
+          }
+        });
+
+        card.addEventListener('touchend', function () {
+          if (window.innerWidth <= 768) {
+            this.style.transform = 'translateY(0)';
+          }
+        });
+      });
+
+      // Navigation items
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => {
+        item.addEventListener('click', function () {
+          navItems.forEach(nav => nav.classList.remove('active'));
+          this.classList.add('active');
+
+          // For mobile, show notification
+          if (window.innerWidth <= 768) {
+            const menuText = this.querySelector('span').textContent;
+            showNotification(`Navigasi ke: ${menuText}`);
+          }
+        });
+
+        // Touch support
+        item.addEventListener('touchstart', function () {
+          if (window.innerWidth <= 768) {
+            this.style.opacity = '0.8';
+          }
+        });
+
+        item.addEventListener('touchend', function () {
+          if (window.innerWidth <= 768) {
+            this.style.opacity = '1';
+          }
+        });
+      });
+
+      // Edit Profile Button
+      const editProfileBtn = document.querySelector('.sidebar-card .btn-secondary');
+      editProfileBtn.addEventListener('click', function () {
+        showNotification('Fitur edit profil akan segera hadir!');
+      });
+
+      // Demo buttons
+      const demoBtn = document.querySelector('.action-buttons .btn-secondary');
+      demoBtn.addEventListener('click', function () {
+        startDemoMode(this);
+      });
+
+      // Setup mobile-specific features
+      setupMobileFeatures();
+
+      // Update Last Session (Demo)
+      updateLastSession();
+      setInterval(updateLastSession, 30000);
+
+      // Adjust layout on resize
+      window.addEventListener('resize', adjustLayoutForMobile);
+
+      // Initialize scenario grid columns
+      adjustScenarioGrid();
+    });
+
+    // ===== FUNCTIONS =====
+    function updateVRPreview(selectedButton) {
+      const scenarioText = selectedButton.querySelector('span').textContent;
+      const vrPreviewText = document.querySelector('.vr-preview-text div:first-child');
+      const vrSubText = document.querySelector('.vr-preview-text .text-muted');
+
+      const scenarios = {
+        'Presentasi Kelas': ['Ruang Kelas Virtual', 'Simulasi presentasi di depan 30 mahasiswa'],
+        'Pidato Formal': ['Panggung Konferensi', 'Auditori formal dengan 100+ audiens virtual'],
+        'Wawancara Kerja': ['Ruang Wawancara', 'Simulasi wawancara dengan panel HR virtual'],
+        'Presentasi Tugas Akhir': ['Sidang Skripsi', 'Dewan penguji virtual di ruang sidang'],
+        'Rapat Bisnis': ['Ruang Rapat Perusahaan', 'Meeting dengan rekan kerja virtual'],
+        'TED-style Talk': ['Panggung TEDx', 'Lingkungan panggung merah khas TED']
+      };
+
+      if (scenarios[scenarioText]) {
+        vrPreviewText.textContent = scenarios[scenarioText][0];
+        vrSubText.textContent = scenarios[scenarioText][1];
+
+        // Show notification on mobile
+        if (window.innerWidth <= 768) {
+          showNotification(`Skenario dipilih: ${scenarioText}`);
+        }
+      }
+    }
+
+    function startExercise(button, exerciseName) {
+      const originalText = button.textContent;
+
+      button.textContent = 'Memulai...';
+      button.style.background = 'rgba(16, 185, 129, 0.3)';
+      button.disabled = true;
+
+      // Simulate loading
+      setTimeout(() => {
+        button.textContent = 'Selesai';
+        button.style.background = 'rgba(16, 185, 129, 0.2)';
+
+        // Show notification
+        showNotification(`Latihan "${exerciseName}" telah dimulai!`);
+
+        // Update stats for demo
+        updateExerciseStats();
+
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = '';
+          button.disabled = false;
+        }, 3000);
+      }, 1500);
+    }
+
+    function simulateLogin(button) {
+      const emailInput = document.querySelector('input[type="email"]');
+      const passwordInput = document.querySelector('input[type="password"]');
+      const email = emailInput.value;
+      const password = passwordInput.value;
+      const originalText = button.textContent;
+
+      if (!email || !password) {
+        button.textContent = 'Isi email & sandi!';
+        button.style.background = 'linear-gradient(135deg, #ef4444, #f87171)';
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = '';
+        }, 1500);
+
+        // Add shake animation for empty fields
+        if (!email) emailInput.classList.add('shake');
+        if (!password) passwordInput.classList.add('shake');
+
+        setTimeout(() => {
+          emailInput.classList.remove('shake');
+          passwordInput.classList.remove('shake');
+        }, 500);
+
+        return;
+      }
+
+      button.textContent = 'Memeriksa...';
+      button.style.background = 'linear-gradient(135deg, #3b82f6, #8b5cf6)';
+      button.disabled = true;
+
+      // Simulate API call
+      setTimeout(() => {
+        button.textContent = 'Berhasil Masuk!';
+        button.style.background = 'linear-gradient(135deg, #10b981, #34d399)';
+
+        // Update user profile
+        const username = email.split('@')[0];
+        document.querySelector('.user-name').textContent = username;
+        document.querySelector('.user-level').textContent = 'Level: Lanjutan';
+
+        // Update welcome message
+        const welcomeTitle = document.querySelector('.welcome-text h2');
+        welcomeTitle.textContent = `Selamat datang, ${username}! 👋`;
+
+        showNotification('Berhasil masuk! Selamat datang kembali.');
+
+        // Hide auth section on mobile
+        if (window.innerWidth <= 768) {
+          const authSection = document.querySelector('.auth-section');
+          authSection.style.display = 'none';
+
+          // Show logout option
+          const navMenu = document.querySelector('.nav-menu');
+          const logoutItem = document.createElement('li');
+          logoutItem.className = 'nav-item';
+          logoutItem.innerHTML = '<i class="fas fa-sign-out-alt"></i><span>Keluar</span>';
+          logoutItem.addEventListener('click', function () {
+            location.reload(); // Simple logout by reloading
+          });
+          navMenu.appendChild(logoutItem);
+        }
+
+        // Reset button
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = '';
+          button.disabled = false;
+
+          // Clear form
+          emailInput.value = '';
+          passwordInput.value = '';
+        }, 2000);
+      }, 1500);
+    }
+
+    function toggleGuestMode() {
+      const authSection = document.querySelector('.auth-section');
+      const guestOption = document.querySelector('.guest-option');
+      const formInputs = authSection.querySelectorAll('.form-input');
+      const loginBtn = authSection.querySelector('.btn-primary');
+      const signupBtn = authSection.querySelector('.btn-secondary');
+
+      if (authSection.style.opacity !== '0.7') {
+        // Activate guest mode
+        authSection.style.opacity = '0.7';
+        authSection.style.pointerEvents = 'none';
+        document.querySelector('.section-title').textContent = 'Mode Tamu Aktif';
+        guestOption.textContent = 'Beralih ke Login';
+
+        // Disable form inputs
+        formInputs.forEach(input => {
+          input.disabled = true;
+          input.placeholder = 'Tidak tersedia di mode tamu';
+        });
+
+        loginBtn.disabled = true;
+        signupBtn.disabled = true;
+
+        // Update user to guest
+        document.querySelector('.user-name').textContent = 'Pengguna Tamu';
+        document.querySelector('.user-level').textContent = 'Level: Pemula';
+
+        // Update welcome message
+        document.querySelector('.welcome-text h2').textContent = 'Selamat datang, Tamu! 👋';
+
+        showNotification('Anda masuk sebagai tamu. Fitur terbatas.');
+      } else {
+        // Switch back to login mode
+        authSection.style.opacity = '1';
+        authSection.style.pointerEvents = 'auto';
+        document.querySelector('.section-title').textContent = 'Masuk / Daftar';
+        guestOption.textContent = 'Coba sebagai Tamu';
+
+        // Enable form inputs
+        formInputs.forEach(input => {
+          input.disabled = false;
+          input.placeholder = input.type === 'email' ? 'Email' : 'Kata Sandi';
+        });
+
+        loginBtn.disabled = false;
+        signupBtn.disabled = false;
+
+        // Reset user
+        document.querySelector('.user-name').textContent = 'Bintang Permana';
+        document.querySelector('.user-level').textContent = 'Level: Menengah';
+        document.querySelector('.welcome-text h2').textContent = 'Selamat datang, Bintang! 👋';
+
+        showNotification('Mode login diaktifkan.');
+      }
+    }
+
+    function startVRSession() {
+      const button = document.querySelector('.vr-options .btn-primary');
+      const activeScenario = document.querySelector('.scenario-btn.active span').textContent;
+      const originalHTML = button.innerHTML;
+
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Mempersiapkan VR...</span>';
+      button.style.background = 'linear-gradient(135deg, #8b5cf6, #a78bfa)';
+      button.disabled = true;
+
+      // Simulate VR loading
+      setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-check"></i> <span>Masuk ke VR!</span>';
+        button.style.background = 'linear-gradient(135deg, #10b981, #3b82f6)';
+
+        showNotification(`Memulai sesi VR: ${activeScenario}. Siapkan headset Anda!`);
+
+        // For mobile, show different message
+        if (window.innerWidth <= 768) {
+          showNotification('Mode VR aktif! Gunakan headset atau lanjutkan di layar.');
+        }
+
+        // Simulate session recording
+        simulateVRSession();
+
+        // Reset button
+        setTimeout(() => {
+          button.innerHTML = originalHTML;
+          button.style.background = '';
+          button.disabled = false;
+        }, 3000);
+      }, 2500);
+    }
+
+    function simulateVRSession() {
+      // Simulate a VR session with progress updates
+      const progressBar = document.createElement('div');
+      progressBar.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: var(--gradient-primary);
+        z-index: 9999;
+        transition: width 0.3s;
+    `;
+      document.body.appendChild(progressBar);
+
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 10;
+        progressBar.style.width = `${progress}%`;
+
+        if (progress >= 100) {
+          clearInterval(interval);
+
+          // Simulate session completion
+          setTimeout(() => {
+            progressBar.style.height = '0';
+
+            // Update last session
+            updateLastSession();
+
+            // Show completion message
+            showNotification('Sesi VR selesai! Analisis AI sedang diproses...');
+
+            // Simulate AI analysis after session
+            setTimeout(() => {
+              updateAIAnalysis();
+              showNotification('Analisis AI siap! Lihat rekomendasi terbaru.');
+            }, 1500);
+
+            // Remove progress bar
+            setTimeout(() => {
+              if (progressBar.parentNode) {
+                progressBar.parentNode.removeChild(progressBar);
+              }
+            }, 500);
+          }, 500);
+        }
+      }, 300);
+    }
+
+    function updateLastSession() {
+      const now = new Date();
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      const formattedDate = now.toLocaleDateString('id-ID', options);
+
+      document.querySelector('.session-date').textContent = formattedDate;
+
+      // Generate random score for demo
+      const randomScore = Math.floor(Math.random() * 20) + 75;
+      document.querySelector('.session-score').innerHTML = `Skor: <span class="text-accent">${randomScore}/100</span>`;
+
+      // Update overall score
+      const overallScoreElement = document.querySelector('.stat-card:nth-child(1) .stat-value');
+      const progressFill = document.querySelector('.stat-card:nth-child(1) .progress-fill');
+
+      if (overallScoreElement && progressFill) {
+        overallScoreElement.textContent = `${randomScore}/100`;
+        progressFill.style.width = `${randomScore}%`;
+      }
+
+      // Add to history
+      addToHistory(formattedDate, randomScore);
+    }
+
+    function addToHistory(date, score) {
+      const historyList = document.querySelector('.history-list');
+      if (!historyList) return;
+
+      // Create new history item
+      const historyItem = document.createElement('li');
+      historyItem.className = 'history-item';
+      historyItem.innerHTML = `
+        <span class="history-date">${date}</span>
+        <span class="history-score text-accent">${score}</span>
+    `;
+
+      // Insert at the beginning
+      historyList.insertBefore(historyItem, historyList.firstChild);
+
+      // Limit to 10 items
+      const items = historyList.querySelectorAll('.history-item');
+      if (items.length > 10) {
+        historyList.removeChild(items[items.length - 1]);
+      }
+    }
+
+    function updateAIAnalysis() {
+      // Randomly update AI metrics for demo
+      const metrics = [
+        { name: 'Intonasi', element: '.metric-item:nth-child(1) .metric-value', bar: '.metric-item:nth-child(1) .metric-fill' },
+        { name: 'Gestur', element: '.metric-item:nth-child(2) .metric-value', bar: '.metric-item:nth-child(2) .metric-fill' },
+        { name: 'Kecepatan Bicara', element: '.metric-item:nth-child(3) .metric-value', bar: '.metric-item:nth-child(3) .metric-fill' }
+      ];
+
+      metrics.forEach(metric => {
+        const newScore = Math.floor(Math.random() * 15) + 70;
+        const valueElement = document.querySelector(metric.element);
+        const barElement = document.querySelector(metric.bar);
+
+        if (valueElement && barElement) {
+          // Animate the change
+          valueElement.style.transform = 'scale(1.1)';
+          valueElement.style.color = newScore > 80 ? '#10b981' : newScore > 70 ? '#f59e0b' : '#ef4444';
+          valueElement.textContent = newScore;
+
+          barElement.style.width = `${newScore}%`;
+          barElement.style.background = newScore > 80 ? 'var(--gradient-success)' :
+            newScore > 70 ? 'var(--gradient-warning)' :
+              'linear-gradient(135deg, #ef4444, #f87171)';
+
+          setTimeout(() => {
+            valueElement.style.transform = 'scale(1)';
+          }, 300);
+        }
+      });
+
+      // Update recommendations
+      updateRecommendations();
+    }
+
+    function updateRecommendations() {
+      const recommendations = [
+        { title: 'Latihan Pernapasan Diafragma', duration: 'Durasi: 7 menit' },
+        { title: 'Vokal Projection Training', duration: 'Durasi: 12 menit' },
+        { title: 'Improvisasi dan Adaptasi', duration: 'Durasi: 15 menit' }
+      ];
+
+      const recItems = document.querySelectorAll('.rec-item');
+      recItems.forEach((item, index) => {
+        if (recommendations[index]) {
+          const titleElement = item.querySelector('.rec-title');
+          const durationElement = item.querySelector('.rec-duration');
+
+          if (titleElement && durationElement) {
+            titleElement.textContent = recommendations[index].title;
+            durationElement.textContent = recommendations[index].duration;
+
+            // Add animation
+            item.style.transform = 'translateX(-10px)';
+            setTimeout(() => {
+              item.style.transform = 'translateX(0)';
+            }, 300);
+          }
+        }
+      });
+    }
+
+    function updateExerciseStats() {
+      // Update voice stats slightly after exercise
+      const voiceStat = document.querySelector('.stat-card:nth-child(2) .stat-value');
+      const voiceBar = document.querySelector('.stat-card:nth-child(2) .progress-fill');
+
+      if (voiceStat && voiceBar) {
+        const currentScore = parseInt(voiceStat.textContent);
+        const newScore = Math.min(100, currentScore + 1);
+
+        voiceStat.textContent = `${newScore}/100`;
+        voiceBar.style.width = `${newScore}%`;
+
+        // Animate
+        voiceStat.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          voiceStat.style.transform = 'scale(1)';
+        }, 300);
+      }
+    }
+
+    function startDemoMode(button) {
+      const originalText = button.textContent;
+      button.textContent = 'Memuat Demo...';
+      button.disabled = true;
+
+      // Show demo message
+      showNotification('Demo cepat dimulai! Simulasi 2 menit.');
+
+      // Simulate demo progress
+      setTimeout(() => {
+        button.textContent = 'Demo Berjalan';
+        button.style.background = 'var(--gradient-success)';
+
+        // Simulate demo completion
+        setTimeout(() => {
+          button.textContent = 'Demo Selesai!';
+          showNotification('Demo selesai! Coba sesi penuh untuk pengalaman lengkap.');
+
+          // Reset button
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+            button.disabled = false;
+          }, 2000);
+        }, 2000);
+      }, 1000);
+    }
+
+    function showNotification(message) {
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--card-dark);
+        color: var(--text-primary);
+        padding: ${window.innerWidth <= 768 ? '16px' : '12px 20px'};
+        border-radius: var(--radius-md);
+        border-left: 4px solid var(--accent-emerald);
+        box-shadow: var(--shadow-lg);
+        z-index: 1000;
+        animation: slideIn 0.3s ease-out;
+        max-width: ${window.innerWidth <= 768 ? '90%' : '300px'};
+        word-wrap: break-word;
+        backdrop-filter: blur(10px);
+    `;
+
+      notification.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 10px;">
+            <i class="fas fa-info-circle" style="color: var(--accent-emerald); margin-top: 2px;"></i>
+            <span style="font-size: ${window.innerWidth <= 768 ? '14px' : '13px'}">${message}</span>
+        </div>
+    `;
+
+      document.body.appendChild(notification);
+
+      // Auto-remove notification
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(20px)';
+        notification.style.transition = 'all 0.3s';
+
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+
+      // Allow manual close on mobile
+      if (window.innerWidth <= 768) {
+        notification.addEventListener('click', function () {
+          this.style.opacity = '0';
+          setTimeout(() => {
+            if (this.parentNode) {
+              this.parentNode.removeChild(this);
+            }
+          }, 200);
+        });
+      }
+    }
+
+    function setupMobileFeatures() {
+      // Add shake animation CSS
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .shake {
+            animation: shake 0.5s;
+            border-color: #ef4444 !important;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .btn, .scenario-btn {
+                min-height: 44px;
+            }
+            
+            .form-input {
+                font-size: 16px; /* Prevents iOS zoom */
+            }
+            
+            /* Larger tap targets */
+            .nav-item, .history-item, .rec-item {
+                padding: 12px;
+            }
+        }
+    `;
+      document.head.appendChild(style);
+
+      // Add back to top button for mobile
+      if (window.innerWidth <= 768) {
+        const backToTop = document.createElement('button');
+        backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backToTop.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            font-size: 20px;
+            z-index: 999;
+            display: none;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+        `;
+
+        backToTop.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.body.appendChild(backToTop);
+
+        // Show/hide based on scroll
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 500) {
+            backToTop.style.display = 'flex';
+            backToTop.style.alignItems = 'center';
+            backToTop.style.justifyContent = 'center';
+          } else {
+            backToTop.style.display = 'none';
+          }
+        });
+      }
+    }
+
+    function adjustLayoutForMobile() {
+      const isMobile = window.innerWidth <= 768;
+
+      // Adjust scenario grid
+      adjustScenarioGrid();
+
+      // Adjust navigation
+      const navItems = document.querySelectorAll('.nav-item span');
+      navItems.forEach(span => {
+        if (isMobile && window.innerWidth <= 480) {
+          span.style.display = 'inline';
+        } else if (isMobile) {
+          span.style.display = 'none';
+        } else {
+          span.style.display = 'inline';
+        }
+      });
+    }
+
+    function adjustScenarioGrid() {
+      const scenarioGrid = document.querySelector('.scenario-grid');
+      if (!scenarioGrid) return;
+
+      const width = window.innerWidth;
+
+      if (width <= 480) {
+        scenarioGrid.style.gridTemplateColumns = '1fr';
+      } else if (width <= 768) {
+        scenarioGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+      } else {
+        scenarioGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(150px, 1fr))';
+      }
+    }
+
+    // Initialize mobile layout on load
+    window.addEventListener('load', function () {
+      adjustLayoutForMobile();
+      adjustScenarioGrid();
+    });
+  </script>
+</body>
+
+</html>

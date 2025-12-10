@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VR Simulation Prototype - SpeakLab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --success: #4cc9f0;
+            --warning: #ff9e00;
+
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121f;
+            --bg-card-light: #1a1a2e;
+            --bg-highlight: #2a2a4a;
+            --border-color: #2d2d4d;
+
+            --text-primary: #f8f9fa;
+            --text-secondary: #adb5bd;
+            --text-muted: #6c757d;
+
+            --gradient-primary: linear-gradient(135deg, #4361ee, #3a0ca3);
+            --gradient-secondary: linear-gradient(135deg, #7209b7, #560bad);
+            --gradient-accent: linear-gradient(135deg, #f72585, #b5179e);
+            --gradient-success: linear-gradient(135deg, #4cc9f0, #4361ee);
+            --gradient-warning: linear-gradient(135deg, #ff9e00, #ff6b00);
+
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.2);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-glow: 0 0 20px rgba(67, 97, 238, 0.5);
+
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(114, 9, 183, 0.08) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .vr-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .vr-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--text-primary), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .vr-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .vr-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        /* VR Controls */
+        .vr-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .control-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(67, 97, 238, 0.1);
+            border-color: var(--primary);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .btn-icon {
+            padding: 10px;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+        }
+
+        /* VR Scene Container */
+        .vr-scene-container {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scene-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .scene-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .scene-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .scene-title h2 {
+            font-size: 24px;
+            color: var(--text-primary);
+        }
+
+        .scene-title p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* VR Viewport */
+        .vr-viewport {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 20px;
+            border: 2px solid var(--border-color);
+        }
+
+        .viewport-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .vr-viewport:hover .viewport-overlay {
+            opacity: 1;
+        }
+
+        /* Scene Grid */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .scene-card {
+            background: var(--bg-card-light);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .scene-card.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.3);
+            background: rgba(67, 97, 238, 0.05);
+        }
+
+        .scene-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .scene-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .scene-card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .scene-card h3 {
+            font-size: 18px;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .scene-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .scene-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .scene-tag {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* VR Device Mockup */
+        .vr-device-mockup {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vr-screen {
+            width: 90%;
+            height: 80%;
+            background: linear-gradient(135deg, #0f3460, #1a1a2e);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screen-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .screen-content h3 {
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .screen-content p {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .vr-glasses {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Audience Grid */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .audience-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease;
+        }
+
+        .audience-avatar:hover {
+            transform: scale(1.2);
+        }
+
+        /* Status Bar */
+        .vr-status {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .status-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .status-header h3 {
+            font-size: 22px;
+            color: var(--text-primary);
+        }
+
+        .status-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .status-item {
+            background: var(--bg-card-light);
+            padding: 15px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .status-label {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .status-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Footer */
+        .vr-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(67, 97, 238, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(67, 97, 238, 0.8);
+            }
+        }
+
+        .glow {
+            animation: glow 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .vr-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .control-group {
+                justify-content: space-between;
+            }
+
+            .scene-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .audience-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .vr-viewport {
+                height: 300px;
+            }
+
+            .status-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .vr-title {
+                font-size: 26px;
+            }
+
+            .vr-viewport {
+                height: 250px;
+            }
+
+            .control-buttons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="vr-header fade-in-up">
+            <h1 class="vr-title">VR Simulation Prototype</h1>
+            <p class="vr-subtitle">Simulasi lingkungan VR 360° untuk latihan public speaking dalam berbagai skenario
+                realistis</p>
+        </header>
+
+        <!-- VR Controls -->
+        <div class="vr-controls fade-in-up">
+            <div class="control-group">
+                <span class="control-label">Mode VR:</span>
+                <div class="control-buttons">
+                    <button class="btn btn-primary btn-sm" id="mode360Btn">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                        <span>360° View</span>
+                    </button>
+                    <button class="btn btn-secondary btn-sm" id="mode3DBtn">
+                        <i class="fas fa-cube"></i>
+                        <span>3D Scene</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <span class="control-label">Kamera:</span>
+                <div class="control-buttons">
+                    <button class="btn btn-secondary btn-icon btn-sm" id="zoomInBtn">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="btn btn-secondary btn-icon btn-sm" id="zoomOutBtn">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="btn btn-secondary btn-sm" id="resetViewBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Reset View</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <button class="btn btn-primary" id="enterVRBtn">
+                    <i class="fas fa-vr-cardboard"></i>
+                    <span>Masuk ke Mode VR</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main VR Scene -->
+        <section class="vr-scene-container fade-in-up">
+            <div class="scene-header">
+                <div class="scene-title">
+                    <div class="scene-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h2>1. Ruang Presentasi Kelas (360° View)</h2>
+                        <p>Simulasi lingkungan kelas dengan 30 kursi untuk presentasi akademik</p>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="btn btn-secondary btn-sm" id="playSceneBtn">
+                        <i class="fas fa-play"></i>
+                        <span>Play Scene</span>
+                    </button>
+                    <button class="btn btn-secondary btn-sm" id="recordBtn">
+                        <i class="fas fa-record-vinyl"></i>
+                        <span>Rekam Sesi</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- VR Viewport -->
+            <div class="vr-viewport glow">
+                <div class="vr-device-mockup">
+                    <div class="vr-screen">
+                        <div class="screen-content">
+                            <div class="vr-glasses">
+                                <i class="fas fa-vr-cardboard"></i>
+                            </div>
+                            <h3>Ruang Kelas Virtual</h3>
+                            <p>Lingkungan 360° dengan papan tulis digital dan audiens virtual</p>
+
+                            <!-- Audience Preview -->
+                            <div class="audience-grid">
+                                <div class="audience-avatar">👨‍🎓</div>
+                                <div class="audience-avatar">👩‍🎓</div>
+                                <div class="audience-avatar">👨‍🏫</div>
+                                <div class="audience-avatar">👩‍🏫</div>
+                                <div class="audience-avatar">👨‍💼</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="viewport-overlay">
+                    <button class="btn btn-primary" id="interactBtn">
+                        <i class="fas fa-hand-pointer"></i>
+                        <span>Interact with Scene</span>
+                    </button>
+                    <button class="btn btn-secondary" id="tourBtn">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Take Virtual Tour</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scene Description -->
+            <div
+                style="margin-top: 20px; padding: 15px; background: var(--bg-highlight); border-radius: var(--radius-md);">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <i class="fas fa-info-circle" style="color: var(--primary);"></i>
+                    <span style="font-weight: 500; color: var(--text-primary);">Deskripsi Scene:</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 14px;">
+                    Lingkungan kelas virtual dengan panggung presentasi, papan tulis digital, dan 30 kursi audiens.
+                    Scene ini dilengkapi dengan sistem audio surround untuk simulasi yang imersif. Audiens virtual akan
+                    memberikan reaksi berbeda berdasarkan performa presentasi Anda.
+                </p>
+            </div>
+        </section>
+
+        <!-- Additional Scenes Grid -->
+        <section class="fade-in-up" style="animation-delay: 0.2s;">
+            <h2 style="text-align: center; margin-bottom: 25px; color: var(--text-primary);">Pilihan Skenario VR Lainnya
+            </h2>
+
+            <div class="scene-grid">
+                <!-- Scene 1 -->
+                <div class="scene-card active">
+                    <div class="scene-card-header">
+                        <div class="scene-card-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <h3>Panggung Seminar</h3>
+                            <p>Auditorium besar dengan 100+ audiens</p>
+                        </div>
+                    </div>
+                    <p>Simulasi presentasi di konferensi akademik dengan panggung profesional dan sistem tanya jawab.
+                    </p>
+                    <div class="scene-tags">
+                        <span class="scene-tag">Formal</span>
+                        <span class="scene-tag">Large Audience</span>
+                        <span class="scene-tag">20-30 min</span>
+                    </div>
+                </div>
+
+                <!-- Scene 2 -->
+                <div class="scene-card">
+                    <div class="scene-card-header">
+                        <div class="scene-card-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <h3>Ruang Wawancara</h3>
+                            <p>Simulasi wawancara kerja 1-on-1</p>
+                        </div>
+                    </div>
+                    <p>Lingkungan kantor profesional dengan pewawancara virtual untuk latihan wawancara kerja.</p>
+                    <div class="scene-tags">
+                        <span class="scene-tag">Professional</span>
+                        <span class="scene-tag">One-on-One</span>
+                        <span class="scene-tag">15-20 min</span>
+                    </div>
+                </div>
+
+                <!-- Scene 3 -->
+                <div class="scene-card">
+                    <div class="scene-card-header">
+                        <div class="scene-card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3>Rapat Bisnis</h3>
+                            <p>Meeting room dengan tim eksekutif</p>
+                        </div>
+                    </div>
+                    <p>Simulasi presentasi bisnis di ruang rapat dengan 8-10 anggota tim virtual.</p>
+                    <div class="scene-tags">
+                        <span class="scene-tag">Business</span>
+                        <span class="scene-tag">Small Group</span>
+                        <span class="scene-tag">10-15 min</span>
+                    </div>
+                </div>
+
+                <!-- Scene 4 -->
+                <div class="scene-card">
+                    <div class="scene-card-header">
+                        <div class="scene-card-icon">
+                            <i class="fas fa-theater-masks"></i>
+                        </div>
+                        <div>
+                            <h3>Panggung TEDx</h3>
+                            <p>Red circle stage dengan live audience</p>
+                        </div>
+                    </div>
+                    <p>Simulasi talk show dengan panggung TEDx klasik dan audiens yang responsif.</p>
+                    <div class="scene-tags">
+                        <span class="scene-tag">Entertainment</span>
+                        <span class="scene-tag">Interactive</span>
+                        <span class="scene-tag">18 min</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VR Status -->
+        <div class="vr-status fade-in-up" style="animation-delay: 0.3s;">
+            <div class="status-header">
+                <div class="status-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Status Simulasi VR</h3>
+            </div>
+
+            <div class="status-info">
+                <div class="status-item">
+                    <div class="status-label">Scene Aktif</div>
+                    <div class="status-value">Ruang Presentasi Kelas</div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-label">Mode Tampilan</div>
+                    <div class="status-value">360° Immersive</div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-label">Durasi Sesi</div>
+                    <div class="status-value">00:00 / 15:00</div>
+                </div>
+
+                <div class="status-item">
+                    <div class="status-label">Audiens Virtual</div>
+                    <div class="status-value">30 Aktif</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="vr-controls fade-in-up" style="animation-delay: 0.4s; margin-top: 30px;">
+            <button class="btn btn-primary" id="loadSceneBtn">
+                <i class="fas fa-sync-alt"></i>
+                <span>Muat Scene Baru</span>
+            </button>
+
+            <button class="btn btn-secondary" id="settingsBtn">
+                <i class="fas fa-cog"></i>
+                <span>Pengaturan VR</span>
+            </button>
+
+            <button class="btn btn-secondary" id="exportSceneBtn">
+                <i class="fas fa-download"></i>
+                <span>Ekspor Rekaman</span>
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="vr-footer">
+            <p>© 2025 SpeakLab VR - Simulation Prototype • Teknologi VR 360° untuk Latihan Public Speaking</p>
+            <p style="margin-top: 5px; font-size: 12px;">Prototipe ini mensimulasikan lingkungan VR untuk berbagai
+                skenario presentasi dan public speaking</p>
+        </footer>
+    </div>
+
+    <script>
+        // Inisialisasi interaksi
+        document.addEventListener('DOMContentLoaded', function () {
+            // Element references
+            const enterVRBtn = document.getElementById('enterVRBtn');
+            const playSceneBtn = document.getElementById('playSceneBtn');
+            const recordBtn = document.getElementById('recordBtn');
+            const loadSceneBtn = document.getElementById('loadSceneBtn');
+            const mode360Btn = document.getElementById('mode360Btn');
+            const mode3DBtn = document.getElementById('mode3DBtn');
+            const sceneCards = document.querySelectorAll('.scene-card');
+            const vrViewport = document.querySelector('.vr-viewport');
+            const screenContent = document.querySelector('.screen-content h3');
+            const screenDesc = document.querySelector('.screen-content p');
+
+            // Scene data
+            const scenes = {
+                'Panggung Seminar': {
+                    title: 'Panggung Seminar Virtual',
+                    desc: 'Auditorium besar dengan panggung profesional dan sistem tanya jawab',
+                    duration: '25 menit',
+                    audience: '100+ aktif'
+                },
+                'Ruang Wawancara': {
+                    title: 'Ruang Wawancara Profesional',
+                    desc: 'Simulasi wawancara kerja dengan pewawancara virtual',
+                    duration: '18 menit',
+                    audience: '1 pewawancara'
+                },
+                'Rapat Bisnis': {
+                    title: 'Ruang Rapat Eksekutif',
+                    desc: 'Meeting room modern dengan tim manajemen virtual',
+                    duration: '12 menit',
+                    audience: '10 anggota'
+                },
+                'Panggung TEDx': {
+                    title: 'Panggung TEDx Klasik',
+                    desc: 'Red circle stage dengan audiens yang responsif dan interaktif',
+                    duration: '18 menit',
+                    audience: '150+ aktif'
+                },
+                'Ruang Presentasi Kelas': {
+                    title: 'Ruang Kelas Virtual',
+                    desc: 'Lingkungan kelas dengan papan tulis digital dan audiens virtual',
+                    duration: '15 menit',
+                    audience: '30 siswa'
+                }
+            };
+
+            // Mode VR button
+            enterVRBtn.addEventListener('click', function () {
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Memuat VR...</span>';
+                this.disabled = true;
+
+                // Add VR effect to viewport
+                vrViewport.classList.add('glow');
+
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> <span>VR Aktif!</span>';
+                    this.style.background = 'linear-gradient(135deg, #2ed573, #7bed9f)';
+
+                    showNotification('Mode VR diaktifkan!', 'success');
+
+                    // Reset after 3 seconds
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-vr-cardboard"></i> <span>Masuk ke Mode VR</span>';
+                        this.style.background = '';
+                        this.disabled = false;
+                    }, 3000);
+                }, 2000);
+            });
+
+            // Play scene button
+            playSceneBtn.addEventListener('click', function () {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-play')) {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                    this.innerHTML = '<i class="fas fa-pause"></i> <span>Pause Scene</span>';
+
+                    // Start scene animation
+                    startSceneAnimation();
+
+                    showNotification('Scene dimulai', 'info');
+                } else {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                    this.innerHTML = '<i class="fas fa-play"></i> <span>Play Scene</span>';
+
+                    showNotification('Scene di-pause', 'info');
+                }
+            });
+
+            // Record button
+            recordBtn.addEventListener('click', function () {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-record-vinyl')) {
+                    icon.classList.remove('fa-record-vinyl');
+                    icon.classList.add('fa-stop');
+                    this.innerHTML = '<i class="fas fa-stop"></i> <span>Stop Rekaman</span>';
+                    this.style.background = 'linear-gradient(135deg, #ef476f, #ff6b6b)';
+
+                    showNotification('Rekaman dimulai...', 'warning');
+                } else {
+                    icon.classList.remove('fa-stop');
+                    icon.classList.add('fa-record-vinyl');
+                    this.innerHTML = '<i class="fas fa-record-vinyl"></i> <span>Rekam Sesi</span>';
+                    this.style.background = '';
+
+                    showNotification('Rekaman selesai!', 'success');
+                }
+            });
+
+            // Scene selection
+            sceneCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    sceneCards.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const sceneTitle = this.querySelector('h3').textContent;
+                    if (scenes[sceneTitle]) {
+                        screenContent.textContent = scenes[sceneTitle].title;
+                        screenDesc.textContent = scenes[sceneTitle].desc;
+
+                        // Update status
+                        updateStatus(sceneTitle);
+
+                        showNotification(`Scene "${sceneTitle}" dipilih`, 'info');
+                    }
+                });
+            });
+
+            // Load scene button
+            loadSceneBtn.addEventListener('click', function () {
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Memuat...</span>';
+
+                // Simulate loading
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> <span>Scene Dimuat!</span>';
+                    this.style.background = 'linear-gradient(135deg, #2ed573, #7bed9f)';
+
+                    // Reset scene to play state
+                    playSceneBtn.innerHTML = '<i class="fas fa-play"></i> <span>Play Scene</span>';
+                    playSceneBtn.querySelector('i').classList.remove('fa-pause');
+                    playSceneBtn.querySelector('i').classList.add('fa-play');
+
+                    showNotification('Scene baru berhasil dimuat', 'success');
+
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-sync-alt"></i> <span>Muat Scene Baru</span>';
+                        this.style.background = '';
+                    }, 1500);
+                }, 1500);
+            });
+
+            // Mode buttons
+            mode360Btn.addEventListener('click', function () {
+                mode360Btn.classList.remove('btn-secondary');
+                mode360Btn.classList.add('btn-primary');
+                mode3DBtn.classList.remove('btn-primary');
+                mode3DBtn.classList.add('btn-secondary');
+
+                showNotification('Mode 360° diaktifkan', 'info');
+            });
+
+            mode3DBtn.addEventListener('click', function () {
+                mode3DBtn.classList.remove('btn-secondary');
+                mode3DBtn.classList.add('btn-primary');
+                mode360Btn.classList.remove('btn-primary');
+                mode360Btn.classList.add('btn-secondary');
+
+                showNotification('Mode 3D diaktifkan', 'info');
+            });
+
+            // Interact button
+            document.getElementById('interactBtn').addEventListener('click', function () {
+                showNotification('Mode interaksi diaktifkan. Klik objek dalam scene untuk berinteraksi.', 'info');
+            });
+
+            // Tour button
+            document.getElementById('tourBtn').addEventListener('click', function () {
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Memulai Tour...</span>';
+
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-map-marked-alt"></i> <span>Tour Berjalan</span>';
+                    showNotification('Virtual tour dimulai. Gunakan kontrol untuk navigasi.', 'info');
+                }, 1000);
+            });
+
+            // Zoom controls
+            document.getElementById('zoomInBtn').addEventListener('click', function () {
+                vrViewport.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    vrViewport.style.transition = 'transform 0.3s ease';
+                }, 300);
+                showNotification('Zoom in +10%', 'info');
+            });
+
+            document.getElementById('zoomOutBtn').addEventListener('click', function () {
+                vrViewport.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    vrViewport.style.transition = 'transform 0.3s ease';
+                }, 300);
+                showNotification('Zoom out -10%', 'info');
+            });
+
+            document.getElementById('resetViewBtn').addEventListener('click', function () {
+                vrViewport.style.transform = 'scale(1)';
+                showNotification('Tampilan direset ke default', 'info');
+            });
+
+            // Settings button
+            document.getElementById('settingsBtn').addEventListener('click', function () {
+                showNotification('Buka panel pengaturan VR', 'info');
+
+                // Create a simple settings modal
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  `;
+
+                modal.innerHTML = `
+    <div style="
+      background: var(--bg-card);
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 500px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+    ">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="color: var(--text-primary);">Pengaturan VR</h3>
+        <button id="closeModal" style="background: none; border: none; color: var(--text-secondary); font-size: 20px; cursor: pointer;">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; color: var(--text-secondary); margin-bottom: 8px;">Kualitas Grafik</label>
+        <select style="width: 100%; padding: 10px; background: var(--bg-card-light); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary);">
+          <option>Rendah (optimal untuk performa)</option>
+          <option selected>Medium (rekomendasi)</option>
+          <option>Tinggi (imersif maksimal)</option>
+        </select>
+      </div>
+      
+      <div style="margin-bottom: 20px;">
+        <label style="display: flex; align-items: center; color: var(--text-secondary); gap: 10px;">
+          <input type="checkbox" checked>
+          <span>Audiens Responsif</span>
+        </label>
+        <label style="display: flex; align-items: center; color: var(--text-secondary); gap: 10px; margin-top: 10px;">
+          <input type="checkbox" checked>
+          <span>Feedback Real-time</span>
+        </label>
+        <label style="display: flex; align-items: center; color: var(--text-secondary); gap: 10px; margin-top: 10px;">
+          <input type="checkbox">
+          <span>Mode Latihan (tanpa gangguan)</span>
+        </label>
+      </div>
+      
+      <div style="margin-bottom: 25px;">
+        <label style="display: block; color: var(--text-secondary); margin-bottom: 8px;">Volume Audio</label>
+        <input type="range" min="0" max="100" value="80" style="width: 100%;">
+      </div>
+      
+      <button style="width: 100%; padding: 12px; background: var(--gradient-primary); color: white; border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">
+        Simpan Pengaturan
+      </button>
+    </div>
+  `;
+
+                document.body.appendChild(modal);
+
+                // Close modal
+                modal.querySelector('#closeModal').addEventListener('click', function () {
+                    document.body.removeChild(modal);
+                });
+
+                // Close on outside click
+                modal.addEventListener('click', function (e) {
+                    if (e.target === modal) {
+                        document.body.removeChild(modal);
+                    }
+                });
+            });
+
+            // Export button
+            document.getElementById('exportSceneBtn').addEventListener('click', function () {
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Mengekspor...</span>';
+
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> <span>Berhasil!</span>';
+                    this.style.background = 'linear-gradient(135deg, #2ed573, #7bed9f)';
+
+                    showNotification('Rekaman berhasil diekspor dalam format MP4', 'success');
+
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-download"></i> <span>Ekspor Rekaman</span>';
+                        this.style.background = '';
+                    }, 2000);
+                }, 2000);
+            });
+
+            // Helper Functions
+            function showNotification(message, type = 'info') {
+                // Remove existing notification
+                const existing = document.querySelector('.notification');
+                if (existing) existing.remove();
+
+                // Create notification
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+
+                const colors = {
+                    info: 'var(--primary)',
+                    success: '#2ed573',
+                    warning: 'var(--warning)',
+                    error: '#ef476f'
+                };
+
+                notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 15px 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    border-left: 4px solid ${colors[type] || colors.info};
+    z-index: 1000;
+    transform: translateX(150%);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+  `;
+
+                notification.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}" 
+         style="color: ${colors[type] || colors.info};"></i>
+      <span>${message}</span>
+    </div>
+  `;
+
+                document.body.appendChild(notification);
+
+                // Animate in
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 10);
+
+                // Auto remove after 3 seconds
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(150%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+
+            function updateStatus(sceneName) {
+                // Update status values based on selected scene
+                const scene = scenes[sceneName];
+                if (scene) {
+                    document.querySelectorAll('.status-value')[0].textContent = sceneName;
+                    document.querySelectorAll('.status-value')[2].textContent = `00:00 / ${scene.duration}`;
+                    document.querySelectorAll('.status-value')[3].textContent = scene.audience;
+                }
+            }
+
+            function startSceneAnimation() {
+                // Animate audience avatars
+                const avatars = document.querySelectorAll('.audience-avatar');
+                avatars.forEach((avatar, index) => {
+                    setTimeout(() => {
+                        avatar.style.animation = 'pulse 1.5s ease-in-out';
+                        setTimeout(() => {
+                            avatar.style.animation = '';
+                        }, 1500);
+                    }, index * 200);
+                });
+
+                // Update session timer
+                let seconds = 0;
+                const timerInterval = setInterval(() => {
+                    seconds++;
+                    const min = Math.floor(seconds / 60).toString().padStart(2, '0');
+                    const sec = (seconds % 60).toString().padStart(2, '0');
+                    document.querySelectorAll('.status-value')[2].textContent = `${min}:${sec} / 15:00`;
+
+                    // Random audience reactions
+                    if (seconds % 5 === 0) {
+                        const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+                        randomAvatar.style.transform = 'scale(1.3)';
+                        randomAvatar.style.transition = 'transform 0.3s ease';
+                        setTimeout(() => {
+                            randomAvatar.style.transform = 'scale(1)';
+                        }, 500);
+                    }
+
+                    // Stop at 15 minutes (900 seconds)
+                    if (seconds >= 900) {
+                        clearInterval(timerInterval);
+                        showNotification('Sesi selesai!', 'info');
+                        document.getElementById('playSceneBtn').innerHTML = '<i class="fas fa-play"></i> <span>Play Scene</span>';
+                    }
+                }, 1000);
+            }
+
+            // Initialize with first scene
+            updateStatus('Ruang Presentasi Kelas');
+
+            // Add hover effect for cards
+            sceneCards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'translateY(-5px)';
+                    }
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function (e) {
+                // Space to play/pause
+                if (e.code === 'Space' && !e.target.matches('input, button, select, textarea')) {
+                    e.preventDefault();
+                    playSceneBtn.click();
+                }
+
+                // R to record
+                if (e.code === 'KeyR' && e.ctrlKey) {
+                    e.preventDefault();
+                    recordBtn.click();
+                }
+
+                // Escape to exit VR mode
+                if (e.code === 'Escape') {
+                    if (enterVRBtn.innerHTML.includes('VR Aktif')) {
+                        enterVRBtn.innerHTML = '<i class="fas fa-vr-cardboard"></i> <span>Masuk ke Mode VR</span>';
+                        enterVRBtn.style.background = '';
+                        vrViewport.classList.remove('glow');
+                        showNotification('Mode VR dinonaktifkan', 'info');
+                    }
+                }
+            });
+
+            // Show welcome message
+            setTimeout(() => {
+                showNotification('Selamat datang di SpeakLab VR Simulation! Gunakan kontrol untuk mulai bereksperimen.', 'info');
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
