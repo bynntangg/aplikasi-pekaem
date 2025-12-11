@@ -4,39 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpeakLab VR - Public Speaking Simulator</title>
+  <title>SpeakLab VR - Simulator Public Speaking dengan Nuansa Indonesia</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== VARIABLES ===== */
+    /* ===== VARIABLES - Warna Indonesia ===== */
     :root {
-      /* Colors */
-      --primary-dark: #0a0f1f;
-      --secondary-dark: #0f172a;
-      --card-dark: #1e293b;
+      /* Warna alam Indonesia */
+      --primary-dark: #0c1a14; /* Hijau pekat */
+      --secondary-dark: #1a2c24; /* Hijau tua */
+      --card-dark: #2a3c34;
       --glass-bg: rgba(255, 255, 255, 0.05);
 
-      /* Accent Colors */
-      --accent-emerald: #10b981;
-      --accent-blue: #3b82f6;
-      --accent-purple: #8b5cf6;
-      --accent-amber: #f59e0b;
+      /* Warna tradisional Indonesia */
+      --accent-emerald: #2a6b3f; /* Hijau daun */
+      --accent-blue: #1e4e2f; /* Hijau tua */
+      --accent-gold: #d4af37; /* Emas tradisional */
+      --accent-red: #b22222; /* Merah keberanian */
+      --accent-orange: #ff8c00; /* Oranye matahari terbenam */
+      --accent-purple: #6a1b9a; /* Ungu batik */
 
-      /* Gradients */
+      /* Gradien alam Indonesia */
       --gradient-primary: linear-gradient(135deg, var(--accent-emerald), var(--accent-blue));
-      --gradient-success: linear-gradient(135deg, #10b981, #34d399);
-      --gradient-warning: linear-gradient(135deg, #f59e0b, #fbbf24);
-      --gradient-premium: linear-gradient(135deg, #8b5cf6, #a78bfa);
+      --gradient-success: linear-gradient(135deg, #2a6b3f, #2e8b57);
+      --gradient-warning: linear-gradient(135deg, var(--accent-orange), #cc7000);
+      --gradient-premium: linear-gradient(135deg, var(--accent-purple), #8b5cf6);
+      --gradient-gold: linear-gradient(135deg, var(--accent-gold), #b8860b);
 
       /* Text Colors */
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
+      --text-primary: #f0f8f0;
+      --text-secondary: #c8d8d0;
+      --text-muted: #8a9c94;
 
       /* Borders & Shadows */
       --border-color: rgba(255, 255, 255, 0.08);
-      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
-      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
 
       /* Border Radius */
       --radius-lg: 16px;
@@ -51,7 +55,8 @@
       --spacing-xl: 32px;
 
       /* Font */
-      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Playfair Display', serif;
     }
 
     /* ===== RESET & BASE STYLES ===== */
@@ -74,8 +79,9 @@
 
     body {
       background:
-        radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232a6b3f' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        radial-gradient(circle at 10% 20%, rgba(42, 107, 63, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 40%),
         linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
       min-height: 100vh;
       padding: var(--spacing-md);
@@ -101,7 +107,7 @@
       }
     }
 
-    /* ===== HEADER ===== */
+    /* ===== HEADER dengan motif batik ===== */
     .app-header {
       display: flex;
       justify-content: space-between;
@@ -109,6 +115,24 @@
       padding: var(--spacing-md) 0;
       flex-wrap: wrap;
       gap: var(--spacing-md);
+      position: relative;
+    }
+
+    .app-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--accent-gold),
+        var(--accent-gold) 10px,
+        var(--accent-emerald) 10px,
+        var(--accent-emerald) 20px
+      );
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     }
 
     .brand {
@@ -118,35 +142,39 @@
     }
 
     .logo {
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: var(--radius-md);
       background: var(--gradient-primary);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 22px;
+      font-size: 24px;
       color: white;
       box-shadow: var(--shadow-md);
       position: relative;
       overflow: hidden;
+      border: 2px solid var(--accent-gold);
+      font-family: var(--font-heading);
     }
 
     .logo::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.2) 100%);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px dashed rgba(212, 175, 55, 0.5);
+      top: -7px;
+      left: -7px;
     }
 
     .brand-text h1 {
-      font-size: 24px;
+      font-family: var(--font-heading);
+      font-size: 26px;
       font-weight: 700;
-      background: linear-gradient(90deg, var(--text-primary), var(--accent-emerald));
+      background: linear-gradient(90deg, var(--accent-gold), var(--text-primary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -169,15 +197,16 @@
       border-radius: 50px;
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(212, 175, 55, 0.3);
     }
 
     .user-avatar {
-      width: 42px;
-      height: 42px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--accent-emerald);
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+      border: 2px solid var(--accent-gold);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
     }
 
     .user-info {
@@ -192,14 +221,15 @@
 
     .user-level {
       font-size: 12px;
-      color: var(--accent-emerald);
-      background: rgba(16, 185, 129, 0.1);
+      color: var(--accent-gold);
+      background: rgba(212, 175, 55, 0.1);
       padding: 2px var(--spacing-sm);
       border-radius: 20px;
       margin-top: 2px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
 
-    /* ===== SIDEBAR ===== */
+    /* ===== SIDEBAR dengan motif ukiran ===== */
     .sidebar {
       background: var(--card-dark);
       border-radius: var(--radius-lg);
@@ -208,6 +238,28 @@
       border: 1px solid var(--border-color);
       backdrop-filter: blur(10px);
       height: fit-content;
+      position: relative;
+    }
+
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        var(--accent-gold) 5px,
+        var(--accent-gold) 10px,
+        transparent 10px,
+        transparent 15px,
+        var(--accent-emerald) 15px,
+        var(--accent-emerald) 20px
+      );
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
 
     .auth-section {
@@ -226,17 +278,22 @@
     .section-title {
       font-weight: 700;
       font-size: 16px;
+      font-family: var(--font-heading);
     }
 
     .guest-option {
       font-size: 12px;
-      color: var(--text-muted);
+      color: var(--accent-gold);
       cursor: pointer;
       transition: color 0.2s;
+      background: rgba(212, 175, 55, 0.1);
+      padding: 4px 8px;
+      border-radius: 15px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
 
     .guest-option:hover {
-      color: var(--accent-emerald);
+      background: rgba(212, 175, 55, 0.2);
     }
 
     /* ===== FORM ELEMENTS ===== */
@@ -254,8 +311,8 @@
 
     .form-input:focus {
       outline: none;
-      border-color: var(--accent-emerald);
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
     }
 
     .button-group {
@@ -264,7 +321,7 @@
       margin-top: var(--spacing-sm);
     }
 
-    /* ===== BUTTONS ===== */
+    /* ===== BUTTONS dengan motif gerabah ===== */
     .btn {
       padding: var(--spacing-md) var(--spacing-lg);
       border-radius: var(--radius-md);
@@ -277,29 +334,47 @@
       align-items: center;
       justify-content: center;
       gap: var(--spacing-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn-primary {
       background: var(--gradient-primary);
       color: white;
       flex: 1;
+      border: 1px solid rgba(42, 107, 63, 0.3);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 6px 20px rgba(42, 107, 63, 0.4);
     }
 
     .btn-secondary {
-      background: transparent;
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--accent-gold);
       flex: 1;
     }
 
     .btn-secondary:hover {
-      border-color: var(--accent-emerald);
-      color: var(--accent-emerald);
+      background: rgba(212, 175, 55, 0.1);
+      border-color: var(--accent-gold);
     }
 
     .auth-footer {
@@ -317,6 +392,23 @@
       color: var(--text-muted);
       margin-bottom: var(--spacing-md);
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .nav-title::before {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold));
+    }
+
+    .nav-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-gold), transparent);
     }
 
     .nav-menu {
@@ -336,18 +428,20 @@
       transition: all 0.2s;
       color: var(--text-secondary);
       font-weight: 500;
+      position: relative;
     }
 
     .nav-item:hover {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(212, 175, 55, 0.1);
       color: var(--text-primary);
       transform: translateX(4px);
+      border-left: 3px solid var(--accent-gold);
     }
 
     .nav-item.active {
-      background: linear-gradient(90deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.1));
+      background: linear-gradient(90deg, rgba(42, 107, 63, 0.15), rgba(30, 78, 47, 0.1));
       color: var(--text-primary);
-      border-left: 3px solid var(--accent-emerald);
+      border-left: 3px solid var(--accent-gold);
       font-weight: 600;
     }
 
@@ -358,25 +452,39 @@
       gap: var(--spacing-lg);
     }
 
-    /* ===== WELCOME BANNER ===== */
+    /* ===== WELCOME BANNER dengan motif wayang ===== */
     .welcome-banner {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+      background: linear-gradient(135deg, rgba(42, 107, 63, 0.15), rgba(30, 78, 47, 0.1));
       border-radius: var(--radius-lg);
       padding: var(--spacing-xl);
       box-shadow: var(--shadow-lg);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: var(--spacing-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-banner::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+      top: -50px;
+      right: -50px;
+      border-radius: 50%;
     }
 
     .welcome-text h2 {
-      font-size: 24px;
+      font-family: var(--font-heading);
+      font-size: 28px;
       font-weight: 700;
       margin-bottom: var(--spacing-sm);
-      background: linear-gradient(90deg, var(--text-primary), var(--accent-emerald));
+      background: linear-gradient(90deg, var(--accent-gold), var(--text-primary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -386,6 +494,7 @@
       color: var(--text-secondary);
       max-width: 600px;
       margin-bottom: var(--spacing-lg);
+      font-size: 15px;
     }
 
     .action-buttons {
@@ -399,6 +508,10 @@
       flex-direction: column;
       align-items: flex-end;
       min-width: 180px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
 
     .last-session {
@@ -410,8 +523,9 @@
     .session-date {
       font-size: 20px;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--accent-gold);
       margin-bottom: 4px;
+      font-family: var(--font-heading);
     }
 
     .session-score {
@@ -434,12 +548,24 @@
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-color);
       transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
     .stat-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-lg);
-      border-color: rgba(16, 185, 129, 0.3);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-gold);
     }
 
     .stat-header {
@@ -451,6 +577,7 @@
 
     .stat-icon {
       font-size: 18px;
+      color: var(--accent-gold);
     }
 
     .stat-title {
@@ -462,6 +589,7 @@
       font-size: 32px;
       font-weight: 700;
       margin-bottom: var(--spacing-sm);
+      font-family: var(--font-heading);
     }
 
     .progress-bar {
@@ -483,7 +611,7 @@
       margin-top: var(--spacing-sm);
     }
 
-    /* ===== VR STAGE ===== */
+    /* ===== VR STAGE dengan motif anyaman ===== */
     .vr-stage-section {
       background: var(--card-dark);
       border-radius: var(--radius-lg);
@@ -493,6 +621,28 @@
       display: flex;
       gap: var(--spacing-lg);
       flex-wrap: wrap;
+      position: relative;
+    }
+
+    .vr-stage-section::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        var(--accent-gold) 5px,
+        var(--accent-gold) 10px,
+        transparent 10px,
+        transparent 15px,
+        var(--accent-emerald) 15px,
+        var(--accent-emerald) 20px
+      );
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     }
 
     .vr-preview {
@@ -505,7 +655,7 @@
       height: 200px;
       border-radius: var(--radius-md);
       background: linear-gradient(135deg, var(--secondary-dark), var(--card-dark));
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -521,13 +671,20 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(212, 175, 55, 0.05) 10px,
+        rgba(212, 175, 55, 0.05) 20px
+      );
     }
 
     .vr-icon {
       font-size: 48px;
       margin-bottom: var(--spacing-md);
-      color: var(--accent-emerald);
+      color: var(--accent-gold);
+      z-index: 1;
     }
 
     .vr-preview-text {
@@ -543,8 +700,10 @@
     }
 
     .section-heading {
-      font-size: 18px;
+      font-family: var(--font-heading);
+      font-size: 20px;
       margin-bottom: var(--spacing-xs);
+      color: var(--text-primary);
     }
 
     .section-subtitle {
@@ -553,7 +712,7 @@
       font-size: 14px;
     }
 
-    /* ===== SCENARIO SELECTION ===== */
+    /* ===== SCENARIO SELECTION dengan motif kain tenun ===== */
     .scenario-grid {
       display: flex;
       flex-wrap: wrap;
@@ -570,19 +729,27 @@
       cursor: pointer;
       transition: all 0.2s;
       font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      flex: 1;
+      min-width: 150px;
+      justify-content: center;
     }
 
     .scenario-btn:hover {
-      background: rgba(16, 185, 129, 0.1);
-      border-color: var(--accent-emerald);
-      color: var(--accent-emerald);
+      background: rgba(212, 175, 55, 0.1);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+      transform: translateY(-2px);
     }
 
     .scenario-btn.active {
-      background: rgba(16, 185, 129, 0.15);
-      border-color: var(--accent-emerald);
-      color: var(--accent-emerald);
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
       font-weight: 500;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
     }
 
     /* ===== ANALYSIS SECTION ===== */
@@ -604,6 +771,18 @@
       padding: var(--spacing-lg);
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .ai-analysis::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: var(--gradient-gold);
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
     }
 
     .ai-header {
@@ -612,10 +791,11 @@
       display: flex;
       align-items: center;
       gap: var(--spacing-sm);
+      font-family: var(--font-heading);
     }
 
     .ai-icon {
-      color: var(--accent-emerald);
+      color: var(--accent-gold);
     }
 
     /* ===== METRICS GRID ===== */
@@ -661,17 +841,29 @@
 
     /* ===== AI NOTES ===== */
     .ai-notes {
-      background: rgba(16, 185, 129, 0.05);
-      border-left: 3px solid var(--accent-emerald);
+      background: rgba(212, 175, 55, 0.05);
+      border-left: 3px solid var(--accent-gold);
       padding: var(--spacing-md);
       border-radius: var(--radius-sm);
       margin-top: var(--spacing-lg);
+      position: relative;
+    }
+
+    .ai-notes::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 40px;
+      color: rgba(212, 175, 55, 0.2);
+      font-family: var(--font-heading);
     }
 
     .ai-notes p {
       color: var(--text-secondary);
       font-size: 14px;
       line-height: 1.6;
+      margin-left: 10px;
     }
 
     /* ===== RECOMMENDATIONS ===== */
@@ -685,8 +877,10 @@
     }
 
     .recommendations h4 {
-      font-size: 16px;
+      font-family: var(--font-heading);
+      font-size: 18px;
       margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
     }
 
     .rec-list {
@@ -703,10 +897,12 @@
       border-radius: var(--radius-md);
       background: rgba(255, 255, 255, 0.02);
       transition: all 0.2s;
+      border: 1px solid rgba(212, 175, 55, 0.1);
     }
 
     .rec-item:hover {
-      background: rgba(16, 185, 129, 0.05);
+      background: rgba(212, 175, 55, 0.05);
+      transform: translateX(4px);
     }
 
     .rec-content {
@@ -728,17 +924,17 @@
     .rec-action {
       padding: var(--spacing-sm) var(--spacing-md);
       border-radius: var(--radius-sm);
-      background: rgba(16, 185, 129, 0.1);
-      color: var(--accent-emerald);
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--accent-gold);
       font-size: 13px;
       font-weight: 500;
-      border: none;
+      border: 1px solid rgba(212, 175, 55, 0.2);
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .rec-action:hover {
-      background: rgba(16, 185, 129, 0.2);
+      background: rgba(212, 175, 55, 0.2);
     }
 
     /* ===== RIGHT SIDEBAR ===== */
@@ -754,11 +950,25 @@
       padding: var(--spacing-lg);
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .sidebar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
 
     .sidebar-card h4 {
-      font-size: 16px;
+      font-family: var(--font-heading);
+      font-size: 18px;
       margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
     }
 
     /* ===== HISTORY LIST ===== */
@@ -785,7 +995,7 @@
 
     .history-score {
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--accent-gold);
     }
 
     /* ===== PROFILE DETAILS ===== */
@@ -800,6 +1010,12 @@
       display: flex;
       justify-content: space-between;
       font-size: 14px;
+      padding: var(--spacing-xs) 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    }
+
+    .profile-row:last-child {
+      border-bottom: none;
     }
 
     .profile-label {
@@ -811,7 +1027,7 @@
       font-weight: 500;
     }
 
-    /* ===== FOOTER ===== */
+    /* ===== FOOTER dengan motif batik ===== */
     .app-footer {
       text-align: center;
       padding-top: var(--spacing-lg);
@@ -819,6 +1035,23 @@
       margin-top: var(--spacing-xl);
       color: var(--text-muted);
       font-size: 13px;
+      position: relative;
+    }
+
+    .app-footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        var(--accent-gold) 5px,
+        var(--accent-gold) 10px
+      );
     }
 
     /* ===== UTILITY CLASSES ===== */
@@ -830,6 +1063,10 @@
     }
 
     .text-accent {
+      color: var(--accent-gold);
+    }
+
+    .text-emerald {
       color: var(--accent-emerald);
     }
 
@@ -861,7 +1098,18 @@
       margin-top: var(--spacing-lg);
     }
 
-    /* ===== ANIMATIONS ===== */
+    /* ===== ANIMASI KHAS INDONESIA ===== */
+    @keyframes gamelan {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      75% { transform: rotate(-2deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .gamelan-animation:hover {
+      animation: gamelan 0.5s ease;
+    }
+
     @keyframes pulse {
       0% {
         opacity: 1;
@@ -907,17 +1155,69 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(212, 175, 55, 0.3);
       border-radius: 10px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(212, 175, 55, 0.5);
+    }
+
+    /* ===== MOTIF DEKORASI INDONESIA ===== */
+    .indonesia-badge {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--accent-gold);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .batik-corner {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 L40,10 L10,40 Z' fill='none' stroke='%23d4af37' stroke-width='2'/%3E%3Cpath d='M10,20 L30,10 L10,30 Z' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3Cpath d='M10,30 L20,10 L10,20 Z' fill='none' stroke='%23d4af37' stroke-width='1'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .batik-corner.top-left {
+      top: 10px;
+      left: 10px;
+    }
+
+    .batik-corner.top-right {
+      top: 10px;
+      right: 10px;
+      transform: rotate(90deg);
+    }
+
+    .batik-corner.bottom-left {
+      bottom: 10px;
+      left: 10px;
+      transform: rotate(-90deg);
+    }
+
+    .batik-corner.bottom-right {
+      bottom: 10px;
+      right: 10px;
+      transform: rotate(180deg);
     }
 
     /* ===== MOBILE RESPONSIVE STYLES ===== */
     @media (max-width: 768px) {
-
       /* Body & Container */
       body {
         padding: var(--spacing-sm);
@@ -925,6 +1225,13 @@
 
       .container {
         padding: 0 var(--spacing-sm);
+      }
+
+      .indonesia-badge {
+        top: 10px;
+        right: 10px;
+        font-size: 11px;
+        padding: 6px 12px;
       }
 
       /* Header */
@@ -974,7 +1281,7 @@
         align-items: center;
         width: 100%;
         padding-top: var(--spacing-md);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(212, 175, 55, 0.1);
       }
 
       /* Stats Grid */
@@ -1088,6 +1395,11 @@
         padding: var(--spacing-md) 0;
         margin-top: var(--spacing-lg);
       }
+
+      /* Hide batik corners on mobile */
+      .batik-corner {
+        display: none;
+      }
     }
 
     /* Tablet Styles */
@@ -1150,11 +1462,15 @@
       }
 
       .brand-text h1 {
-        font-size: 20px;
+        font-size: 22px;
       }
 
       .brand-text p {
         font-size: 13px;
+      }
+
+      .welcome-text h2 {
+        font-size: 24px;
       }
     }
 
@@ -1171,7 +1487,6 @@
       .form-input {
         min-height: 48px;
         font-size: 16px;
-        /* Prevents iOS zoom on focus */
       }
 
       /* Larger tap targets for mobile */
@@ -1184,6 +1499,18 @@
 </head>
 
 <body>
+  <!-- Motif Batik di Sudut -->
+  <div class="batik-corner top-left"></div>
+  <div class="batik-corner top-right"></div>
+  <div class="batik-corner bottom-left"></div>
+  <div class="batik-corner bottom-right"></div>
+
+  <!-- Badge Indonesia -->
+  <div class="indonesia-badge">
+    <i class="fas fa-flag"></i>
+    <span>Nuansa Indonesia</span>
+  </div>
+
   <div class="container">
     <!-- HEADER -->
     <header class="app-header">
@@ -1191,7 +1518,7 @@
         <div class="logo">SL</div>
         <div class="brand-text">
           <h1>SpeakLab VR</h1>
-          <p>Simulator Public Speaking dengan Realitas Virtual</p>
+          <p>Simulator Public Speaking dengan Nuansa Indonesia</p>
         </div>
       </div>
 
@@ -1232,7 +1559,7 @@
           <ul class="nav-menu">
             <li class="nav-item active">
               <i class="fas fa-chart-line"></i>
-              <a href="index.html" style="text-decoration: none; color: inherit;">Dashboard</a>
+              <span>Dashboard</span>
             </li>
             <li class="nav-item">
               <i class="fas fa-dumbbell"></i>
@@ -1248,11 +1575,11 @@
             </li>
             <li class="nav-item">
               <i class="fas fa-cog"></i>
-              <a href="" style="text-decoration: none; color: inherit;">Pengaturan</a>
+              <span>Pengaturan</span>
             </li>
             <li class="nav-item">
               <i class="fas fa-trophy"></i>
-              <a href="" style="text-decoration: none; color: inherit;">Pencapaian</a>
+              <span>Pencapaian</span>
             </li>
           </ul>
         </div>
@@ -1261,17 +1588,17 @@
       <!-- MAIN CONTENT -->
       <main class="main-content">
         <!-- Welcome Banner -->
-        <section class="welcome-banner slide-in">
+        <section class="welcome-banner slide-in gamelan-animation">
           <div class="welcome-text">
             <h2>Selamat datang, Bintang! 👋</h2>
             <p>Waktunya meningkatkan kemampuan public speaking Anda. Pilih skenario VR, latih presentasi, dan dapatkan
-              analisis AI instan untuk performa Anda.</p>
+              analisis AI instan untuk performa Anda dengan sentuhan budaya Indonesia.</p>
             <div class="action-buttons">
-              <button class="btn btn-primary" onclick="window.location.href='videovr.html'">
+              <button class="btn btn-primary gamelan-animation" onclick="window.location.href='videovr.html'">
                 <i class="fas fa-rocket"></i>
                 <span>Masuk ke Ruang VR</span>
               </button>
-              <button class="btn btn-secondary">
+              <button class="btn btn-secondary gamelan-animation">
                 <i class="fas fa-gamepad"></i>
                 <span>Coba Demo Cepat</span>
               </button>
@@ -1281,42 +1608,42 @@
           <div class="session-stats">
             <div class="last-session">Sesi Terakhir</div>
             <div class="session-date">12 April 2025</div>
-            <div class="session-score text-accent">Skor: 78/100</div>
+            <div class="session-score text-emerald">Skor: 78/100</div>
           </div>
         </section>
 
         <!-- Stats Grid -->
         <section class="stats-grid">
-          <div class="stat-card">
+          <div class="stat-card gamelan-animation">
             <div class="stat-header">
               <i class="fas fa-chart-bar stat-icon"></i>
               <div class="stat-title">Skor Keseluruhan</div>
             </div>
             <div class="stat-value text-accent">78/100</div>
             <div class="progress-bar">
-              <div class="progress-fill" style="width: 78%; background: var(--gradient-primary);"></div>
+              <div class="progress-fill" style="width: 78%; background: var(--gradient-gold);"></div>
             </div>
             <div class="stat-description">Performa rata-rata dari semua sesi</div>
           </div>
 
-          <div class="stat-card">
+          <div class="stat-card gamelan-animation">
             <div class="stat-header">
               <i class="fas fa-volume-up stat-icon"></i>
               <div class="stat-title">Intonasi & Suara</div>
             </div>
-            <div class="stat-value" style="color: #10b981;">82/100</div>
+            <div class="stat-value" style="color: var(--accent-emerald);">82/100</div>
             <div class="progress-bar">
-              <div class="progress-fill" style="width: 82%; background: var(--gradient-success);"></div>
+              <div class="progress-fill" style="width: 82%; background: var(--gradient-primary);"></div>
             </div>
             <div class="stat-description">Kekuatan, kejelasan, dan variasi suara</div>
           </div>
 
-          <div class="stat-card">
+          <div class="stat-card gamelan-animation">
             <div class="stat-header">
               <i class="fas fa-hands stat-icon"></i>
               <div class="stat-title">Gestur & Bahasa Tubuh</div>
             </div>
-            <div class="stat-value" style="color: #f59e0b;">74/100</div>
+            <div class="stat-value" style="color: var(--accent-orange);">74/100</div>
             <div class="progress-bar">
               <div class="progress-fill" style="width: 74%; background: var(--gradient-warning);"></div>
             </div>
@@ -1325,7 +1652,7 @@
         </section>
 
         <!-- VR Stage Section -->
-        <section class="vr-stage-section">
+        <section class="vr-stage-section gamelan-animation">
           <div class="vr-preview">
             <div class="vr-container">
               <div class="vr-icon">
@@ -1333,43 +1660,43 @@
               </div>
               <div class="vr-preview-text">
                 <div>Pratinjau Lingkungan VR</div>
-                <div class="text-muted mt-sm">Auditorium dengan 50 virtual audience</div>
+                <div class="text-muted mt-sm">Auditorium dengan motif batik dan 50 virtual audience</div>
               </div>
             </div>
           </div>
 
           <div class="vr-options">
             <h3 class="section-heading">Pilih Skenario Latihan</h3>
-            <p class="section-subtitle">Pilih jenis acara yang ingin Anda simulasi dalam lingkungan VR</p>
+            <p class="section-subtitle">Pilih jenis acara yang ingin Anda simulasi dalam lingkungan VR dengan nuansa Indonesia</p>
 
             <div class="scenario-grid">
-              <button class="scenario-btn active">
+              <button class="scenario-btn active gamelan-animation">
                 <i class="fas fa-school"></i>
                 <span>Presentasi Kelas</span>
               </button>
-              <button class="scenario-btn">
+              <button class="scenario-btn gamelan-animation">
                 <i class="fas fa-microphone"></i>
                 <span>Pidato Formal</span>
               </button>
-              <button class="scenario-btn">
+              <button class="scenario-btn gamelan-animation">
                 <i class="fas fa-briefcase"></i>
                 <span>Wawancara Kerja</span>
               </button>
-              <button class="scenario-btn">
+              <button class="scenario-btn gamelan-animation">
                 <i class="fas fa-graduation-cap"></i>
                 <span>Presentasi Tugas Akhir</span>
               </button>
-              <button class="scenario-btn">
+              <button class="scenario-btn gamelan-animation">
                 <i class="fas fa-users"></i>
                 <span>Rapat Bisnis</span>
               </button>
-              <button class="scenario-btn">
+              <button class="scenario-btn gamelan-animation">
                 <i class="fas fa-theater-masks"></i>
                 <span>TED-style Talk</span>
               </button>
             </div>
 
-            <button class="btn btn-primary" style="width: 100%" onclick="window.location.href='videovr.html'">
+            <button class="btn btn-primary gamelan-animation" style="width: 100%" onclick="window.location.href='videovr.html'">
               <i class="fas fa-rocket"></i>
               <span>Mulai Sesi VR</span>
             </button>
@@ -1380,7 +1707,7 @@
         <div class="analysis-section">
           <div class="left-analysis">
             <!-- AI Analysis -->
-            <div class="ai-analysis">
+            <div class="ai-analysis gamelan-animation">
               <h3 class="ai-header">
                 <i class="fas fa-robot ai-icon"></i>
                 <span>Analisis AI - Ringkasan Performa</span>
@@ -1393,7 +1720,7 @@
                     <span class="metric-value">82</span>
                   </div>
                   <div class="metric-bar">
-                    <div class="metric-fill" style="width: 82%; background: var(--gradient-success);"></div>
+                    <div class="metric-fill" style="width: 82%; background: var(--gradient-primary);"></div>
                   </div>
                 </div>
 
@@ -1421,12 +1748,12 @@
               <div class="ai-notes">
                 <p><strong>Catatan AI:</strong> Intonasi Anda sudah baik, namun perlu memperbaiki kontak mata dengan
                   audiens virtual. Coba kurangi pengulangan kata "jadi" dan "baik". Latih variasi nada suara pada bagian
-                  penutup presentasi.</p>
+                  penutup presentasi dengan gaya bicara yang santun seperti budaya Indonesia.</p>
               </div>
             </div>
 
             <!-- Recommendations -->
-            <div class="recommendations">
+            <div class="recommendations gamelan-animation">
               <h4>Rekomendasi Latihan Hari Ini</h4>
               <div class="rec-list">
                 <div class="rec-item">
@@ -1434,7 +1761,7 @@
                     <div class="rec-title">Latihan Intonasi & Penekanan</div>
                     <div class="rec-duration">Durasi: 10 menit</div>
                   </div>
-                  <button class="rec-action">Mulai</button>
+                  <button class="rec-action gamelan-animation">Mulai</button>
                 </div>
 
                 <div class="rec-item">
@@ -1442,7 +1769,7 @@
                     <div class="rec-title">Kontak Mata dengan Audiens Virtual</div>
                     <div class="rec-duration">Durasi: 5 menit</div>
                   </div>
-                  <button class="rec-action">Mulai</button>
+                  <button class="rec-action gamelan-animation">Mulai</button>
                 </div>
 
                 <div class="rec-item">
@@ -1450,7 +1777,7 @@
                     <div class="rec-title">Gestur Tangan yang Terarah</div>
                     <div class="rec-duration">Durasi: 8 menit</div>
                   </div>
-                  <button class="rec-action">Mulai</button>
+                  <button class="rec-action gamelan-animation">Mulai</button>
                 </div>
               </div>
             </div>
@@ -1459,7 +1786,7 @@
           <!-- Right Sidebar -->
           <div class="right-sidebar">
             <!-- Session History -->
-            <div class="sidebar-card">
+            <div class="sidebar-card gamelan-animation">
               <h4>Riwayat Sesi</h4>
               <ul class="history-list">
                 <li class="history-item">
@@ -1486,7 +1813,7 @@
             </div>
 
             <!-- Profile Details -->
-            <div class="sidebar-card">
+            <div class="sidebar-card gamelan-animation">
               <h4>Profil Singkat</h4>
               <div class="profile-details">
                 <div class="profile-row">
@@ -1506,7 +1833,7 @@
                   <span class="profile-value">Mar 2025</span>
                 </div>
               </div>
-              <button class="btn btn-secondary" style="width: 100%;">
+              <button class="btn btn-secondary gamelan-animation" style="width: 100%;">
                 <i class="fas fa-user-edit"></i>
                 <span>Edit Profil</span>
               </button>
@@ -1518,14 +1845,72 @@
 
     <!-- FOOTER -->
     <footer class="app-footer">
-      <p>© 2025 SpeakLab VR. All rights reserved. | Simulator Public Speaking dengan Teknologi Realitas Virtual</p>
-      <p class="text-muted mt-sm">Versi Beta 1.2 | Pengembangan aktif</p>
+      <p>© 2025 SpeakLab VR. All rights reserved. | Simulator Public Speaking dengan Teknologi Realitas Virtual dan Nuansa Budaya Indonesia</p>
+      <p class="text-muted mt-sm">Versi Beta 1.2 | Menggabungkan teknologi modern dengan kearifan lokal</p>
     </footer>
   </div>
 
   <script>
     // ===== INTERACTIVITY =====
     document.addEventListener('DOMContentLoaded', function () {
+      // Add Indonesian theme to notification function
+      function showNotification(message) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: var(--card-dark);
+          color: var(--text-primary);
+          padding: ${window.innerWidth <= 768 ? '16px' : '12px 20px'};
+          border-radius: var(--radius-md);
+          border-left: 4px solid var(--accent-gold);
+          box-shadow: var(--shadow-lg);
+          z-index: 1000;
+          animation: slideIn 0.3s ease-out;
+          max-width: ${window.innerWidth <= 768 ? '90%' : '300px'};
+          word-wrap: break-word;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(212, 175, 55, 0.3);
+      `;
+
+        notification.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 10px;">
+            <i class="fas fa-info-circle" style="color: var(--accent-gold); margin-top: 2px;"></i>
+            <span style="font-size: ${window.innerWidth <= 768 ? '14px' : '13px'}">${message}</span>
+        </div>
+    `;
+
+        document.body.appendChild(notification);
+
+        // Auto-remove notification
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transform = 'translateX(20px)';
+          notification.style.transition = 'all 0.3s';
+
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.parentNode.removeChild(notification);
+            }
+          }, 300);
+        }, 3000);
+
+        // Allow manual close on mobile
+        if (window.innerWidth <= 768) {
+          notification.addEventListener('click', function () {
+            this.style.opacity = '0';
+            setTimeout(() => {
+              if (this.parentNode) {
+                this.parentNode.removeChild(this);
+              }
+            }, 200);
+          });
+        }
+      }
+
       // Scenario Selection
       const scenarioButtons = document.querySelectorAll('.scenario-btn');
       scenarioButtons.forEach(button => {
@@ -1551,6 +1936,32 @@
         });
       });
 
+      // Update VR preview with Indonesian themes
+      function updateVRPreview(selectedButton) {
+        const scenarioText = selectedButton.querySelector('span').textContent;
+        const vrPreviewText = document.querySelector('.vr-preview-text div:first-child');
+        const vrSubText = document.querySelector('.vr-preview-text .text-muted');
+
+        const scenarios = {
+          'Presentasi Kelas': ['Ruang Kelas Virtual', 'Simulasi presentasi di depan 30 mahasiswa dengan dekorasi batik'],
+          'Pidato Formal': ['Panggung Konferensi', 'Auditori formal dengan motif ukiran tradisional'],
+          'Wawancara Kerja': ['Ruang Wawancara', 'Simulasi wawancara dengan panel HR virtual dan nuansa Indonesia'],
+          'Presentasi Tugas Akhir': ['Sidang Skripsi', 'Dewan penguji virtual di ruang sidang dengan sentuhan lokal'],
+          'Rapat Bisnis': ['Ruang Rapat Perusahaan', 'Meeting dengan rekan kerja virtual dan budaya kerja Indonesia'],
+          'TED-style Talk': ['Panggung TEDx', 'Lingkungan panggung dengan nuansa Nusantara']
+        };
+
+        if (scenarios[scenarioText]) {
+          vrPreviewText.textContent = scenarios[scenarioText][0];
+          vrSubText.textContent = scenarios[scenarioText][1];
+
+          // Show notification on mobile
+          if (window.innerWidth <= 768) {
+            showNotification(`Skenario dipilih: ${scenarioText} dengan nuansa Indonesia`);
+          }
+        }
+      }
+
       // Recommendation Buttons
       const recButtons = document.querySelectorAll('.rec-action');
       recButtons.forEach(button => {
@@ -1569,20 +1980,218 @@
         });
       });
 
-      // Login Button
+      function startExercise(button, exerciseName) {
+        const originalText = button.textContent;
+
+        button.textContent = 'Memulai...';
+        button.style.background = 'rgba(212, 175, 55, 0.3)';
+        button.disabled = true;
+
+        // Simulate loading
+        setTimeout(() => {
+          button.textContent = 'Selesai';
+          button.style.background = 'rgba(212, 175, 55, 0.2)';
+
+          // Show notification with Indonesian theme
+          showNotification(`Latihan "${exerciseName}" telah dimulai! Semangat berlatih!`);
+
+          // Update stats for demo
+          updateExerciseStats();
+
+          // Reset button after 3 seconds
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+            button.disabled = false;
+          }, 3000);
+        }, 1500);
+      }
+
+      // Login Button with Indonesian theme
       const loginBtn = document.querySelector('.auth-section .btn-primary');
       loginBtn.addEventListener('click', function (e) {
         e.preventDefault();
         simulateLogin(this);
       });
 
+      function simulateLogin(button) {
+        const emailInput = document.querySelector('input[type="email"]');
+        const passwordInput = document.querySelector('input[type="password"]');
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        const originalText = button.textContent;
+
+        if (!email || !password) {
+          button.textContent = 'Isi email & sandi!';
+          button.style.background = 'linear-gradient(135deg, #b22222, #ff6b6b)';
+
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+          }, 1500);
+
+          // Add shake animation for empty fields
+          if (!email) emailInput.classList.add('shake');
+          if (!password) passwordInput.classList.add('shake');
+
+          setTimeout(() => {
+            emailInput.classList.remove('shake');
+            passwordInput.classList.remove('shake');
+          }, 500);
+
+          return;
+        }
+
+        button.textContent = 'Memeriksa...';
+        button.style.background = 'linear-gradient(135deg, #2a6b3f, #1e4e2f)';
+        button.disabled = true;
+
+        // Simulate API call
+        setTimeout(() => {
+          button.textContent = 'Berhasil Masuk!';
+          button.style.background = 'linear-gradient(135deg, var(--accent-emerald), var(--accent-blue))';
+
+          // Update user profile
+          const username = email.split('@')[0];
+          document.querySelector('.user-name').textContent = username;
+          document.querySelector('.user-level').textContent = 'Level: Lanjutan';
+          document.querySelector('.user-level').style.background = 'rgba(212, 175, 55, 0.2)';
+
+          // Update welcome message
+          const welcomeTitle = document.querySelector('.welcome-text h2');
+          welcomeTitle.textContent = `Selamat datang, ${username}! 👋`;
+
+          showNotification('Berhasil masuk! Selamat berlatih dengan nuansa Indonesia.');
+
+          // Hide auth section on mobile
+          if (window.innerWidth <= 768) {
+            const authSection = document.querySelector('.auth-section');
+            authSection.style.display = 'none';
+
+            // Show logout option
+            const navMenu = document.querySelector('.nav-menu');
+            const logoutItem = document.createElement('li');
+            logoutItem.className = 'nav-item';
+            logoutItem.innerHTML = '<i class="fas fa-sign-out-alt"></i><span>Keluar</span>';
+            logoutItem.addEventListener('click', function () {
+              location.reload(); // Simple logout by reloading
+            });
+            navMenu.appendChild(logoutItem);
+          }
+
+          // Reset button
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+            button.disabled = false;
+
+            // Clear form
+            emailInput.value = '';
+            passwordInput.value = '';
+          }, 2000);
+        }, 1500);
+      }
+
       // Guest Mode
       const guestOption = document.querySelector('.guest-option');
       guestOption.addEventListener('click', toggleGuestMode);
 
+      function toggleGuestMode() {
+        const authSection = document.querySelector('.auth-section');
+        const guestOption = document.querySelector('.guest-option');
+        const formInputs = authSection.querySelectorAll('.form-input');
+        const loginBtn = authSection.querySelector('.btn-primary');
+        const signupBtn = authSection.querySelector('.btn-secondary');
+
+        if (authSection.style.opacity !== '0.7') {
+          // Activate guest mode
+          authSection.style.opacity = '0.7';
+          authSection.style.pointerEvents = 'none';
+          document.querySelector('.section-title').textContent = 'Mode Tamu Aktif';
+          guestOption.textContent = 'Beralih ke Login';
+          guestOption.style.background = 'rgba(212, 175, 55, 0.2)';
+
+          // Disable form inputs
+          formInputs.forEach(input => {
+            input.disabled = true;
+            input.placeholder = 'Tidak tersedia di mode tamu';
+          });
+
+          loginBtn.disabled = true;
+          signupBtn.disabled = true;
+
+          // Update user to guest
+          document.querySelector('.user-name').textContent = 'Pengguna Tamu';
+          document.querySelector('.user-level').textContent = 'Level: Pemula';
+          document.querySelector('.user-level').style.background = 'rgba(212, 175, 55, 0.1)';
+
+          // Update welcome message
+          document.querySelector('.welcome-text h2').textContent = 'Selamat datang, Tamu! 👋';
+
+          showNotification('Anda masuk sebagai tamu. Fitur terbatas. Coba nuansa Indonesia!');
+        } else {
+          // Switch back to login mode
+          authSection.style.opacity = '1';
+          authSection.style.pointerEvents = 'auto';
+          document.querySelector('.section-title').textContent = 'Masuk / Daftar';
+          guestOption.textContent = 'Coba sebagai Tamu';
+          guestOption.style.background = 'rgba(212, 175, 55, 0.1)';
+
+          // Enable form inputs
+          formInputs.forEach(input => {
+            input.disabled = false;
+            input.placeholder = input.type === 'email' ? 'Email' : 'Kata Sandi';
+          });
+
+          loginBtn.disabled = false;
+          signupBtn.disabled = false;
+
+          // Reset user
+          document.querySelector('.user-name').textContent = 'Bintang Permana';
+          document.querySelector('.user-level').textContent = 'Level: Menengah';
+          document.querySelector('.user-level').style.background = 'rgba(212, 175, 55, 0.1)';
+          document.querySelector('.welcome-text h2').textContent = 'Selamat datang, Bintang! 👋';
+
+          showNotification('Mode login diaktifkan. Selamat berlatih dengan budaya Indonesia!');
+        }
+      }
+
       // Main VR Button
       const mainVRButton = document.querySelector('.vr-options .btn-primary');
       mainVRButton.addEventListener('click', startVRSession);
+
+      function startVRSession() {
+        const button = document.querySelector('.vr-options .btn-primary');
+        const activeScenario = document.querySelector('.scenario-btn.active span').textContent;
+        const originalHTML = button.innerHTML;
+
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Mempersiapkan VR...</span>';
+        button.style.background = 'linear-gradient(135deg, #8b5cf6, #a78bfa)';
+        button.disabled = true;
+
+        // Simulate VR loading
+        setTimeout(() => {
+          button.innerHTML = '<i class="fas fa-check"></i> <span>Masuk ke VR!</span>';
+          button.style.background = 'linear-gradient(135deg, var(--accent-emerald), var(--accent-gold))';
+
+          showNotification(`Memulai sesi VR: ${activeScenario}. Siapkan headset Anda! Nuansa Indonesia aktif.`);
+
+          // For mobile, show different message
+          if (window.innerWidth <= 768) {
+            showNotification('Mode VR aktif! Gunakan headset atau lanjutkan di layar dengan nuansa Indonesia.');
+          }
+
+          // Simulate session recording
+          simulateVRSession();
+
+          // Reset button
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
+            button.style.background = '';
+            button.disabled = false;
+          }, 3000);
+        }, 2500);
+      }
 
       // Stat Cards Hover Effect (desktop only)
       const statCards = document.querySelectorAll('.stat-card');
@@ -1644,7 +2253,7 @@
       // Edit Profile Button
       const editProfileBtn = document.querySelector('.sidebar-card .btn-secondary');
       editProfileBtn.addEventListener('click', function () {
-        showNotification('Fitur edit profil akan segera hadir!');
+        showNotification('Fitur edit profil akan segera hadir dengan tema Indonesia!');
       });
 
       // Demo buttons
@@ -1653,7 +2262,35 @@
         startDemoMode(this);
       });
 
-      // Setup mobile-specific features
+      function startDemoMode(button) {
+        const originalText = button.textContent;
+        button.textContent = 'Memuat Demo...';
+        button.disabled = true;
+
+        // Show demo message with Indonesian theme
+        showNotification('Demo cepat dimulai! Simulasi 2 menit dengan nuansa Indonesia.');
+
+        // Simulate demo progress
+        setTimeout(() => {
+          button.textContent = 'Demo Berjalan';
+          button.style.background = 'var(--gradient-primary)';
+
+          // Simulate demo completion
+          setTimeout(() => {
+            button.textContent = 'Demo Selesai!';
+            showNotification('Demo selesai! Coba sesi penuh untuk pengalaman lengkap dengan budaya Indonesia.');
+
+            // Reset button
+            setTimeout(() => {
+              button.textContent = originalText;
+              button.style.background = '';
+              button.disabled = false;
+            }, 2000);
+          }, 2000);
+        }, 1000);
+      }
+
+      // Setup mobile features
       setupMobileFeatures();
 
       // Update Last Session (Demo)
@@ -1668,224 +2305,6 @@
     });
 
     // ===== FUNCTIONS =====
-    function updateVRPreview(selectedButton) {
-      const scenarioText = selectedButton.querySelector('span').textContent;
-      const vrPreviewText = document.querySelector('.vr-preview-text div:first-child');
-      const vrSubText = document.querySelector('.vr-preview-text .text-muted');
-
-      const scenarios = {
-        'Presentasi Kelas': ['Ruang Kelas Virtual', 'Simulasi presentasi di depan 30 mahasiswa'],
-        'Pidato Formal': ['Panggung Konferensi', 'Auditori formal dengan 100+ audiens virtual'],
-        'Wawancara Kerja': ['Ruang Wawancara', 'Simulasi wawancara dengan panel HR virtual'],
-        'Presentasi Tugas Akhir': ['Sidang Skripsi', 'Dewan penguji virtual di ruang sidang'],
-        'Rapat Bisnis': ['Ruang Rapat Perusahaan', 'Meeting dengan rekan kerja virtual'],
-        'TED-style Talk': ['Panggung TEDx', 'Lingkungan panggung merah khas TED']
-      };
-
-      if (scenarios[scenarioText]) {
-        vrPreviewText.textContent = scenarios[scenarioText][0];
-        vrSubText.textContent = scenarios[scenarioText][1];
-
-        // Show notification on mobile
-        if (window.innerWidth <= 768) {
-          showNotification(`Skenario dipilih: ${scenarioText}`);
-        }
-      }
-    }
-
-    function startExercise(button, exerciseName) {
-      const originalText = button.textContent;
-
-      button.textContent = 'Memulai...';
-      button.style.background = 'rgba(16, 185, 129, 0.3)';
-      button.disabled = true;
-
-      // Simulate loading
-      setTimeout(() => {
-        button.textContent = 'Selesai';
-        button.style.background = 'rgba(16, 185, 129, 0.2)';
-
-        // Show notification
-        showNotification(`Latihan "${exerciseName}" telah dimulai!`);
-
-        // Update stats for demo
-        updateExerciseStats();
-
-        // Reset button after 3 seconds
-        setTimeout(() => {
-          button.textContent = originalText;
-          button.style.background = '';
-          button.disabled = false;
-        }, 3000);
-      }, 1500);
-    }
-
-    function simulateLogin(button) {
-      const emailInput = document.querySelector('input[type="email"]');
-      const passwordInput = document.querySelector('input[type="password"]');
-      const email = emailInput.value;
-      const password = passwordInput.value;
-      const originalText = button.textContent;
-
-      if (!email || !password) {
-        button.textContent = 'Isi email & sandi!';
-        button.style.background = 'linear-gradient(135deg, #ef4444, #f87171)';
-
-        setTimeout(() => {
-          button.textContent = originalText;
-          button.style.background = '';
-        }, 1500);
-
-        // Add shake animation for empty fields
-        if (!email) emailInput.classList.add('shake');
-        if (!password) passwordInput.classList.add('shake');
-
-        setTimeout(() => {
-          emailInput.classList.remove('shake');
-          passwordInput.classList.remove('shake');
-        }, 500);
-
-        return;
-      }
-
-      button.textContent = 'Memeriksa...';
-      button.style.background = 'linear-gradient(135deg, #3b82f6, #8b5cf6)';
-      button.disabled = true;
-
-      // Simulate API call
-      setTimeout(() => {
-        button.textContent = 'Berhasil Masuk!';
-        button.style.background = 'linear-gradient(135deg, #10b981, #34d399)';
-
-        // Update user profile
-        const username = email.split('@')[0];
-        document.querySelector('.user-name').textContent = username;
-        document.querySelector('.user-level').textContent = 'Level: Lanjutan';
-
-        // Update welcome message
-        const welcomeTitle = document.querySelector('.welcome-text h2');
-        welcomeTitle.textContent = `Selamat datang, ${username}! 👋`;
-
-        showNotification('Berhasil masuk! Selamat datang kembali.');
-
-        // Hide auth section on mobile
-        if (window.innerWidth <= 768) {
-          const authSection = document.querySelector('.auth-section');
-          authSection.style.display = 'none';
-
-          // Show logout option
-          const navMenu = document.querySelector('.nav-menu');
-          const logoutItem = document.createElement('li');
-          logoutItem.className = 'nav-item';
-          logoutItem.innerHTML = '<i class="fas fa-sign-out-alt"></i><span>Keluar</span>';
-          logoutItem.addEventListener('click', function () {
-            location.reload(); // Simple logout by reloading
-          });
-          navMenu.appendChild(logoutItem);
-        }
-
-        // Reset button
-        setTimeout(() => {
-          button.textContent = originalText;
-          button.style.background = '';
-          button.disabled = false;
-
-          // Clear form
-          emailInput.value = '';
-          passwordInput.value = '';
-        }, 2000);
-      }, 1500);
-    }
-
-    function toggleGuestMode() {
-      const authSection = document.querySelector('.auth-section');
-      const guestOption = document.querySelector('.guest-option');
-      const formInputs = authSection.querySelectorAll('.form-input');
-      const loginBtn = authSection.querySelector('.btn-primary');
-      const signupBtn = authSection.querySelector('.btn-secondary');
-
-      if (authSection.style.opacity !== '0.7') {
-        // Activate guest mode
-        authSection.style.opacity = '0.7';
-        authSection.style.pointerEvents = 'none';
-        document.querySelector('.section-title').textContent = 'Mode Tamu Aktif';
-        guestOption.textContent = 'Beralih ke Login';
-
-        // Disable form inputs
-        formInputs.forEach(input => {
-          input.disabled = true;
-          input.placeholder = 'Tidak tersedia di mode tamu';
-        });
-
-        loginBtn.disabled = true;
-        signupBtn.disabled = true;
-
-        // Update user to guest
-        document.querySelector('.user-name').textContent = 'Pengguna Tamu';
-        document.querySelector('.user-level').textContent = 'Level: Pemula';
-
-        // Update welcome message
-        document.querySelector('.welcome-text h2').textContent = 'Selamat datang, Tamu! 👋';
-
-        showNotification('Anda masuk sebagai tamu. Fitur terbatas.');
-      } else {
-        // Switch back to login mode
-        authSection.style.opacity = '1';
-        authSection.style.pointerEvents = 'auto';
-        document.querySelector('.section-title').textContent = 'Masuk / Daftar';
-        guestOption.textContent = 'Coba sebagai Tamu';
-
-        // Enable form inputs
-        formInputs.forEach(input => {
-          input.disabled = false;
-          input.placeholder = input.type === 'email' ? 'Email' : 'Kata Sandi';
-        });
-
-        loginBtn.disabled = false;
-        signupBtn.disabled = false;
-
-        // Reset user
-        document.querySelector('.user-name').textContent = 'Bintang Permana';
-        document.querySelector('.user-level').textContent = 'Level: Menengah';
-        document.querySelector('.welcome-text h2').textContent = 'Selamat datang, Bintang! 👋';
-
-        showNotification('Mode login diaktifkan.');
-      }
-    }
-
-    function startVRSession() {
-      const button = document.querySelector('.vr-options .btn-primary');
-      const activeScenario = document.querySelector('.scenario-btn.active span').textContent;
-      const originalHTML = button.innerHTML;
-
-      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Mempersiapkan VR...</span>';
-      button.style.background = 'linear-gradient(135deg, #8b5cf6, #a78bfa)';
-      button.disabled = true;
-
-      // Simulate VR loading
-      setTimeout(() => {
-        button.innerHTML = '<i class="fas fa-check"></i> <span>Masuk ke VR!</span>';
-        button.style.background = 'linear-gradient(135deg, #10b981, #3b82f6)';
-
-        showNotification(`Memulai sesi VR: ${activeScenario}. Siapkan headset Anda!`);
-
-        // For mobile, show different message
-        if (window.innerWidth <= 768) {
-          showNotification('Mode VR aktif! Gunakan headset atau lanjutkan di layar.');
-        }
-
-        // Simulate session recording
-        simulateVRSession();
-
-        // Reset button
-        setTimeout(() => {
-          button.innerHTML = originalHTML;
-          button.style.background = '';
-          button.disabled = false;
-        }, 3000);
-      }, 2500);
-    }
-
     function simulateVRSession() {
       // Simulate a VR session with progress updates
       const progressBar = document.createElement('div');
@@ -1895,7 +2314,7 @@
         left: 0;
         width: 0%;
         height: 4px;
-        background: var(--gradient-primary);
+        background: var(--gradient-gold);
         z-index: 9999;
         transition: width 0.3s;
     `;
@@ -1916,13 +2335,13 @@
             // Update last session
             updateLastSession();
 
-            // Show completion message
-            showNotification('Sesi VR selesai! Analisis AI sedang diproses...');
+            // Show completion message with Indonesian theme
+            showNotification('Sesi VR selesai! Analisis AI sedang diproses dengan kearifan lokal...');
 
             // Simulate AI analysis after session
             setTimeout(() => {
               updateAIAnalysis();
-              showNotification('Analisis AI siap! Lihat rekomendasi terbaru.');
+              showNotification('Analisis AI siap! Lihat rekomendasi terbaru dengan pendekatan Indonesia.');
             }, 1500);
 
             // Remove progress bar
@@ -1945,7 +2364,7 @@
 
       // Generate random score for demo
       const randomScore = Math.floor(Math.random() * 20) + 75;
-      document.querySelector('.session-score').innerHTML = `Skor: <span class="text-accent">${randomScore}/100</span>`;
+      document.querySelector('.session-score').innerHTML = `Skor: <span class="text-emerald">${randomScore}/100</span>`;
 
       // Update overall score
       const overallScoreElement = document.querySelector('.stat-card:nth-child(1) .stat-value');
@@ -1998,13 +2417,13 @@
         if (valueElement && barElement) {
           // Animate the change
           valueElement.style.transform = 'scale(1.1)';
-          valueElement.style.color = newScore > 80 ? '#10b981' : newScore > 70 ? '#f59e0b' : '#ef4444';
+          valueElement.style.color = newScore > 80 ? 'var(--accent-emerald)' : newScore > 70 ? 'var(--accent-orange)' : '#b22222';
           valueElement.textContent = newScore;
 
           barElement.style.width = `${newScore}%`;
-          barElement.style.background = newScore > 80 ? 'var(--gradient-success)' :
+          barElement.style.background = newScore > 80 ? 'var(--gradient-primary)' :
             newScore > 70 ? 'var(--gradient-warning)' :
-              'linear-gradient(135deg, #ef4444, #f87171)';
+              'linear-gradient(135deg, #b22222, #ff6b6b)';
 
           setTimeout(() => {
             valueElement.style.transform = 'scale(1)';
@@ -2063,92 +2482,8 @@
       }
     }
 
-    function startDemoMode(button) {
-      const originalText = button.textContent;
-      button.textContent = 'Memuat Demo...';
-      button.disabled = true;
-
-      // Show demo message
-      showNotification('Demo cepat dimulai! Simulasi 2 menit.');
-
-      // Simulate demo progress
-      setTimeout(() => {
-        button.textContent = 'Demo Berjalan';
-        button.style.background = 'var(--gradient-success)';
-
-        // Simulate demo completion
-        setTimeout(() => {
-          button.textContent = 'Demo Selesai!';
-          showNotification('Demo selesai! Coba sesi penuh untuk pengalaman lengkap.');
-
-          // Reset button
-          setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = '';
-            button.disabled = false;
-          }, 2000);
-        }, 2000);
-      }, 1000);
-    }
-
-    function showNotification(message) {
-      // Create notification element
-      const notification = document.createElement('div');
-      notification.className = 'notification';
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: var(--card-dark);
-        color: var(--text-primary);
-        padding: ${window.innerWidth <= 768 ? '16px' : '12px 20px'};
-        border-radius: var(--radius-md);
-        border-left: 4px solid var(--accent-emerald);
-        box-shadow: var(--shadow-lg);
-        z-index: 1000;
-        animation: slideIn 0.3s ease-out;
-        max-width: ${window.innerWidth <= 768 ? '90%' : '300px'};
-        word-wrap: break-word;
-        backdrop-filter: blur(10px);
-    `;
-
-      notification.innerHTML = `
-        <div style="display: flex; align-items: flex-start; gap: 10px;">
-            <i class="fas fa-info-circle" style="color: var(--accent-emerald); margin-top: 2px;"></i>
-            <span style="font-size: ${window.innerWidth <= 768 ? '14px' : '13px'}">${message}</span>
-        </div>
-    `;
-
-      document.body.appendChild(notification);
-
-      // Auto-remove notification
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateX(20px)';
-        notification.style.transition = 'all 0.3s';
-
-        setTimeout(() => {
-          if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-          }
-        }, 300);
-      }, 3000);
-
-      // Allow manual close on mobile
-      if (window.innerWidth <= 768) {
-        notification.addEventListener('click', function () {
-          this.style.opacity = '0';
-          setTimeout(() => {
-            if (this.parentNode) {
-              this.parentNode.removeChild(this);
-            }
-          }, 200);
-        });
-      }
-    }
-
     function setupMobileFeatures() {
-      // Add shake animation CSS
+      // Add shake animation CSS with Indonesian colors
       const style = document.createElement('style');
       style.textContent = `
         @keyframes shake {
@@ -2159,12 +2494,19 @@
         
         .shake {
             animation: shake 0.5s;
-            border-color: #ef4444 !important;
+            border-color: #b22222 !important;
         }
         
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gamelan {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+            100% { transform: rotate(0deg); }
         }
         
         /* Mobile optimizations */
@@ -2185,7 +2527,7 @@
     `;
       document.head.appendChild(style);
 
-      // Add back to top button for mobile
+      // Add back to top button for mobile with Indonesian theme
       if (window.innerWidth <= 768) {
         const backToTop = document.createElement('button');
         backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -2196,7 +2538,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: var(--gradient-primary);
+            background: var(--gradient-gold);
             color: white;
             border: none;
             font-size: 20px;
@@ -2204,6 +2546,7 @@
             display: none;
             box-shadow: var(--shadow-lg);
             cursor: pointer;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         `;
 
         backToTop.addEventListener('click', function () {

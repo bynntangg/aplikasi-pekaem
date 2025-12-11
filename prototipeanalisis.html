@@ -3,24 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard Analisis AI - Public Speaking</title>
+  <title>Dashboard Analisis AI - Public Speaking dengan Nuansa Indonesia</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4361ee;
-      --secondary: #7209b7;
-      --success: #4cc9f0;
-      --info: #4895ef;
-      --warning: #f72585;
-      --dark-bg: #0a0a0f;
-      --dark-card: #12121f;
-      --dark-border: #1e1e2d;
-      --dark-text: #e0e0ff;
-      --dark-text-secondary: #a0a0c0;
-      --gradient: linear-gradient(135deg, #4361ee 0%, #7209b7 100%);
-      --gradient-alt: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
-      --gradient-success: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
-      --gradient-warning: linear-gradient(135deg, #ff9a00 0%, #ff6b6b 100%);
+      /* Warna alam Indonesia */
+      --primary: #2a6b3f; /* Hijau daun */
+      --primary-dark: #1e4e2f;
+      --secondary: #d4af37; /* Emas tradisional */
+      --accent: #b22222; /* Merah keberanian */
+      --success: #2e8b57; /* Hijau lumut */
+      --info: #3a81a0; /* Biru langit */
+      --warning: #ff8c00; /* Oranye matahari terbenam */
+      
+      --dark-bg: #0c1a14; /* Hijau pekat */
+      --dark-card: #1a2c24; /* Hijau tua */
+      --dark-border: #2d3c35;
+      --dark-text: #f0f8f0;
+      --dark-text-secondary: #c8d8d0;
+      
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      --gradient-alt: linear-gradient(135deg, var(--accent) 0%, #8b0000 100%);
+      --gradient-success: linear-gradient(135deg, var(--success) 0%, var(--primary) 100%);
+      --gradient-warning: linear-gradient(135deg, var(--warning) 0%, #cc7000 100%);
+      --gradient-gold: linear-gradient(135deg, var(--secondary) 0%, #b8860b 100%);
     }
     
     * {
@@ -30,15 +37,16 @@
     }
     
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: var(--dark-bg);
       color: var(--dark-text);
       line-height: 1.6;
       padding: 20px;
       min-height: 100vh;
       background-image: 
-        radial-gradient(circle at 20% 30%, rgba(67, 97, 238, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(114, 9, 183, 0.1) 0%, transparent 40%);
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232a6b3f' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        radial-gradient(circle at 20% 30%, rgba(42, 107, 63, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
     }
     
     .container {
@@ -47,7 +55,26 @@
       padding: 20px;
     }
     
-    /* Header */
+    /* Badge Indonesia */
+    .indonesia-badge {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--secondary);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    
+    /* Header dengan motif batik */
     .header {
       display: flex;
       justify-content: space-between;
@@ -58,6 +85,25 @@
       border-radius: 18px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       border: 1px solid var(--dark-border);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--secondary),
+        var(--secondary) 10px,
+        var(--primary) 10px,
+        var(--primary) 20px
+      );
+      border-radius: 18px 18px 0 0;
     }
     
     .logo-container {
@@ -68,13 +114,26 @@
     .logo {
       width: 55px;
       height: 55px;
-      background: var(--gradient-alt);
+      background: var(--gradient);
       border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-right: 18px;
-      box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+      box-shadow: 0 5px 15px rgba(42, 107, 63, 0.3);
+      border: 2px solid var(--secondary);
+      position: relative;
+    }
+    
+    .logo::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px dashed rgba(212, 175, 55, 0.5);
+      top: -4px;
+      left: -4px;
     }
     
     .logo i {
@@ -83,10 +142,11 @@
     }
     
     .header-text h1 {
+      font-family: 'Playfair Display', serif;
       color: white;
       font-size: 28px;
       margin-bottom: 5px;
-      background: linear-gradient(90deg, #fff, #a0a0ff);
+      background: linear-gradient(90deg, var(--secondary), var(--dark-text));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -100,17 +160,18 @@
     .user-profile {
       display: flex;
       align-items: center;
-      background: rgba(67, 97, 238, 0.1);
+      background: rgba(42, 107, 63, 0.1);
       padding: 15px 20px;
       border-radius: 15px;
-      border-left: 4px solid var(--primary);
+      border-left: 4px solid var(--secondary);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
     
     .user-profile:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(67, 97, 238, 0.2);
-      background: rgba(67, 97, 238, 0.15);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+      background: rgba(212, 175, 55, 0.1);
     }
     
     .user-avatar {
@@ -120,14 +181,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: var(--dark-bg);
       font-weight: bold;
       font-size: 22px;
       margin-right: 15px;
       overflow: hidden;
-      border: 3px solid rgba(255, 255, 255, 0.2);
+      border: 3px solid rgba(212, 175, 55, 0.5);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      background: var(--gradient-alt);
+      background: var(--gradient-gold);
     }
     
     .user-details h4 {
@@ -145,7 +206,7 @@
     }
     
     .user-details p i {
-      color: #4cc9f0;
+      color: var(--secondary);
     }
     
     /* Dashboard Grid */
@@ -156,7 +217,7 @@
       margin-bottom: 30px;
     }
     
-    /* Cards */
+    /* Cards dengan motif ukiran */
     .card {
       background: var(--dark-card);
       border-radius: 18px;
@@ -171,7 +232,7 @@
     .card:hover {
       transform: translateY(-8px);
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-      border-color: rgba(67, 97, 238, 0.4);
+      border-color: rgba(212, 175, 55, 0.4);
     }
     
     .card::before {
@@ -181,7 +242,7 @@
       left: 0;
       width: 100%;
       height: 5px;
-      background: var(--gradient);
+      background: var(--gradient-gold);
     }
     
     .card-header {
@@ -192,6 +253,7 @@
     }
     
     .card-title {
+      font-family: 'Playfair Display', serif;
       font-size: 20px;
       color: white;
       display: flex;
@@ -202,13 +264,13 @@
       margin-right: 12px;
       width: 40px;
       height: 40px;
-      background: var(--gradient);
+      background: var(--gradient-gold);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+      color: var(--dark-bg);
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
     }
     
     .score-container {
@@ -219,10 +281,11 @@
       font-size: 32px;
       font-weight: bold;
       color: white;
-      background: var(--gradient);
+      background: var(--gradient-gold);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      font-family: 'Playfair Display', serif;
     }
     
     .score-label {
@@ -245,7 +308,7 @@
       margin-top: 15px;
     }
     
-    /* Custom Charts */
+    /* Custom Charts dengan nuansa Indonesia */
     .chart-line {
       width: 100%;
       height: 100%;
@@ -257,7 +320,7 @@
       stroke-width: 4;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 4px 8px rgba(67, 97, 238, 0.5));
+      filter: drop-shadow(0 4px 8px rgba(42, 107, 63, 0.5));
     }
     
     .chart-bar {
@@ -274,13 +337,15 @@
       border-radius: 8px 8px 0 0;
       transition: height 0.5s ease;
       position: relative;
-      box-shadow: 0 5px 15px rgba(76, 201, 240, 0.3);
+      box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
     
     .bar:hover {
       opacity: 0.9;
       transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(76, 201, 240, 0.5);
+      box-shadow: 0 8px 20px rgba(46, 139, 87, 0.5);
+      border-color: var(--secondary);
     }
     
     .bar-label {
@@ -306,6 +371,7 @@
       background: rgba(0, 0, 0, 0.6);
       padding: 3px;
       border-radius: 5px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
     }
     
     .chart-bubble {
@@ -320,20 +386,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: var(--dark-bg);
       font-weight: bold;
       transition: transform 0.3s ease;
       background: var(--gradient-warning);
-      box-shadow: 0 8px 20px rgba(255, 154, 0, 0.3);
+      box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
       font-size: 14px;
+      border: 2px solid rgba(212, 175, 55, 0.3);
     }
     
     .bubble:hover {
       transform: scale(1.15);
-      box-shadow: 0 12px 25px rgba(255, 154, 0, 0.4);
+      box-shadow: 0 12px 25px rgba(255, 140, 0, 0.4);
+      border-color: var(--secondary);
     }
     
-    /* Progress Bars */
+    /* Progress Bars dengan motif anyaman */
     .progress-container {
       margin-top: 20px;
     }
@@ -351,6 +419,7 @@
       background: rgba(255, 255, 255, 0.05);
       border-radius: 10px;
       overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
     
     .progress-fill {
@@ -358,10 +427,27 @@
       border-radius: 10px;
       background: var(--gradient);
       transition: width 1s ease-in-out;
-      box-shadow: 0 0 10px rgba(67, 97, 238, 0.5);
+      box-shadow: 0 0 10px rgba(42, 107, 63, 0.5);
+      position: relative;
     }
     
-    /* Summary Section */
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 3px,
+        rgba(255, 255, 255, 0.1) 3px,
+        rgba(255, 255, 255, 0.1) 6px
+      );
+    }
+    
+    /* Summary Section dengan motif wayang */
     .summary {
       background: var(--dark-card);
       border-radius: 18px;
@@ -369,9 +455,23 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       margin-bottom: 30px;
       border: 1px solid var(--dark-border);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .summary::before {
+      content: '';
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+      top: -50px;
+      right: -50px;
+      border-radius: 50%;
     }
     
     .summary h3 {
+      font-family: 'Playfair Display', serif;
       color: white;
       margin-bottom: 25px;
       font-size: 22px;
@@ -381,8 +481,8 @@
     
     .summary h3 i {
       margin-right: 12px;
-      color: var(--primary);
-      background: rgba(67, 97, 238, 0.2);
+      color: var(--secondary);
+      background: rgba(212, 175, 55, 0.2);
       width: 40px;
       height: 40px;
       border-radius: 10px;
@@ -398,21 +498,22 @@
     }
     
     .insight-item {
-      background: rgba(67, 97, 238, 0.08);
+      background: rgba(212, 175, 55, 0.08);
       padding: 20px;
       border-radius: 12px;
-      border-left: 4px solid var(--primary);
+      border-left: 4px solid var(--secondary);
       transition: transform 0.3s ease, background 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
     
     .insight-item:hover {
       transform: translateY(-5px);
-      background: rgba(67, 97, 238, 0.12);
-      border-color: var(--primary);
+      background: rgba(212, 175, 55, 0.12);
+      border-color: var(--secondary);
     }
     
     .insight-item h4 {
+      font-family: 'Playfair Display', serif;
       color: white;
       margin-bottom: 10px;
       font-size: 17px;
@@ -422,7 +523,7 @@
     
     .insight-item h4 i {
       margin-right: 10px;
-      color: var(--primary);
+      color: var(--secondary);
     }
     
     .insight-item p {
@@ -430,7 +531,7 @@
       line-height: 1.5;
     }
     
-    /* Buttons */
+    /* Buttons dengan motif gerabah */
     .actions {
       display: flex;
       justify-content: center;
@@ -450,22 +551,41 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+    
+    .btn:hover::before {
+      left: 100%;
     }
     
     .btn-primary {
       background: var(--gradient);
       color: white;
+      border: 1px solid rgba(42, 107, 63, 0.3);
     }
     
     .btn-secondary {
       background: var(--gradient-alt);
       color: white;
+      border: 1px solid rgba(178, 34, 34, 0.3);
     }
     
     .btn-outline {
       background: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
+      color: var(--secondary);
+      border: 2px solid var(--secondary);
     }
     
     .btn:hover {
@@ -482,7 +602,7 @@
       font-size: 18px;
     }
     
-    /* Footer */
+    /* Footer dengan motif batik */
     .footer {
       text-align: center;
       margin-top: 50px;
@@ -493,13 +613,31 @@
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       border: 1px solid var(--dark-border);
+      position: relative;
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        var(--secondary) 5px,
+        var(--secondary) 10px
+      );
+      border-radius: 15px 15px 0 0;
     }
     
     .footer strong {
-      color: white;
+      color: var(--secondary);
     }
     
-    /* Animation for charts */
+    /* Animation untuk gamelan */
     @keyframes drawLine {
       to {
         stroke-dashoffset: 0;
@@ -521,6 +659,17 @@
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes gamelan {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      75% { transform: rotate(-2deg); }
+      100% { transform: rotate(0deg); }
+    }
+    
+    .gamelan-animation:hover {
+      animation: gamelan 0.5s ease;
     }
     
     /* Responsive */
@@ -557,11 +706,11 @@
       }
     }
     
-    /* Toggle untuk mode gelap/terang */
+    /* Toggle untuk mode tema */
     .theme-toggle {
       position: fixed;
       top: 20px;
-      right: 20px;
+      left: 20px;
       width: 50px;
       height: 50px;
       background: var(--dark-card);
@@ -572,42 +721,90 @@
       cursor: pointer;
       z-index: 100;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--dark-border);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       transition: transform 0.3s ease;
     }
     
     .theme-toggle:hover {
       transform: rotate(30deg);
+      background: rgba(212, 175, 55, 0.1);
     }
     
     .theme-toggle i {
       font-size: 22px;
-      color: var(--primary);
+      color: var(--secondary);
+    }
+    
+    /* Motif batik corner */
+    .batik-corner {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 L40,10 L10,40 Z' fill='none' stroke='%23d4af37' stroke-width='2'/%3E%3Cpath d='M10,20 L30,10 L10,30 Z' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3Cpath d='M10,30 L20,10 L10,20 Z' fill='none' stroke='%23d4af37' stroke-width='1'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .batik-corner.top-left {
+      top: 10px;
+      left: 10px;
+    }
+    
+    .batik-corner.top-right {
+      top: 10px;
+      right: 10px;
+      transform: rotate(90deg);
+    }
+    
+    .batik-corner.bottom-left {
+      bottom: 10px;
+      left: 10px;
+      transform: rotate(-90deg);
+    }
+    
+    .batik-corner.bottom-right {
+      bottom: 10px;
+      right: 10px;
+      transform: rotate(180deg);
     }
   </style>
 </head>
 <body>
+  <!-- Motif Batik di Sudut -->
+  <div class="batik-corner top-left"></div>
+  <div class="batik-corner top-right"></div>
+  <div class="batik-corner bottom-left"></div>
+  <div class="batik-corner bottom-right"></div>
+  
+  <!-- Badge Indonesia -->
+  <div class="indonesia-badge">
+    <i class="fas fa-flag"></i>
+    <span>Nuansa Indonesia</span>
+  </div>
+  
   <!-- Toggle Theme Button -->
-  <div class="theme-toggle" id="themeToggle">
-    <i class="fas fa-moon"></i>
+  <div class="theme-toggle gamelan-animation" id="themeToggle">
+    <i class="fas fa-palette"></i>
   </div>
   
   <div class="container">
     <!-- Header -->
-    <header class="header">
+    <header class="header gamelan-animation">
       <div class="logo-container">
         <div class="logo">
           <i class="fas fa-microphone-alt"></i>
         </div>
         <div class="header-text">
           <h1>Analisis Public Speaking AI</h1>
-          <p>Dashboard untuk meningkatkan kemampuan berbicara di depan umum</p>
+          <p>Dashboard untuk meningkatkan kemampuan berbicara di depan umum dengan nuansa Indonesia</p>
         </div>
       </div>
       
-      <div class="user-profile">
-        <img src="bintang.jpg" 
-                     alt="Profil Bintang Permana" class="user-avatar">
+      <div class="user-profile gamelan-animation">
+         <img src="bintang.jpg" alt="Profil Bintang Permana" class="user-avatar">
+        <div class="user-info">
         <div class="user-details">
           <h4>Bintang Permana</h4>
           <p><i class="fas fa-chart-line"></i> Level: Menengah • 8 sesi</p>
@@ -618,7 +815,7 @@
     <!-- Dashboard Grid -->
     <div class="dashboard-grid">
       <!-- Card 1: Ketegasan Suara -->
-      <div class="card">
+      <div class="card gamelan-animation">
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-volume-up"></i> Ketegasan Suara</h3>
           <div class="score-container">
@@ -626,14 +823,14 @@
             <div class="score-label">Tinggi</div>
           </div>
         </div>
-        <p>Pengukuran kepercayaan diri dan kejelasan dalam penyampaian pidato. Ketegasan menunjukkan keyakinan pembicara.</p>
+        <p>Pengukuran kepercayaan diri dan kejelasan dalam penyampaian pidato. Ketegasan menunjukkan keyakinan pembicara dengan gaya bicara Indonesia yang santun.</p>
         <div class="chart-container">
           <svg class="chart-line" viewBox="0 0 500 150">
             <polyline points="0,120 50,100 100,110 150,80 200,90 250,60 300,70 350,40 400,50 450,30 500,40" 
-            fill="none" stroke="#4CAF50" stroke-width="4" stroke-dasharray="1000" stroke-dashoffset="1000">
+            fill="none" stroke="#2a6b3f" stroke-width="4" stroke-dasharray="1000" stroke-dashoffset="1000">
               <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="2s" fill="freeze" />
             </polyline>
-            <circle cx="500" cy="40" r="6" fill="#4CAF50">
+            <circle cx="500" cy="40" r="6" fill="#2a6b3f">
               <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" />
             </circle>
           </svg>
@@ -650,7 +847,7 @@
       </div>
       
       <!-- Card 2: Kontak Mata -->
-      <div class="card">
+      <div class="card gamelan-animation">
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-eye"></i> Kontak Mata</h3>
           <div class="score-container">
@@ -658,7 +855,7 @@
             <div class="score-label">Cukup Baik</div>
           </div>
         </div>
-        <p>Durasi dan distribusi kontak mata dengan audiens selama presentasi. Memengaruhi keterlibatan audiens.</p>
+        <p>Durasi dan distribusi kontak mata dengan audiens selama presentasi. Memengaruhi keterlibatan audiens dengan budaya sopan santun Indonesia.</p>
         <div class="chart-container">
           <div class="chart-bar">
             <div class="bar" style="height: 70%;" data-height="70">
@@ -695,7 +892,7 @@
       </div>
       
       <!-- Card 3: Tempo Bicara -->
-      <div class="card">
+      <div class="card gamelan-animation">
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-tachometer-alt"></i> Tempo Bicara</h3>
           <div class="score-container">
@@ -703,12 +900,12 @@
             <div class="score-label">Sangat Baik</div>
           </div>
         </div>
-        <p>Variasi kecepatan dan penempatan jeda selama presentasi. Tempo yang baik meningkatkan pemahaman audiens.</p>
+        <p>Variasi kecepatan dan penempatan jeda selama presentasi. Tempo yang baik meningkatkan pemahaman audiens seperti dalam tradisi tutur Indonesia.</p>
         <div class="chart-container">
           <div class="chart-bubble">
-            <div class="bubble" style="width: 80px; height: 80px;">Lambat</div>
-            <div class="bubble" style="width: 120px; height: 120px;">Ideal</div>
-            <div class="bubble" style="width: 90px; height: 90px;">Cepat</div>
+            <div class="bubble gamelan-animation" style="width: 80px; height: 80px;">Lambat</div>
+            <div class="bubble gamelan-animation" style="width: 120px; height: 120px;">Ideal</div>
+            <div class="bubble gamelan-animation" style="width: 90px; height: 90px;">Cepat</div>
           </div>
         </div>
         <div class="progress-container">
@@ -723,7 +920,7 @@
       </div>
       
       <!-- Card 4: Ekspresi Wajah -->
-      <div class="card">
+      <div class="card gamelan-animation">
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-smile"></i> Ekspresi Wajah</h3>
           <div class="score-container">
@@ -731,16 +928,16 @@
             <div class="score-label">Perlu Peningkatan</div>
           </div>
         </div>
-        <p>Analisis ekspresi emosional dan keterlibatan dengan audiens. Ekspresi wajah menyampaikan emosi dan keyakinan.</p>
+        <p>Analisis ekspresi emosional dan keterlibatan dengan audiens. Ekspresi wajah menyampaikan emosi dan keyakinan dengan budaya ramah Indonesia.</p>
         <div class="chart-container">
           <svg class="chart-line" viewBox="0 0 500 150">
-            <line x1="30" y1="120" x2="470" y2="30" stroke="#E91E63" stroke-width="4" stroke-dasharray="1000" stroke-dashoffset="1000">
+            <line x1="30" y1="120" x2="470" y2="30" stroke="#d4af37" stroke-width="4" stroke-dasharray="1000" stroke-dashoffset="1000">
               <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="2s" fill="freeze" />
             </line>
-            <circle cx="30" cy="120" r="6" fill="#E91E63">
+            <circle cx="30" cy="120" r="6" fill="#d4af37">
               <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" />
             </circle>
-            <circle cx="470" cy="30" r="6" fill="#E91E63">
+            <circle cx="470" cy="30" r="6" fill="#d4af37">
               <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" />
             </circle>
           </svg>
@@ -758,37 +955,37 @@
     </div>
     
     <!-- Summary Section -->
-    <div class="summary">
+    <div class="summary gamelan-animation">
       <h3><i class="fas fa-lightbulb"></i> Wawasan AI & Rekomendasi untuk Bintang</h3>
       <div class="insights">
-        <div class="insight-item">
+        <div class="insight-item gamelan-animation">
           <h4><i class="fas fa-volume-up"></i> Kekuatan Suara</h4>
-          <p>Ketegasan suara Anda meningkat 12%. Coba berhenti sejenak untuk penekanan pada poin-poin penting dan gunakan variasi nada untuk menarik perhatian.</p>
+          <p>Ketegasan suara Anda meningkat 12%. Coba berhenti sejenak untuk penekanan pada poin-poin penting dan gunakan variasi nada untuk menarik perhatian dengan gaya bicara Indonesia yang berwibawa.</p>
         </div>
-        <div class="insight-item">
+        <div class="insight-item gamelan-animation">
           <h4><i class="fas fa-users"></i> Keterlibatan Audiens</h4>
-          <p>Kontak mata berkurang selama bagian tengah presentasi. Latih mengarahkan pandangan ke seluruh ruangan secara teratur dan tahan kontak mata selama 3-5 detik per orang.</p>
+          <p>Kontak mata berkurang selama bagian tengah presentasi. Latih mengarahkan pandangan ke seluruh ruangan secara teratur dengan sopan santun khas Indonesia, tahan kontak mata selama 3-5 detik per orang.</p>
         </div>
-        <div class="insight-item">
+        <div class="insight-item gamelan-animation">
           <h4><i class="fas fa-tachometer-alt"></i> Pengaturan Tempo</h4>
-          <p>Kontrol tempo bicara sangat baik. Pertahankan ritme ini untuk pemahaman audiens yang lebih baik, dan coba perlambat saat menyampaikan poin penting.</p>
+          <p>Kontrol tempo bicara sangat baik seperti pembicara ulung Indonesia. Pertahankan ritme ini untuk pemahaman audiens yang lebih baik, dan coba perlambat saat menyampaikan poin penting.</p>
         </div>
-        <div class="insight-item">
+        <div class="insight-item gamelan-animation">
           <h4><i class="fas fa-laugh-beam"></i> Ekspresi Emosional</h4>
-          <p>Ekspresi wajah perlu lebih bervariasi. Senyumlah lebih sering saat menyampaikan poin-poin positif dan gunakan ekspresi wajah yang sesuai dengan topik pembicaraan.</p>
+          <p>Ekspresi wajah perlu lebih bervariasi seperti dalam seni tradisional Indonesia. Senyumlah lebih sering saat menyampaikan poin-poin positif dan gunakan ekspresi wajah yang sesuai dengan topik pembicaraan.</p>
         </div>
       </div>
     </div>
     
     <!-- Action Buttons -->
     <div class="actions">
-      <button class="btn btn-primary" id="analyzeBtn">
+      <button class="btn btn-primary gamelan-animation" id="analyzeBtn">
         <i class="fas fa-play-circle"></i> Analisis Rekaman Baru
       </button>
-      <button class="btn btn-secondary" id="compareBtn">
+      <button class="btn btn-secondary gamelan-animation" id="compareBtn">
         <i class="fas fa-chart-line"></i> Bandingkan dengan Sebelumnya
       </button>
-      <button class="btn btn-outline" id="exportBtn">
+      <button class="btn btn-outline gamelan-animation" id="exportBtn">
         <i class="fas fa-download"></i> Ekspor Hasil Analisis
       </button>
     </div>
@@ -796,7 +993,7 @@
     <!-- Footer -->
     <div class="footer">
       <p><strong>Dashboard Analisis AI untuk Public Speaking</strong> • Prototipe v2.0 • Data diperbarui secara real-time</p>
-      <p style="margin-top: 10px;">Dikembangkan khusus untuk <strong>Bintang Permana</strong> • © 2023 AI Speech Analytics</p>
+      <p style="margin-top: 10px;">Dikembangkan khusus untuk <strong>Bintang Permana</strong> • © 2025 AI Speech Analytics dengan Nuansa Indonesia</p>
     </div>
   </div>
 
@@ -838,16 +1035,38 @@
         this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menganalisis...';
         this.disabled = true;
         
-        // Simulasi analisis
+        // Simulasi analisis dengan efek gamelan
+        showNotification('Memulai analisis rekaman baru dengan AI...', 'info');
+        
+        // Tambahkan efek visual
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+          card.style.borderColor = 'var(--secondary)';
+          card.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.4)';
+        });
+        
         setTimeout(() => {
           this.innerHTML = '<i class="fas fa-check-circle"></i> Analisis Selesai!';
-          this.style.background = 'linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)';
+          this.style.background = 'var(--gradient-success)';
           
           // Tampilkan notifikasi
-          showNotification('Analisis rekaman baru selesai! Hasil telah diperbarui.', 'success');
+          showNotification('Analisis rekaman baru selesai! Hasil telah diperbarui dengan wawasan budaya Indonesia.', 'success');
+          
+          // Tambahkan efek konfeti Indonesia
+          for (let i = 0; i < 20; i++) {
+            createConfetti();
+          }
           
           // Update beberapa skor secara acak untuk simulasi
           updateRandomScores();
+          
+          // Reset kartu
+          setTimeout(() => {
+            cards.forEach(card => {
+              card.style.borderColor = '';
+              card.style.boxShadow = '';
+            });
+          }, 2000);
           
           // Reset tombol setelah 3 detik
           setTimeout(() => {
@@ -867,7 +1086,7 @@
         scores.forEach(score => {
           const originalText = score.textContent;
           score.textContent = 'Membandingkan...';
-          score.style.background = 'linear-gradient(135deg, #f72585 0%, #b5179e 100%)';
+          score.style.background = 'var(--gradient-gold)';
           score.style.webkitBackgroundClip = 'text';
           score.style.backgroundClip = 'text';
           
@@ -880,24 +1099,41 @@
         // Animasi pada kartu
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
-          card.style.boxShadow = '0 0 20px rgba(247, 37, 133, 0.4)';
+          card.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.4)';
           setTimeout(() => {
             card.style.boxShadow = '';
           }, 1500);
+        });
+        
+        // Tampilkan perbedaan dalam insight items
+        const insightItems = document.querySelectorAll('.insight-item');
+        insightItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.transform = 'translateX(10px)';
+            item.style.borderLeftColor = 'var(--accent)';
+            setTimeout(() => {
+              item.style.transform = '';
+              item.style.borderLeftColor = '';
+            }, 1000);
+          }, index * 200);
         });
       });
       
       // Fungsi untuk tombol Ekspor
       document.getElementById('exportBtn').addEventListener('click', function() {
         this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengekspor...';
+        this.style.borderColor = 'var(--secondary)';
         
         setTimeout(() => {
           this.innerHTML = '<i class="fas fa-check-circle"></i> Berhasil Diekspor!';
-          showNotification('Hasil analisis berhasil diekspor dalam format PDF.', 'success');
+          this.style.background = 'rgba(212, 175, 55, 0.1)';
+          showNotification('Hasil analisis berhasil diekspor dalam format PDF dengan motif batik Indonesia.', 'success');
           
           // Reset tombol setelah 2 detik
           setTimeout(() => {
             this.innerHTML = '<i class="fas fa-download"></i> Ekspor Hasil Analisis';
+            this.style.background = '';
+            this.style.borderColor = '';
           }, 2000);
         }, 1500);
       });
@@ -918,11 +1154,11 @@
       const insightItems = document.querySelectorAll('.insight-item');
       insightItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
-          this.style.borderLeftColor = '#f72585';
+          this.style.borderLeftColor = 'var(--accent)';
         });
         
         item.addEventListener('mouseleave', function() {
-          this.style.borderLeftColor = '#4361ee';
+          this.style.borderLeftColor = 'var(--secondary)';
         });
       });
       
@@ -930,26 +1166,26 @@
       const themeToggle = document.getElementById('themeToggle');
       themeToggle.addEventListener('click', function() {
         const icon = this.querySelector('i');
-        if (icon.classList.contains('fa-moon')) {
-          icon.classList.remove('fa-moon');
-          icon.classList.add('fa-sun');
-          this.style.animation = 'float 1s ease-in-out';
-          setTimeout(() => {
-            this.style.animation = '';
-          }, 1000);
-          showNotification('Mode terang diaktifkan!', 'info');
-        } else {
-          icon.classList.remove('fa-sun');
+        if (icon.classList.contains('fa-palette')) {
+          icon.classList.remove('fa-palette');
           icon.classList.add('fa-moon');
-          this.style.animation = 'float 1s ease-in-out';
+          this.style.animation = 'gamelan 0.5s ease';
           setTimeout(() => {
             this.style.animation = '';
-          }, 1000);
-          showNotification('Mode gelap diaktifkan!', 'info');
+          }, 500);
+          showNotification('Mode tradisional diaktifkan!', 'info');
+        } else {
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-palette');
+          this.style.animation = 'gamelan 0.5s ease';
+          setTimeout(() => {
+            this.style.animation = '';
+          }, 500);
+          showNotification('Mode kontemporer diaktifkan!', 'info');
         }
       });
       
-      // Fungsi untuk menampilkan notifikasi
+      // Fungsi untuk menampilkan notifikasi dengan nuansa Indonesia
       function showNotification(message, type) {
         // Buat elemen notifikasi
         const notification = document.createElement('div');
@@ -958,7 +1194,7 @@
           position: fixed;
           top: 20px;
           right: 20px;
-          background: ${type === 'success' ? 'linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)' : 'linear-gradient(135deg, #4361ee 0%, #7209b7 100%)'};
+          background: ${type === 'success' ? 'rgba(42, 107, 63, 0.9)' : type === 'info' ? 'rgba(212, 175, 55, 0.9)' : 'rgba(178, 34, 34, 0.9)'};
           color: white;
           padding: 15px 25px;
           border-radius: 12px;
@@ -966,9 +1202,17 @@
           z-index: 1000;
           font-weight: 500;
           animation: slideIn 0.4s ease;
-          border: 1px solid rgba(255,255,255,0.1);
+          border: 1px solid rgba(212, 175, 55, 0.3);
           max-width: 300px;
+          backdrop-filter: blur(10px);
+          border-left: 4px solid ${type === 'success' ? 'var(--success)' : type === 'info' ? 'var(--secondary)' : 'var(--accent)'};
         `;
+        
+        // Tambahkan ikon
+        const icon = document.createElement('i');
+        icon.style.cssText = 'margin-right: 10px;';
+        icon.className = type === 'success' ? 'fas fa-check-circle' : type === 'info' ? 'fas fa-info-circle' : 'fas fa-exclamation-circle';
+        notification.prepend(icon);
         
         // Tambahkan ke body
         document.body.appendChild(notification);
@@ -1011,6 +1255,40 @@
         });
       }
       
+      // Fungsi untuk membuat efek konfeti Indonesia
+      function createConfetti() {
+        const confetti = document.createElement('div');
+        const colors = ['#d4af37', '#2a6b3f', '#b22222', '#ff8c00', '#2e8b57'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        confetti.style.cssText = `
+          position: fixed;
+          width: 10px;
+          height: 10px;
+          background: ${color};
+          top: -10px;
+          left: ${Math.random() * 100}vw;
+          border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+          z-index: 9998;
+          pointer-events: none;
+        `;
+        
+        document.body.appendChild(confetti);
+        
+        // Animasi konfeti
+        const animation = confetti.animate([
+          { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+          { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+        ], {
+          duration: Math.random() * 2000 + 1000,
+          easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+        });
+        
+        animation.onfinish = () => {
+          document.body.removeChild(confetti);
+        };
+      }
+      
       // Tambahkan style untuk animasi notifikasi
       const style = document.createElement('style');
       style.textContent = `
@@ -1022,8 +1300,30 @@
           from { transform: translateX(0); opacity: 1; }
           to { transform: translateX(100px); opacity: 0; }
         }
+        @keyframes gamelan {
+          0% { transform: rotate(0deg); }
+          25% { transform: rotate(2deg); }
+          75% { transform: rotate(-2deg); }
+          100% { transform: rotate(0deg); }
+        }
       `;
       document.head.appendChild(style);
+      
+      // Animasi awal untuk elemen
+      setTimeout(() => {
+        document.querySelectorAll('.gamelan-animation').forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s, transform 0.5s';
+            
+            setTimeout(() => {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, 50);
+          }, index * 100);
+        });
+      }, 500);
     });
   </script>
 </body>

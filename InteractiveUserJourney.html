@@ -3,37 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Journey Flow - SpeakLab VR</title>
+  <title>User Journey Flow - SpeakLab VR | Nuansa Indonesia</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4361ee;
-      --primary-dark: #3a0ca3;
-      --secondary: #7209b7;
-      --accent: #f72585;
-      --success: #4cc9f0;
-      --warning: #ff9e00;
-      --danger: #ef476f;
+      /* Warna alam Indonesia */
+      --primary: #2a6b3f; /* Hijau daun */
+      --primary-dark: #1e4e2f;
+      --secondary: #d4af37; /* Emas tradisional */
+      --accent: #b22222; /* Merah keberanian */
+      --success: #2e8b57; /* Hijau lumut */
+      --warning: #ff8c00; /* Oranye matahari terbenam */
+      --danger: #dc143c; /* Merah maroon */
       
-      --bg-dark: #0a0a0f;
-      --bg-card: #12121f;
-      --bg-card-light: #1a1a2e;
-      --border-color: #2d2d4d;
+      /* Warna alam dan budaya */
+      --bg-dark: #0c1a14; /* Hijau pekat */
+      --bg-card: #1a2c24; /* Hijau tua */
+      --bg-card-light: #2a3c34;
+      --border-color: #3d5548;
       
-      --text-primary: #f8f9fa;
-      --text-secondary: #adb5bd;
-      --text-muted: #6c757d;
+      --text-primary: #f0f8f0;
+      --text-secondary: #c8d8d0;
+      --text-muted: #8a9c94;
       
-      --gradient-primary: linear-gradient(135deg, #4361ee, #3a0ca3);
-      --gradient-secondary: linear-gradient(135deg, #7209b7, #560bad);
-      --gradient-accent: linear-gradient(135deg, #f72585, #b5179e);
-      --gradient-success: linear-gradient(135deg, #4cc9f0, #4361ee);
-      --gradient-warning: linear-gradient(135deg, #ff9e00, #ff6b00);
-      --gradient-danger: linear-gradient(135deg, #ef476f, #ff6b6b);
+      /* Gradien alam Indonesia */
+      --gradient-primary: linear-gradient(135deg, #2a6b3f, #1e4e2f);
+      --gradient-secondary: linear-gradient(135deg, #d4af37, #b8860b);
+      --gradient-accent: linear-gradient(135deg, #b22222, #8b0000);
+      --gradient-success: linear-gradient(135deg, #2e8b57, #1e5a3a);
+      --gradient-warning: linear-gradient(135deg, #ff8c00, #cc7000);
+      --gradient-danger: linear-gradient(135deg, #dc143c, #a00f2d);
       
-      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.2);
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.3);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
       
       --radius-lg: 16px;
       --radius-md: 12px;
@@ -47,34 +53,60 @@
     }
     
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: var(--bg-dark);
       color: var(--text-primary);
       line-height: 1.6;
       padding: 20px;
       min-height: 100vh;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(114, 9, 183, 0.08) 0%, transparent 40%);
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232a6b3f' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        radial-gradient(circle at 10% 20%, rgba(42, 107, 63, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 40%);
     }
     
     .container {
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
     }
     
-    /* Header */
+    /* Header dengan motif batik */
     .flow-header {
       text-align: center;
       margin-bottom: 40px;
-      padding: 20px;
+      padding: 30px 20px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .flow-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--secondary),
+        var(--secondary) 10px,
+        var(--primary) 10px,
+        var(--primary) 20px
+      );
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
     
     .flow-title {
-      font-size: 32px;
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
       font-weight: 700;
       margin-bottom: 10px;
-      background: linear-gradient(90deg, var(--text-primary), var(--primary));
+      background: linear-gradient(90deg, var(--secondary), #f0f8f0);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -85,12 +117,12 @@
     .flow-title::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -8px;
       left: 50%;
       transform: translateX(-50%);
-      width: 150px;
-      height: 3px;
-      background: var(--gradient-primary);
+      width: 180px;
+      height: 4px;
+      background: var(--gradient-secondary);
       border-radius: 2px;
     }
     
@@ -99,10 +131,42 @@
       font-size: 16px;
       max-width: 600px;
       margin: 0 auto;
-      margin-top: 10px;
+      margin-top: 15px;
     }
     
-    /* Main Flow Container */
+    /* Motif batik corner */
+    .batik-corner {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 L40,10 L10,40 Z' fill='none' stroke='%23d4af37' stroke-width='2'/%3E%3Cpath d='M10,20 L30,10 L10,30 Z' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3Cpath d='M10,30 L20,10 L10,20 Z' fill='none' stroke='%23d4af37' stroke-width='1'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+    }
+    
+    .batik-corner.top-left {
+      top: 15px;
+      left: 15px;
+    }
+    
+    .batik-corner.top-right {
+      top: 15px;
+      right: 15px;
+      transform: rotate(90deg);
+    }
+    
+    .batik-corner.bottom-left {
+      bottom: 15px;
+      left: 15px;
+      transform: rotate(-90deg);
+    }
+    
+    .batik-corner.bottom-right {
+      bottom: 15px;
+      right: 15px;
+      transform: rotate(180deg);
+    }
+    
+    /* Main Flow Container dengan motif wayang */
     .flow-container {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
@@ -120,9 +184,40 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: var(--gradient-primary);
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        var(--secondary) 5px,
+        var(--secondary) 10px,
+        transparent 10px,
+        transparent 15px,
+        var(--primary) 15px,
+        var(--primary) 20px
+      );
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    
+    .flow-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        var(--secondary) 5px,
+        var(--secondary) 10px,
+        transparent 10px,
+        transparent 15px,
+        var(--primary) 15px,
+        var(--primary) 20px
+      );
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     }
     
     /* Flow Steps */
@@ -133,7 +228,7 @@
       position: relative;
     }
     
-    /* Step Item */
+    /* Step Item dengan motif ukiran tradisional */
     .step-item {
       display: flex;
       align-items: center;
@@ -149,20 +244,20 @@
     
     .step-item:hover {
       transform: translateX(10px);
-      border-color: var(--primary);
+      border-color: var(--secondary);
       box-shadow: var(--shadow-md);
     }
     
     .step-item.active {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.3);
-      background: rgba(67, 97, 238, 0.05);
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+      background: rgba(212, 175, 55, 0.05);
     }
     
-    /* Step Number */
+    /* Step Number dengan motif bunga */
     .step-number {
-      min-width: 60px;
-      height: 60px;
+      min-width: 70px;
+      height: 70px;
       background: var(--gradient-primary);
       border-radius: 50%;
       display: flex;
@@ -170,10 +265,24 @@
       justify-content: center;
       color: white;
       font-weight: 700;
-      font-size: 22px;
+      font-size: 24px;
       box-shadow: var(--shadow-md);
       position: relative;
       z-index: 2;
+      font-family: 'Playfair Display', serif;
+      border: 3px solid var(--secondary);
+    }
+    
+    .step-number::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px dashed rgba(212, 175, 55, 0.5);
+      top: -7px;
+      left: -7px;
+      z-index: -1;
     }
     
     /* Step Content */
@@ -182,22 +291,23 @@
     }
     
     .step-title {
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 12px;
       color: var(--text-primary);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
     
     .step-title i {
-      color: var(--primary);
+      color: var(--secondary);
     }
     
     .step-description {
       color: var(--text-secondary);
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.7;
       margin-bottom: 15px;
     }
     
@@ -210,29 +320,36 @@
     }
     
     .detail-tag {
-      background: rgba(67, 97, 238, 0.1);
-      color: var(--primary);
-      padding: 6px 12px;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--secondary);
+      padding: 8px 16px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
     
     .detail-tag i {
-      font-size: 10px;
+      font-size: 12px;
     }
     
-    /* Connector Line */
+    /* Connector Line dengan motif anyaman */
     .step-connector {
       position: absolute;
-      left: 30px;
-      top: 85px;
+      left: 35px;
+      top: 95px;
       bottom: -45px;
-      width: 2px;
-      background: var(--border-color);
+      width: 3px;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 5px,
+        var(--secondary) 5px,
+        var(--secondary) 10px
+      );
       z-index: 1;
     }
     
@@ -240,11 +357,11 @@
       display: none;
     }
     
-    /* Alternate Layout */
+    /* Alternate Layout dengan motif tenun */
     .alternate-flow {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      gap: 25px;
       margin-top: 40px;
     }
     
@@ -260,8 +377,8 @@
     }
     
     .flow-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary);
+      transform: translateY(-8px);
+      border-color: var(--secondary);
       box-shadow: var(--shadow-md);
     }
     
@@ -271,36 +388,44 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: var(--gradient-primary);
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--secondary),
+        var(--secondary) 5px,
+        var(--primary) 5px,
+        var(--primary) 10px
+      );
     }
     
     .flow-icon {
-      width: 70px;
-      height: 70px;
-      background: rgba(67, 97, 238, 0.1);
+      width: 80px;
+      height: 80px;
+      background: rgba(42, 107, 63, 0.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px auto;
-      font-size: 28px;
-      color: var(--primary);
+      font-size: 32px;
+      color: var(--secondary);
+      border: 2px solid rgba(212, 175, 55, 0.3);
     }
     
     .flow-card h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      margin-bottom: 12px;
       color: var(--text-primary);
     }
     
     .flow-card p {
       color: var(--text-secondary);
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
     
-    /* User Status */
+    /* User Status dengan motif keris */
     .user-status {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
@@ -309,6 +434,8 @@
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-color);
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     
     .status-header {
@@ -320,31 +447,33 @@
     }
     
     .status-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--gradient-success);
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-secondary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 20px;
+      color: var(--bg-dark);
+      font-size: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
     }
     
     .status-header h3 {
-      font-size: 22px;
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
       color: var(--text-primary);
     }
     
     .status-info {
       color: var(--text-secondary);
-      font-size: 15px;
+      font-size: 16px;
       max-width: 600px;
       margin: 0 auto;
-      line-height: 1.6;
+      line-height: 1.7;
     }
     
-    /* Action Buttons */
+    /* Action Buttons dengan motif gerabah */
     .flow-actions {
       display: flex;
       justify-content: center;
@@ -354,7 +483,7 @@
     }
     
     .btn {
-      padding: 15px 30px;
+      padding: 16px 32px;
       border-radius: var(--radius-md);
       border: none;
       font-weight: 600;
@@ -363,8 +492,26 @@
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       box-shadow: var(--shadow-sm);
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+    
+    .btn:hover::before {
+      left: 100%;
     }
     
     .btn-primary {
@@ -384,21 +531,64 @@
     }
     
     .btn-secondary:hover {
-      background: rgba(67, 97, 238, 0.1);
-      border-color: var(--primary);
+      background: rgba(212, 175, 55, 0.1);
+      border-color: var(--secondary);
     }
     
-    /* Footer */
+    /* Footer dengan motif batik */
     .flow-footer {
       text-align: center;
       margin-top: 50px;
-      padding: 20px 0;
+      padding: 25px 0;
       color: var(--text-muted);
-      font-size: 13px;
+      font-size: 14px;
       border-top: 1px solid var(--border-color);
+      position: relative;
     }
     
-    /* Animations */
+    .flow-footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        var(--secondary) 5px,
+        var(--secondary) 10px
+      );
+    }
+    
+    /* Motif wayang di sisi */
+    .wayang-decoration {
+      position: fixed;
+      opacity: 0.05;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .wayang-left {
+      left: 10px;
+      bottom: 10px;
+      width: 200px;
+      height: 300px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath d='M50,250 C30,200 40,150 60,100 C80,50 120,30 150,50 C180,70 190,120 170,170 C150,220 110,240 70,230' fill='none' stroke='%23d4af37' stroke-width='2'/%3E%3Cpath d='M80,280 C60,260 70,220 90,180' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+    }
+    
+    .wayang-right {
+      right: 10px;
+      top: 10px;
+      width: 200px;
+      height: 300px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath d='M150,50 C170,100 160,150 140,200 C120,250 80,270 50,250 C20,230 10,180 30,130 C50,80 90,60 130,70' fill='none' stroke='%232a6b3f' stroke-width='2'/%3E%3Cpath d='M120,20 C140,40 130,80 110,120' fill='none' stroke='%232a6b3f' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+    }
+    
+    /* Animasi khusus Indonesia */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -414,23 +604,28 @@
       animation: fadeInUp 0.6s ease-out;
     }
     
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    @keyframes gamelan {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      75% { transform: rotate(-2deg); }
+      100% { transform: rotate(0deg); }
     }
     
     @keyframes highlight {
-      0% { background-color: rgba(67, 97, 238, 0.1); }
-      50% { background-color: rgba(67, 97, 238, 0.3); }
-      100% { background-color: rgba(67, 97, 238, 0.1); }
+      0% { background-color: rgba(212, 175, 55, 0.1); }
+      50% { background-color: rgba(212, 175, 55, 0.3); }
+      100% { background-color: rgba(212, 175, 55, 0.1); }
     }
     
     .highlight {
       animation: highlight 2s infinite;
     }
     
-    /* Responsive */
+    .gamelan-animation:hover {
+      animation: gamelan 0.5s ease;
+    }
+    
+    /* Responsif */
     @media (max-width: 768px) {
       .step-item {
         flex-direction: column;
@@ -458,11 +653,24 @@
       .step-details {
         justify-content: center;
       }
+      
+      .wayang-decoration {
+        display: none;
+      }
+      
+      .flow-title {
+        font-size: 28px;
+      }
+      
+      .batik-corner {
+        width: 40px;
+        height: 40px;
+      }
     }
     
     @media (max-width: 480px) {
       .flow-title {
-        font-size: 26px;
+        font-size: 24px;
       }
       
       .container {
@@ -472,22 +680,67 @@
       .flow-container {
         padding: 20px;
       }
+      
+      .step-title {
+        font-size: 20px;
+      }
+    }
+    
+    /* Efek khusus untuk nuansa Indonesia */
+    .indonesia-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--gradient-accent);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
+  <div class="wayang-decoration wayang-left"></div>
+  <div class="wayang-decoration wayang-right"></div>
+  
+  <div class="indonesia-badge">
+    <i class="fas fa-flag"></i>
+    <span>Nuansa Indonesia</span>
+  </div>
+  
   <div class="container">
-    <!-- Header -->
+    <!-- Header dengan motif batik -->
     <header class="flow-header fade-in-up">
+      <div class="batik-corner top-left"></div>
+      <div class="batik-corner top-right"></div>
+      <div class="batik-corner bottom-left"></div>
+      <div class="batik-corner bottom-right"></div>
+      
       <h1 class="flow-title">User Journey Flow - SpeakLab VR</h1>
-      <p class="flow-subtitle">Diagram interaktif yang menggambarkan perjalanan pengguna dari awal hingga akhir dalam aplikasi Public Speaking VR</p>
+      <p class="flow-subtitle">Diagram interaktif yang menggambarkan perjalanan pengguna dari awal hingga akhir dalam aplikasi Public Speaking VR dengan nuansa budaya Indonesia</p>
+      <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <span style="background: rgba(212, 175, 55, 0.1); color: var(--secondary); padding: 5px 12px; border-radius: 15px; font-size: 12px; display: flex; align-items: center; gap: 5px;">
+          <i class="fas fa-palette"></i> Motif Batik
+        </span>
+        <span style="background: rgba(42, 107, 63, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 15px; font-size: 12px; display: flex; align-items: center; gap: 5px;">
+          <i class="fas fa-leaf"></i> Warna Alam
+        </span>
+        <span style="background: rgba(178, 34, 34, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 15px; font-size: 12px; display: flex; align-items: center; gap: 5px;">
+          <i class="fas fa-theater-masks"></i> Wayang
+        </span>
+      </div>
     </header>
     
     <!-- Main Flow -->
     <section class="flow-container fade-in-up">
       <div class="flow-steps">
         <!-- Step 1 -->
-        <div class="step-item active">
+        <div class="step-item active gamelan-animation">
           <div class="step-number">1</div>
           <div class="step-connector"></div>
           <div class="step-content">
@@ -507,7 +760,7 @@
         </div>
         
         <!-- Step 2 -->
-        <div class="step-item">
+        <div class="step-item gamelan-animation">
           <div class="step-number">2</div>
           <div class="step-connector"></div>
           <div class="step-content">
@@ -527,7 +780,7 @@
         </div>
         
         <!-- Step 3 -->
-        <div class="step-item">
+        <div class="step-item gamelan-animation">
           <div class="step-number">3</div>
           <div class="step-connector"></div>
           <div class="step-content">
@@ -547,7 +800,7 @@
         </div>
         
         <!-- Step 4 -->
-        <div class="step-item">
+        <div class="step-item gamelan-animation">
           <div class="step-number">4</div>
           <div class="step-connector"></div>
           <div class="step-content">
@@ -567,7 +820,7 @@
         </div>
         
         <!-- Step 5 -->
-        <div class="step-item">
+        <div class="step-item gamelan-animation">
           <div class="step-number">5</div>
           <div class="step-connector"></div>
           <div class="step-content">
@@ -588,7 +841,7 @@
         </div>
         
         <!-- Step 6 -->
-        <div class="step-item">
+        <div class="step-item gamelan-animation">
           <div class="step-number">6</div>
           <div class="step-connector"></div>
           <div class="step-content">
@@ -608,7 +861,7 @@
         </div>
         
         <!-- Step 7 -->
-        <div class="step-item">
+        <div class="step-item gamelan-animation">
           <div class="step-number">7</div>
           <div class="step-content">
             <h3 class="step-title">
@@ -630,67 +883,70 @@
     
     <!-- Alternate Flow View -->
     <section class="fade-in-up" style="animation-delay: 0.2s;">
-      <h2 style="text-align: center; margin-bottom: 25px; color: var(--text-primary);">Flow Alternatif - Visual Card View</h2>
+      <h2 style="text-align: center; margin-bottom: 25px; color: var(--text-primary); font-family: 'Playfair Display', serif;">
+        <i class="fas fa-arrows-alt-h" style="color: var(--secondary); margin-right: 10px;"></i>
+        Flow Alternatif - Visual Card View
+      </h2>
       
       <div class="alternate-flow">
-        <div class="flow-card">
+        <div class="flow-card gamelan-animation">
           <div class="flow-icon">
             <i class="fas fa-sign-in-alt"></i>
           </div>
           <h3>Autentikasi</h3>
           <p>Masuk dengan email, Google, atau mode tamu untuk akses cepat</p>
-          <div style="margin-top: 15px; font-size: 12px; color: var(--primary);">STEP 1</div>
+          <div style="margin-top: 15px; font-size: 12px; color: var(--secondary); font-weight: 600;">STEP 1</div>
         </div>
         
-        <div class="flow-card">
+        <div class="flow-card gamelan-animation">
           <div class="flow-icon">
             <i class="fas fa-tasks"></i>
           </div>
           <h3>Pilih Skenario</h3>
           <p>6+ skenario latihan untuk berbagai konteks public speaking</p>
-          <div style="margin-top: 15px; font-size: 12px; color: var(--primary);">STEP 2</div>
+          <div style="margin-top: 15px; font-size: 12px; color: var(--secondary); font-weight: 600;">STEP 2</div>
         </div>
         
-        <div class="flow-card">
+        <div class="flow-card gamelan-animation">
           <div class="flow-icon">
             <i class="fas fa-vr-cardboard"></i>
           </div>
           <h3>Immersive VR</h3>
           <p>Lingkungan 3D realistis dengan audiens virtual interaktif</p>
-          <div style="margin-top: 15px; font-size: 12px; color: var(--primary);">STEP 3</div>
+          <div style="margin-top: 15px; font-size: 12px; color: var(--secondary); font-weight: 600;">STEP 3</div>
         </div>
         
-        <div class="flow-card">
+        <div class="flow-card gamelan-animation">
           <div class="flow-icon">
             <i class="fas fa-robot"></i>
           </div>
           <h3>Analisis AI</h3>
           <p>AI menganalisis intonasi, gesture, dan performa secara real-time</p>
-          <div style="margin-top: 15px; font-size: 12px; color: var(--primary);">STEP 5</div>
+          <div style="margin-top: 15px; font-size: 12px; color: var(--secondary); font-weight: 600;">STEP 5</div>
         </div>
         
-        <div class="flow-card">
+        <div class="flow-card gamelan-animation">
           <div class="flow-icon">
             <i class="fas fa-chart-bar"></i>
           </div>
           <h3>Feedback Detail</h3>
           <p>Laporan visual dengan skor dan rekomendasi perbaikan</p>
-          <div style="margin-top: 15px; font-size: 12px; color: var(--primary);">STEP 6</div>
+          <div style="margin-top: 15px; font-size: 12px; color: var(--secondary); font-weight: 600;">STEP 6</div>
         </div>
         
-        <div class="flow-card">
+        <div class="flow-card gamelan-animation">
           <div class="flow-icon">
             <i class="fas fa-user-check"></i>
           </div>
           <h3>Progress Tracking</h3>
           <p>Simpan dan pantau perkembangan skill dari waktu ke waktu</p>
-          <div style="margin-top: 15px; font-size: 12px; color: var(--primary);">STEP 7</div>
+          <div style="margin-top: 15px; font-size: 12px; color: var(--secondary); font-weight: 600;">STEP 7</div>
         </div>
       </div>
     </section>
     
     <!-- User Status -->
-    <div class="user-status fade-in-up" style="animation-delay: 0.3s;">
+    <div class="user-status fade-in-up gamelan-animation" style="animation-delay: 0.3s;">
       <div class="status-header">
         <div class="status-icon">
           <i class="fas fa-user-check"></i>
@@ -698,25 +954,34 @@
         <h3>Status Perjalanan Pengguna: Bintang Permana</h3>
       </div>
       <p class="status-info">
-        Saat ini Anda berada di <strong>Step 1: Login/Register</strong>. Setelah menyelesaikan autentikasi, 
+        Saat ini Anda berada di <strong style="color: var(--secondary);">Step 1: Login/Register</strong>. Setelah menyelesaikan autentikasi, 
         Anda akan melanjutkan ke pemilihan skenario latihan. Perjalanan ini dirancang untuk memberikan pengalaman 
-        belajar public speaking yang terstruktur dan efektif melalui teknologi VR dan AI.
+        belajar public speaking yang terstruktur dan efektif melalui teknologi VR dan AI, dengan sentuhan budaya Indonesia.
       </p>
+      <div style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
+        <div style="width: 20px; height: 20px; background: var(--secondary); border-radius: 50%;"></div>
+        <div style="width: 20px; height: 20px; background: var(--primary); border-radius: 50%; opacity: 0.5;"></div>
+        <div style="width: 20px; height: 20px; background: var(--primary); border-radius: 50%; opacity: 0.5;"></div>
+        <div style="width: 20px; height: 20px; background: var(--primary); border-radius: 50%; opacity: 0.5;"></div>
+        <div style="width: 20px; height: 20px; background: var(--primary); border-radius: 50%; opacity: 0.5;"></div>
+        <div style="width: 20px; height: 20px; background: var(--primary); border-radius: 50%; opacity: 0.5;"></div>
+        <div style="width: 20px; height: 20px; background: var(--primary); border-radius: 50%; opacity: 0.5;"></div>
+      </div>
     </div>
     
     <!-- Action Buttons -->
     <div class="flow-actions fade-in-up" style="animation-delay: 0.4s;">
-      <button class="btn btn-primary" id="simulateFlowBtn">
+      <button class="btn btn-primary gamelan-animation" id="simulateFlowBtn">
         <i class="fas fa-play-circle"></i>
         <span>Simulasikan User Journey</span>
       </button>
       
-      <button class="btn btn-secondary" id="resetFlowBtn">
+      <button class="btn btn-secondary gamelan-animation" id="resetFlowBtn">
         <i class="fas fa-redo"></i>
         <span>Reset Flow</span>
       </button>
       
-      <button class="btn btn-secondary" id="exportFlowBtn">
+      <button class="btn btn-secondary gamelan-animation" id="exportFlowBtn">
         <i class="fas fa-download"></i>
         <span>Export Diagram</span>
       </button>
@@ -724,8 +989,8 @@
     
     <!-- Footer -->
     <footer class="flow-footer">
-      <p>© 2025 SpeakLab VR - User Journey Flow Diagram • Versi interaktif 2.0</p>
-      <p style="margin-top: 5px; font-size: 12px;">Diagram ini menggambarkan alur pengalaman pengguna dalam aplikasi SpeakLab VR</p>
+      <p><i class="fas fa-heart" style="color: var(--accent);"></i> © 2025 SpeakLab VR - User Journey Flow Diagram • Nuansa Budaya Indonesia</p>
+      <p style="margin-top: 10px; font-size: 13px;">Menggabungkan teknologi modern dengan kekayaan budaya Nusantara</p>
     </footer>
   </div>
 
@@ -738,16 +1003,17 @@
       const resetBtn = document.getElementById('resetFlowBtn');
       const exportBtn = document.getElementById('exportFlowBtn');
       const statusInfo = document.querySelector('.status-info');
+      const progressDots = document.querySelectorAll('.user-status > div > div');
       
       let currentStep = 0;
       const totalSteps = stepItems.length;
       const stepDescriptions = [
-        "Langkah pertama: Autentikasi pengguna",
-        "Memilih skenario latihan yang sesuai",
-        "Memasuki lingkungan VR yang imersif",
-        "Memulai sesi presentasi dengan bimbingan",
+        "Langkah pertama: Autentikasi pengguna dengan sentuhan Indonesia",
+        "Memilih skenario latihan yang sesuai dengan budaya lokal",
+        "Memasuki lingkungan VR yang imersif dengan nuansa Nusantara",
+        "Memulai sesi presentasi dengan bimbingan kearifan lokal",
         "AI menganalisis performa secara real-time",
-        "Menerima feedback dan rekomendasi",
+        "Menerima feedback dan rekomendasi dengan pendekatan Indonesia",
         "Progress disimpan untuk tracking perkembangan"
       ];
       
@@ -769,22 +1035,33 @@
         
         // Update status info
         statusInfo.innerHTML = `
-          Saat ini Anda berada di <strong>Step ${currentStep + 1}: ${stepItems[currentStep]?.querySelector('.step-title').textContent.trim()}</strong>. 
+          Saat ini Anda berada di <strong style="color: var(--secondary);">Step ${currentStep + 1}: ${stepItems[currentStep]?.querySelector('.step-title').textContent.trim()}</strong>. 
           ${stepDescriptions[currentStep]}. 
           ${currentStep < totalSteps - 1 ? 'Klik "Simulasikan User Journey" untuk melanjutkan.' : 'Selamat! Anda telah menyelesaikan seluruh perjalanan pengguna.'}
         `;
         
+        // Update progress dots
+        progressDots.forEach((dot, index) => {
+          if (index <= currentStep) {
+            dot.style.background = 'var(--secondary)';
+            dot.style.opacity = '1';
+          } else {
+            dot.style.background = 'var(--primary)';
+            dot.style.opacity = '0.5';
+          }
+        });
+        
         // Update button text jika di step terakhir
         if (currentStep === totalSteps - 1) {
           simulateBtn.innerHTML = '<i class="fas fa-check-circle"></i> <span>Journey Selesai!</span>';
-          simulateBtn.style.background = 'linear-gradient(135deg, #2ed573, #7bed9f)';
+          simulateBtn.style.background = 'linear-gradient(135deg, #2a6b3f, #2e8b57)';
         } else {
           simulateBtn.innerHTML = '<i class="fas fa-play-circle"></i> <span>Simulasikan User Journey</span>';
           simulateBtn.style.background = '';
         }
       }
       
-      // Simulasi user journey
+      // Simulasi user journey dengan efek gamelan
       simulateBtn.addEventListener('click', function() {
         if (currentStep < totalSteps - 1) {
           currentStep++;
@@ -793,6 +1070,7 @@
           // Animasi untuk step
           const currentStepItem = stepItems[currentStep];
           if (currentStepItem) {
+            currentStepItem.classList.add('gamelan-animation');
             currentStepItem.style.transform = 'translateX(20px)';
             currentStepItem.style.transition = 'transform 0.3s';
             
@@ -802,9 +1080,36 @@
           }
           
           showNotification(`Melanjutkan ke Step ${currentStep + 1}`, 'info');
+          
+          // Efek suara gamelan (visual)
+          const audioVisual = document.createElement('div');
+          audioVisual.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(212,175,55,0.7) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            animation: pulseGamelan 0.5s ease-out;
+          `;
+          document.body.appendChild(audioVisual);
+          
+          setTimeout(() => {
+            document.body.removeChild(audioVisual);
+          }, 500);
+          
         } else {
-          showNotification('Selamat! Anda telah menyelesaikan seluruh user journey.', 'success');
+          showNotification('Selamat! Anda telah menyelesaikan seluruh user journey dengan nuansa Indonesia.', 'success');
           this.disabled = true;
+          
+          // Efek konfeti
+          for (let i = 0; i < 50; i++) {
+            createConfetti();
+          }
         }
       });
       
@@ -822,7 +1127,7 @@
         
         setTimeout(() => {
           this.innerHTML = '<i class="fas fa-check"></i> <span>Berhasil Diekspor!</span>';
-          showNotification('Diagram user journey berhasil diekspor sebagai gambar', 'success');
+          showNotification('Diagram user journey berhasil diekspor sebagai gambar dengan motif Indonesia', 'success');
           
           setTimeout(() => {
             this.innerHTML = '<i class="fas fa-download"></i> <span>Export Diagram</span>';
@@ -848,27 +1153,10 @@
         });
       });
       
-      // Hover effects
-      stepItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-          if (!this.classList.contains('active')) {
-            this.style.borderColor = 'var(--primary)';
-            this.style.boxShadow = 'var(--shadow-sm)';
-          }
-        });
-        
-        item.addEventListener('mouseleave', function() {
-          if (!this.classList.contains('active')) {
-            this.style.borderColor = '';
-            this.style.boxShadow = '';
-          }
-        });
-      });
-      
       // Initialize
       updateStepStatus();
       
-      // Function untuk menampilkan notifikasi
+      // Function untuk menampilkan notifikasi dengan motif batik
       function showNotification(message, type) {
         const notification = document.createElement('div');
         notification.textContent = message;
@@ -876,7 +1164,7 @@
           position: fixed;
           top: 20px;
           right: 20px;
-          background: ${type === 'success' ? 'rgba(46, 213, 115, 0.9)' : 'rgba(67, 97, 238, 0.9)'};
+          background: ${type === 'success' ? 'rgba(46, 139, 87, 0.9)' : 'rgba(42, 107, 63, 0.9)'};
           color: white;
           padding: 15px 25px;
           border-radius: 10px;
@@ -884,9 +1172,10 @@
           z-index: 1000;
           font-weight: 500;
           animation: slideIn 0.3s ease;
-          border: 1px solid rgba(255,255,255,0.2);
+          border: 1px solid rgba(212, 175, 55, 0.3);
           backdrop-filter: blur(10px);
           max-width: 300px;
+          border-left: 5px solid var(--secondary);
         `;
         
         document.body.appendChild(notification);
@@ -900,6 +1189,40 @@
         }, 3000);
       }
       
+      // Function untuk membuat efek konfeti
+      function createConfetti() {
+        const confetti = document.createElement('div');
+        const colors = ['#d4af37', '#2a6b3f', '#b22222', '#ff8c00', '#2e8b57'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        confetti.style.cssText = `
+          position: fixed;
+          width: 10px;
+          height: 10px;
+          background: ${color};
+          top: -10px;
+          left: ${Math.random() * 100}vw;
+          border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+          z-index: 9998;
+          pointer-events: none;
+        `;
+        
+        document.body.appendChild(confetti);
+        
+        // Animasi konfeti
+        const animation = confetti.animate([
+          { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+          { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+        ], {
+          duration: Math.random() * 2000 + 1000,
+          easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+        });
+        
+        animation.onfinish = () => {
+          document.body.removeChild(confetti);
+        };
+      }
+      
       // Add animation styles
       const style = document.createElement('style');
       style.textContent = `
@@ -911,8 +1234,24 @@
           from { transform: translateX(0); opacity: 1; }
           to { transform: translateX(100px); opacity: 0; }
         }
+        @keyframes pulseGamelan {
+          0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+          50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+          100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+        }
       `;
       document.head.appendChild(style);
+      
+      // Tambahkan efek hover untuk semua elemen dengan kelas gamelan-animation
+      document.querySelectorAll('.gamelan-animation').forEach(el => {
+        el.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.02)';
+        });
+        
+        el.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+        });
+      });
     });
   </script>
 </body>

@@ -3,37 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard Evaluasi Public Speaking - Bintang Permana</title>
+  <title>Dashboard Evaluasi Public Speaking - Bintang Permana dengan Nuansa Indonesia</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4361ee;
-      --primary-dark: #3a0ca3;
-      --secondary: #7209b7;
-      --accent: #f72585;
-      --success: #4cc9f0;
-      --warning: #ff9e00;
-      --danger: #ef476f;
+      /* Warna alam Indonesia */
+      --primary: #2a6b3f; /* Hijau daun */
+      --primary-dark: #1e4e2f;
+      --secondary: #d4af37; /* Emas tradisional */
+      --accent: #b22222; /* Merah keberanian */
+      --success: #2e8b57; /* Hijau lumut */
+      --warning: #ff8c00; /* Oranye matahari terbenam */
+      --danger: #c53030; /* Merah maroon */
       
-      --bg-dark: #0a0a0f;
-      --bg-card: #12121f;
-      --bg-card-light: #1a1a2e;
-      --border-color: #2d2d4d;
+      --bg-dark: #0c1a14; /* Hijau pekat */
+      --bg-card: #1a2c24; /* Hijau tua */
+      --bg-card-light: #2a3c34;
+      --border-color: #3d5548;
       
-      --text-primary: #f8f9fa;
-      --text-secondary: #adb5bd;
-      --text-muted: #6c757d;
+      --text-primary: #f0f8f0;
+      --text-secondary: #c8d8d0;
+      --text-muted: #8a9c94;
       
-      --gradient-primary: linear-gradient(135deg, #4361ee, #3a0ca3);
-      --gradient-secondary: linear-gradient(135deg, #7209b7, #560bad);
-      --gradient-accent: linear-gradient(135deg, #f72585, #b5179e);
-      --gradient-success: linear-gradient(135deg, #4cc9f0, #4361ee);
-      --gradient-warning: linear-gradient(135deg, #ff9e00, #ff6b00);
-      --gradient-danger: linear-gradient(135deg, #ef476f, #ff6b6b);
+      --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      --gradient-secondary: linear-gradient(135deg, var(--secondary), #b8860b);
+      --gradient-accent: linear-gradient(135deg, var(--accent), #8b0000);
+      --gradient-success: linear-gradient(135deg, var(--success), var(--primary));
+      --gradient-warning: linear-gradient(135deg, var(--warning), #cc7000);
+      --gradient-danger: linear-gradient(135deg, var(--danger), #ff6b6b);
       
-      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.2);
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.3);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
       
       --radius-lg: 16px;
       --radius-md: 12px;
@@ -47,15 +49,16 @@
     }
     
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: var(--bg-dark);
       color: var(--text-primary);
       line-height: 1.6;
       padding: 20px;
       min-height: 100vh;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(114, 9, 183, 0.08) 0%, transparent 40%);
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232a6b3f' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        radial-gradient(circle at 10% 20%, rgba(42, 107, 63, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 40%);
     }
     
     .container {
@@ -63,18 +66,61 @@
       margin: 0 auto;
     }
     
-    /* Header */
+    /* Badge Indonesia */
+    .indonesia-badge {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--secondary);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    
+    /* Header dengan motif batik */
     .dashboard-header {
       text-align: center;
       margin-bottom: 30px;
-      padding: 20px;
+      padding: 25px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .dashboard-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--secondary),
+        var(--secondary) 10px,
+        var(--primary) 10px,
+        var(--primary) 20px
+      );
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
     
     .dashboard-title {
-      font-size: 32px;
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
       font-weight: 700;
       margin-bottom: 10px;
-      background: linear-gradient(90deg, var(--text-primary), var(--primary));
+      background: linear-gradient(90deg, var(--secondary), var(--text-primary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -88,64 +134,85 @@
       bottom: -5px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
+      width: 120px;
       height: 3px;
-      background: var(--gradient-primary);
+      background: var(--gradient-secondary);
       border-radius: 2px;
     }
     
     .user-info {
-      margin-top: 20px;
+      margin-top: 25px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 20px;
       flex-wrap: wrap;
+      padding: 15px;
+      background: rgba(212, 175, 55, 0.05);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
     
     .user-avatar {
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      background: var(--gradient-accent);
+      background: var(--gradient-secondary);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: var(--bg-dark);
       font-weight: bold;
-      font-size: 20px;
+      font-size: 24px;
       box-shadow: var(--shadow-md);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+    }
+    
+    .user-avatar::after {
+      content: '';
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      border: 2px dashed rgba(212, 175, 55, 0.5);
+      top: -5px;
+      left: -5px;
     }
     
     .user-details h3 {
-      font-size: 22px;
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
       margin-bottom: 5px;
       color: var(--text-primary);
     }
     
     .user-details p {
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 15px;
     }
     
     .user-stats {
       display: flex;
       gap: 15px;
-      margin-top: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     
     .stat-badge {
-      background: rgba(67, 97, 238, 0.1);
-      padding: 5px 15px;
+      background: rgba(212, 175, 55, 0.1);
+      padding: 8px 18px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 13px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
     }
     
     .stat-badge i {
-      color: var(--primary);
+      color: var(--secondary);
     }
     
     /* Main Grid */
@@ -162,7 +229,7 @@
       }
     }
     
-    /* Cards */
+    /* Cards dengan motif ukiran */
     .card {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
@@ -170,12 +237,24 @@
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-color);
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
     
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
       box-shadow: var(--shadow-lg);
-      border-color: var(--primary);
+      border-color: var(--secondary);
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--gradient-secondary);
     }
     
     .card-header {
@@ -188,19 +267,21 @@
     }
     
     .card-header i {
-      width: 40px;
-      height: 40px;
-      background: var(--gradient-primary);
+      width: 44px;
+      height: 44px;
+      background: var(--gradient-secondary);
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 18px;
+      color: var(--bg-dark);
+      font-size: 20px;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
     }
     
     .card-header h2 {
-      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
       color: var(--text-primary);
     }
     
@@ -212,6 +293,12 @@
       margin-top: 15px;
     }
     
+    @media (max-width: 480px) {
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
     .score-item {
       background: var(--bg-card-light);
       border-radius: var(--radius-md);
@@ -219,11 +306,24 @@
       text-align: center;
       border: 1px solid var(--border-color);
       transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
     
     .score-item:hover {
       transform: scale(1.05);
-      border-color: var(--primary);
+      border-color: var(--secondary);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+    }
+    
+    .score-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-secondary);
     }
     
     .score-title {
@@ -234,22 +334,41 @@
     }
     
     .score-value {
-      font-size: 32px;
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
       font-weight: 700;
       margin-bottom: 5px;
     }
     
     .score-progress {
-      height: 6px;
+      height: 8px;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 3px;
-      margin-top: 10px;
+      border-radius: 4px;
+      margin-top: 15px;
       overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
     
     .progress-fill {
       height: 100%;
-      border-radius: 3px;
+      border-radius: 4px;
+      position: relative;
+    }
+    
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 5px,
+        rgba(255, 255, 255, 0.1) 5px,
+        rgba(255, 255, 255, 0.1) 10px
+      );
     }
     
     /* AI Recommendations */
@@ -258,26 +377,35 @@
     }
     
     .recommendation-item {
-      padding: 15px;
-      margin-bottom: 12px;
+      padding: 18px;
+      margin-bottom: 15px;
       background: var(--bg-card-light);
       border-radius: var(--radius-md);
-      border-left: 4px solid var(--primary);
+      border-left: 4px solid var(--secondary);
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 15px;
       transition: transform 0.2s ease;
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
     
     .recommendation-item:hover {
-      transform: translateX(5px);
-      background: rgba(67, 97, 238, 0.05);
+      transform: translateX(8px);
+      background: rgba(212, 175, 55, 0.05);
+      border-color: var(--secondary);
     }
     
     .recommendation-item i {
-      color: var(--primary);
-      font-size: 18px;
-      margin-top: 2px;
+      color: var(--secondary);
+      font-size: 20px;
+      margin-top: 3px;
+      width: 36px;
+      height: 36px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     /* History */
@@ -287,7 +415,7 @@
     
     .history-item {
       padding: 18px;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
       background: var(--bg-card-light);
       border-radius: var(--radius-md);
       display: flex;
@@ -295,52 +423,72 @@
       align-items: center;
       border: 1px solid var(--border-color);
       transition: all 0.2s ease;
+      position: relative;
     }
     
     .history-item:hover {
-      border-color: var(--primary);
-      transform: translateY(-2px);
+      border-color: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
     }
     
     .history-content h4 {
-      font-size: 16px;
-      margin-bottom: 5px;
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      margin-bottom: 8px;
       color: var(--text-primary);
     }
     
     .history-content p {
       color: var(--text-secondary);
-      font-size: 13px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     .history-score {
-      font-size: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--secondary);
+      position: relative;
     }
     
-    /* Timeline */
+    .history-score::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 2px;
+      background: var(--gradient-secondary);
+      border-radius: 1px;
+    }
+    
+    /* Timeline dengan motif wayang */
     .timeline {
       position: relative;
-      padding-left: 30px;
+      padding-left: 35px;
     }
     
     .timeline::before {
       content: '';
       position: absolute;
-      left: 7px;
+      left: 10px;
       top: 0;
       bottom: 0;
       width: 4px;
-      background: var(--gradient-primary);
+      background: var(--gradient-secondary);
       border-radius: 2px;
     }
     
     .timeline-item {
       position: relative;
       margin-bottom: 25px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 20px;
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.2);
     }
     
     .timeline-item:last-child {
@@ -351,27 +499,36 @@
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -30px;
+      left: -35px;
       top: 5px;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: var(--gradient-primary);
-      border: 3px solid var(--bg-card);
-      box-shadow: 0 0 0 2px var(--primary);
+      background: var(--gradient-secondary);
+      border: 4px solid var(--bg-card);
+      box-shadow: 0 0 0 2px var(--secondary);
     }
     
     .timeline-date {
+      font-family: 'Playfair Display', serif;
       font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 8px;
-      font-size: 15px;
+      color: var(--secondary);
+      margin-bottom: 10px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .timeline-date i {
+      font-size: 14px;
     }
     
     .timeline-content {
       color: var(--text-secondary);
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
+      padding-left: 5px;
     }
     
     /* Progress Stats */
@@ -397,23 +554,44 @@
       min-width: 200px;
       background: var(--bg-card-light);
       border-radius: var(--radius-md);
-      padding: 20px;
+      padding: 25px;
       text-align: center;
       border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-overview-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--secondary);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+    }
+    
+    .stat-overview-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-secondary);
     }
     
     .stat-overview-value {
-      font-size: 36px;
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
       font-weight: 700;
       margin-bottom: 10px;
     }
     
     .stat-overview-label {
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 15px;
+      margin-bottom: 8px;
     }
     
-    /* Action Buttons */
+    /* Action Buttons dengan motif gerabah */
     .action-buttons {
       display: flex;
       justify-content: center;
@@ -423,7 +601,7 @@
     }
     
     .btn {
-      padding: 15px 30px;
+      padding: 16px 32px;
       border-radius: var(--radius-md);
       border: none;
       font-weight: 600;
@@ -432,42 +610,90 @@
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+    
+    .btn:hover::before {
+      left: 100%;
     }
     
     .btn-primary {
       background: var(--gradient-primary);
       color: white;
+      border: 1px solid rgba(42, 107, 63, 0.3);
     }
     
     .btn-primary:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-md);
+      background: var(--gradient-primary);
     }
     
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-primary);
-      border: 1px solid var(--border-color);
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--secondary);
+      border: 1px solid rgba(212, 175, 55, 0.3);
     }
     
     .btn-secondary:hover {
-      background: rgba(67, 97, 238, 0.1);
-      border-color: var(--primary);
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--secondary);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
     }
     
-    /* Footer */
+    /* Footer dengan motif batik */
     .dashboard-footer {
       text-align: center;
       margin-top: 40px;
-      padding: 20px 0;
+      padding: 25px 0;
       color: var(--text-muted);
-      font-size: 13px;
+      font-size: 14px;
       border-top: 1px solid var(--border-color);
+      position: relative;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
     }
     
-    /* Animations */
+    .dashboard-footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        var(--secondary) 5px,
+        var(--secondary) 10px
+      );
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    
+    .dashboard-footer strong {
+      color: var(--secondary);
+    }
+    
+    /* Animasi khas Indonesia */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -493,12 +719,54 @@
       animation: pulse 2s infinite;
     }
     
+    @keyframes gamelan {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      75% { transform: rotate(-2deg); }
+      100% { transform: rotate(0deg); }
+    }
+    
+    .gamelan-animation:hover {
+      animation: gamelan 0.5s ease;
+    }
+    
+    /* Motif batik corner */
+    .batik-corner {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 L40,10 L10,40 Z' fill='none' stroke='%23d4af37' stroke-width='2'/%3E%3Cpath d='M10,20 L30,10 L10,30 Z' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3Cpath d='M10,30 L20,10 L10,20 Z' fill='none' stroke='%23d4af37' stroke-width='1'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .batik-corner.top-left {
+      top: 10px;
+      left: 10px;
+    }
+    
+    .batik-corner.top-right {
+      top: 10px;
+      right: 10px;
+      transform: rotate(90deg);
+    }
+    
+    .batik-corner.bottom-left {
+      bottom: 10px;
+      left: 10px;
+      transform: rotate(-90deg);
+    }
+    
+    .batik-corner.bottom-right {
+      bottom: 10px;
+      right: 10px;
+      transform: rotate(180deg);
+    }
+    
     /* Responsive */
     @media (max-width: 480px) {
-      .score-grid {
-        grid-template-columns: 1fr;
-      }
-      
       .stats-overview {
         flex-direction: column;
       }
@@ -516,18 +784,38 @@
         flex-direction: column;
         text-align: center;
       }
+      
+      .dashboard-title {
+        font-size: 28px;
+      }
+      
+      .user-details h3 {
+        font-size: 20px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Motif Batik di Sudut -->
+  <div class="batik-corner top-left"></div>
+  <div class="batik-corner top-right"></div>
+  <div class="batik-corner bottom-left"></div>
+  <div class="batik-corner bottom-right"></div>
+  
+  <!-- Badge Indonesia -->
+  <div class="indonesia-badge">
+    <i class="fas fa-flag"></i>
+    <span>Nuansa Indonesia</span>
+  </div>
+  
   <div class="container">
     <!-- Header -->
-    <header class="dashboard-header fade-in-up">
+    <header class="dashboard-header fade-in-up gamelan-animation">
       <h1 class="dashboard-title">Dashboard Evaluasi Public Speaking</h1>
       
       <div class="user-info">
-        <img src="bintang.jpg" 
-                     alt="Profil Bintang Permana" class="user-avatar">
+         <img src="bintang.jpg" alt="Profil Bintang Permana" class="user-avatar">
+        <div class="user-info">
         <div class="user-details">
           <h3>Bintang Permana</h3>
           <p>Mahasiswa Bisnis Digital - Universitas Muhammadiyah Surakarta</p>
@@ -552,85 +840,85 @@
     <!-- Main Grid -->
     <div class="dashboard-grid">
       <!-- Ringkasan Skor -->
-      <div class="card fade-in-up" style="animation-delay: 0.1s;">
+      <div class="card fade-in-up gamelan-animation" style="animation-delay: 0.1s;">
         <div class="card-header">
           <i class="fas fa-chart-bar"></i>
           <h2>Ringkasan Skor</h2>
         </div>
         
         <div class="score-grid">
-          <div class="score-item">
+          <div class="score-item gamelan-animation">
             <div class="score-title">Intonasi</div>
-            <div class="score-value" style="color: #4cc9f0;">82%</div>
+            <div class="score-value" style="color: var(--success);">82%</div>
             <div class="score-progress">
               <div class="progress-fill" style="width: 82%; background: var(--gradient-success);"></div>
             </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">↑ 5% dari minggu lalu</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">↑ 5% dari minggu lalu</div>
           </div>
           
-          <div class="score-item">
+          <div class="score-item gamelan-animation">
             <div class="score-title">Kontak Mata</div>
-            <div class="score-value" style="color: #ff9e00;">76%</div>
+            <div class="score-value" style="color: var(--warning);">76%</div>
             <div class="score-progress">
               <div class="progress-fill" style="width: 76%; background: var(--gradient-warning);"></div>
             </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">↑ 8% dari minggu lalu</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">↑ 8% dari minggu lalu</div>
           </div>
           
-          <div class="score-item">
+          <div class="score-item gamelan-animation">
             <div class="score-title">Gestur</div>
-            <div class="score-value" style="color: #f72585;">88%</div>
+            <div class="score-value" style="color: var(--secondary);">88%</div>
             <div class="score-progress">
-              <div class="progress-fill" style="width: 88%; background: var(--gradient-accent);"></div>
+              <div class="progress-fill" style="width: 88%; background: var(--gradient-secondary);"></div>
             </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">↑ 3% dari minggu lalu</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">↑ 3% dari minggu lalu</div>
           </div>
         </div>
       </div>
       
       <!-- Rekomendasi AI -->
-      <div class="card fade-in-up" style="animation-delay: 0.2s;">
+      <div class="card fade-in-up gamelan-animation" style="animation-delay: 0.2s;">
         <div class="card-header">
           <i class="fas fa-robot"></i>
           <h2>Rekomendasi Perbaikan AI</h2>
         </div>
         
         <ul class="recommendation-list">
-          <li class="recommendation-item">
+          <li class="recommendation-item gamelan-animation">
             <i class="fas fa-volume-up"></i>
             <div>
               <strong>Tingkatkan variasi intonasi</strong>
-              <p style="margin-top: 5px; color: var(--text-secondary);">Coba gunakan penekanan yang berbeda pada poin-poin penting dan variasikan nada suara agar penyampaian lebih hidup dan menarik.</p>
+              <p style="margin-top: 8px; color: var(--text-secondary);">Coba gunakan penekanan yang berbeda pada poin-poin penting dan variasikan nada suara agar penyampaian lebih hidup dan menarik seperti penutur tradisional Indonesia.</p>
             </div>
           </li>
           
-          <li class="recommendation-item">
+          <li class="recommendation-item gamelan-animation">
             <i class="fas fa-eye"></i>
             <div>
               <strong>Perbanyak kontak mata dengan audiens</strong>
-              <p style="margin-top: 5px; color: var(--text-secondary);">Fokus pada kontak mata dengan berbagai bagian audiens untuk meningkatkan engagement dan menunjukkan kepercayaan diri.</p>
+              <p style="margin-top: 8px; color: var(--text-secondary);">Fokus pada kontak mata dengan berbagai bagian audiens untuk meningkatkan engagement dan menunjukkan kepercayaan diri dengan sopan santun khas Indonesia.</p>
             </div>
           </li>
           
-          <li class="recommendation-item">
+          <li class="recommendation-item gamelan-animation">
             <i class="fas fa-hands"></i>
             <div>
               <strong>Gunakan gesture yang lebih terukur</strong>
-              <p style="margin-top: 5px; color: var(--text-secondary);">Gestur tangan Anda baik, tetapi coba lebih terukur dan sesuai dengan konteks pembicaraan. Hindari gerakan berlebihan.</p>
+              <p style="margin-top: 8px; color: var(--text-secondary);">Gestur tangan Anda baik, tetapi coba lebih terukur dan sesuai dengan konteks pembicaraan seperti dalam seni pertunjukan tradisional Indonesia.</p>
             </div>
           </li>
         </ul>
       </div>
       
       <!-- Riwayat Latihan -->
-      <div class="card fade-in-up" style="animation-delay: 0.3s;">
+      <div class="card fade-in-up gamelan-animation" style="animation-delay: 0.3s;">
         <div class="card-header">
           <i class="fas fa-history"></i>
           <h2>Riwayat Latihan Terbaru</h2>
         </div>
         
         <ul class="history-list">
-          <li class="history-item">
+          <li class="history-item gamelan-animation">
             <div class="history-content">
               <h4>Pidato Pembukaan Acara</h4>
               <p><i class="far fa-calendar-alt"></i> 10 Desember 2025 • Durasi: 8 menit</p>
@@ -638,7 +926,7 @@
             <div class="history-score">78%</div>
           </li>
           
-          <li class="history-item">
+          <li class="history-item gamelan-animation">
             <div class="history-content">
               <h4>Presentasi Kelas: Teknologi VR</h4>
               <p><i class="far fa-calendar-alt"></i> 8 Desember 2025 • Durasi: 12 menit</p>
@@ -646,7 +934,7 @@
             <div class="history-score">82%</div>
           </li>
           
-          <li class="history-item">
+          <li class="history-item gamelan-animation">
             <div class="history-content">
               <h4>Simulasi Wawancara Kerja</h4>
               <p><i class="far fa-calendar-alt"></i> 5 Desember 2025 • Durasi: 15 menit</p>
@@ -654,7 +942,7 @@
             <div class="history-score">85%</div>
           </li>
           
-          <li class="history-item">
+          <li class="history-item gamelan-animation">
             <div class="history-content">
               <h4>Presentasi Bisnis Startup</h4>
               <p><i class="far fa-calendar-alt"></i> 1 Desember 2025 • Durasi: 10 menit</p>
@@ -665,7 +953,7 @@
       </div>
       
       <!-- Timeline Perkembangan -->
-      <div class="card fade-in-up" style="animation-delay: 0.4s;">
+      <div class="card fade-in-up gamelan-animation" style="animation-delay: 0.4s;">
         <div class="card-header">
           <i class="fas fa-chart-line"></i>
           <h2>Timeline Perkembangan Skill</h2>
@@ -673,51 +961,51 @@
         
         <div class="timeline">
           <div class="timeline-item">
-            <div class="timeline-date">Minggu 1 - November 2025</div>
-            <div class="timeline-content">Memulai latihan dasar intonasi dan pengucapan. Fokus pada kejelasan suara dan artikulasi kata-kata.</div>
+            <div class="timeline-date"><i class="fas fa-seedling"></i> Minggu 1 - November 2025</div>
+            <div class="timeline-content">Memulai latihan dasar intonasi dan pengucapan. Fokus pada kejelasan suara dan artikulasi kata-kata dengan pendekatan budaya tutur Indonesia.</div>
           </div>
           
           <div class="timeline-item">
-            <div class="timeline-date">Minggu 2 - November 2025</div>
-            <div class="timeline-content">Meningkatkan gesture dan ekspresi wajah. Latihan menggunakan cermin dan rekaman video untuk evaluasi diri.</div>
+            <div class="timeline-date"><i class="fas fa-leaf"></i> Minggu 2 - November 2025</div>
+            <div class="timeline-content">Meningkatkan gesture dan ekspresi wajah. Latihan menggunakan cermin dan rekaman video untuk evaluasi diri dengan inspirasi seni tradisional.</div>
           </div>
           
           <div class="timeline-item">
-            <div class="timeline-date">Minggu 3 - Desember 2025</div>
-            <div class="timeline-content">Latihan kontak mata menggunakan mode VR dengan audiens virtual. Peningkatan signifikan dalam engagement.</div>
+            <div class="timeline-date"><i class="fas fa-tree"></i> Minggu 3 - Desember 2025</div>
+            <div class="timeline-content">Latihan kontak mata menggunakan mode VR dengan audiens virtual. Peningkatan signifikan dalam engagement dengan nuansa budaya lokal.</div>
           </div>
           
           <div class="timeline-item">
-            <div class="timeline-date">Minggu 4 - Desember 2025</div>
-            <div class="timeline-content">Simulasi presentasi lengkap dengan evaluasi AI komprehensif. Skor keseluruhan meningkat 15% dari awal program.</div>
+            <div class="timeline-date"><i class="fas fa-trophy"></i> Minggu 4 - Desember 2025</div>
+            <div class="timeline-content">Simulasi presentasi lengkap dengan evaluasi AI komprehensif. Skor keseluruhan meningkat 15% dari awal program dengan sentuhan kearifan lokal.</div>
           </div>
         </div>
       </div>
       
       <!-- Progress Stats -->
-      <div class="card stats-card fade-in-up" style="animation-delay: 0.5s;">
+      <div class="card stats-card fade-in-up gamelan-animation" style="animation-delay: 0.5s;">
         <div class="card-header">
           <i class="fas fa-tachometer-alt"></i>
           <h2>Statistik Perkembangan</h2>
         </div>
         
         <div class="stats-overview">
-          <div class="stat-overview-item">
-            <div class="stat-overview-value" style="color: #4cc9f0;">15%</div>
+          <div class="stat-overview-item gamelan-animation">
+            <div class="stat-overview-value" style="color: var(--success);">15%</div>
             <div class="stat-overview-label">Peningkatan Skor Rata-rata</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Sejak memulai program</div>
+            <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Sejak memulai program dengan pendekatan Indonesia</div>
           </div>
           
-          <div class="stat-overview-item">
-            <div class="stat-overview-value" style="color: #f72585;">12</div>
+          <div class="stat-overview-item gamelan-animation">
+            <div class="stat-overview-value" style="color: var(--secondary);">12</div>
             <div class="stat-overview-label">Sesi Latihan Diselesaikan</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Total 8 jam latihan</div>
+            <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Total 8 jam latihan dengan nuansa budaya</div>
           </div>
           
-          <div class="stat-overview-item">
-            <div class="stat-overview-value" style="color: #ff9e00;">82%</div>
+          <div class="stat-overview-item gamelan-animation">
+            <div class="stat-overview-value" style="color: var(--warning);">82%</div>
             <div class="stat-overview-label">Konsistensi Latihan</div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">4 sesi/minggu rata-rata</div>
+            <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">4 sesi/minggu rata-rata dengan semangat gotong royong</div>
           </div>
         </div>
       </div>
@@ -725,17 +1013,17 @@
     
     <!-- Action Buttons -->
     <div class="action-buttons">
-      <button class="btn btn-primary" id="startSessionBtn">
+      <button class="btn btn-primary gamelan-animation" id="startSessionBtn">
         <i class="fas fa-play-circle"></i>
         <span>Mulai Sesi Latihan Baru</span>
       </button>
       
-      <button class="btn btn-secondary" id="viewReportBtn">
+      <button class="btn btn-secondary gamelan-animation" id="viewReportBtn">
         <i class="fas fa-file-alt"></i>
         <span>Lihat Laporan Lengkap</span>
       </button>
       
-      <button class="btn btn-secondary" id="compareBtn">
+      <button class="btn btn-secondary gamelan-animation" id="compareBtn">
         <i class="fas fa-chart-bar"></i>
         <span>Bandingkan Perkembangan</span>
       </button>
@@ -743,13 +1031,13 @@
     
     <!-- Footer -->
     <footer class="dashboard-footer">
-      <p>© 2025 SpeakLab VR - Dashboard Evaluasi Public Speaking • Data diperbarui terakhir: 10 Desember 2025</p>
-      <p style="margin-top: 5px; font-size: 12px;">Dikembangkan khusus untuk <strong>Bintang Permana</strong> • Powered by AI Speech Analytics</p>
+      <p>© 2025 SpeakLab VR - Dashboard Evaluasi Public Speaking dengan Nuansa Indonesia • Data diperbarui terakhir: 10 Desember 2025</p>
+      <p style="margin-top: 10px; font-size: 13px;">Dikembangkan khusus untuk <strong>Bintang Permana</strong> • Powered by AI Speech Analytics dengan Kearifan Lokal</p>
     </footer>
   </div>
 
   <script>
-    // Inisialisasi interaksi
+    // Inisialisasi interaksi dengan nuansa Indonesia
     document.addEventListener('DOMContentLoaded', function() {
       // Animasi progress bars
       const progressFills = document.querySelectorAll('.progress-fill');
@@ -759,6 +1047,7 @@
         
         setTimeout(() => {
           fill.style.width = width;
+          fill.style.transition = 'width 1s ease-in-out';
         }, 300 + (index * 100));
       });
       
@@ -766,31 +1055,75 @@
       document.getElementById('startSessionBtn').addEventListener('click', function() {
         this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Mempersiapkan Sesi...</span>';
         this.disabled = true;
+        this.style.background = 'var(--gradient-secondary)';
+        
+        // Tambahkan efek visual Indonesia
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+          card.style.borderColor = 'var(--secondary)';
+          card.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.3)';
+        });
+        
+        // Efek gamelan
+        this.classList.add('gamelan-animation');
         
         setTimeout(() => {
           this.innerHTML = '<i class="fas fa-check"></i> <span>Sesi Dimulai!</span>';
-          this.style.background = 'linear-gradient(135deg, #2ed573, #7bed9f)';
+          this.style.background = 'var(--gradient-success)';
           
-          showNotification('Sesi latihan VR telah dimulai!', 'success');
+          // Tampilkan notifikasi dengan nuansa Indonesia
+          showNotification('Sesi latihan VR telah dimulai dengan nuansa budaya Indonesia!', 'success');
           
+          // Tambahkan efek konfeti Indonesia
+          for (let i = 0; i < 15; i++) {
+            createConfetti();
+          }
+          
+          // Reset kartu
+          setTimeout(() => {
+            cards.forEach(card => {
+              card.style.borderColor = '';
+              card.style.boxShadow = '';
+            });
+          }, 2000);
+          
+          // Reset tombol setelah 3 detik
           setTimeout(() => {
             this.innerHTML = '<i class="fas fa-play-circle"></i> <span>Mulai Sesi Latihan Baru</span>';
             this.style.background = '';
             this.disabled = false;
-          }, 2000);
+            this.classList.remove('gamelan-animation');
+          }, 3000);
         }, 1500);
       });
       
       // Tombol Lihat Laporan
       document.getElementById('viewReportBtn').addEventListener('click', function() {
         this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Membuat Laporan...</span>';
+        this.style.borderColor = 'var(--secondary)';
+        
+        // Animasi pada rekomendasi items
+        const recommendationItems = document.querySelectorAll('.recommendation-item');
+        recommendationItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.transform = 'translateX(10px)';
+            item.style.borderLeftColor = 'var(--accent)';
+            setTimeout(() => {
+              item.style.transform = '';
+              item.style.borderLeftColor = '';
+            }, 500);
+          }, index * 200);
+        });
         
         setTimeout(() => {
           this.innerHTML = '<i class="fas fa-check"></i> <span>Laporan Siap!</span>';
-          showNotification('Laporan perkembangan berhasil dibuat!', 'info');
+          this.style.background = 'rgba(212, 175, 55, 0.1)';
+          showNotification('Laporan perkembangan berhasil dibuat dengan motif batik Indonesia!', 'info');
           
           setTimeout(() => {
             this.innerHTML = '<i class="fas fa-file-alt"></i> <span>Lihat Laporan Lengkap</span>';
+            this.style.background = '';
+            this.style.borderColor = '';
           }, 1500);
         }, 1000);
       });
@@ -798,20 +1131,40 @@
       // Tombol Bandingkan Perkembangan
       document.getElementById('compareBtn').addEventListener('click', function() {
         this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Membandingkan...</span>';
+        this.style.borderColor = 'var(--secondary)';
         
         // Animasi pada score items
         const scoreItems = document.querySelectorAll('.score-item');
         scoreItems.forEach(item => {
           item.classList.add('pulse');
+          item.style.borderColor = 'var(--secondary)';
+        });
+        
+        // Animasi pada timeline items
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.backgroundColor = 'rgba(212, 175, 55, 0.05)';
+            setTimeout(() => {
+              item.style.backgroundColor = '';
+            }, 1000);
+          }, index * 300);
         });
         
         setTimeout(() => {
           this.innerHTML = '<i class="fas fa-chart-bar"></i> <span>Bandingkan Perkembangan</span>';
-          showNotification('Perbandingan perkembangan berhasil ditampilkan!', 'info');
+          this.style.background = 'rgba(212, 175, 55, 0.1)';
+          showNotification('Perbandingan perkembangan berhasil ditampilkan dengan analisis budaya Indonesia!', 'info');
           
           scoreItems.forEach(item => {
             item.classList.remove('pulse');
+            item.style.borderColor = '';
           });
+          
+          setTimeout(() => {
+            this.style.background = '';
+            this.style.borderColor = '';
+          }, 1000);
         }, 1500);
       });
       
@@ -822,11 +1175,13 @@
           const score = this.querySelector('.history-score');
           score.style.transform = 'scale(1.1)';
           score.style.transition = 'transform 0.2s';
+          score.style.color = 'var(--accent)';
         });
         
         item.addEventListener('mouseleave', function() {
           const score = this.querySelector('.history-score');
           score.style.transform = 'scale(1)';
+          score.style.color = 'var(--secondary)';
         });
       });
       
@@ -834,44 +1189,89 @@
       const timelineItems = document.querySelectorAll('.timeline-item');
       timelineItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
-          this.style.backgroundColor = 'rgba(67, 97, 238, 0.05)';
+          this.style.backgroundColor = 'rgba(212, 175, 55, 0.05)';
+          this.style.borderBottomColor = 'var(--secondary)';
         });
         
         item.addEventListener('mouseleave', function() {
           this.style.backgroundColor = 'transparent';
+          this.style.borderBottomColor = 'rgba(212, 175, 55, 0.2)';
         });
       });
       
-      // Function untuk menampilkan notifikasi
+      // Function untuk menampilkan notifikasi dengan nuansa Indonesia
       function showNotification(message, type) {
+        // Buat elemen notifikasi
         const notification = document.createElement('div');
         notification.textContent = message;
         notification.style.cssText = `
           position: fixed;
           top: 20px;
           right: 20px;
-          background: ${type === 'success' ? 'rgba(46, 213, 115, 0.9)' : 'rgba(67, 97, 238, 0.9)'};
+          background: ${type === 'success' ? 'rgba(42, 107, 63, 0.9)' : 'rgba(212, 175, 55, 0.9)'};
           color: white;
           padding: 15px 25px;
-          border-radius: 10px;
-          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+          border-radius: var(--radius-md);
+          box-shadow: var(--shadow-lg);
           z-index: 1000;
           font-weight: 500;
-          animation: slideIn 0.3s ease;
-          border: 1px solid rgba(255,255,255,0.2);
-          backdrop-filter: blur(10px);
+          animation: slideIn 0.4s ease;
+          border: 1px solid rgba(212, 175, 55, 0.3);
           max-width: 300px;
+          backdrop-filter: blur(10px);
+          border-left: 4px solid ${type === 'success' ? 'var(--success)' : 'var(--secondary)'};
         `;
         
+        // Tambahkan ikon
+        const icon = document.createElement('i');
+        icon.style.cssText = 'margin-right: 10px;';
+        icon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-info-circle';
+        notification.prepend(icon);
+        
+        // Tambahkan ke body
         document.body.appendChild(notification);
         
         // Hapus setelah 3 detik
         setTimeout(() => {
-          notification.style.animation = 'slideOut 0.3s ease';
+          notification.style.animation = 'slideOut 0.4s ease';
           setTimeout(() => {
             document.body.removeChild(notification);
-          }, 300);
+          }, 400);
         }, 3000);
+      }
+      
+      // Fungsi untuk membuat efek konfeti Indonesia
+      function createConfetti() {
+        const confetti = document.createElement('div');
+        const colors = ['#d4af37', '#2a6b3f', '#b22222', '#ff8c00', '#2e8b57'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        confetti.style.cssText = `
+          position: fixed;
+          width: 10px;
+          height: 10px;
+          background: ${color};
+          top: -10px;
+          left: ${Math.random() * 100}vw;
+          border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+          z-index: 9998;
+          pointer-events: none;
+        `;
+        
+        document.body.appendChild(confetti);
+        
+        // Animasi konfeti
+        const animation = confetti.animate([
+          { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+          { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+        ], {
+          duration: Math.random() * 2000 + 1000,
+          easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+        });
+        
+        animation.onfinish = () => {
+          document.body.removeChild(confetti);
+        };
       }
       
       // Tambahkan style untuk animasi notifikasi
@@ -885,8 +1285,30 @@
           from { transform: translateX(0); opacity: 1; }
           to { transform: translateX(100px); opacity: 0; }
         }
+        @keyframes gamelan {
+          0% { transform: rotate(0deg); }
+          25% { transform: rotate(2deg); }
+          75% { transform: rotate(-2deg); }
+          100% { transform: rotate(0deg); }
+        }
       `;
       document.head.appendChild(style);
+      
+      // Animasi awal untuk elemen dengan efek gamelan
+      setTimeout(() => {
+        document.querySelectorAll('.gamelan-animation').forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s, transform 0.5s';
+            
+            setTimeout(() => {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, 50);
+          }, index * 100);
+        });
+      }, 500);
     });
   </script>
 </body>
