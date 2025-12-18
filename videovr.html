@@ -207,6 +207,298 @@
             color: var(--secondary);
         }
 
+        /* Storytelling Section */
+        .storytelling-section {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 35px;
+            margin-bottom: 30px;
+            border: var(--batik-border);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .storytelling-section::before {
+            content: '📜';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 30px;
+            opacity: 0.2;
+        }
+
+        .storytelling-section::after {
+            content: '🪶';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 30px;
+            opacity: 0.2;
+            transform: rotate(180deg);
+        }
+
+        .storytelling-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .storytelling-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .storytelling-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+
+        .story-filter {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--bg-card-light);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--secondary);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--secondary);
+            border-color: var(--secondary);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
+        }
+
+        /* Stories Grid */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .story-card {
+            background: linear-gradient(135deg, var(--bg-card-light), var(--bg-card));
+            border-radius: var(--radius-md);
+            padding: 25px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .story-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .story-card.active {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), var(--bg-card-light));
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .story-region {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .story-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 24px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .story-card h3 {
+            font-size: 22px;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .story-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .story-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .story-excerpt {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .story-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .story-tag {
+            background: rgba(42, 107, 63, 0.15);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid rgba(42, 107, 63, 0.3);
+        }
+
+        /* Story Content Panel */
+        .story-content-panel {
+            background: linear-gradient(135deg, var(--bg-card-light), var(--bg-card));
+            border-radius: var(--radius-md);
+            padding: 30px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            max-height: 500px;
+            overflow-y: auto;
+            position: relative;
+            display: none;
+        }
+
+        .story-content-panel.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .story-content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .story-content-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--text-primary);
+        }
+
+        .close-story {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-story:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .story-content {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .story-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .story-content h4 {
+            color: var(--secondary);
+            margin: 25px 0 15px 0;
+            font-size: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .story-content blockquote {
+            border-left: 4px solid var(--secondary);
+            padding-left: 20px;
+            margin: 25px 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        .story-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
         /* VR Controls dengan sentuhan Indonesia */
         .vr-controls {
             display: flex;
@@ -301,6 +593,17 @@
             background: rgba(212, 175, 55, 0.2);
             border-color: var(--secondary);
             transform: translateY(-2px);
+        }
+
+        .btn-story {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            color: white;
+            border: 2px solid rgba(139, 69, 19, 0.3);
+        }
+
+        .btn-story:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
         }
 
         .btn-sm {
@@ -783,16 +1086,6 @@
             line-height: 1.7;
         }
 
-        /* Loading Spinner dengan motif Indonesia */
-        .spinner-indonesia {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--secondary);
-            animation: spin 1s linear infinite;
-        }
-
         /* Highlight text dengan nuansa Indonesia */
         .highlight {
             background: rgba(212, 175, 55, 0.2);
@@ -825,15 +1118,6 @@
             }
         }
 
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
         @keyframes sway {
             0%, 100% {
                 transform: rotate(15deg);
@@ -861,12 +1145,6 @@
             }
             100% {
                 transform: scale(1);
-            }
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
             }
         }
 
@@ -916,6 +1194,19 @@
                 grid-template-columns: 1fr;
             }
 
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .storytelling-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .story-filter {
+                justify-content: center;
+            }
+
             .audience-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -950,6 +1241,10 @@
             .scene-card-header {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .story-card {
+                padding: 20px;
             }
 
             .audience-grid {
@@ -987,6 +1282,10 @@
                 <i class="fas fa-home nav-icon"></i>
                 Beranda VR
             </a>
+            <a href="#" class="nav-item" id="storytellingNav">
+                <i class="fas fa-book-open nav-icon"></i>
+                Storytelling Rakyat
+            </a>
             <a href="#" class="nav-item">
                 <i class="fas fa-landmark nav-icon"></i>
                 Museum Virtual
@@ -995,14 +1294,35 @@
                 <i class="fas fa-theater-masks nav-icon"></i>
                 Pertunjukan Tradisional
             </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-users nav-icon"></i>
-                Forum Budaya
-            </a>
         </nav>
 
+        <!-- Storytelling Section -->
+        <section class="storytelling-section fade-in-up" style="animation-delay: 0.2s;">
+            <div class="storytelling-header">
+                <h2><i class="fas fa-book" style="color: var(--secondary); margin-right: 15px;"></i>Storytelling Cerita Rakyat Indonesia</h2>
+                <div class="story-filter">
+                    <button class="filter-btn active" data-filter="all">Semua Daerah</button>
+                    <button class="filter-btn" data-filter="jawa">Jawa</button>
+                    <button class="filter-btn" data-filter="sumatera">Sumatera</button>
+                    <button class="filter-btn" data-filter="bali">Bali</button>
+                    <button class="filter-btn" data-filter="sulawesi">Sulawesi</button>
+                    <button class="filter-btn" data-filter="papua">Papua</button>
+                </div>
+            </div>
+
+            <!-- Stories Grid -->
+            <div class="stories-grid" id="storiesGrid">
+                <!-- Stories will be populated by JavaScript -->
+            </div>
+
+            <!-- Story Content Panel -->
+            <div class="story-content-panel" id="storyContentPanel">
+                <!-- Story content will be loaded here -->
+            </div>
+        </section>
+
         <!-- VR Controls -->
-        <div class="vr-controls fade-in-up" style="animation-delay: 0.2s;">
+        <div class="vr-controls fade-in-up" style="animation-delay: 0.3s;">
             <div class="control-group">
                 <span class="control-label">
                     <i class="fas fa-cogs"></i>
@@ -1048,7 +1368,7 @@
         </div>
 
         <!-- Main VR Scene dengan tema Indonesia -->
-        <section class="vr-scene-container fade-in-up" style="animation-delay: 0.3s;">
+        <section class="vr-scene-container fade-in-up" style="animation-delay: 0.4s;">
             <div class="scene-header">
                 <div class="scene-title">
                     <div class="scene-icon">
@@ -1124,7 +1444,7 @@
         </section>
 
         <!-- Additional Scenes Grid dengan tema budaya Indonesia -->
-        <section class="fade-in-up" style="animation-delay: 0.4s;">
+        <section class="fade-in-up" style="animation-delay: 0.5s;">
             <h2 style="text-align: center; margin-bottom: 30px; color: var(--text-primary); font-family: 'Playfair Display', serif;">
                 Pilihan Skenario VR dengan Nuansa Indonesia
             </h2>
@@ -1209,7 +1529,7 @@
         </section>
 
         <!-- VR Status -->
-        <div class="vr-status fade-in-up" style="animation-delay: 0.5s;">
+        <div class="vr-status fade-in-up" style="animation-delay: 0.6s;">
             <div class="status-header">
                 <div class="status-icon">
                     <i class="fas fa-headset"></i>
@@ -1253,7 +1573,7 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="vr-controls fade-in-up" style="animation-delay: 0.6s; margin-top: 30px;">
+        <div class="vr-controls fade-in-up" style="animation-delay: 0.7s; margin-top: 30px;">
             <button class="btn btn-primary gamelan-animation" id="loadSceneBtn">
                 <i class="fas fa-sync-alt"></i>
                 <span>Muat Scene Baru</span>
@@ -1286,8 +1606,358 @@
     </div>
 
     <script>
+        // Database Cerita Rakyat Indonesia
+        const folkStories = [
+            {
+                id: 1,
+                title: "Timun Mas",
+                region: "Jawa",
+                category: "jawa",
+                icon: "🥒",
+                readingTime: "8 min",
+                moral: "Keberanian dan Kecerdikan",
+                tags: ["Dongeng", "Raksasa", "Magis"],
+                excerpt: "Cerita tentang seorang gadis pemberani yang melawan raksasa dengan berbagai senjata ajaib untuk menyelamatkan dirinya.",
+                content: `
+                    <h4>Timun Mas dan Raksasa Hijau</h4>
+                    <p>Pada zaman dahulu, hiduplah seorang janda tua bernama Mbok Srini yang sangat ingin memiliki anak. Setiap hari ia berdoa kepada Yang Maha Kuasa agar diberi keturunan.</p>
+                    
+                    <p>Suatu hari, datanglah seorang raksasa yang menawarkan bantuan. "Aku akan memberimu seorang anak, tapi dengan syarat ketika anak itu berusia 17 tahun, kau harus menyerahkannya padaku," kata raksasa itu.</p>
+                    
+                    <p>Mbok Srini yang sangat ingin memiliki anak pun menyetujui syarat tersebut. Raksasa itu kemudian memberikan beberapa biji mentimun emas. "Tanamlah biji ini, dan kau akan mendapatkan apa yang kau inginkan," kata raksasa sebelum pergi.</p>
+                    
+                    <blockquote>Dalam setiap kesulitan, selalu ada jalan keluar bagi mereka yang berani dan cerdik.</blockquote>
+                    
+                    <p>Setelah ditanam, dari kebun Mbok Srini tumbuhlah sebuah mentimun besar berwarna emas. Ketika dibelah, di dalamnya terdapat seorang bayi perempuan yang sangat cantik. Mbok Srini menamainya Timun Mas, yang berarti "Mentimun Emas".</p>
+                    
+                    <h4>Perjanjian yang Harus Ditepati</h4>
+                    <p>Waktu berlalu, Timun Mas tumbuh menjadi gadis yang cantik, baik hati, dan pemberani. Mbok Srini sangat menyayanginya. Namun, semakin dekat ulang tahun Timun Mas yang ke-17, hati Mbok Srini semakin gelisah.</p>
+                    
+                    <p>Seperti yang dijanjikan, raksasa itu datang kembali. "Berikan padaku anak yang telah kau janjikan!" teriak raksasa itu dengan suara menggelegar.</p>
+                    
+                    <p>Mbok Srini pun memohon, "Tolong, beri kami waktu satu hari lagi!" Raksasa itu mengangguk dan pergi, berjanji akan kembali esok hari.</p>
+                    
+                    <h4>Persiapan Melawan Raksasa</h4>
+                    <p>Malam itu, Mbok Srini memanggil Timun Mas dan menceritakan semua yang terjadi. "Anakku, kau harus melarikan diri! Ambillah empat benda ajaib ini: biji mentimun, garam, terasi, dan jarum," kata Mbok Srini.</p>
+                    
+                    <p>Keesokan harinya, ketika raksasa itu datang, Timun Mas sudah bersiap. Ia segera berlari ke hutan diikuti oleh raksasa yang mengamuk.</p>
+                    
+                    <h4>Pengejaran dan Pertarungan</h4>
+                    <p>Ketika raksasa hampir menangkapnya, Timun Mas melemparkan biji mentimun. Tiba-tiba, tumbuhlah ladang mentimun yang sangat luas menghalangi jalan raksasa. Raksasa itu dengan mudah merobohkan semua tanaman mentimun dan terus mengejar.</p>
+                    
+                    <p>Timun Mas kemudian melemparkan garam. Seketika, muncul lautan yang sangat luas. Raksasa itu berenang dengan susah payah, namun akhirnya berhasil menyeberang.</p>
+                    
+                    <p>Gadis pemberani itu lalu melemparkan terasi. Muncul rawa-rawa yang sangat dalam dan lengket. Raksasa itu hampir tenggelam, namun berhasil melepaskan diri.</p>
+                    
+                    <p>Tinggal satu benda tersisa: jarum. Ketika raksasa hampir menangkapnya, Timun Mas melemparkan jarum itu. Tiba-tiba, tumbuhlah hutan bambu yang sangat rapat dan tajam. Raksasa itu terjebak di antara bambu-bambu yang tajam.</p>
+                    
+                    <h4>Akhir Cerita</h4>
+                    <p>Raksasa itu akhirnya tewas tertusuk bambu-bambu tajam. Timun Mas pun kembali ke rumah dengan selamat. Mbok Srini sangat bahagia melihat putrinya kembali dengan selamat.</p>
+                    
+                    <p>Sejak saat itu, Timun Mas dan Mbok Srini hidup bahagia tanpa ada lagi ancaman dari raksasa. Cerita ini mengajarkan bahwa dengan keberanian dan kecerdikan, kita dapat mengatasi segala rintangan.</p>
+                    
+                    <h4>Pesan Moral</h4>
+                    <p>Cerita Timun Mas mengajarkan kita tentang pentingnya keberanian, kecerdikan, dan janji. Meskipun kecil, dengan strategi yang tepat, kita dapat mengalahkan musuh yang jauh lebih besar.</p>
+                `
+            },
+            {
+                id: 2,
+                title: "Malin Kundang",
+                region: "Sumatera",
+                category: "sumatera",
+                icon: "⚓",
+                readingTime: "10 min",
+                moral: "Bakti kepada Orang Tua",
+                tags: ["Legenda", "Batu", "Anak Durhaka"],
+                excerpt: "Kisah tragis seorang anak yang durhaka kepada ibunya dan akhirnya dikutuk menjadi batu sebagai pelajaran bagi semua orang.",
+                content: `
+                    <h4>Malin Kundang Si Anak Durhaka</h4>
+                    <p>Di sebuah desa kecil di pantai Sumatera Barat, hiduplah seorang janda miskin bernama Mande Rubayah bersama anak laki-lakinya yang bernama Malin Kundang. Mereka hidup sangat sederhana dengan mengandalkan hasil laut yang dijual ke pasar.</p>
+                    
+                    <p>Sejak kecil, Malin Kundang adalah anak yang cerdas dan pekerja keras. Ia sering membantu ibunya mencari ikan dan menjualnya ke pasar. Namun, hidup mereka sangat miskin.</p>
+                    
+                    <blockquote>Air susu dibalas air tuba. Itulah nasib Malin Kundang yang durhaka kepada ibunya sendiri.</blockquote>
+                    
+                    <h4>Keinginan untuk Merantau</h4>
+                    <p>Suatu hari, Malin Kundang berkata kepada ibunya, "Ibu, aku ingin merantau. Aku ingin mencari kehidupan yang lebih baik untuk kita berdua."</p>
+                    
+                    <p>Dengan hati berat, Mande Rubayah mengizinkan anaknya pergi. Ia memberikan bekal seadanya dan berpesan, "Nak, jangan pernah lupa darimana kau berasal. Jangan lupa pada ibumu yang telah membesarkanmu."</p>
+                    
+                    <p>Malin Kundang pun pergi dengan menumpang kapal dagang yang sedang berlabuh di pelabuhan. Tahun demi tahun berlalu, Malin Kundang tak juga kembali. Mande Rubayah setiap hari menunggu di pantai, berharap anaknya pulang.</p>
+                    
+                    <h4>Kesuksesan dan Keangkuhan</h4>
+                    <p>Selama di perantauan, Malin Kundang bekerja keras. Ia mulai dari bawah sebagai anak kapal, namun berkat kecerdasan dan ketekunannya, ia berhasil menjadi saudagar kaya raya. Ia menikah dengan seorang wanita bangsawan dan memiliki banyak kapal dagang.</p>
+                    
+                    <p>Namun, kesuksesan telah membuat Malin Kundang menjadi sombong. Ia malu mengakui bahwa ia berasal dari keluarga miskin dan memiliki ibu yang hidup sederhana di desa.</p>
+                    
+                    <h4>Kembali ke Kampung Halaman</h4>
+                    <p>Setelah bertahun-tahun, Malin Kundang akhirnya kembali ke kampung halamannya dengan kapal yang megah. Seluruh penduduk desa berkerumun melihat kedatangan saudagar kaya.</p>
+                    
+                    <p>Mande Rubayah yang sudah tua renta mendengar kabar bahwa ada saudagar kaya yang datang. Ia pun pergi ke pelabuhan. Ketika melihat dari kejauhan, ia mengenali itu adalah anaknya, Malin Kundang.</p>
+                    
+                    <p>Dengan perasaan haru, Mande Rubayah menghampiri Malin Kundang yang sedang berdiri di atas kapal bersama istrinya. "Malin, anakku! Akhirnya kau pulang!" teriak Mande Rubayah sambil menangis bahagia.</p>
+                    
+                    <h4>Pengkhianatan dan Kedurhakaan</h4>
+                    <p>Namun, apa yang terjadi? Malin Kundang justru malu mengakui ibunya yang berpakaian lusuh dan tua. Di depan orang banyak dan istrinya yang berasal dari keluarga bangsawan, Malin Kundang berkata, "Wanita tua ini bukan ibuku! Ibuku sudah lama meninggal. Ia hanya pengemis yang ingin mendapatkan uangku!"</p>
+                    
+                    <p>Mande Rubayah terkejut dan hatinya hancur. "Malin, anakku, mengapa kau berkata demikian? Akulah ibumu yang telah melahirkan dan membesarkanmu!"</p>
+                    
+                    <p>Namun Malin Kundang tetap tidak mengakuinya. Bahkan, ia menyuruh anak buahnya untuk mengusir wanita tua itu. Hati Mande Rubayah hancur berkeping-keping.</p>
+                    
+                    <h4>Kutukan Menjadi Batu</h4>
+                    <p>Dengan air mata yang bercucuran, Mande Rubayah berdoa, "Ya Tuhan, jika benar ia adalah anakku Malin Kundang, aku mohon berikan ia pelajaran. Kutuklah ia menjadi batu karena telah durhaka kepada ibunya sendiri!"</p>
+                    
+                    <p>Tiba-tiba, langit menjadi gelap. Petir menyambar dan angin kencang berhembus. Kapal Malin Kundang oleng dan terhempas ke karang. Malin Kundang terlempar dari kapal dan ketika menyentuh air, tubuhnya pelan-pelan berubah menjadi batu.</p>
+                    
+                    <h4>Batu Malin Kundang</h4>
+                    <p>Hingga kini, batu yang menyerupai sosok manusia bersujud dapat dilihat di pantai Air Manis, Padang, Sumatera Barat. Batu itu dikenal sebagai Batu Malin Kundang.</p>
+                    
+                    <p>Mande Rubayah hidup dalam kesedihan sampai akhir hayatnya. Namun, kisah Malin Kundang menjadi pelajaran berharga bagi semua orang tentang pentingnya berbakti kepada orang tua.</p>
+                    
+                    <h4>Pesan Moral</h4>
+                    <p>Cerita Malin Kundang mengajarkan kita bahwa:
+                    1. Kekayaan dan kesuksesan tidak boleh membuat kita lupa pada asal usul
+                    2. Berbakti kepada orang tua adalah kewajiban seumur hidup
+                    3. Kesombongan akan menghancurkan diri sendiri
+                    4. Air susu dibalas air tuba adalah perbuatan terkutuk</p>
+                    
+                    <p>Hingga kini, Batu Malin Kundang tetap berdiri di pantai sebagai pengingat abadi tentang pentingnya berbakti kepada orang tua.</p>
+                `
+            },
+            {
+                id: 3,
+                title: "Calon Arang",
+                region: "Bali",
+                category: "bali",
+                icon: "🔮",
+                readingTime: "12 min",
+                moral: "Kebaikan vs Kejahatan",
+                tags: ["Sihir", "Kutukan", "Penebusan"],
+                excerpt: "Kisah seorang janda penyihir yang mengutuk kerajaan karena putrinya tidak ada yang mau melamar, dan bagaimana kebaikan akhirnya menang.",
+                content: `
+                    <h4>Calon Arang: Penyihir dari Dirah</h4>
+                    <p>Pada abad ke-12 di Kerajaan Daha (sekarang Kediri), hiduplah seorang janda bernama Calon Arang. Ia tinggal di desa Girah bersama putri semata wayangnya yang cantik jelita bernama Ratna Manggali.</p>
+                    
+                    <p>Calon Arang dikenal sebagai wanita yang sakti mandraguna. Ia menguasai ilmu hitam dan dapat memanggil roh-roh jahat. Namun, ia juga adalah ibu yang sangat menyayangi anaknya.</p>
+                    
+                    <blockquote>Setiap kejahatan akan menemui kekalahannya sendiri, sementara kebaikan akan selalu menemukan jalan kemenangan.</blockquote>
+                    
+                    <h4>Kutukan karena Kecewa</h4>
+                    <p>Ratna Manggali telah tumbuh menjadi gadis yang sangat cantik. Namun, anehnya tidak ada satupun pemuda yang berani melamarnya. Masyarakat takut pada Calon Arang dan ilmu hitamnya.</p>
+                    
+                    <p>Calon Arang sangat kecewa dan marah. Ia merasa rakyat Kerajaan Daha telah menghina putrinya. Dalam kemarahannya, ia pun memutuskan untuk membalas dendam.</p>
+                    
+                    <p>Suatu malam, Calon Arang pergi ke kuburan. Di sana, ia melakukan ritual ilmu hitam. Ia memanggil roh-roh jahat dan menyuruh mereka menyebarkan wabah penyakit di seluruh kerajaan.</p>
+                    
+                    <h4>Wabah Misterius</h4>
+                    <p>Esok harinya, wabah aneh mulai menyebar di Kerajaan Daha. Banyak rakyat yang sakit dan meninggal secara misterius. Sawah-sawah menjadi kering, hewan ternak mati, dan suasana ketakutan melanda seluruh kerajaan.</p>
+                    
+                    <p>Raja Airlangga yang bijaksana sangat khawatir. Ia memanggil semua penasihat dan pendeta untuk mencari penyebab wabah ini. Setelah diselidiki, terungkaplah bahwa wabah ini adalah ulah Calon Arang.</p>
+                    
+                    <h4>Mpu Bahula: Pahlawan yang Tak Terduga</h4>
+                    <p>Raja Airlangga pun memerintahkan Mpu Baradah, pendeta sakti kerajaan, untuk menghentikan Calon Arang. Mpu Baradah memiliki murid bernama Mpu Bahula yang gagah berani.</p>
+                    
+                    <p>"Bahula, engkaulah yang dapat menghentikan Calon Arang. Carilah cara untuk mendekati Ratna Manggali, putrinya," kata Mpu Baradah.</p>
+                    
+                    <p>Mpu Bahula pun pergi ke desa Girah. Dengan penampilan yang tampan dan sikap yang santun, ia berhasil menarik perhatian Ratna Manggali. Tidak lama kemudian, Mpu Bahula melamar Ratna Manggali.</p>
+                    
+                    <h4>Pengetahuan Rahasia</h4>
+                    <p>Calon Arang awalnya curiga, namun melihat kesungguhan Mpu Bahula, ia pun menyetujui pernikahan mereka. Setelah menikah, Mpu Bahula dan Ratna Manggali hidup bahagia.</p>
+                    
+                    <p>Suatu hari, Mpu Bahula bertanya kepada istrinya, "Istriku, dari mana ibumu mendapatkan ilmu sakti yang begitu hebat?"</p>
+                    
+                    <p>Ratna Manggali yang percaya pada suaminya pun menjawab, "Suamiku, ibu memiliki sebuah kitab sakti. Kitab itulah sumber semua ilmunya. Kitab itu selalu ia bawa kemana-mana."</p>
+                    
+                    <h4>Pencurian Kitab Sakti</h4>
+                    <p>Mpu Bahula pun mencari kesempatan untuk mencuri kitab tersebut. Suatu malam, ketika Calon Arang tertidur pulas, ia berhasil mengambil kitab sakti itu dan membawanya kepada Mpu Baradah.</p>
+                    
+                    <p>Mpu Baradah segera membakar kitab tersebut. Saat kitab terbakar, kekuatan Calon Arang pun perlahan-lahan menghilang.</p>
+                    
+                    <h4>Pertempuran Terakhir</h4>
+                    <p>Calon Arang menyadari kitabnya hilang. Ia marah besar dan menyerang Kerajaan Daha dengan sisa kekuatannya. Pertempuran dahsyat terjadi antara Calon Arang dan Mpu Baradah.</p>
+                    
+                    <p>Tanpa kitab saktinya, Calon Arang semakin lemah. Akhirnya, Mpu Baradah berhasil mengalahkannya. Namun, alih-alih membunuhnya, Mpu Baradah menawarkan pengampunan.</p>
+                    
+                    <h4>Penebusan Dosa</h4>
+                    <p>"Calon Arang, hentikanlah semua ini. Aku menawarkanmu pengampunan jika kau mau bertobat," kata Mpu Baradah.</p>
+                    
+                    <p>Calon Arang yang telah kehilangan semua kekuatannya pun menangis. Ia menyadari kesalahannya. "Aku bertobat. Semua ini kulakukan karena sakit hati melihat putriku tidak dihargai."</p>
+                    
+                    <p>Mpu Baradah kemudian membersihkan Calon Arang dari semua ilmu hitamnya. Calon Arang pun bertobat dan hidup sebagai wanita biasa.</p>
+                    
+                    <h4>Akhir yang Damai</h4>
+                    <p>Wabah di Kerajaan Daha pun berakhir. Ratna Manggali dan Mpu Bahula hidup bahagia. Calon Arang menghabiskan sisa hidupnya dengan berbuat kebajikan untuk menebus dosa-dosanya.</p>
+                    
+                    <h4>Pesan Moral</h4>
+                    <p>Cerita Calon Arang mengajarkan bahwa:
+                    1. Dendam hanya akan membawa kehancuran
+                    2. Kekuatan sejati ada dalam pengampunan
+                    3. Cinta orang tua tidak boleh dibalas dengan kejahatan
+                    4. Setiap orang berhak mendapatkan kesempatan untuk bertobat</p>
+                    
+                    <p>Hingga kini, kisah Calon Arang masih diceritakan di Bali sebagai pengingat bahwa kebaikan akan selalu mengalahkan kejahatan.</p>
+                `
+            },
+            {
+                id: 4,
+                title: "Sawerigading",
+                region: "Sulawesi",
+                category: "sulawesi",
+                icon: "⚔️",
+                readingTime: "15 min",
+                moral: "Cinta dan Pengorbanan",
+                tags: ["Epos", "Perjalanan", "Cinta Terlarang"],
+                excerpt: "Epos kepahlawanan dari Bugis tentang pangeran gagah berani yang berlayar mencari cinta sejatinya melintasi banyak rintangan.",
+                content: `
+                    <h4>Sawerigading: Pangeran Gagah Berani dari Luwu</h4>
+                    <p>Di Kerajaan Luwu, Sulawesi Selatan, hiduplah seorang pangeran bernama Sawerigading. Ia adalah putra dari Raja Luwu yang bernama La Togeq Langiq. Sawerigading dikenal sebagai pemuda yang tampan, gagah berani, dan sakti mandraguna.</p>
+                    
+                    <p>Sawerigading memiliki saudara kembar perempuan bernama We Tenriabeng yang cantik jelita. Menurut adat Bugis kuno, saudara kembar tidak boleh menikah karena dianggap sebagai pelanggaran besar.</p>
+                    
+                    <blockquote>Cinta sejati adalah pengorbanan, perjalanan panjang, dan kesetiaan yang tak tergoyahkan.</blockquote>
+                    
+                    <h4>Cinta Terlarang</h4>
+                    <p>Tanpa mengetahui bahwa We Tenriabeng adalah saudara kembarnya, Sawerigading jatuh cinta padanya. Ia meminta izin kepada ayahnya untuk menikahi We Tenriabeng.</p>
+                    
+                    <p>Raja La Togeq Langiq terkejut. "Anakku, kau tidak boleh menikahi We Tenriabeng. Ia adalah saudara kembarmu sendiri!"</p>
+                    
+                    <p>Sawerigading sangat sedih mendengar hal tersebut. Hatinya hancur karena cintanya yang terlarang.</p>
+                    
+                    <h4>Ramalan dan Tugas</h4>
+                    <p>Raja kemudian memanggil para ahli nujum. Mereka meramalkan bahwa Sawerigading akan menemukan cinta sejatinya di negeri seberang, tepatnya di Kerajaan Tiongkok.</p>
+                    
+                    <p>"Pangeran, engkau harus berlayar ke negeri seberang. Di sanalah kau akan menemukan jodohmu yang sebenarnya," kata ahli nujum itu.</p>
+                    
+                    <p>Sawerigading pun mempersiapkan perjalanan. Ia membangun perahu yang sangat besar dan megah bernama Perahu La Galigo. Perahu ini dibuat dari pohon weliro yang sangat besar dan sakti.</p>
+                    
+                    <h4>Perjalanan Berbahaya</h4>
+                    <p>Dengan membawa pasukan yang setia, Sawerigading berlayar mengarungi lautan. Perjalanannya penuh dengan rintangan:</p>
+                    
+                    <p><strong>1. Badai Besar:</strong> Di tengah lautan, mereka dihadang badai dahsyat. Namun, dengan kesaktiannya, Sawerigading berhasil menenangkan badai.</p>
+                    
+                    <p><strong>2. Serangan Naga Laut:</strong> Seekor naga laut raksasa menyerang perahu mereka. Sawerigading bertarung sengit dan berhasil mengalahkan naga tersebut.</p>
+                    
+                    <p><strong>3. Pulau Hantu:</strong> Mereka terdampar di pulau yang dihuni oleh roh-roh jahat. Sawerigading menggunakan ilmu saktinya untuk mengusir semua roh jahat itu.</p>
+                    
+                    <h4>Di Kerajaan Tiongkok</h4>
+                    <p>Setelah berbulan-bulan berlayar, mereka akhirnya tiba di Kerajaan Tiongkok. Di sana, Sawerigading mendengar kabar tentang seorang putri yang sangat cantik bernama We Cudaiq.</p>
+                    
+                    <p>We Cudaiq adalah putri Raja Tiongkok yang terkenal dengan kecantikannya yang luar biasa. Banyak pangeran dari berbagai kerajaan yang datang melamarnya, namun semuanya ditolak.</p>
+                    
+                    <h4>Ujian untuk Melamar</h4>
+                    <p>Sawerigading pun pergi ke istana Raja Tiongkok. Raja memberikan tiga ujian berat untuknya:</p>
+                    
+                    <p><strong>Ujian Pertama:</strong> Memindahkan gunung yang menghalangi istana. Sawerigading menggunakan kesaktiannya dan berhasil memindahkan gunung tersebut.</p>
+                    
+                    <p><strong>Ujian Kedua:</strong> Mengeringkan lautan yang luas. Dengan ilmu saktinya, Sawerigading berhasil mengeringkan lautan.</p>
+                    
+                    <p><strong>Ujian Ketiga:</strong> Bertarung melawan prajurit terbaik kerajaan. Sawerigading mengalahkan semua prajurit tanpa melukai seorangpun.</p>
+                    
+                    <h4>Cinta yang Bersemi</h4>
+                    <p>Raja Tiongkok sangat terkesan dengan keberanian dan kesaktian Sawerigading. Ia pun mengizinkan Sawerigading bertemu dengan We Cudaiq.</p>
+                    
+                    <p>Ketika mereka bertemu, cinta pun bersemi di hati mereka berdua. We Cudaiq setuju untuk menikah dengan Sawerigading. Pernikahan megah pun dilaksanakan di istana Kerajaan Tiongkok.</p>
+                    
+                    <h4>Kembali ke Luwu</h4>
+                    <p>Setelah menikah, Sawerigading dan We Cudaiq berlayar kembali ke Kerajaan Luwu. Mereka disambut dengan meriah oleh seluruh rakyat.</p>
+                    
+                    <p>Sawerigading menjadi raja yang bijaksana. Ia memimpin Kerajaan Luwu dengan adil dan membawa kemakmuran bagi seluruh rakyatnya.</p>
+                    
+                    <h4>Warisan La Galigo</h4>
+                    <p>Kisah Sawerigading dan We Cudaiq kemudian diturunkan dari generasi ke generasi. Cerita ini menjadi bagian dari Epos La Galigo, salah satu karya sastra terpanjang di dunia.</p>
+                    
+                    <p>Epos La Galigo bukan hanya cerita cinta, tetapi juga mengandung nilai-nilai luhur tentang keberanian, kesetiaan, kebijaksanaan, dan tanggung jawab.</p>
+                    
+                    <h4>Pesan Moral</h4>
+                    <p>Cerita Sawerigading mengajarkan bahwa:
+                    1. Cinta sejati layak diperjuangkan
+                    2. Keberanian dan ketekunan akan membawa keberhasilan
+                    3. Tanggung jawab seorang pemimpin adalah untuk rakyatnya
+                    4. Warisan budaya harus dijaga dan dilestarikan</p>
+                    
+                    <p>Hingga kini, kisah Sawerigading tetap hidup dalam budaya Bugis sebagai simbol keberanian, cinta sejati, dan kepemimpinan yang bijaksana.</p>
+                `
+            },
+            {
+                id: 5,
+                title: "Asal Usul Danau Sentani",
+                region: "Papua",
+                category: "papua",
+                icon: "🏞️",
+                readingTime: "7 min",
+                moral: "Keseimbangan Alam",
+                tags: ["Legenda Alam", "Danau", "Pengorbanan"],
+                excerpt: "Legenda tentang seorang gadis cantik yang berubah menjadi danau untuk menyelamatkan desanya dari kekeringan yang berkepanjangan.",
+                content: `
+                    <h4>Asal Usul Danau Sentani</h4>
+                    <p>Di tanah Papua yang subur, di kaki Pegunungan Cyclops, hiduplah sebuah desa yang makmur. Desa ini dikelilingi oleh hutan hijau yang lebat dan tanah yang subur. Penduduk desa hidup dengan berburu, berkebun, dan menangkap ikan di sungai.</p>
+                    
+                    <p>Di desa tersebut, hiduplah seorang gadis cantik bernama Isyo. Ia adalah putri kepala suku dan dikenal sebagai gadis yang baik hati, rendah hati, dan sangat mencintai alam. Isyo memiliki suara yang merdu dan sering menyanyikan lagu-lagu yang membuat seluruh desa terpesona.</p>
+                    
+                    <blockquote>Danau Sentani bukan hanya air, ia adalah air mata cinta seorang gadis untuk rakyatnya.</blockquote>
+                    
+                    <h4>Musim Kemarau Panjang</h4>
+                    <p>Suatu tahun, terjadi musim kemarau yang sangat panjang. Matahari bersinar terik setiap hari tanpa ada tanda-tanda akan turun hujan. Sungai-sungai mulai mengering, tanaman layu, dan binatang buruan menghilang ke hutan yang lebih dalam.</p>
+                    
+                    <p>Penduduk desa mulai khawatir. Sumber air semakin menipis, persediaan makanan berkurang, dan penyakit mulai menyebar. Kepala suku, ayah Isyo, mengadakan pertemuan dengan seluruh tetua desa untuk mencari solusi.</p>
+                    
+                    <p>"Kita harus melakukan sesuatu," kata kepala suku. "Jika tidak, seluruh desa kita akan binasa."</p>
+                    
+                    <h4>Peringatan dari Roh Leluhur</h4>
+                    <p>Malam itu, Isyo bermimpi. Dalam mimpinya, roh leluhur desa menampakkan diri. "Hai Isyo, gadis baik hati. Hanya dengan pengorbanan yang tulus, desamu akan selamat dari kekeringan ini."</p>
+                    
+                    <p>"Apa yang harus kuperbuat?" tanya Isyo dalam mimpinya.</p>
+                    
+                    <p>"Kau harus berkorban untuk desamu. Tubuhmu akan menjadi sumber air yang akan menghidupi desa ini selamanya," jawab roh leluhur.</p>
+                    
+                    <p>Keesokan harinya, Isyo menceritakan mimpinya kepada ayahnya. Kepala suku sangat terkejut dan menolak keras. "Tidak! Aku tidak akan membiarkan anakku berkorban!"</p>
+                    
+                    <h4>Keputusan yang Sulit</h4>
+                    <p>Namun, kondisi desa semakin parah. Beberapa orang tua dan anak-anak mulai meninggal karena kehausan dan kelaparan. Isyo melihat penderitaan rakyatnya dan hatinya hancur.</p>
+                    
+                    <p>Suatu pagi, Isyo mengambil keputusan. Ia pergi ke tempat tertinggi di desa, sebuah bukit yang menghadap ke seluruh desa. Di sana, ia mulai bernyanyi dengan suara yang merdu.</p>
+                    
+                    <p>Penduduk desa mendengar nyanyian Isyo dan berkerumun di kaki bukit. Mereka melihat Isyo berdiri di puncak bukit dengan wajah yang tenang dan penuh ketulusan.</p>
+                    
+                    <h4>Pengorbanan dan Keajaiban</h4>
+                    <p>Isyo berdoa kepada penguasa alam, "Wahai penguasa langit dan bumi, jika pengorbananku dapat menyelamatkan desaku, izinkanlah aku berkorban. Jadikan tubuhku sumber kehidupan bagi rakyatku."</p>
+                    
+                    <p>Setelah berdoa, Isyo mengangkat tangannya ke langit. Tiba-tiba, langit menjadi gelap. Petir menggelegar dan angin kencang berhembus. Isyo terus bernyanyi, air matanya mengalir deras.</p>
+                    
+                    <p>Ketika tetesan air mata Isyo menyentuh tanah, terjadilah keajaiban. Dari tempat Isyo berdiri, air mulai mengalir. Awalnya hanya tetesan kecil, kemudian menjadi aliran, dan akhirnya menjadi sumber air yang sangat deras.</p>
+                    
+                    <h4>Terbentuknya Danau</h4>
+                    <p>Air terus mengalir dari bukit, membanjiri lembah di bawahnya. Aliran air semakin besar, membentuk sebuah danau yang sangat luas. Isyo perlahan-lahan menghilang, tubuhnya menyatu dengan air danau.</p>
+                    
+                    <p>Danau itu terus membesar, membentuk 21 pulau kecil di tengahnya. Airnya jernih dan penuh dengan ikan. Danau itu kemudian diberi nama Danau Sentani, yang berarti "tempat yang damai".</p>
+                    
+                    <h4>Kehidupan Baru</h4>
+                    <p>Desa yang tadinya kering kerontang kini menjadi subur kembali. Danau Sentani menyediakan air yang melimpah untuk seluruh penduduk. Ikan di danau menjadi sumber makanan yang tak pernah habis.</p>
+                    
+                    <p>Penduduk desa percaya bahwa roh Isyo masih hidup di Danau Sentani. Mereka sering mendengar nyanyian merdu dari tengah danau, terutama pada malam bulan purnama.</p>
+                    
+                    <h4>Warisan Isyo</h4>
+                    <p>Hingga kini, Danau Sentani tetap menjadi sumber kehidupan bagi masyarakat Papua. Danau ini bukan hanya indah, tetapi juga kaya akan sejarah dan budaya.</p>
+                    
+                    <p>Setiap tahun, masyarakat Sentani mengadakan upacara adat untuk menghormati Isyo dan mengenang pengorbanannya. Mereka percaya bahwa dengan menjaga kelestarian Danau Sentani, mereka sedang menghormati pengorbanan Isyo.</p>
+                    
+                    <h4>Pesan Moral</h4>
+                    <p>Legenda Danau Sentani mengajarkan kita bahwa:
+                    1. Pengorbanan yang tulus akan membawa kebaikan bagi banyak orang
+                    2. Cinta kepada masyarakat dan tanah air adalah nilai yang sangat mulia
+                    3. Alam harus dijaga dan dilestarikan sebagai warisan untuk generasi mendatang
+                    4. Setiap tempat memiliki sejarah dan cerita yang patut dihormati</p>
+                    
+                    <p>Danau Sentani hingga kini tetap menjadi simbol keindahan alam Papua dan pengorbanan seorang gadis yang mencintai rakyatnya lebih dari nyawanya sendiri.</p>
+                `
+            }
+        ];
+
         // Inisialisasi interaksi dengan nuansa Indonesia
         document.addEventListener('DOMContentLoaded', function () {
+            // Initialize storytelling
+            initializeStorytelling();
+            
             // Element references
             const enterVRBtn = document.getElementById('enterVRBtn');
             const playSceneBtn = document.getElementById('playSceneBtn');
@@ -1300,6 +1970,165 @@
             const screenContent = document.querySelector('.screen-content h3');
             const screenDesc = document.querySelector('.screen-content p');
             const navItems = document.querySelectorAll('.nav-item');
+            const storytellingNav = document.getElementById('storytellingNav');
+
+            // Initialize storytelling section
+            function initializeStorytelling() {
+                const storiesGrid = document.getElementById('storiesGrid');
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                const storyContentPanel = document.getElementById('storyContentPanel');
+
+                // Populate stories grid
+                function populateStories(filter = 'all') {
+                    storiesGrid.innerHTML = '';
+                    
+                    const filteredStories = filter === 'all' 
+                        ? folkStories 
+                        : folkStories.filter(story => story.category === filter);
+                    
+                    filteredStories.forEach(story => {
+                        const storyCard = document.createElement('div');
+                        storyCard.className = 'story-card gamelan-animation';
+                        storyCard.innerHTML = `
+                            <div class="story-region">${story.region}</div>
+                            <div class="story-icon">${story.icon}</div>
+                            <h3>${story.title}</h3>
+                            <div class="story-meta">
+                                <span><i class="fas fa-clock"></i> ${story.readingTime}</span>
+                                <span><i class="fas fa-graduation-cap"></i> ${story.moral}</span>
+                            </div>
+                            <p class="story-excerpt">${story.excerpt}</p>
+                            <div class="story-tags">
+                                ${story.tags.map(tag => `<span class="story-tag">${tag}</span>`).join('')}
+                            </div>
+                        `;
+                        
+                        storyCard.addEventListener('click', () => {
+                            // Remove active class from all cards
+                            document.querySelectorAll('.story-card').forEach(card => {
+                                card.classList.remove('active');
+                            });
+                            
+                            // Add active class to clicked card
+                            storyCard.classList.add('active');
+                            
+                            // Show story content
+                            showStoryContent(story);
+                        });
+                        
+                        storiesGrid.appendChild(storyCard);
+                    });
+                }
+
+                // Show story content
+                function showStoryContent(story) {
+                    storyContentPanel.innerHTML = `
+                        <div class="story-content-header">
+                            <h3><i class="fas fa-book" style="color: var(--secondary); margin-right: 10px;"></i>${story.title} - Cerita Rakyat ${story.region}</h3>
+                            <div class="close-story" id="closeStory">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="story-content">
+                            ${story.content}
+                        </div>
+                        <div class="story-actions">
+                            <button class="btn btn-primary btn-sm" id="readAloudBtn">
+                                <i class="fas fa-volume-up"></i>
+                                <span>Dengarkan Cerita</span>
+                            </button>
+                            <button class="btn btn-secondary btn-sm" id="shareStoryBtn">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Bagikan Cerita</span>
+                            </button>
+                            <button class="btn btn-story btn-sm" id="practiceStoryBtn">
+                                <i class="fas fa-microphone"></i>
+                                <span>Latihan Bercerita</span>
+                            </button>
+                        </div>
+                    `;
+                    
+                    storyContentPanel.classList.add('active');
+                    
+                    // Add close button functionality
+                    document.getElementById('closeStory').addEventListener('click', () => {
+                        storyContentPanel.classList.remove('active');
+                        document.querySelectorAll('.story-card').forEach(card => {
+                            card.classList.remove('active');
+                        });
+                    });
+                    
+                    // Add read aloud functionality
+                    document.getElementById('readAloudBtn').addEventListener('click', function() {
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Membaca...</span>';
+                        
+                        // Simple text-to-speech simulation
+                        const storyText = document.querySelector('.story-content').textContent;
+                        
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-check"></i> <span>Sedang Dibacakan</span>';
+                            showNotification(`Cerita "${story.title}" sedang dibacakan dengan audio tradisional ${story.region}`, 'info');
+                            
+                            // Reset after 3 seconds
+                            setTimeout(() => {
+                                this.innerHTML = '<i class="fas fa-volume-up"></i> <span>Dengarkan Cerita</span>';
+                            }, 3000);
+                        }, 1000);
+                    });
+                    
+                    // Add share functionality
+                    document.getElementById('shareStoryBtn').addEventListener('click', function() {
+                        this.innerHTML = '<i class="fas fa-check"></i> <span>Berhasil!</span>';
+                        showNotification(`Cerita "${story.title}" berhasil dibagikan ke komunitas budaya`, 'success');
+                        
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-share-alt"></i> <span>Bagikan Cerita</span>';
+                        }, 2000);
+                    });
+                    
+                    // Add practice functionality
+                    document.getElementById('practiceStoryBtn').addEventListener('click', function() {
+                        showNotification(`Mode latihan storytelling "${story.title}" diaktifkan! Siapkan VR headset Anda.`, 'warning');
+                        
+                        // Simulate VR storytelling mode
+                        vrViewport.classList.add('glow');
+                        screenContent.textContent = `Storytelling: ${story.title}`;
+                        screenDesc.textContent = `Mode latihan bercerita dengan cerita rakyat ${story.region}`;
+                        
+                        setTimeout(() => {
+                            showNotification('Sekarang giliran Anda! Coba ceritakan kisah ini dengan gaya storytelling tradisional.', 'info');
+                        }, 1500);
+                    });
+                }
+
+                // Filter functionality
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        
+                        // Filter stories
+                        const filter = this.getAttribute('data-filter');
+                        populateStories(filter);
+                        
+                        // Close any open story content
+                        storyContentPanel.classList.remove('active');
+                        document.querySelectorAll('.story-card').forEach(card => {
+                            card.classList.remove('active');
+                        });
+                        
+                        // Show notification
+                        const filterText = filter === 'all' ? 'Semua daerah' : this.textContent;
+                        showNotification(`Menampilkan cerita rakyat dari ${filterText}`, 'info');
+                    });
+                });
+
+                // Initial population
+                populateStories('all');
+            }
 
             // Navigation items
             navItems.forEach(item => {
@@ -1307,6 +2136,14 @@
                     e.preventDefault();
                     navItems.forEach(nav => nav.classList.remove('active'));
                     this.classList.add('active');
+                    
+                    if (this === storytellingNav) {
+                        // Scroll to storytelling section
+                        document.querySelector('.storytelling-section').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                    
                     showNotification(`Navigasi ke: ${this.textContent.trim()}`, 'info');
                 });
             });
@@ -1774,6 +2611,13 @@
                     allCards[nextIndex].click();
                 }
 
+                // S untuk storytelling mode
+                if (e.code === 'KeyS' && e.altKey) {
+                    e.preventDefault();
+                    storytellingNav.click();
+                    showNotification('Mode Storytelling diaktifkan! Jelajahi cerita rakyat Indonesia.', 'info');
+                }
+
                 // Escape to exit VR mode
                 if (e.code === 'Escape') {
                     if (enterVRBtn.innerHTML.includes('Aktif')) {
@@ -1787,43 +2631,9 @@
 
             // Show welcome message dengan salam budaya
             setTimeout(() => {
-                showNotification('Selamat datang di VR Simulation dengan Nuansa Indonesia! Mari mulai jelajahi budaya Nusantara.', 'info');
+                showNotification('Selamat datang di VR Simulation dengan Nuansa Indonesia! Jelajahi 5 cerita rakyat tradisional.', 'info');
             }, 1500);
 
-            // Add cultural tooltips
-            const elementsWithTooltip = document.querySelectorAll('.scene-card-icon, .status-icon, .nav-icon');
-            elementsWithTooltip.forEach(element => {
-                element.addEventListener('mouseenter', function () {
-                    const tooltip = document.createElement('div');
-                    tooltip.className = 'cultural-tooltip';
-                    tooltip.textContent = 'Budaya Indonesia';
-                    tooltip.style.cssText = `
-                        position: absolute;
-                        background: linear-gradient(135deg, var(--bg-card), var(--bg-card-light));
-                        color: var(--text-primary);
-                        padding: 8px 15px;
-                        border-radius: var(--radius-sm);
-                        font-size: 12px;
-                        white-space: nowrap;
-                        z-index: 100;
-                        border: 1px solid rgba(212, 175, 55, 0.3);
-                        box-shadow: var(--shadow-sm);
-                        transform: translateY(-40px);
-                    `;
-                    
-                    const rect = this.getBoundingClientRect();
-                    tooltip.style.left = `${rect.left + rect.width/2 - tooltip.offsetWidth/2}px`;
-                    tooltip.style.top = `${rect.top - 10}px`;
-                    
-                    document.body.appendChild(tooltip);
-                });
-                
-                element.addEventListener('mouseleave', function () {
-                    const tooltip = document.querySelector('.cultural-tooltip');
-                    if (tooltip) tooltip.remove();
-                });
-            });
-            
             // Initialize animations
             setTimeout(() => {
                 document.querySelectorAll('.gamelan-animation').forEach((el, index) => {
