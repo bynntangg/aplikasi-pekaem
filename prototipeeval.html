@@ -3,43 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard Evaluasi Public Speaking - Bintang Permana dengan Nuansa Indonesia</title>
+  <title>SpeakLab VR - Dashboard Public Speaking</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Warna alam Indonesia */
-      --primary: #2a6b3f; /* Hijau daun */
-      --primary-dark: #1e4e2f;
-      --secondary: #d4af37; /* Emas tradisional */
-      --accent: #b22222; /* Merah keberanian */
-      --success: #2e8b57; /* Hijau lumut */
-      --warning: #ff8c00; /* Oranye matahari terbenam */
-      --danger: #c53030; /* Merah maroon */
+      /* Warna modern & energik untuk remaja */
+      --neon-cyan: #00D4FF;
+      --electric-blue: #0066FF;
+      --violet: #8A2BE2;
+      --hot-pink: #FF2D75;
+      --lime: #A4FF00;
+      --sun-yellow: #FFD700;
       
-      --bg-dark: #0c1a14; /* Hijau pekat */
-      --bg-card: #1a2c24; /* Hijau tua */
-      --bg-card-light: #2a3c34;
-      --border-color: #3d5548;
+      --gradient-cyber: linear-gradient(135deg, #00D4FF 0%, #0066FF 50%, #8A2BE2 100%);
+      --gradient-sunset: linear-gradient(135deg, #FF2D75 0%, #FF6B6B 50%, #FFD700 100%);
+      --gradient-neon: linear-gradient(135deg, #A4FF00 0%, #00D4FF 50%, #8A2BE2 100%);
+      --gradient-dark: linear-gradient(135deg, #0A0A0A 0%, #1A1A2E 100%);
       
-      --text-primary: #f0f8f0;
-      --text-secondary: #c8d8d0;
-      --text-muted: #8a9c94;
+      --bg-dark: #0F0F1A;
+      --bg-card: #1A1A2E;
+      --bg-card-light: #22223A;
+      --border-glow: rgba(0, 212, 255, 0.3);
       
-      --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      --gradient-secondary: linear-gradient(135deg, var(--secondary), #b8860b);
-      --gradient-accent: linear-gradient(135deg, var(--accent), #8b0000);
-      --gradient-success: linear-gradient(135deg, var(--success), var(--primary));
-      --gradient-warning: linear-gradient(135deg, var(--warning), #cc7000);
-      --gradient-danger: linear-gradient(135deg, var(--danger), #ff6b6b);
+      --text-primary: #FFFFFF;
+      --text-secondary: #B0B0D0;
+      --text-accent: #00D4FF;
+      --text-glow: rgba(0, 212, 255, 0.8);
       
-      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
-      --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.3);
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.4);
       
-      --radius-lg: 16px;
+      --radius-lg: 20px;
       --radius-md: 12px;
       --radius-sm: 8px;
+      
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     * {
@@ -48,203 +49,269 @@
       box-sizing: border-box;
     }
     
-    body {
+    html, body {
+      height: 100%;
+      overflow: hidden;
       font-family: 'Poppins', sans-serif;
-      background-color: var(--bg-dark);
+    }
+    
+    body {
+      background: var(--bg-dark);
       color: var(--text-primary);
-      line-height: 1.6;
-      padding: 20px;
-      min-height: 100vh;
-      background-image: 
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232a6b3f' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E"),
-        radial-gradient(circle at 10% 20%, rgba(42, 107, 63, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 40%);
+      padding: 12px;
+      height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
     
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    
-    /* Badge Indonesia */
-    .indonesia-badge {
+    /* Background effects */
+    body::before {
+      content: '';
       position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--secondary);
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 1000;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      backdrop-filter: blur(10px);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 45, 117, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 40% 80%, rgba(164, 255, 0, 0.05) 0%, transparent 40%);
+      z-index: -1;
+      animation: pulseBackground 8s infinite alternate;
     }
     
-    /* Header dengan motif batik */
+    .cyber-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    
+    .floating-shapes {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--gradient-cyber);
+      filter: blur(20px);
+      opacity: 0.1;
+      animation: float 20s infinite linear;
+    }
+    
+    .shape:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .shape:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      right: 15%;
+      background: var(--gradient-sunset);
+      animation-delay: -5s;
+      animation-duration: 25s;
+    }
+    
+    .shape:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      bottom: 20%;
+      left: 20%;
+      background: var(--gradient-neon);
+      animation-delay: -10s;
+      animation-duration: 30s;
+    }
+    
+    .main-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Header */
     .dashboard-header {
-      text-align: center;
-      margin-bottom: 30px;
-      padding: 25px;
-      background: var(--bg-card);
+      background: rgba(26, 26, 46, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-glow);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-glow);
       position: relative;
       overflow: hidden;
     }
     
-    .dashboard-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--secondary),
-        var(--secondary) 10px,
-        var(--primary) 10px,
-        var(--primary) 20px
-      );
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    }
-    
-    .dashboard-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 34px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, var(--secondary), var(--text-primary));
+    .header-left h1 {
+      font-size: 22px;
+      font-weight: 800;
+      background: var(--gradient-cyber);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      position: relative;
-      display: inline-block;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
     }
     
-    .dashboard-title::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 3px;
-      background: var(--gradient-secondary);
-      border-radius: 2px;
+    .header-left p {
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 400;
     }
     
-    .user-info {
-      margin-top: 25px;
+    .header-right {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding: 15px;
-      background: rgba(212, 175, 55, 0.05);
+      gap: 15px;
+    }
+    
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      background: rgba(0, 212, 255, 0.1);
       border-radius: var(--radius-md);
-      border: 1px solid rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--border-glow);
+      transition: var(--transition-fast);
+      cursor: pointer;
+    }
+    
+    .user-profile:hover {
+      background: rgba(0, 212, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
     }
     
     .user-avatar {
-      width: 70px;
-      height: 70px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: var(--gradient-secondary);
+      background: var(--gradient-cyber);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--bg-dark);
       font-weight: bold;
-      font-size: 24px;
-      box-shadow: var(--shadow-md);
-      border: 3px solid rgba(255, 255, 255, 0.3);
+      font-size: 16px;
       position: relative;
     }
     
     .user-avatar::after {
       content: '';
       position: absolute;
-      width: 75px;
-      height: 75px;
+      inset: -2px;
+      background: var(--gradient-cyber);
       border-radius: 50%;
-      border: 2px dashed rgba(212, 175, 55, 0.5);
-      top: -5px;
-      left: -5px;
+      z-index: -1;
+      opacity: 0.6;
+      filter: blur(4px);
     }
     
-    .user-details h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      margin-bottom: 5px;
-      color: var(--text-primary);
+    .user-info h3 {
+      font-size: 14px;
+      font-weight: 600;
     }
     
-    .user-details p {
+    .user-info p {
+      font-size: 11px;
       color: var(--text-secondary);
-      font-size: 15px;
     }
     
-    .user-stats {
-      display: flex;
-      gap: 15px;
-      margin-top: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .stat-badge {
-      background: rgba(212, 175, 55, 0.1);
-      padding: 8px 18px;
+    .level-badge {
+      background: var(--gradient-neon);
+      padding: 4px 12px;
       border-radius: 20px;
-      font-size: 13px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #000;
       display: flex;
       align-items: center;
-      gap: 8px;
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      gap: 5px;
     }
     
-    .stat-badge i {
-      color: var(--secondary);
+    .quick-stats {
+      display: flex;
+      gap: 10px;
     }
     
-    /* Main Grid */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
-      margin-bottom: 30px;
+    .stat-chip {
+      padding: 6px 12px;
+      background: rgba(255, 45, 117, 0.1);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 45, 117, 0.3);
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition-fast);
     }
     
-    @media (max-width: 768px) {
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-      }
+    .stat-chip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 45, 117, 0.2);
     }
     
-    /* Cards dengan motif ukiran */
-    .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: 25px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-      position: relative;
+    .stat-chip:nth-child(2) {
+      background: rgba(164, 255, 0, 0.1);
+      border-color: rgba(164, 255, 0, 0.3);
+    }
+    
+    .stat-chip:nth-child(3) {
+      background: rgba(138, 43, 226, 0.1);
+      border-color: rgba(138, 43, 226, 0.3);
+    }
+    
+    /* Main Content */
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       overflow: hidden;
     }
     
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--secondary);
+    .top-row, .bottom-row {
+      display: flex;
+      gap: 12px;
+      flex: 1;
+      min-height: 0;
+    }
+    
+    /* Cards */
+    .card {
+      background: rgba(26, 26, 46, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
     
     .card::before {
@@ -253,122 +320,148 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 5px;
-      background: var(--gradient-secondary);
+      height: 4px;
+      background: var(--gradient-cyber);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-glow);
+      border-color: var(--neon-cyan);
     }
     
     .card-header {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.2);
     }
     
-    .card-header i {
+    .card-icon {
       width: 44px;
       height: 44px;
-      background: var(--gradient-secondary);
-      border-radius: var(--radius-sm);
+      background: var(--gradient-cyber);
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--bg-dark);
       font-size: 20px;
-      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
     }
     
-    .card-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
       color: var(--text-primary);
+      flex: 1;
     }
     
-    /* Score Summary */
+    .card-badge {
+      background: rgba(255, 45, 117, 0.2);
+      color: var(--hot-pink);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    
+    .card-content {
+      flex: 1;
+      overflow: auto;
+      padding-right: 8px;
+    }
+    
+    /* Score Cards */
     .score-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-top: 15px;
+      gap: 12px;
+      margin-top: 10px;
     }
     
-    @media (max-width: 480px) {
-      .score-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    .score-item {
-      background: var(--bg-card-light);
+    .score-card {
+      background: rgba(34, 34, 58, 0.8);
       border-radius: var(--radius-md);
-      padding: 20px;
-      text-align: center;
-      border: 1px solid var(--border-color);
-      transition: transform 0.3s ease;
+      padding: 15px;
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      transition: var(--transition-fast);
       position: relative;
       overflow: hidden;
     }
     
-    .score-item:hover {
-      transform: scale(1.05);
-      border-color: var(--secondary);
-      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+    .score-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--neon-cyan);
+      box-shadow: var(--shadow-glow);
     }
     
-    .score-item::before {
+    .score-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
-      background: var(--gradient-secondary);
+      height: 2px;
+      background: var(--gradient-cyber);
     }
     
-    .score-title {
-      font-size: 14px;
+    .score-label {
+      font-size: 11px;
       color: var(--text-secondary);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: 500;
     }
     
     .score-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 34px;
-      font-weight: 700;
-      margin-bottom: 5px;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     
     .score-progress {
       height: 8px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0, 212, 255, 0.1);
       border-radius: 4px;
-      margin-top: 15px;
       overflow: hidden;
-      border: 1px solid rgba(212, 175, 55, 0.2);
+      margin-bottom: 8px;
     }
     
-    .progress-fill {
+    .progress-bar {
       height: 100%;
       border-radius: 4px;
       position: relative;
+      width: 0;
+      transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     
-    .progress-fill::after {
+    .progress-bar::after {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
       right: 0;
       bottom: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 5px,
-        rgba(255, 255, 255, 0.1) 5px,
-        rgba(255, 255, 255, 0.1) 10px
-      );
+      width: 4px;
+      background: white;
+      filter: blur(1px);
+    }
+    
+    .score-trend {
+      font-size: 10px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .trend-up {
+      color: var(--lime);
     }
     
     /* AI Recommendations */
@@ -377,82 +470,109 @@
     }
     
     .recommendation-item {
-      padding: 18px;
-      margin-bottom: 15px;
-      background: var(--bg-card-light);
+      padding: 14px;
+      margin-bottom: 12px;
+      background: rgba(34, 34, 58, 0.6);
       border-radius: var(--radius-md);
-      border-left: 4px solid var(--secondary);
+      border: 1px solid rgba(0, 212, 255, 0.1);
       display: flex;
+      gap: 12px;
       align-items: flex-start;
-      gap: 15px;
-      transition: transform 0.2s ease;
-      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: var(--transition-fast);
+      position: relative;
+      overflow: hidden;
     }
     
     .recommendation-item:hover {
-      transform: translateX(8px);
-      background: rgba(212, 175, 55, 0.05);
-      border-color: var(--secondary);
+      transform: translateX(5px);
+      border-color: var(--neon-cyan);
+      background: rgba(0, 212, 255, 0.05);
     }
     
-    .recommendation-item i {
-      color: var(--secondary);
-      font-size: 20px;
-      margin-top: 3px;
-      width: 36px;
-      height: 36px;
-      background: rgba(212, 175, 55, 0.1);
+    .rec-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--gradient-sunset);
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
+      color: white;
+      font-size: 14px;
+      flex-shrink: 0;
     }
     
-    /* History */
+    .rec-content h4 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+    
+    .rec-content p {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    
+    .rec-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 45, 117, 0.2);
+      color: var(--hot-pink);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+    
+    /* History Items */
     .history-list {
       list-style: none;
     }
     
     .history-item {
-      padding: 18px;
-      margin-bottom: 15px;
-      background: var(--bg-card-light);
+      padding: 14px;
+      margin-bottom: 10px;
+      background: rgba(34, 34, 58, 0.6);
       border-radius: var(--radius-md);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: 1px solid var(--border-color);
-      transition: all 0.2s ease;
-      position: relative;
+      border: 1px solid rgba(138, 43, 226, 0.1);
+      transition: var(--transition-fast);
     }
     
     .history-item:hover {
-      border-color: var(--secondary);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
+      border-color: var(--violet);
+      box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
     }
     
-    .history-content h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 17px;
-      margin-bottom: 8px;
+    .history-info h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
       color: var(--text-primary);
     }
     
-    .history-content p {
-      color: var(--text-secondary);
-      font-size: 14px;
+    .history-meta {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-secondary);
     }
     
     .history-score {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--secondary);
+      font-size: 24px;
+      font-weight: 800;
+      background: var(--gradient-sunset);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       position: relative;
+      padding: 0 10px;
     }
     
     .history-score::after {
@@ -463,32 +583,31 @@
       transform: translateX(-50%);
       width: 30px;
       height: 2px;
-      background: var(--gradient-secondary);
+      background: var(--gradient-sunset);
       border-radius: 1px;
     }
     
-    /* Timeline dengan motif wayang */
+    /* Timeline */
     .timeline {
       position: relative;
-      padding-left: 35px;
+      padding-left: 25px;
     }
     
     .timeline::before {
       content: '';
       position: absolute;
-      left: 10px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--gradient-secondary);
-      border-radius: 2px;
+      left: 8px;
+      top: 5px;
+      bottom: 5px;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--neon-cyan), transparent);
     }
     
     .timeline-item {
       position: relative;
-      margin-bottom: 25px;
-      padding-bottom: 20px;
-      border-bottom: 1px dashed rgba(212, 175, 55, 0.2);
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.1);
     }
     
     .timeline-item:last-child {
@@ -499,122 +618,94 @@
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -35px;
-      top: 5px;
-      width: 18px;
-      height: 18px;
+      left: -25px;
+      top: 3px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
-      background: var(--gradient-secondary);
-      border: 4px solid var(--bg-card);
-      box-shadow: 0 0 0 2px var(--secondary);
+      background: var(--gradient-cyber);
+      border: 2px solid var(--bg-card);
+      box-shadow: 0 0 10px var(--neon-cyan);
     }
     
     .timeline-date {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      color: var(--secondary);
-      margin-bottom: 10px;
-      font-size: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
-    }
-    
-    .timeline-date i {
-      font-size: 14px;
+      gap: 6px;
     }
     
     .timeline-content {
+      font-size: 11px;
       color: var(--text-secondary);
-      font-size: 14px;
-      line-height: 1.6;
-      padding-left: 5px;
+      line-height: 1.4;
     }
     
-    /* Progress Stats */
-    .stats-card {
-      grid-column: span 2;
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 10px;
     }
     
-    @media (max-width: 768px) {
-      .stats-card {
-        grid-column: span 1;
-      }
-    }
-    
-    .stats-overview {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    
-    .stat-overview-item {
-      flex: 1;
-      min-width: 200px;
-      background: var(--bg-card-light);
+    .stat-card {
+      background: rgba(34, 34, 58, 0.8);
       border-radius: var(--radius-md);
-      padding: 25px;
+      padding: 16px;
       text-align: center;
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+      border: 1px solid rgba(164, 255, 0, 0.1);
+      transition: var(--transition-fast);
     }
     
-    .stat-overview-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--secondary);
-      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--lime);
+      box-shadow: 0 5px 15px rgba(164, 255, 0, 0.2);
     }
     
-    .stat-overview-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--gradient-secondary);
-    }
-    
-    .stat-overview-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    
-    .stat-overview-label {
-      color: var(--text-secondary);
-      font-size: 15px;
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
       margin-bottom: 8px;
+      background: var(--gradient-neon);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     
-    /* Action Buttons dengan motif gerabah */
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    
+    /* Action Buttons */
     .action-buttons {
       display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 40px;
-      margin-bottom: 30px;
+      gap: 12px;
+      margin-top: 10px;
     }
     
     .btn {
-      padding: 16px 32px;
-      border-radius: var(--radius-md);
+      flex: 1;
+      padding: 14px 20px;
       border: none;
-      font-weight: 600;
-      font-size: 16px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 13px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: var(--transition-fast);
       display: flex;
       align-items: center;
-      gap: 12px;
-      box-shadow: var(--shadow-sm);
+      justify-content: center;
+      gap: 10px;
       position: relative;
       overflow: hidden;
-      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.5px;
     }
     
     .btn::before {
@@ -625,7 +716,7 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: 0.5s;
+      transition: 0.6s;
     }
     
     .btn:hover::before {
@@ -633,68 +724,119 @@
     }
     
     .btn-primary {
-      background: var(--gradient-primary);
+      background: var(--gradient-cyber);
       color: white;
-      border: 1px solid rgba(42, 107, 63, 0.3);
+      box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
     }
     
     .btn-primary:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-      background: var(--gradient-primary);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(0, 212, 255, 0.6);
     }
     
     .btn-secondary {
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--secondary);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(255, 45, 117, 0.1);
+      color: var(--hot-pink);
+      border: 1px solid rgba(255, 45, 117, 0.3);
     }
     
     .btn-secondary:hover {
-      background: rgba(212, 175, 55, 0.2);
-      border-color: var(--secondary);
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
+      background: rgba(255, 45, 117, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(255, 45, 117, 0.3);
     }
     
-    /* Footer dengan motif batik */
+    .btn-outline {
+      background: transparent;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+    }
+    
+    .btn-outline:hover {
+      background: rgba(0, 212, 255, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(0, 212, 255, 0.3);
+    }
+    
+    /* Footer */
     .dashboard-footer {
+      margin-top: 10px;
+      padding: 12px 20px;
+      background: rgba(26, 26, 46, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(0, 212, 255, 0.1);
       text-align: center;
-      margin-top: 40px;
-      padding: 25px 0;
-      color: var(--text-muted);
-      font-size: 14px;
-      border-top: 1px solid var(--border-color);
-      position: relative;
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow-sm);
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
-    .dashboard-footer::before {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 5px,
-        var(--secondary) 5px,
-        var(--secondary) 10px
-      );
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
-    .dashboard-footer strong {
-      color: var(--secondary);
+    .social-icons {
+      display: flex;
+      gap: 8px;
     }
     
-    /* Animasi khas Indonesia */
-    @keyframes fadeInUp {
+    .social-icon {
+      width: 24px;
+      height: 24px;
+      background: rgba(0, 212, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--neon-cyan);
+      transition: var(--transition-fast);
+      cursor: pointer;
+    }
+    
+    .social-icon:hover {
+      background: var(--gradient-cyber);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      33% {
+        transform: translate(30px, -50px) rotate(120deg);
+      }
+      66% {
+        transform: translate(-20px, 20px) rotate(240deg);
+      }
+    }
+    
+    @keyframes pulseBackground {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.8;
+      }
+    }
+    
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 10px var(--neon-cyan);
+      }
+      50% {
+        box-shadow: 0 0 20px var(--neon-cyan);
+      }
+    }
+    
+    @keyframes slideIn {
       from {
         opacity: 0;
         transform: translateY(20px);
@@ -705,610 +847,620 @@
       }
     }
     
-    .fade-in-up {
-      animation: fadeInUp 0.6s ease-out;
+    .slide-in {
+      animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes gamelan {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(2deg); }
-      75% { transform: rotate(-2deg); }
-      100% { transform: rotate(0deg); }
-    }
-    
-    .gamelan-animation:hover {
-      animation: gamelan 0.5s ease;
-    }
-    
-    /* Motif batik corner */
-    .batik-corner {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 L40,10 L10,40 Z' fill='none' stroke='%23d4af37' stroke-width='2'/%3E%3Cpath d='M10,20 L30,10 L10,30 Z' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3Cpath d='M10,30 L20,10 L10,20 Z' fill='none' stroke='%23d4af37' stroke-width='1'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: -1;
-    }
-    
-    .batik-corner.top-left {
-      top: 10px;
-      left: 10px;
-    }
-    
-    .batik-corner.top-right {
-      top: 10px;
-      right: 10px;
-      transform: rotate(90deg);
-    }
-    
-    .batik-corner.bottom-left {
-      bottom: 10px;
-      left: 10px;
-      transform: rotate(-90deg);
-    }
-    
-    .batik-corner.bottom-right {
-      bottom: 10px;
-      right: 10px;
-      transform: rotate(180deg);
+    .glow {
+      animation: glow 2s infinite;
     }
     
     /* Responsive */
-    @media (max-width: 480px) {
-      .stats-overview {
+    @media (max-width: 1100px) {
+      .top-row, .bottom-row {
         flex-direction: column;
+      }
+      
+      .score-grid, .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .quick-stats {
+        flex-wrap: wrap;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .dashboard-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      
+      .header-right {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .score-grid, .stats-grid {
+        grid-template-columns: 1fr;
       }
       
       .action-buttons {
         flex-direction: column;
       }
       
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
-      
-      .user-info {
+      .dashboard-footer {
         flex-direction: column;
+        gap: 10px;
         text-align: center;
       }
-      
-      .dashboard-title {
-        font-size: 28px;
-      }
-      
-      .user-details h3 {
-        font-size: 20px;
-      }
     }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 212, 255, 0.05);
+      border-radius: 3px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient-cyber);
+      border-radius: 3px;
+    }
+    
+    /* Layout utilities */
+    .col-1 { flex: 1; }
+    .col-2 { flex: 2; }
+    .col-3 { flex: 3; }
+    
+    .h-100 { height: 100%; }
+    .w-100 { width: 100%; }
   </style>
 </head>
 <body>
-  <!-- Motif Batik di Sudut -->
-  <div class="batik-corner top-left"></div>
-  <div class="batik-corner top-right"></div>
-  <div class="batik-corner bottom-left"></div>
-  <div class="batik-corner bottom-right"></div>
-  
-  <!-- Badge Indonesia -->
-  <div class="indonesia-badge">
-    <i class="fas fa-flag"></i>
-    <span>Nuansa Indonesia</span>
+  <div class="cyber-grid"></div>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
   </div>
   
-  <div class="container">
+  <div class="main-container">
     <!-- Header -->
-    <header class="dashboard-header fade-in-up gamelan-animation">
-      <h1 class="dashboard-title">Dashboard Evaluasi Public Speaking</h1>
+    <header class="dashboard-header slide-in">
+      <div class="header-left">
+        <h1><i class="fas fa-vr-cardboard"></i> VRSPEAK-ID Dashboard</h1>
+        <p>Tingkatkan keterampilan public speaking Anda dengan AI & VR</p>
+      </div>
       
-      <div class="user-info">
-         <img src="bintang.jpg" alt="Profil Bintang Permana" class="user-avatar">
-        <div class="user-info">
-        <div class="user-details">
-          <h3>Bintang Permana</h3>
-          <p>Mahasiswa Bisnis Digital - Universitas Muhammadiyah Surakarta</p>
-          <div class="user-stats">
-            <div class="stat-badge">
-              <i class="fas fa-calendar-alt"></i>
-              <span>Bergabung: Jan 2025</span>
-            </div>
-            <div class="stat-badge">
-              <i class="fas fa-chart-line"></i>
-              <span>Level: Intermediate</span>
-            </div>
-            <div class="stat-badge">
-              <i class="fas fa-trophy"></i>
-              <span>12 Sesi Selesai</span>
-            </div>
+      <div class="header-right">
+        <div class="user-profile slide-in" style="animation-delay: 0.1s">
+        <img src="bintang.jpg" alt="Profil Bintang Permana" class="user-avatar">
+          <div class="user-info">
+            <h3>Bintang Permana</h3>
+            <p>Bisnis Digital - UMS</p>
+          </div>
+        </div>
+        
+        <div class="level-badge slide-in" style="animation-delay: 0.2s">
+          <i class="fas fa-rocket"></i>
+          <span>LEVEL 8</span>
+        </div>
+        
+        <div class="quick-stats">
+          <div class="stat-chip slide-in" style="animation-delay: 0.3s">
+            <i class="fas fa-fire"></i>
+            <span>12 Sesi</span>
+          </div>
+          <div class="stat-chip slide-in" style="animation-delay: 0.4s">
+            <i class="fas fa-trophy"></i>
+            <span>15% Naik</span>
+          </div>
+          <div class="stat-chip slide-in" style="animation-delay: 0.5s">
+            <i class="fas fa-bolt"></i>
+            <span>Streak 7h</span>
           </div>
         </div>
       </div>
     </header>
     
-    <!-- Main Grid -->
-    <div class="dashboard-grid">
-      <!-- Ringkasan Skor -->
-      <div class="card fade-in-up gamelan-animation" style="animation-delay: 0.1s;">
-        <div class="card-header">
+    <!-- Main Content -->
+    <div class="content-area">
+      <!-- Top Row -->
+      <div class="top-row">
+        <!-- Score Summary -->
+        <div class="card col-2 slide-in" style="animation-delay: 0.2s">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="card-title">Kinerja Keterampilan</div>
+            <div class="card-badge">UPDATE LANGSUNG</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="score-grid">
+              <div class="score-card">
+                <div class="score-label">INTONASI & NADA</div>
+                <div class="score-value">82%</div>
+                <div class="score-progress">
+                  <div class="progress-bar" data-width="82" style="background: var(--gradient-cyber)"></div>
+                </div>
+                <div class="score-trend trend-up">
+                  <i class="fas fa-arrow-up"></i>
+                  <span>+5% dari minggu lalu</span>
+                </div>
+              </div>
+              
+              <div class="score-card">
+                <div class="score-label">KONTAK MATA</div>
+                <div class="score-value">76%</div>
+                <div class="score-progress">
+                  <div class="progress-bar" data-width="76" style="background: var(--gradient-sunset)"></div>
+                </div>
+                <div class="score-trend trend-up">
+                  <i class="fas fa-arrow-up"></i>
+                  <span>+8% dari minggu lalu</span>
+                </div>
+              </div>
+              
+              <div class="score-card">
+                <div class="score-label">GESTUR & EKSPRESI</div>
+                <div class="score-value">88%</div>
+                <div class="score-progress">
+                  <div class="progress-bar" data-width="88" style="background: var(--gradient-neon)"></div>
+                </div>
+                <div class="score-trend trend-up">
+                  <i class="fas fa-arrow-up"></i>
+                  <span>+3% dari minggu lalu</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- AI Recommendations -->
+        <div class="card col-3 slide-in" style="animation-delay: 0.3s">
+          <div class="card-header">
+            <div class="card-icon" style="background: var(--gradient-sunset)">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="card-title">Saran Pelatih AI</div>
+            <div class="card-badge">3 PENTING</div>
+          </div>
+          
+          <div class="card-content">
+            <ul class="recommendation-list">
+              <li class="recommendation-item slide-in" style="animation-delay: 0.4s">
+                <div class="rec-icon">
+                  <i class="fas fa-volume-up"></i>
+                </div>
+                <div class="rec-content">
+                  <h4>Tingkatkan Variasi Suara Anda! 🎤</h4>
+                  <p>Coba gunakan nada berbeda untuk poin-poin kunci. Rekam diri Anda dan bandingkan dengan pembicara profesional!</p>
+                </div>
+                <div class="rec-tag">PRIORITAS TINGGI</div>
+              </li>
+              
+              <li class="recommendation-item slide-in" style="animation-delay: 0.5s">
+                <div class="rec-icon">
+                  <i class="fas fa-eye"></i>
+                </div>
+                <div class="rec-content">
+                  <h4>Tantangan Kontak Mata 👁️</h4>
+                  <p>Berlatihlah dengan audiens VR. Coba lihat bagian berbeda selama 3 detik masing-masing.</p>
+                </div>
+                <div class="rec-tag">SEDANG</div>
+              </li>
+              
+              <li class="recommendation-item slide-in" style="animation-delay: 0.6s">
+                <div class="rec-icon">
+                  <i class="fas fa-hands"></i>
+                </div>
+                <div class="rec-content">
+                  <h4>Aliran Gestur Tangan ✨</h4>
+                  <p>Gestur Anda bagus tetapi bisa mengalir lebih baik. Tonton TED talks untuk inspirasi!</p>
+                </div>
+                <div class="rec-tag">RENDAH</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Row -->
+      <div class="bottom-row">
+        <!-- Recent History -->
+        <div class="card col-2 slide-in" style="animation-delay: 0.4s">
+          <div class="card-header">
+            <div class="card-icon" style="background: var(--gradient-neon)">
+              <i class="fas fa-history"></i>
+            </div>
+            <div class="card-title">Sesi Latihan Terbaru</div>
+            <div class="card-badge">BARU</div>
+          </div>
+          
+          <div class="card-content">
+            <ul class="history-list">
+              <li class="history-item slide-in" style="animation-delay: 0.5s">
+                <div class="history-info">
+                  <h4>Kompetisi Pitch VR 🏆</h4>
+                  <div class="history-meta">
+                    <span><i class="far fa-clock"></i> 8m 30s</span>
+                    <span><i class="far fa-calendar"></i> 10 Des 2025</span>
+                    <span><i class="fas fa-users"></i> 5 Juri AI</span>
+                  </div>
+                </div>
+                <div class="history-score">78%</div>
+              </li>
+              
+              <li class="history-item slide-in" style="animation-delay: 0.6s">
+                <div class="history-info">
+                  <h4>Presentasi Kelas 🎓</h4>
+                  <div class="history-meta">
+                    <span><i class="far fa-clock"></i> 12m 15s</span>
+                    <span><i class="far fa-calendar"></i> 8 Des 2025</span>
+                    <span><i class="fas fa-users"></i> 25 Teman Kelas Virtual</span>
+                  </div>
+                </div>
+                <div class="history-score">82%</div>
+              </li>
+              
+              <li class="history-item slide-in" style="animation-delay: 0.7s">
+                <div class="history-info">
+                  <h4>Simulasi Wawancara Kerja 💼</h4>
+                  <div class="history-meta">
+                    <span><i class="far fa-clock"></i> 15m 20s</span>
+                    <span><i class="far fa-calendar"></i> 5 Des 2025</span>
+                    <span><i class="fas fa-users"></i> 3 Avatar HR</span>
+                  </div>
+                </div>
+                <div class="history-score">85%</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Timeline & Stats -->
+        <div class="card col-1 slide-in" style="animation-delay: 0.5s">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="card-title">Timeline Progres</div>
+          </div>
+          
+          <div class="card-content">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">
+                  <i class="fas fa-rocket"></i>
+                  MINGGU 1 • NOV 2025
+                </div>
+                <div class="timeline-content">Memulai pelatihan dasar. Skor suara: 65%</div>
+              </div>
+              
+              <div class="timeline-item">
+                <div class="timeline-date">
+                  <i class="fas fa-fire"></i>
+                  MINGGU 2 • NOV 2025
+                </div>
+                <div class="timeline-content">Menambahkan pelatihan gestur. Perbaikan keseluruhan +12%</div>
+              </div>
+              
+              <div class="timeline-item">
+                <div class="timeline-date">
+                  <i class="fas fa-bolt"></i>
+                  MINGGU 3 • DES 2025
+                </div>
+                <div class="timeline-content">Integrasi audiens VR. Kontak mata meningkat 15%</div>
+              </div>
+              
+              <div class="timeline-item">
+                <div class="timeline-date">
+                  <i class="fas fa-trophy"></i>
+                  MINGGU 4 • DES 2025
+                </div>
+                <div class="timeline-content">Mencapai Level 8! Perbaikan total: 23%</div>
+              </div>
+            </div>
+            
+            <div class="stats-grid" style="margin-top: 20px">
+              <div class="stat-card">
+                <div class="stat-value">15%</div>
+                <div class="stat-label">Kenaikan Skor</div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Sesi</div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-value">82%</div>
+                <div class="stat-label">Konsistensi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="btn btn-primary slide-in" style="animation-delay: 0.6s" id="startVR">
+          <i class="fas fa-play"></i>
+          <span>MULAI SESI VR</span>
+        </button>
+        
+        <button class="btn btn-secondary slide-in" style="animation-delay: 0.7s" id="analyzeBtn">
           <i class="fas fa-chart-bar"></i>
-          <h2>Ringkasan Skor</h2>
-        </div>
+          <span>ANALISIS KINERJA</span>
+        </button>
         
-        <div class="score-grid">
-          <div class="score-item gamelan-animation">
-            <div class="score-title">Intonasi</div>
-            <div class="score-value" style="color: var(--success);">82%</div>
-            <div class="score-progress">
-              <div class="progress-fill" style="width: 82%; background: var(--gradient-success);"></div>
-            </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">↑ 5% dari minggu lalu</div>
-          </div>
-          
-          <div class="score-item gamelan-animation">
-            <div class="score-title">Kontak Mata</div>
-            <div class="score-value" style="color: var(--warning);">76%</div>
-            <div class="score-progress">
-              <div class="progress-fill" style="width: 76%; background: var(--gradient-warning);"></div>
-            </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">↑ 8% dari minggu lalu</div>
-          </div>
-          
-          <div class="score-item gamelan-animation">
-            <div class="score-title">Gestur</div>
-            <div class="score-value" style="color: var(--secondary);">88%</div>
-            <div class="score-progress">
-              <div class="progress-fill" style="width: 88%; background: var(--gradient-secondary);"></div>
-            </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">↑ 3% dari minggu lalu</div>
-          </div>
-        </div>
+        <button class="btn btn-outline slide-in" style="animation-delay: 0.8s" id="challengeBtn">
+          <i class="fas fa-gamepad"></i>
+          <span>TANTANGAN HARIAN</span>
+        </button>
       </div>
-      
-      <!-- Rekomendasi AI -->
-      <div class="card fade-in-up gamelan-animation" style="animation-delay: 0.2s;">
-        <div class="card-header">
-          <i class="fas fa-robot"></i>
-          <h2>Rekomendasi Perbaikan AI</h2>
-        </div>
-        
-        <ul class="recommendation-list">
-          <li class="recommendation-item gamelan-animation">
-            <i class="fas fa-volume-up"></i>
-            <div>
-              <strong>Tingkatkan variasi intonasi</strong>
-              <p style="margin-top: 8px; color: var(--text-secondary);">Coba gunakan penekanan yang berbeda pada poin-poin penting dan variasikan nada suara agar penyampaian lebih hidup dan menarik seperti penutur tradisional Indonesia.</p>
-            </div>
-          </li>
-          
-          <li class="recommendation-item gamelan-animation">
-            <i class="fas fa-eye"></i>
-            <div>
-              <strong>Perbanyak kontak mata dengan audiens</strong>
-              <p style="margin-top: 8px; color: var(--text-secondary);">Fokus pada kontak mata dengan berbagai bagian audiens untuk meningkatkan engagement dan menunjukkan kepercayaan diri dengan sopan santun khas Indonesia.</p>
-            </div>
-          </li>
-          
-          <li class="recommendation-item gamelan-animation">
-            <i class="fas fa-hands"></i>
-            <div>
-              <strong>Gunakan gesture yang lebih terukur</strong>
-              <p style="margin-top: 8px; color: var(--text-secondary);">Gestur tangan Anda baik, tetapi coba lebih terukur dan sesuai dengan konteks pembicaraan seperti dalam seni pertunjukan tradisional Indonesia.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Riwayat Latihan -->
-      <div class="card fade-in-up gamelan-animation" style="animation-delay: 0.3s;">
-        <div class="card-header">
-          <i class="fas fa-history"></i>
-          <h2>Riwayat Latihan Terbaru</h2>
-        </div>
-        
-        <ul class="history-list">
-          <li class="history-item gamelan-animation">
-            <div class="history-content">
-              <h4>Pidato Pembukaan Acara</h4>
-              <p><i class="far fa-calendar-alt"></i> 10 Desember 2025 • Durasi: 8 menit</p>
-            </div>
-            <div class="history-score">78%</div>
-          </li>
-          
-          <li class="history-item gamelan-animation">
-            <div class="history-content">
-              <h4>Presentasi Kelas: Teknologi VR</h4>
-              <p><i class="far fa-calendar-alt"></i> 8 Desember 2025 • Durasi: 12 menit</p>
-            </div>
-            <div class="history-score">82%</div>
-          </li>
-          
-          <li class="history-item gamelan-animation">
-            <div class="history-content">
-              <h4>Simulasi Wawancara Kerja</h4>
-              <p><i class="far fa-calendar-alt"></i> 5 Desember 2025 • Durasi: 15 menit</p>
-            </div>
-            <div class="history-score">85%</div>
-          </li>
-          
-          <li class="history-item gamelan-animation">
-            <div class="history-content">
-              <h4>Presentasi Bisnis Startup</h4>
-              <p><i class="far fa-calendar-alt"></i> 1 Desember 2025 • Durasi: 10 menit</p>
-            </div>
-            <div class="history-score">80%</div>
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Timeline Perkembangan -->
-      <div class="card fade-in-up gamelan-animation" style="animation-delay: 0.4s;">
-        <div class="card-header">
-          <i class="fas fa-chart-line"></i>
-          <h2>Timeline Perkembangan Skill</h2>
-        </div>
-        
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date"><i class="fas fa-seedling"></i> Minggu 1 - November 2025</div>
-            <div class="timeline-content">Memulai latihan dasar intonasi dan pengucapan. Fokus pada kejelasan suara dan artikulasi kata-kata dengan pendekatan budaya tutur Indonesia.</div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="timeline-date"><i class="fas fa-leaf"></i> Minggu 2 - November 2025</div>
-            <div class="timeline-content">Meningkatkan gesture dan ekspresi wajah. Latihan menggunakan cermin dan rekaman video untuk evaluasi diri dengan inspirasi seni tradisional.</div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="timeline-date"><i class="fas fa-tree"></i> Minggu 3 - Desember 2025</div>
-            <div class="timeline-content">Latihan kontak mata menggunakan mode VR dengan audiens virtual. Peningkatan signifikan dalam engagement dengan nuansa budaya lokal.</div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="timeline-date"><i class="fas fa-trophy"></i> Minggu 4 - Desember 2025</div>
-            <div class="timeline-content">Simulasi presentasi lengkap dengan evaluasi AI komprehensif. Skor keseluruhan meningkat 15% dari awal program dengan sentuhan kearifan lokal.</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Progress Stats -->
-      <div class="card stats-card fade-in-up gamelan-animation" style="animation-delay: 0.5s;">
-        <div class="card-header">
-          <i class="fas fa-tachometer-alt"></i>
-          <h2>Statistik Perkembangan</h2>
-        </div>
-        
-        <div class="stats-overview">
-          <div class="stat-overview-item gamelan-animation">
-            <div class="stat-overview-value" style="color: var(--success);">15%</div>
-            <div class="stat-overview-label">Peningkatan Skor Rata-rata</div>
-            <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Sejak memulai program dengan pendekatan Indonesia</div>
-          </div>
-          
-          <div class="stat-overview-item gamelan-animation">
-            <div class="stat-overview-value" style="color: var(--secondary);">12</div>
-            <div class="stat-overview-label">Sesi Latihan Diselesaikan</div>
-            <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Total 8 jam latihan dengan nuansa budaya</div>
-          </div>
-          
-          <div class="stat-overview-item gamelan-animation">
-            <div class="stat-overview-value" style="color: var(--warning);">82%</div>
-            <div class="stat-overview-label">Konsistensi Latihan</div>
-            <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">4 sesi/minggu rata-rata dengan semangat gotong royong</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Action Buttons -->
-    <div class="action-buttons">
-      <button class="btn btn-primary gamelan-animation" id="startSessionBtn">
-        <i class="fas fa-play-circle"></i>
-        <span>Mulai Sesi Latihan Baru</span>
-      </button>
-      
-      <button class="btn btn-secondary gamelan-animation" id="viewReportBtn">
-        <i class="fas fa-file-alt"></i>
-        <span>Lihat Laporan Lengkap</span>
-      </button>
-      
-      <button class="btn btn-secondary gamelan-animation" id="compareBtn">
-        <i class="fas fa-chart-bar"></i>
-        <span>Bandingkan Perkembangan</span>
-      </button>
     </div>
     
     <!-- Footer -->
-    <footer class="dashboard-footer">
-      <p>© 2025 SpeakLab VR - Dashboard Evaluasi Public Speaking dengan Nuansa Indonesia • Data diperbarui terakhir: 10 Desember 2025</p>
-      <p style="margin-top: 10px; font-size: 13px;">Dikembangkan khusus untuk <strong>Bintang Permana</strong> • Powered by AI Speech Analytics dengan Kearifan Lokal</p>
+    <footer class="dashboard-footer slide-in" style="animation-delay: 0.9s">
+      <div class="footer-left">
+        <p>© 2025 SpeakLab VR • Dibuat dengan ❤️ untuk Pemuda Indonesia</p>
+      </div>
+      
+      <div class="footer-right">
+        <div class="social-icons">
+          <div class="social-icon">
+            <i class="fab fa-instagram"></i>
+          </div>
+          <div class="social-icon">
+            <i class="fab fa-tiktok"></i>
+          </div>
+          <div class="social-icon">
+            <i class="fab fa-discord"></i>
+          </div>
+          <div class="social-icon">
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div>
+        
+        <div style="font-size: 10px; color: var(--neon-cyan)">
+          <i class="fas fa-sync-alt"></i> Diperbarui baru saja
+        </div>
+      </div>
     </footer>
   </div>
 
   <script>
-    // Inisialisasi interaksi dengan nuansa Indonesia
     document.addEventListener('DOMContentLoaded', function() {
-      // Animasi progress bars
-      const progressFills = document.querySelectorAll('.progress-fill');
-      progressFills.forEach((fill, index) => {
-        const width = fill.style.width;
-        fill.style.width = '0%';
-        
+      // Animate progress bars
+      document.querySelectorAll('.progress-bar').forEach((bar, index) => {
         setTimeout(() => {
-          fill.style.width = width;
-          fill.style.transition = 'width 1s ease-in-out';
-        }, 300 + (index * 100));
+          const width = bar.getAttribute('data-width') + '%';
+          bar.style.width = width;
+        }, 300 + (index * 200));
       });
       
-      // Tombol Mulai Sesi Latihan
-      document.getElementById('startSessionBtn').addEventListener('click', function() {
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Mempersiapkan Sesi...</span>';
-        this.disabled = true;
-        this.style.background = 'var(--gradient-secondary)';
+      // Start VR Session button
+      document.getElementById('startVR').addEventListener('click', function() {
+        const originalHTML = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>MEMULAI VR...</span>';
+        this.style.background = 'var(--gradient-sunset)';
         
-        // Tambahkan efek visual Indonesia
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-          card.style.borderColor = 'var(--secondary)';
-          card.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.3)';
+        // Add glowing effect to cards
+        document.querySelectorAll('.card').forEach(card => {
+          card.classList.add('glow');
         });
         
-        // Efek gamelan
-        this.classList.add('gamelan-animation');
+        // Play sound effect (optional)
+        const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-game-show-intro-music-387.mp3');
+        audio.volume = 0.3;
+        audio.play().catch(e => console.log("Audio play failed:", e));
         
         setTimeout(() => {
-          this.innerHTML = '<i class="fas fa-check"></i> <span>Sesi Dimulai!</span>';
-          this.style.background = 'var(--gradient-success)';
+          this.innerHTML = '<i class="fas fa-check"></i> <span>VR SIAP!</span>';
+          this.style.background = 'var(--gradient-neon)';
           
-          // Tampilkan notifikasi dengan nuansa Indonesia
-          showNotification('Sesi latihan VR telah dimulai dengan nuansa budaya Indonesia!', 'success');
+          // Show notification
+          showNotification('Sesi VR dimulai! Kenakan headset Anda! 🚀', 'success');
           
-          // Tambahkan efek konfeti Indonesia
-          for (let i = 0; i < 15; i++) {
-            createConfetti();
-          }
-          
-          // Reset kartu
           setTimeout(() => {
-            cards.forEach(card => {
-              card.style.borderColor = '';
-              card.style.boxShadow = '';
+            this.innerHTML = originalHTML;
+            this.style.background = '';
+            document.querySelectorAll('.card').forEach(card => {
+              card.classList.remove('glow');
             });
           }, 2000);
-          
-          // Reset tombol setelah 3 detik
-          setTimeout(() => {
-            this.innerHTML = '<i class="fas fa-play-circle"></i> <span>Mulai Sesi Latihan Baru</span>';
-            this.style.background = '';
-            this.disabled = false;
-            this.classList.remove('gamelan-animation');
-          }, 3000);
         }, 1500);
       });
       
-      // Tombol Lihat Laporan
-      document.getElementById('viewReportBtn').addEventListener('click', function() {
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Membuat Laporan...</span>';
-        this.style.borderColor = 'var(--secondary)';
+      // Analyze Performance button
+      document.getElementById('analyzeBtn').addEventListener('click', function() {
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>MENGANALISIS...</span>';
         
-        // Animasi pada rekomendasi items
-        const recommendationItems = document.querySelectorAll('.recommendation-item');
-        recommendationItems.forEach((item, index) => {
+        // Animate score cards
+        document.querySelectorAll('.score-card').forEach((card, index) => {
           setTimeout(() => {
-            item.style.transform = 'translateX(10px)';
-            item.style.borderLeftColor = 'var(--accent)';
+            card.style.transform = 'translateY(-10px) scale(1.05)';
+            card.style.boxShadow = '0 0 30px rgba(0, 212, 255, 0.5)';
             setTimeout(() => {
-              item.style.transform = '';
-              item.style.borderLeftColor = '';
+              card.style.transform = '';
+              card.style.boxShadow = '';
             }, 500);
           }, index * 200);
         });
         
         setTimeout(() => {
-          this.innerHTML = '<i class="fas fa-check"></i> <span>Laporan Siap!</span>';
-          this.style.background = 'rgba(212, 175, 55, 0.1)';
-          showNotification('Laporan perkembangan berhasil dibuat dengan motif batik Indonesia!', 'info');
+          this.innerHTML = '<i class="fas fa-chart-bar"></i> <span>ANALISIS SELESAI</span>';
+          showNotification('Insight baru dihasilkan! Cek rekomendasi! 📊', 'info');
           
           setTimeout(() => {
-            this.innerHTML = '<i class="fas fa-file-alt"></i> <span>Lihat Laporan Lengkap</span>';
-            this.style.background = '';
-            this.style.borderColor = '';
+            this.innerHTML = '<i class="fas fa-chart-bar"></i> <span>ANALISIS KINERJA</span>';
           }, 1500);
         }, 1000);
       });
       
-      // Tombol Bandingkan Perkembangan
-      document.getElementById('compareBtn').addEventListener('click', function() {
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Membandingkan...</span>';
-        this.style.borderColor = 'var(--secondary)';
+      // Daily Challenge button
+      document.getElementById('challengeBtn').addEventListener('click', function() {
+        this.innerHTML = '<i class="fas fa-dice"></i> <span>MEMBUAT TANTANGAN...</span>';
         
-        // Animasi pada score items
-        const scoreItems = document.querySelectorAll('.score-item');
-        scoreItems.forEach(item => {
-          item.classList.add('pulse');
-          item.style.borderColor = 'var(--secondary)';
-        });
-        
-        // Animasi pada timeline items
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach((item, index) => {
-          setTimeout(() => {
-            item.style.backgroundColor = 'rgba(212, 175, 55, 0.05)';
-            setTimeout(() => {
-              item.style.backgroundColor = '';
-            }, 1000);
-          }, index * 300);
-        });
+        // Add confetti effect
+        createConfetti();
         
         setTimeout(() => {
-          this.innerHTML = '<i class="fas fa-chart-bar"></i> <span>Bandingkan Perkembangan</span>';
-          this.style.background = 'rgba(212, 175, 55, 0.1)';
-          showNotification('Perbandingan perkembangan berhasil ditampilkan dengan analisis budaya Indonesia!', 'info');
-          
-          scoreItems.forEach(item => {
-            item.classList.remove('pulse');
-            item.style.borderColor = '';
-          });
+          this.innerHTML = '<i class="fas fa-trophy"></i> <span>TANTANGAN TERBUKA!</span>';
+          this.style.background = 'var(--gradient-sunset)';
+          this.style.color = 'white';
+          showNotification('Tantangan Harian Baru: Pidato Dadakan 5-menit! 🎯', 'success');
           
           setTimeout(() => {
+            this.innerHTML = '<i class="fas fa-gamepad"></i> <span>TANTANGAN HARIAN</span>';
             this.style.background = '';
-            this.style.borderColor = '';
-          }, 1000);
-        }, 1500);
+            this.style.color = '';
+          }, 2000);
+        }, 800);
       });
       
-      // Efek hover pada history items
-      const historyItems = document.querySelectorAll('.history-item');
-      historyItems.forEach(item => {
+      // Hover effects for history items
+      document.querySelectorAll('.history-item').forEach(item => {
         item.addEventListener('mouseenter', function() {
           const score = this.querySelector('.history-score');
-          score.style.transform = 'scale(1.1)';
-          score.style.transition = 'transform 0.2s';
-          score.style.color = 'var(--accent)';
+          score.style.transform = 'scale(1.2)';
+          score.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
         });
         
         item.addEventListener('mouseleave', function() {
           const score = this.querySelector('.history-score');
           score.style.transform = 'scale(1)';
-          score.style.color = 'var(--secondary)';
         });
       });
       
-      // Efek hover pada timeline items
-      const timelineItems = document.querySelectorAll('.timeline-item');
-      timelineItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-          this.style.backgroundColor = 'rgba(212, 175, 55, 0.05)';
-          this.style.borderBottomColor = 'var(--secondary)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-          this.style.backgroundColor = 'transparent';
-          this.style.borderBottomColor = 'rgba(212, 175, 55, 0.2)';
+      // Click effects for recommendation items
+      document.querySelectorAll('.recommendation-item').forEach(item => {
+        item.addEventListener('click', function() {
+          this.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 200);
         });
       });
       
-      // Function untuk menampilkan notifikasi dengan nuansa Indonesia
+      // Notification system
       function showNotification(message, type) {
-        // Buat elemen notifikasi
         const notification = document.createElement('div');
-        notification.textContent = message;
+        notification.innerHTML = `
+          <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+          <span>${message}</span>
+        `;
+        
         notification.style.cssText = `
           position: fixed;
           top: 20px;
           right: 20px;
-          background: ${type === 'success' ? 'rgba(42, 107, 63, 0.9)' : 'rgba(212, 175, 55, 0.9)'};
-          color: white;
-          padding: 15px 25px;
-          border-radius: var(--radius-md);
-          box-shadow: var(--shadow-lg);
-          z-index: 1000;
-          font-weight: 500;
-          animation: slideIn 0.4s ease;
-          border: 1px solid rgba(212, 175, 55, 0.3);
-          max-width: 300px;
+          background: ${type === 'success' ? 'rgba(164, 255, 0, 0.15)' : 'rgba(0, 212, 255, 0.15)'};
           backdrop-filter: blur(10px);
-          border-left: 4px solid ${type === 'success' ? 'var(--success)' : 'var(--secondary)'};
+          border: 1px solid ${type === 'success' ? 'var(--lime)' : 'var(--neon-cyan)'};
+          color: white;
+          padding: 15px 20px;
+          border-radius: var(--radius-md);
+          z-index: 1000;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-weight: 600;
+          transform: translateX(150%);
+          transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+          max-width: 300px;
+          font-size: 13px;
         `;
         
-        // Tambahkan ikon
-        const icon = document.createElement('i');
-        icon.style.cssText = 'margin-right: 10px;';
-        icon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-info-circle';
-        notification.prepend(icon);
-        
-        // Tambahkan ke body
         document.body.appendChild(notification);
         
-        // Hapus setelah 3 detik
         setTimeout(() => {
-          notification.style.animation = 'slideOut 0.4s ease';
+          notification.style.transform = 'translateX(0)';
+        }, 10);
+        
+        setTimeout(() => {
+          notification.style.transform = 'translateX(150%)';
           setTimeout(() => {
             document.body.removeChild(notification);
           }, 400);
         }, 3000);
       }
       
-      // Fungsi untuk membuat efek konfeti Indonesia
+      // Confetti effect
       function createConfetti() {
-        const confetti = document.createElement('div');
-        const colors = ['#d4af37', '#2a6b3f', '#b22222', '#ff8c00', '#2e8b57'];
-        const color = colors[Math.floor(Math.random() * colors.length)];
+        const colors = ['#00D4FF', '#FF2D75', '#A4FF00', '#8A2BE2', '#FFD700'];
+        const confettiCount = 50;
         
-        confetti.style.cssText = `
-          position: fixed;
-          width: 10px;
-          height: 10px;
-          background: ${color};
-          top: -10px;
-          left: ${Math.random() * 100}vw;
-          border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-          z-index: 9998;
-          pointer-events: none;
-        `;
-        
-        document.body.appendChild(confetti);
-        
-        // Animasi konfeti
-        const animation = confetti.animate([
-          { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-          { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-        ], {
-          duration: Math.random() * 2000 + 1000,
-          easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
-        });
-        
-        animation.onfinish = () => {
-          document.body.removeChild(confetti);
-        };
+        for (let i = 0; i < confettiCount; i++) {
+          const confetti = document.createElement('div');
+          confetti.style.cssText = `
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            top: 50%;
+            left: 50%;
+            border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+            pointer-events: none;
+            z-index: 1000;
+            transform: translate(-50%, -50%) rotate(${Math.random() * 360}deg);
+            opacity: 0.9;
+          `;
+          
+          document.body.appendChild(confetti);
+          
+          const angle = Math.random() * Math.PI * 2;
+          const velocity = 2 + Math.random() * 3;
+          const gravity = 0.1;
+          
+          let x = 50;
+          let y = 50;
+          let vx = Math.cos(angle) * velocity;
+          let vy = Math.sin(angle) * velocity;
+          
+          const animate = () => {
+            x += vx;
+            y += vy;
+            vy += gravity;
+            
+            confetti.style.left = x + '%';
+            confetti.style.top = y + '%';
+            confetti.style.opacity = parseFloat(confetti.style.opacity) - 0.01;
+            
+            if (parseFloat(confetti.style.opacity) > 0) {
+              requestAnimationFrame(animate);
+            } else {
+              document.body.removeChild(confetti);
+            }
+          };
+          
+          animate();
+        }
       }
       
-      // Tambahkan style untuk animasi notifikasi
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes slideIn {
-          from { transform: translateX(100px); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideOut {
-          from { transform: translateX(0); opacity: 1; }
-          to { transform: translateX(100px); opacity: 0; }
-        }
-        @keyframes gamelan {
-          0% { transform: rotate(0deg); }
-          25% { transform: rotate(2deg); }
-          75% { transform: rotate(-2deg); }
-          100% { transform: rotate(0deg); }
-        }
-      `;
-      document.head.appendChild(style);
-      
-      // Animasi awal untuk elemen dengan efek gamelan
+      // Initial animations
       setTimeout(() => {
-        document.querySelectorAll('.gamelan-animation').forEach((el, index) => {
+        document.querySelectorAll('.slide-in').forEach((el, index) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(30px)';
+          el.style.animation = 'none';
+          
           setTimeout(() => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s, transform 0.5s';
-            
-            setTimeout(() => {
-              el.style.opacity = '1';
-              el.style.transform = 'translateY(0)';
-            }, 50);
-          }, index * 100);
+            el.style.transition = 'opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, index * 50);
         });
-      }, 500);
+      }, 100);
     });
   </script>
 </body>

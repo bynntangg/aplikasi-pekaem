@@ -1,212 +1,192 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpeakLab VR - Simulator Public Speaking dengan Nuansa Indonesia</title>
+  <title>VRSPEAK-ID - Dashboard Metaverse</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    /* ===== VARIABLES - Warna Indonesia ===== */
+    /* ===== VARIABLES ===== */
     :root {
-      /* Warna alam Indonesia */
-      --primary-dark: #0c1a14; /* Hijau pekat */
-      --secondary-dark: #1a2c24; /* Hijau tua */
-      --card-dark: #2a3c34;
-      --glass-bg: rgba(255, 255, 255, 0.05);
-
-      /* Warna tradisional Indonesia */
-      --accent-emerald: #2a6b3f; /* Hijau daun */
-      --accent-blue: #1e4e2f; /* Hijau tua */
-      --accent-gold: #d4af37; /* Emas tradisional */
-      --accent-red: #b22222; /* Merah keberanian */
-      --accent-orange: #ff8c00; /* Oranye matahari terbenam */
-      --accent-purple: #6a1b9a; /* Ungu batik */
-
-      /* Gradien alam Indonesia */
-      --gradient-primary: linear-gradient(135deg, var(--accent-emerald), var(--accent-blue));
-      --gradient-success: linear-gradient(135deg, #2a6b3f, #2e8b57);
-      --gradient-warning: linear-gradient(135deg, var(--accent-orange), #cc7000);
-      --gradient-premium: linear-gradient(135deg, var(--accent-purple), #8b5cf6);
-      --gradient-gold: linear-gradient(135deg, var(--accent-gold), #b8860b);
-
-      /* Text Colors */
-      --text-primary: #f0f8f0;
-      --text-secondary: #c8d8d0;
-      --text-muted: #8a9c94;
-
-      /* Borders & Shadows */
-      --border-color: rgba(255, 255, 255, 0.08);
-      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
-      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
-
-      /* Border Radius */
-      --radius-lg: 16px;
-      --radius-md: 12px;
-      --radius-sm: 8px;
-
-      /* Spacing */
-      --spacing-xs: 8px;
-      --spacing-sm: 12px;
-      --spacing-md: 16px;
-      --spacing-lg: 24px;
-      --spacing-xl: 32px;
-
-      /* Font */
-      --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-heading: 'Playfair Display', serif;
+      --primary-dark: #0a0a1a;
+      --secondary-dark: #1a1a2e;
+      --card-bg: rgba(20, 20, 40, 0.85);
+      --gradient-1: linear-gradient(135deg, #8a2be2, #4169e1, #00ffff);
+      --gradient-2: linear-gradient(135deg, #ff00ff, #ff0080, #ffaa00);
+      --gradient-3: linear-gradient(135deg, #00ff88, #00ccff, #8a2be2);
+      --gradient-4: linear-gradient(135deg, #ffaa00, #ff0080, #8a2be2);
+      --gradient-5: linear-gradient(135deg, #4169e1, #00ffff, #00ff88);
+      --accent-purple: #8a2be2;
+      --accent-blue: #4169e1;
+      --accent-pink: #ff00ff;
+      --accent-cyan: #00ffff;
+      --accent-green: #00ff88;
+      --accent-orange: #ffaa00;
+      --accent-red: #ff0080;
+      --text-primary: #ffffff;
+      --text-secondary: #b8b8d1;
+      --text-glow: #d0c8f0;
+      --border-glow: rgba(138, 43, 226, 0.6);
+      --shadow-glow: 0 0 25px rgba(138, 43, 226, 0.5);
+      --font-main: 'Poppins', sans-serif;
+      --font-tech: 'Orbitron', monospace;
     }
 
-    /* ===== RESET & BASE STYLES ===== */
+    /* ===== RESET ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html,
-    body {
-      height: 100%;
-      font-family: var(--font-family);
-      background-color: var(--primary-dark);
+    html, body {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      font-family: var(--font-main);
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
       color: var(--text-primary);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      position: relative;
     }
 
-    body {
-      background:
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232a6b3f' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E"),
-        radial-gradient(circle at 10% 20%, rgba(42, 107, 63, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 40%),
-        linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-      min-height: 100vh;
-      padding: var(--spacing-md);
-    }
-
-    /* ===== LAYOUT CONTAINERS ===== */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    /* ===== BACKGROUND EFFECTS ===== */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 0, 128, 0.1) 0%, transparent 50%);
     }
 
-    .app-layout {
+    /* ===== MAIN CONTAINER ===== */
+    .dashboard-container {
+      height: 100vh;
+      width: 100vw;
+      padding: 16px;
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: var(--spacing-lg);
-      margin-top: var(--spacing-lg);
+      grid-template-rows: auto 1fr auto;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
     }
 
-    @media (max-width: 992px) {
-      .app-layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ===== HEADER dengan motif batik ===== */
-    .app-header {
+    /* ===== HEADER ===== */
+    .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: var(--spacing-md) 0;
-      flex-wrap: wrap;
-      gap: var(--spacing-md);
+      background: rgba(20, 20, 40, 0.9);
+      border-radius: 20px;
+      padding: 16px 24px;
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow-glow);
+      height: 80px;
       position: relative;
+      overflow: hidden;
     }
 
-    .app-header::before {
+    .header::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--accent-gold),
-        var(--accent-gold) 10px,
-        var(--accent-emerald) 10px,
-        var(--accent-emerald) 20px
-      );
-      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shine 3s infinite;
     }
 
-    .brand {
+    .logo-brand {
       display: flex;
       align-items: center;
-      gap: var(--spacing-md);
+      gap: 16px;
     }
 
     .logo {
-      width: 60px;
-      height: 60px;
-      border-radius: var(--radius-md);
-      background: var(--gradient-primary);
+      width: 52px;
+      height: 52px;
+      background: var(--gradient-1);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 24px;
+      font-weight: 900;
+      font-size: 22px;
       color: white;
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
       position: relative;
       overflow: hidden;
-      border: 2px solid var(--accent-gold);
-      font-family: var(--font-heading);
     }
 
     .logo::after {
       content: '';
       position: absolute;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      border: 2px dashed rgba(212, 175, 55, 0.5);
-      top: -7px;
-      left: -7px;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: rotate(45deg);
+      animation: logoShine 3s infinite;
     }
 
     .brand-text h1 {
-      font-family: var(--font-heading);
-      font-size: 26px;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--accent-gold), var(--text-primary));
+      font-size: 24px;
+      font-weight: 900;
+      background: var(--gradient-2);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       margin-bottom: 4px;
+      text-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+      letter-spacing: 0.5px;
     }
 
     .brand-text p {
-      font-size: 14px;
-      color: var(--text-secondary);
+      font-size: 11px;
+      color: var(--text-glow);
+      font-weight: 500;
     }
 
-    /* ===== USER PROFILE ===== */
     .user-profile {
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      background: var(--glass-bg);
-      border: 1px solid var(--border-color);
-      padding: var(--spacing-sm) var(--spacing-md);
+      gap: 12px;
+      background: var(--gradient-1);
+      padding: 8px 20px;
       border-radius: 50px;
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .user-profile:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(138, 43, 226, 0.6);
     }
 
     .user-avatar {
-      width: 46px;
-      height: 46px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--accent-gold);
-      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+      border: 2px solid var(--accent-cyan);
+      background: var(--gradient-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: white;
+      font-size: 16px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
     }
 
     .user-info {
@@ -215,563 +195,449 @@
     }
 
     .user-name {
-      font-weight: 600;
-      font-size: 15px;
+      font-weight: 700;
+      font-size: 14px;
+      color: white;
     }
 
     .user-level {
-      font-size: 12px;
-      color: var(--accent-gold);
-      background: rgba(212, 175, 55, 0.1);
-      padding: 2px var(--spacing-sm);
-      border-radius: 20px;
+      font-size: 10px;
+      color: var(--accent-cyan);
+      background: rgba(0, 255, 255, 0.15);
+      padding: 3px 8px;
+      border-radius: 10px;
       margin-top: 2px;
-      border: 1px solid rgba(212, 175, 55, 0.2);
+      text-align: center;
+      font-weight: 600;
+      backdrop-filter: blur(5px);
     }
 
-    /* ===== SIDEBAR dengan motif ukiran ===== */
-    .sidebar {
-      background: var(--card-dark);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border-color);
-      backdrop-filter: blur(10px);
-      height: fit-content;
+    /* ===== MAIN CONTENT AREA ===== */
+    .main-content {
+      display: grid;
+      grid-template-columns: 220px 1fr 220px;
+      gap: 20px;
+      height: calc(100vh - 180px);
+      min-height: 500px;
+    }
+
+    /* ===== LEFT SIDEBAR ===== */
+    .left-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      height: 100%;
+    }
+
+    /* Quick Stats */
+    .quick-stats {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow-glow);
+      height: 160px;
       position: relative;
+      overflow: hidden;
     }
 
-    .sidebar::before {
+    .quick-stats::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 6px;
-      background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 5px,
-        var(--accent-gold) 5px,
-        var(--accent-gold) 10px,
-        transparent 10px,
-        transparent 15px,
-        var(--accent-emerald) 15px,
-        var(--accent-emerald) 20px
-      );
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      height: 3px;
+      background: var(--gradient-1);
     }
 
-    .auth-section {
-      padding-bottom: var(--spacing-lg);
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: var(--spacing-lg);
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: var(--spacing-md);
-    }
-
-    .section-title {
-      font-weight: 700;
-      font-size: 16px;
-      font-family: var(--font-heading);
-    }
-
-    .guest-option {
-      font-size: 12px;
-      color: var(--accent-gold);
-      cursor: pointer;
-      transition: color 0.2s;
-      background: rgba(212, 175, 55, 0.1);
-      padding: 4px 8px;
-      border-radius: 15px;
-      border: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .guest-option:hover {
-      background: rgba(212, 175, 55, 0.2);
-    }
-
-    /* ===== FORM ELEMENTS ===== */
-    .form-input {
-      width: 100%;
-      padding: var(--spacing-md);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      background: rgba(0, 0, 0, 0.2);
-      color: var(--text-primary);
-      margin-bottom: var(--spacing-sm);
-      font-size: 14px;
-      transition: all 0.2s;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: var(--accent-gold);
-      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
-    }
-
-    .button-group {
-      display: flex;
-      gap: var(--spacing-sm);
-      margin-top: var(--spacing-sm);
-    }
-
-    /* ===== BUTTONS dengan motif gerabah ===== */
-    .btn {
-      padding: var(--spacing-md) var(--spacing-lg);
-      border-radius: var(--radius-md);
-      font-weight: 600;
-      font-size: 14px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--spacing-sm);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: 0.5s;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn-primary {
-      background: var(--gradient-primary);
-      color: white;
-      flex: 1;
-      border: 1px solid rgba(42, 107, 63, 0.3);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(42, 107, 63, 0.4);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      color: var(--accent-gold);
-      flex: 1;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(212, 175, 55, 0.1);
-      border-color: var(--accent-gold);
-    }
-
-    .auth-footer {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-align: center;
-      margin-top: var(--spacing-md);
-    }
-
-    /* ===== NAVIGATION ===== */
-    .nav-title {
+    .stats-title {
       font-size: 13px;
+      color: var(--accent-cyan);
+      margin-bottom: 15px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-      margin-bottom: var(--spacing-md);
-      font-weight: 600;
+      letter-spacing: 1px;
+      font-weight: 700;
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
+      gap: 8px;
     }
 
-    .nav-title::before {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-gold));
+    .stats-title::before {
+      content: '⚡';
+      font-size: 14px;
     }
 
-    .nav-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent-gold), transparent);
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
     }
 
-    .nav-menu {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xs);
-    }
-
-    .nav-item {
-      padding: var(--spacing-md);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-md);
+    .stat-item {
+      background: rgba(138, 43, 226, 0.15);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      border: 1px solid rgba(138, 43, 226, 0.4);
+      transition: all 0.3s;
       cursor: pointer;
-      transition: all 0.2s;
-      color: var(--text-secondary);
-      font-weight: 500;
-      position: relative;
-    }
-
-    .nav-item:hover {
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--text-primary);
-      transform: translateX(4px);
-      border-left: 3px solid var(--accent-gold);
-    }
-
-    .nav-item.active {
-      background: linear-gradient(90deg, rgba(42, 107, 63, 0.15), rgba(30, 78, 47, 0.1));
-      color: var(--text-primary);
-      border-left: 3px solid var(--accent-gold);
-      font-weight: 600;
-    }
-
-    /* ===== MAIN CONTENT ===== */
-    .main-content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-    }
-
-    /* ===== WELCOME BANNER dengan motif wayang ===== */
-    .welcome-banner {
-      background: linear-gradient(135deg, rgba(42, 107, 63, 0.15), rgba(30, 78, 47, 0.1));
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-xl);
-      box-shadow: var(--shadow-lg);
-      border: 1px solid rgba(212, 175, 55, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--spacing-lg);
       position: relative;
       overflow: hidden;
     }
 
-    .welcome-banner::before {
-      content: '';
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-      top: -50px;
-      right: -50px;
-      border-radius: 50%;
+    .stat-item:hover {
+      background: rgba(138, 43, 226, 0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
     }
 
-    .welcome-text h2 {
-      font-family: var(--font-heading);
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: var(--spacing-sm);
-      background: linear-gradient(90deg, var(--accent-gold), var(--text-primary));
+    .stat-item:nth-child(1) { border-top: 3px solid #8a2be2; }
+    .stat-item:nth-child(2) { border-top: 3px solid #4169e1; }
+    .stat-item:nth-child(3) { border-top: 3px solid #00ffff; }
+    .stat-item:nth-child(4) { border-top: 3px solid #ffaa00; }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 6px;
+      background: var(--gradient-1);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
     }
 
-    .welcome-text p {
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin-bottom: var(--spacing-lg);
-      font-size: 15px;
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-glow);
+      font-weight: 500;
     }
 
-    .action-buttons {
-      display: flex;
-      gap: var(--spacing-md);
-      flex-wrap: wrap;
-    }
-
-    .session-stats {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      min-width: 180px;
-      background: rgba(0, 0, 0, 0.2);
-      padding: var(--spacing-md);
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .last-session {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: var(--spacing-xs);
-    }
-
-    .session-date {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--accent-gold);
-      margin-bottom: 4px;
-      font-family: var(--font-heading);
-    }
-
-    .session-score {
-      font-size: 16px;
-      color: var(--accent-emerald);
-      font-weight: 600;
-    }
-
-    /* ===== STATS GRID ===== */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--spacing-md);
-    }
-
-    .stat-card {
-      background: var(--card-dark);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s;
-      position: relative;
+    /* Navigation */
+    .navigation {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow-glow);
+      flex-grow: 1;
       overflow: hidden;
+      position: relative;
     }
 
-    .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(212, 175, 55, 0.3);
-    }
-
-    .stat-card::before {
+    .navigation::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: var(--gradient-gold);
+      height: 3px;
+      background: var(--gradient-2);
     }
 
-    .stat-header {
+    .nav-title {
+      font-size: 13px;
+      color: var(--accent-pink);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-md);
+      gap: 8px;
     }
 
-    .stat-icon {
-      font-size: 18px;
-      color: var(--accent-gold);
-    }
-
-    .stat-title {
+    .nav-title::before {
+      content: '🌀';
       font-size: 14px;
-      color: var(--text-secondary);
     }
 
-    .stat-value {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: var(--spacing-sm);
-      font-family: var(--font-heading);
-    }
-
-    .progress-bar {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: var(--spacing-md);
-    }
-
-    .progress-fill {
-      height: 100%;
-      border-radius: 10px;
-    }
-
-    .stat-description {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: var(--spacing-sm);
-    }
-
-    /* ===== VR STAGE dengan motif anyaman ===== */
-    .vr-stage-section {
-      background: var(--card-dark);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border-color);
+    .nav-list {
       display: flex;
-      gap: var(--spacing-lg);
-      flex-wrap: wrap;
-      position: relative;
+      flex-direction: column;
+      gap: 8px;
+      height: calc(100% - 40px);
+      overflow-y: auto;
     }
 
-    .vr-stage-section::before {
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-item:hover {
+      background: linear-gradient(90deg, rgba(138, 43, 226, 0.2), rgba(65, 105, 225, 0.2));
+      border-color: var(--border-glow);
+      transform: translateX(8px);
+      color: white;
+      box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
+    }
+
+    .nav-item.active {
+      background: var(--gradient-1);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    }
+
+    .nav-item i {
+      width: 20px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    /* ===== CENTER CONTENT ===== */
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      height: 100%;
+    }
+
+    /* VR Stage */
+    .vr-stage {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow-glow);
+      flex: 1;
+      min-height: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vr-stage::before {
       content: '';
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
       right: 0;
-      height: 6px;
-      background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 5px,
-        var(--accent-gold) 5px,
-        var(--accent-gold) 10px,
-        transparent 10px,
-        transparent 15px,
-        var(--accent-emerald) 15px,
-        var(--accent-emerald) 20px
-      );
-      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      height: 3px;
+      background: var(--gradient-3);
     }
 
-    .vr-preview {
-      flex: 1;
-      min-width: 280px;
+    .vr-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .vr-title {
+      font-size: 22px;
+      font-weight: 800;
+      background: var(--gradient-3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+      font-family: var(--font-tech);
+      letter-spacing: 0.5px;
+    }
+
+    .vr-subtitle {
+      font-size: 12px;
+      color: var(--text-glow);
+      margin-top: 4px;
+      font-weight: 500;
     }
 
     .vr-container {
-      width: 100%;
-      height: 200px;
-      border-radius: var(--radius-md);
-      background: linear-gradient(135deg, var(--secondary-dark), var(--card-dark));
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      height: calc(100% - 60px);
+    }
+
+    .vr-preview {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 40, 0.6));
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      border: 2px solid var(--border-glow);
       position: relative;
       overflow: hidden;
+      padding: 30px;
     }
 
-    .vr-container::before {
+    .vr-preview::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(212, 175, 55, 0.05) 10px,
-        rgba(212, 175, 55, 0.05) 20px
-      );
+      background: 
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(138, 43, 226, 0.1) 2px,
+          rgba(138, 43, 226, 0.1) 4px
+        ),
+        radial-gradient(circle at center, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+      animation: gridMove 20s linear infinite;
     }
 
     .vr-icon {
       font-size: 48px;
-      margin-bottom: var(--spacing-md);
-      color: var(--accent-gold);
-      z-index: 1;
+      margin-bottom: 15px;
+      color: transparent;
+      background: var(--gradient-4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 0 25px rgba(255, 170, 0, 0.5);
+      animation: iconFloat 3s ease-in-out infinite;
     }
 
-    .vr-preview-text {
-      color: var(--text-secondary);
+    .vr-status {
       font-size: 14px;
       text-align: center;
       z-index: 1;
+      font-weight: 600;
     }
 
-    .vr-options {
-      flex: 2;
-      min-width: 300px;
+    .vr-status .text-glow {
+      font-size: 11px;
+      margin-top: 6px;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 500;
     }
 
-    .section-heading {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      margin-bottom: var(--spacing-xs);
-      color: var(--text-primary);
-    }
-
-    .section-subtitle {
-      color: var(--text-secondary);
-      margin-bottom: var(--spacing-lg);
-      font-size: 14px;
-    }
-
-    /* ===== SCENARIO SELECTION dengan motif kain tenun ===== */
-    .scenario-grid {
+    .scenario-section {
       display: flex;
-      flex-wrap: wrap;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-lg);
+      flex-direction: column;
+    }
+
+    .scenario-title {
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scenario-title::before {
+      content: '🎮';
+      font-size: 16px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
     }
 
     .scenario-btn {
-      padding: var(--spacing-sm) var(--spacing-md);
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-color);
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: var(--text-secondary);
+      font-size: 12px;
       cursor: pointer;
-      transition: all 0.2s;
-      font-size: 14px;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-height: 70px;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scenario-btn:hover, .scenario-btn.active {
+      background: var(--gradient-1);
+      border-color: transparent;
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(138, 43, 226, 0.4);
+    }
+
+    .scenario-btn i {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .start-vr-btn {
+      margin-top: auto;
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--gradient-4);
+      border: none;
+      color: white;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      flex: 1;
-      min-width: 150px;
       justify-content: center;
-    }
-
-    .scenario-btn:hover {
-      background: rgba(212, 175, 55, 0.1);
-      border-color: var(--accent-gold);
-      color: var(--accent-gold);
-      transform: translateY(-2px);
-    }
-
-    .scenario-btn.active {
-      background: rgba(212, 175, 55, 0.15);
-      border-color: var(--accent-gold);
-      color: var(--accent-gold);
-      font-weight: 500;
-      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
-    }
-
-    /* ===== ANALYSIS SECTION ===== */
-    .analysis-section {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: var(--spacing-lg);
-    }
-
-    @media (max-width: 992px) {
-      .analysis-section {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .ai-analysis {
-      background: var(--card-dark);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
+      gap: 10px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-family: var(--font-tech);
       position: relative;
+      overflow: hidden;
+    }
+
+    .start-vr-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(255, 170, 0, 0.5);
+      letter-spacing: 1px;
+    }
+
+    .start-vr-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: rotate(45deg);
+      animation: buttonShine 3s infinite;
+    }
+
+    /* AI Analysis */
+    .ai-analysis {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow-glow);
+      flex: 1;
+      min-height: 250px;
+      position: relative;
+      overflow: hidden;
     }
 
     .ai-analysis::before {
@@ -779,1835 +645,1689 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 6px;
-      height: 100%;
-      background: var(--gradient-gold);
-      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+      right: 0;
+      height: 3px;
+      background: var(--gradient-5);
     }
 
     .ai-header {
-      font-size: 18px;
-      margin-bottom: var(--spacing-lg);
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      font-family: var(--font-heading);
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .ai-icon {
-      color: var(--accent-gold);
+    .ai-header i {
+      font-size: 24px;
+      background: var(--gradient-5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    /* ===== METRICS GRID ===== */
+    .ai-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-family: var(--font-tech);
+      letter-spacing: 0.5px;
+    }
+
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: var(--spacing-lg);
-      margin-bottom: var(--spacing-lg);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .metric-item {
-      display: flex;
-      flex-direction: column;
+    .metric-card {
+      background: rgba(138, 43, 226, 0.15);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid rgba(138, 43, 226, 0.4);
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
-    .metric-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: var(--spacing-sm);
-      font-size: 14px;
+    .metric-card:hover {
+      background: rgba(138, 43, 226, 0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
     }
+
+    .metric-card:nth-child(1) { border-top: 3px solid #8a2be2; }
+    .metric-card:nth-child(2) { border-top: 3px solid #4169e1; }
+    .metric-card:nth-child(3) { border-top: 3px solid #00ffff; }
+    .metric-card:nth-child(4) { border-top: 3px solid #00ff88; }
 
     .metric-name {
-      color: var(--text-secondary);
+      font-size: 12px;
+      color: var(--text-glow);
+      margin-bottom: 8px;
+      font-weight: 600;
     }
 
     .metric-value {
-      font-weight: 600;
-      color: var(--text-primary);
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
     }
 
     .metric-bar {
-      height: 8px;
-      background: rgba(255, 255, 255, 0.05);
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       overflow: hidden;
+      position: relative;
     }
 
     .metric-fill {
       height: 100%;
       border-radius: 10px;
-    }
-
-    /* ===== AI NOTES ===== */
-    .ai-notes {
-      background: rgba(212, 175, 55, 0.05);
-      border-left: 3px solid var(--accent-gold);
-      padding: var(--spacing-md);
-      border-radius: var(--radius-sm);
-      margin-top: var(--spacing-lg);
+      background: var(--gradient-1);
       position: relative;
+      overflow: hidden;
     }
 
-    .ai-notes::before {
-      content: '"';
+    .metric-fill::after {
+      content: '';
       position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 40px;
-      color: rgba(212, 175, 55, 0.2);
-      font-family: var(--font-heading);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: barShine 2s infinite;
     }
 
-    .ai-notes p {
-      color: var(--text-secondary);
+    .ai-feedback {
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 136, 0.1));
+      border-radius: 14px;
+      padding: 16px;
+      border-left: 4px solid var(--accent-cyan);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-feedback::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+      animation: feedbackShine 3s infinite;
+    }
+
+    .feedback-title {
       font-size: 14px;
-      line-height: 1.6;
-      margin-left: 10px;
-    }
-
-    /* ===== RECOMMENDATIONS ===== */
-    .recommendations {
-      background: var(--card-dark);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      margin-top: var(--spacing-md);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-    }
-
-    .recommendations h4 {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      margin-bottom: var(--spacing-md);
-      color: var(--text-primary);
-    }
-
-    .rec-list {
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
       display: flex;
-      flex-direction: column;
-      gap: var(--spacing-sm);
-    }
-
-    .rec-item {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: var(--spacing-md);
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.02);
-      transition: all 0.2s;
-      border: 1px solid rgba(212, 175, 55, 0.1);
+      gap: 8px;
+      font-weight: 700;
     }
 
-    .rec-item:hover {
-      background: rgba(212, 175, 55, 0.05);
-      transform: translateX(4px);
-    }
-
-    .rec-content {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .rec-title {
+    .feedback-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
       font-weight: 500;
-      font-size: 15px;
-    }
-
-    .rec-duration {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .rec-action {
-      padding: var(--spacing-sm) var(--spacing-md);
-      border-radius: var(--radius-sm);
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--accent-gold);
-      font-size: 13px;
-      font-weight: 500;
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .rec-action:hover {
-      background: rgba(212, 175, 55, 0.2);
     }
 
     /* ===== RIGHT SIDEBAR ===== */
     .right-sidebar {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-lg);
+      gap: 20px;
+      height: 100%;
     }
 
-    .sidebar-card {
-      background: var(--card-dark);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
+    /* Activity Feed */
+    .activity-feed {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow-glow);
+      flex: 1;
+      min-height: 250px;
       position: relative;
+      overflow: hidden;
     }
 
-    .sidebar-card::before {
+    .activity-feed::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: var(--gradient-primary);
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      height: 3px;
+      background: var(--gradient-2);
     }
 
-    .sidebar-card h4 {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      margin-bottom: var(--spacing-md);
+    .activity-title {
+      font-size: 15px;
       color: var(--text-primary);
-    }
-
-    /* ===== HISTORY LIST ===== */
-    .history-list {
-      list-style: none;
-    }
-
-    .history-item {
+      margin-bottom: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: var(--spacing-md) 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      font-weight: 700;
     }
 
-    .history-item:last-child {
-      border-bottom: none;
-    }
-
-    .history-date {
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-
-    .history-score {
-      font-weight: 600;
-      color: var(--accent-gold);
-    }
-
-    /* ===== PROFILE DETAILS ===== */
-    .profile-details {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-lg);
-    }
-
-    .profile-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      padding: var(--spacing-xs) 0;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
-    }
-
-    .profile-row:last-child {
-      border-bottom: none;
-    }
-
-    .profile-label {
-      color: var(--text-secondary);
-    }
-
-    .profile-value {
-      color: var(--text-primary);
-      font-weight: 500;
-    }
-
-    /* ===== FOOTER dengan motif batik ===== */
-    .app-footer {
-      text-align: center;
-      padding-top: var(--spacing-lg);
-      border-top: 1px solid var(--border-color);
-      margin-top: var(--spacing-xl);
-      color: var(--text-muted);
-      font-size: 13px;
-      position: relative;
-    }
-
-    .app-footer::before {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 5px,
-        var(--accent-gold) 5px,
-        var(--accent-gold) 10px
-      );
-    }
-
-    /* ===== UTILITY CLASSES ===== */
-    .text-gradient {
-      background: var(--gradient-primary);
+    .activity-title span:last-child {
+      font-size: 11px;
+      background: var(--gradient-2);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background-color: rgba(255, 0, 255, 0.1);
     }
 
-    .text-accent {
-      color: var(--accent-gold);
+    .activity-list {
+      height: calc(100% - 40px);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .text-emerald {
-      color: var(--accent-emerald);
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
-    .text-muted {
-      color: var(--text-muted);
+    .activity-item:hover {
+      background: rgba(138, 43, 226, 0.15);
+      border-color: var(--border-glow);
+      transform: translateX(5px);
     }
 
-    .mb-sm {
-      margin-bottom: var(--spacing-sm);
+    .activity-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
-    .mb-md {
-      margin-bottom: var(--spacing-md);
+    .activity-item:hover::before {
+      opacity: 1;
     }
 
-    .mb-lg {
-      margin-bottom: var(--spacing-lg);
+    .activity-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--gradient-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      flex-shrink: 0;
     }
 
-    .mt-sm {
-      margin-top: var(--spacing-sm);
+    .activity-details {
+      flex-grow: 1;
+      min-width: 0;
     }
 
-    .mt-md {
-      margin-top: var(--spacing-md);
+    .activity-action {
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: white;
     }
 
-    .mt-lg {
-      margin-top: var(--spacing-lg);
+    .activity-time {
+      font-size: 10px;
+      color: var(--text-glow);
+      margin-top: 3px;
+      font-weight: 500;
     }
 
-    /* ===== ANIMASI KHAS INDONESIA ===== */
-    @keyframes gamelan {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(2deg); }
-      75% { transform: rotate(-2deg); }
-      100% { transform: rotate(0deg); }
+    .activity-score {
+      font-size: 14px;
+      font-weight: 800;
+      background: var(--gradient-3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    .gamelan-animation:hover {
-      animation: gamelan 0.5s ease;
+    /* Recommendations */
+    .recommendations {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow-glow);
+      flex: 1;
+      min-height: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .recommendations::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-3);
+    }
+
+    .rec-title {
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-bottom: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rec-title::before {
+      content: '🔥';
+      font-size: 16px;
+    }
+
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      height: calc(100% - 40px);
+      overflow-y: auto;
+    }
+
+    .rec-card {
+      background: rgba(138, 43, 226, 0.15);
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid rgba(138, 43, 226, 0.4);
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rec-card:hover {
+      background: rgba(138, 43, 226, 0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+    }
+
+    .rec-card:nth-child(1) { border-top: 3px solid #8a2be2; }
+    .rec-card:nth-child(2) { border-top: 3px solid #4169e1; }
+    .rec-card:nth-child(3) { border-top: 3px solid #00ffff; }
+    .rec-card:nth-child(4) { border-top: 3px solid #ffaa00; }
+
+    .rec-name {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: white;
+    }
+
+    .rec-duration {
+      font-size: 11px;
+      color: var(--accent-cyan);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .rec-progress {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .rec-progress-fill {
+      height: 100%;
+      background: var(--gradient-3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rec-progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: barShine 2s infinite;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: rgba(20, 20, 40, 0.9);
+      border-radius: 18px;
+      padding: 14px 24px;
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(15px);
+      box-shadow: var(--shadow-glow);
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-4);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-stats {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-glow);
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-stat i {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 14px;
+    }
+
+    .footer-center {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-btn {
+      background: rgba(138, 43, 226, 0.15);
+      border: 1px solid var(--border-glow);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .footer-btn:hover {
+      background: var(--gradient-1);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .connection-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-glow);
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+    }
+
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #00ff88;
+      box-shadow: 0 0 10px #00ff88;
+      animation: pulse 2s infinite;
+    }
+
+    .version {
+      font-size: 11px;
+      color: var(--accent-cyan);
+      background: rgba(0, 255, 255, 0.15);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-family: var(--font-tech);
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient-1);
+      border-radius: 10px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes shine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes logoShine {
+      0% { transform: rotate(45deg) translateX(-100%); }
+      100% { transform: rotate(45deg) translateX(100%); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
 
     @keyframes pulse {
-      0% {
-        opacity: 1;
-      }
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
 
-      50% {
-        opacity: 0.7;
-      }
+    @keyframes gridMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(20px); }
+    }
 
-      100% {
-        opacity: 1;
-      }
+    @keyframes iconFloat {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    @keyframes buttonShine {
+      0% { transform: rotate(45deg) translateX(-100%); }
+      100% { transform: rotate(45deg) translateX(100%); }
+    }
+
+    @keyframes barShine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes feedbackShine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .float {
+      animation: float 4s ease-in-out infinite;
     }
 
     .pulse {
       animation: pulse 2s infinite;
     }
 
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1200px) {
+      .main-content {
+        grid-template-columns: 200px 1fr 200px;
       }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .slide-in {
-      animation: slideIn 0.3s ease-out;
-    }
-
-    /* ===== CUSTOM SCROLLBAR ===== */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: rgba(212, 175, 55, 0.3);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(212, 175, 55, 0.5);
-    }
-
-    /* ===== MOTIF DEKORASI INDONESIA ===== */
-    .indonesia-badge {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--accent-gold);
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 1000;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      backdrop-filter: blur(10px);
-    }
-
-    .batik-corner {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 L40,10 L10,40 Z' fill='none' stroke='%23d4af37' stroke-width='2'/%3E%3Cpath d='M10,20 L30,10 L10,30 Z' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3Cpath d='M10,30 L20,10 L10,20 Z' fill='none' stroke='%23d4af37' stroke-width='1'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .batik-corner.top-left {
-      top: 10px;
-      left: 10px;
-    }
-
-    .batik-corner.top-right {
-      top: 10px;
-      right: 10px;
-      transform: rotate(90deg);
-    }
-
-    .batik-corner.bottom-left {
-      bottom: 10px;
-      left: 10px;
-      transform: rotate(-90deg);
-    }
-
-    .batik-corner.bottom-right {
-      bottom: 10px;
-      right: 10px;
-      transform: rotate(180deg);
-    }
-
-    /* ===== MOBILE RESPONSIVE STYLES ===== */
-    @media (max-width: 768px) {
-      /* Body & Container */
-      body {
-        padding: var(--spacing-sm);
-      }
-
-      .container {
-        padding: 0 var(--spacing-sm);
-      }
-
-      .indonesia-badge {
-        top: 10px;
-        right: 10px;
-        font-size: 11px;
-        padding: 6px 12px;
-      }
-
-      /* Header */
-      .app-header {
-        flex-direction: column;
-        align-items: stretch;
-        gap: var(--spacing-md);
-        padding: var(--spacing-sm) 0;
-      }
-
-      .brand {
-        flex-direction: column;
-        text-align: center;
-        gap: var(--spacing-sm);
-      }
-
-      .user-profile {
-        justify-content: center;
-        padding: var(--spacing-md);
-      }
-
-      /* App Layout */
-      .app-layout {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-        margin-top: var(--spacing-md);
-      }
-
-      /* Welcome Banner */
-      .welcome-banner {
-        padding: var(--spacing-lg);
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .action-buttons {
-        justify-content: center;
-        width: 100%;
-      }
-
-      .action-buttons .btn {
-        flex: 1;
-        min-width: 140px;
-      }
-
-      .session-stats {
-        align-items: center;
-        width: 100%;
-        padding-top: var(--spacing-md);
-        border-top: 1px solid rgba(212, 175, 55, 0.1);
-      }
-
-      /* Stats Grid */
-      .stats-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
-      }
-
-      .stat-card {
-        padding: var(--spacing-md);
-      }
-
-      .stat-value {
-        font-size: 28px;
-      }
-
-      /* VR Stage Section */
-      .vr-stage-section {
-        padding: var(--spacing-md);
-        flex-direction: column;
-      }
-
+      
       .vr-container {
-        height: 180px;
-        margin-bottom: var(--spacing-md);
+        grid-template-columns: 1fr;
+        height: auto;
       }
+      
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
+    @media (max-width: 992px) {
+      .main-content {
+        grid-template-columns: 180px 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+      
+      .right-sidebar {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        flex-direction: row;
+      }
+      
+      .activity-feed, .recommendations {
+        flex: 1;
+      }
+      
+      .footer {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 12px;
+        gap: 12px;
+      }
+      
+      .footer-center {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        overflow: auto;
+      }
+      
+      .dashboard-container {
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+      }
+      
+      .main-content {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+      }
+      
+      .header {
+        padding: 12px 16px;
+        flex-direction: column;
+        height: auto;
+        gap: 12px;
+      }
+      
+      .brand-text h1 {
+        font-size: 20px;
+      }
+      
+      .user-profile {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .left-sidebar {
+        flex-direction: row;
+      }
+      
+      .quick-stats {
+        flex: 1;
+        height: auto;
+      }
+      
+      .navigation {
+        flex: 2;
+      }
+      
+      .vr-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .scenario-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .right-sidebar {
+        flex-direction: column;
+      }
+      
+      .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .left-sidebar {
+        flex-direction: column;
+      }
+      
       .scenario-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-
-      .scenario-btn {
-        flex: 1;
-        min-width: 140px;
-        justify-content: center;
-        padding: var(--spacing-md) var(--spacing-sm);
-        font-size: 13px;
-      }
-
-      /* Analysis Section */
-      .analysis-section {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-      }
-
-      .ai-analysis {
-        padding: var(--spacing-md);
-      }
-
+      
       .metrics-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
       }
-
-      .recommendations {
-        padding: var(--spacing-md);
-      }
-
-      .rec-item {
+      
+      .footer-stats {
         flex-direction: column;
-        gap: var(--spacing-sm);
-        text-align: center;
-      }
-
-      .rec-action {
         width: 100%;
       }
-
-      /* Right Sidebar */
-      .right-sidebar {
-        order: -1;
-      }
-
-      .sidebar-card {
-        padding: var(--spacing-md);
-      }
-
-      /* Navigation Menu */
-      .nav-menu {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-xs);
-      }
-
-      .nav-item {
-        justify-content: center;
-        padding: var(--spacing-md) var(--spacing-sm);
-        font-size: 13px;
-      }
-
-      .nav-item span {
-        display: none;
-      }
-
-      .nav-item:hover {
-        transform: translateY(-2px);
-      }
-
-      /* Form Elements */
-      .auth-section {
-        padding: var(--spacing-md);
-      }
-
-      .button-group {
-        flex-direction: column;
-      }
-
-      /* Footer */
-      .app-footer {
-        font-size: 12px;
-        padding: var(--spacing-md) 0;
-        margin-top: var(--spacing-lg);
-      }
-
-      /* Hide batik corners on mobile */
-      .batik-corner {
-        display: none;
-      }
-    }
-
-    /* Tablet Styles */
-    @media (min-width: 769px) and (max-width: 992px) {
-      .app-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-menu {
-        flex-direction: row;
+      
+      .footer-center {
         flex-wrap: wrap;
-        gap: var(--spacing-xs);
       }
-
-      .nav-item {
+      
+      .footer-btn {
         flex: 1;
-        min-width: 140px;
+        min-width: 120px;
         justify-content: center;
-      }
-
-      .analysis-section {
-        grid-template-columns: 1fr;
-      }
-
-      .right-sidebar {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-md);
-      }
-    }
-
-    /* Small Mobile Styles */
-    @media (max-width: 480px) {
-      .scenario-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .action-buttons {
-        flex-direction: column;
-      }
-
-      .action-buttons .btn {
-        width: 100%;
-      }
-
-      .nav-menu {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-item span {
-        display: inline;
-      }
-
-      .stat-card {
-        padding: var(--spacing-md) var(--spacing-sm);
-      }
-
-      .vr-stage-section {
-        padding: var(--spacing-md) var(--spacing-sm);
-      }
-
-      .brand-text h1 {
-        font-size: 22px;
-      }
-
-      .brand-text p {
-        font-size: 13px;
-      }
-
-      .welcome-text h2 {
-        font-size: 24px;
-      }
-    }
-
-    /* Touch-Friendly Adjustments */
-    @media (hover: none) and (pointer: coarse) {
-
-      .btn,
-      .scenario-btn,
-      .rec-action,
-      .nav-item {
-        min-height: 48px;
-      }
-
-      .form-input {
-        min-height: 48px;
-        font-size: 16px;
-      }
-
-      /* Larger tap targets for mobile */
-      .metric-item,
-      .history-item {
-        padding: var(--spacing-sm) 0;
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- Motif Batik di Sudut -->
-  <div class="batik-corner top-left"></div>
-  <div class="batik-corner top-right"></div>
-  <div class="batik-corner bottom-left"></div>
-  <div class="batik-corner bottom-right"></div>
-
-  <!-- Badge Indonesia -->
-  <div class="indonesia-badge">
-    <i class="fas fa-flag"></i>
-    <span>Nuansa Indonesia</span>
-  </div>
-
-  <div class="container">
+  <!-- BACKGROUND GRADIENT -->
+  <div class="bg-gradient"></div>
+  
+  <!-- MAIN DASHBOARD -->
+  <div class="dashboard-container">
+    
     <!-- HEADER -->
-    <header class="app-header">
-      <div class="brand">
-        <div class="logo">SL</div>
+    <header class="header">
+      <div class="logo-brand">
+        <div class="logo float">VR</div>
         <div class="brand-text">
-          <h1>SpeakLab VR</h1>
-          <p>Simulator Public Speaking dengan Nuansa Indonesia</p>
+          <h1>VRSPEAK-ID</h1>
+          <p class="text-glow">Tingkatkan Kemampuan Berbicara Anda • Pelatihan VR yang Mengasyikkan</p>
         </div>
       </div>
-
-      <div class="user-profile">
+      
+      <div class="user-profile" onclick="toggleProfile()">
         <img src="bintang.jpg" alt="Profil Bintang Permana" class="user-avatar">
         <div class="user-info">
           <div class="user-name">Bintang Permana</div>
-          <div class="user-level">Level: Menengah</div>
+          <div class="user-level">Level 12 • XP: 1,450</div>
         </div>
+        <i class="fas fa-chevron-down"></i>
       </div>
     </header>
-
-    <!-- MAIN LAYOUT -->
-    <div class="app-layout">
-      <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <!-- Authentication Section -->
-        <section class="auth-section">
-          <div class="section-header">
-            <div class="section-title">Masuk / Daftar</div>
-            <div class="guest-option">Coba sebagai Tamu</div>
+    
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      
+      <!-- LEFT SIDEBAR -->
+      <aside class="left-sidebar">
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+          <div class="stats-title">Statistik Cepat</div>
+          <div class="stats-grid">
+            <div class="stat-item" onclick="showStatDetails('overall')">
+              <div class="stat-value">78%</div>
+              <div class="stat-label">Skor Keseluruhan</div>
+            </div>
+            <div class="stat-item" onclick="showStatDetails('sessions')">
+              <div class="stat-value">12</div>
+              <div class="stat-label">Sesi</div>
+            </div>
+            <div class="stat-item" onclick="showStatDetails('streak')">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Streak Harian</div>
+            </div>
+            <div class="stat-item" onclick="showStatDetails('rank')">
+              <div class="stat-value">#42</div>
+              <div class="stat-label">Peringkat Global</div>
+            </div>
           </div>
-
-          <input type="email" placeholder="Email" class="form-input">
-          <input type="password" placeholder="Kata Sandi" class="form-input">
-
-          <div class="button-group">
-            <button class="btn btn-primary">Masuk</button>
-            <button class="btn btn-secondary">Daftar</button>
-          </div>
-
-          <div class="auth-footer">Atau gunakan akun GitHub / Google</div>
-        </section>
-
-        <!-- Navigation Menu -->
-        <div class="navigation">
-          <div class="nav-title">Menu Navigasi</div>
-          <ul class="nav-menu">
-            <li class="nav-item active">
-              <i class="fas fa-chart-line"></i>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="navigation">
+          <div class="nav-title">Navigasi</div>
+          <div class="nav-list">
+            <a href="#" class="nav-item active">
+              <i class="fas fa-home"></i>
               <span>Dashboard</span>
-            </li>
-            <li class="nav-item">
+            </a>
+            <a href="#" class="nav-item">
               <i class="fas fa-dumbbell"></i>
-              <a href="prototipeeval.html" style="text-decoration: none; color: inherit;">Latihan Saya</a>
-            </li>
-            <li class="nav-item">
-              <i class="fas fa-globe"></i>
-              <a href="InteractiveUserJourney.html" style="text-decoration: none; color: inherit;">Skenario VR</a>
-            </li>
-            <li class="nav-item">
-              <i class="fas fa-history"></i>
-              <a href="prototipeanalisis.html" style="text-decoration: none; color: inherit;">Riwayat & Progres</a>
-            </li>
-            <li class="nav-item">
-              <i class="fas fa-cog"></i>
-              <span>Pengaturan</span>
-            </li>
-            <li class="nav-item">
+              <span>Arena Latihan</span>
+            </a>
+            <a href="#" class="nav-item">
+              <i class="fas fa-vr-cardboard"></i>
+              <span>Pengalaman VR</span>
+            </a>
+            <a href="#" class="nav-item">
               <i class="fas fa-trophy"></i>
+              <span>Papan Peringkat</span>
+            </a>
+            <a href="#" class="nav-item">
+              <i class="fas fa-gamepad"></i>
+              <span>Tantangan</span>
+            </a>
+            <a href="#" class="nav-item">
+              <i class="fas fa-chart-line"></i>
+              <span>Analitik</span>
+            </a>
+            <a href="#" class="nav-item">
+              <i class="fas fa-award"></i>
               <span>Pencapaian</span>
-            </li>
-          </ul>
+            </a>
+            <a href="#" class="nav-item">
+              <i class="fas fa-store"></i>
+              <span>Toko Avatar</span>
+            </a>
+          </div>
+        </nav>
+      </aside>
+      
+      <!-- CENTER CONTENT -->
+      <main class="center-content">
+        
+        <!-- VR Stage -->
+        <section class="vr-stage">
+          <div class="vr-header">
+            <div>
+              <h2 class="vr-title">Panggung Metaverse</h2>
+              <p class="vr-subtitle">Pilih skenario dan masuk ke arena virtual</p>
+            </div>
+            <div class="user-level" style="font-size: 11px; padding: 6px 12px;">
+              <i class="fas fa-bolt"></i> Energi: 85/100
+            </div>
+          </div>
+          
+          <div class="vr-container">
+            <!-- VR Preview -->
+            <div class="vr-preview pulse">
+              <i class="fas fa-vr-cardboard vr-icon"></i>
+              <div class="vr-status">
+                <div>Auditorium Metaverse</div>
+                <div class="text-glow">50 penonton virtual • Siap diluncurkan</div>
+              </div>
+            </div>
+            
+            <!-- Scenario Selector -->
+            <div class="scenario-section">
+              <div class="scenario-title">Pilih Tantangan:</div>
+              <div class="scenario-grid">
+                <button class="scenario-btn active" onclick="selectScenario('presentation')">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                  <span>Presentasi</span>
+                </button>
+                <button class="scenario-btn" onclick="selectScenario('interview')">
+                  <i class="fas fa-briefcase"></i>
+                  <span>Wawancara</span>
+                </button>
+                <button class="scenario-btn" onclick="selectScenario('pitch')">
+                  <i class="fas fa-rocket"></i>
+                  <span>Startup Pitch</span>
+                </button>
+                <button class="scenario-btn" onclick="selectScenario('ted')">
+                  <i class="fas fa-microphone-alt"></i>
+                  <span>TED Talk</span>
+                </button>
+              </div>
+              <button class="start-vr-btn" onclick="startVRSession()">
+                <i class="fas fa-play-circle"></i>
+                MASUK METAVERSE
+              </button>
+            </div>
+          </div>
+        </section>
+        
+        <!-- AI Analysis -->
+        <section class="ai-analysis">
+          <div class="ai-header">
+            <i class="fas fa-robot"></i>
+            <h3 class="ai-title">Analisis Kinerja AI</h3>
+          </div>
+          
+          <div class="metrics-grid">
+            <div class="metric-card" onclick="showMetricDetails('intonation')">
+              <div class="metric-name">Intonasi</div>
+              <div class="metric-value">82%</div>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 82%"></div>
+              </div>
+            </div>
+            <div class="metric-card" onclick="showMetricDetails('gesture')">
+              <div class="metric-name">Gerakan</div>
+              <div class="metric-value">74%</div>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 74%"></div>
+              </div>
+            </div>
+            <div class="metric-card" onclick="showMetricDetails('eye-contact')">
+              <div class="metric-name">Kontak Mata</div>
+              <div class="metric-value">68%</div>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 68%"></div>
+              </div>
+            </div>
+            <div class="metric-card" onclick="showMetricDetails('confidence')">
+              <div class="metric-name">Kepercayaan Diri</div>
+              <div class="metric-value">79%</div>
+              <div class="metric-bar">
+                <div class="metric-fill" style="width: 79%"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="ai-feedback">
+            <div class="feedback-title">
+              <i class="fas fa-lightbulb"></i>
+              <span>Umpan Balik AI</span>
+            </div>
+            <p class="feedback-text">
+              🎯 Peningkatan luar biasa dalam intonasi! Cobalah melakukan lebih banyak kontak mata dengan penonton virtual. 
+              Tingkat kepercayaan diri meningkat 5% sejak sesi terakhir. Pertahankan!
+            </p>
+          </div>
+        </section>
+      </main>
+      
+      <!-- RIGHT SIDEBAR -->
+      <aside class="right-sidebar">
+        
+        <!-- Activity Feed -->
+        <div class="activity-feed">
+          <div class="activity-title">
+            <span>Aktivitas Terbaru</span>
+            <span>7 hari terakhir</span>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <div class="activity-details">
+                <div class="activity-action">Menyelesaikan Tantangan TED Talk</div>
+                <div class="activity-time">Hari ini, 14:30</div>
+              </div>
+              <div class="activity-score">+85 XP</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-fire"></i>
+              </div>
+              <div class="activity-details">
+                <div class="activity-action">Mencapai Streak 5 Hari</div>
+                <div class="activity-time">Kemarin, 09:15</div>
+              </div>
+              <div class="activity-score">+50 XP</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="activity-details">
+                <div class="activity-action">Intonasi +8% Peningkatan</div>
+                <div class="activity-time">2 hari lalu</div>
+              </div>
+              <div class="activity-score">+30 XP</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-award"></i>
+              </div>
+              <div class="activity-details">
+                <div class="activity-action">Lencana "Pembicara Percaya Diri"</div>
+                <div class="activity-time">4 hari lalu</div>
+              </div>
+              <div class="activity-score">+100 XP</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recommendations -->
+        <div class="recommendations">
+          <div class="rec-title">Latihan yang Direkomendasikan</div>
+          <div class="rec-grid">
+            <div class="rec-card" onclick="startExercise('eye-contact')">
+              <div class="rec-name">Latihan Kontak Mata</div>
+              <div class="rec-duration">5 menit • Mudah</div>
+              <div class="rec-progress">
+                <div class="rec-progress-fill" style="width: 40%"></div>
+              </div>
+            </div>
+            <div class="rec-card" onclick="startExercise('voice-mod')">
+              <div class="rec-name">Modulasi Suara</div>
+              <div class="rec-duration">8 menit • Sedang</div>
+              <div class="rec-progress">
+                <div class="rec-progress-fill" style="width: 20%"></div>
+              </div>
+            </div>
+            <div class="rec-card" onclick="startExercise('gesture')">
+              <div class="rec-name">Tantangan Gerakan</div>
+              <div class="rec-duration">10 menit • Sulit</div>
+              <div class="rec-progress">
+                <div class="rec-progress-fill" style="width: 60%"></div>
+              </div>
+            </div>
+            <div class="rec-card" onclick="startExercise('improv')">
+              <div class="rec-name">Pertempuran Improvisasi</div>
+              <div class="rec-duration">12 menit • Expert</div>
+              <div class="rec-progress">
+                <div class="rec-progress-fill" style="width: 15%"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </aside>
-
-      <!-- MAIN CONTENT -->
-      <main class="main-content">
-        <!-- Welcome Banner -->
-        <section class="welcome-banner slide-in gamelan-animation">
-          <div class="welcome-text">
-            <h2>Selamat datang, Bintang! 👋</h2>
-            <p>Waktunya meningkatkan kemampuan public speaking Anda. Pilih skenario VR, latih presentasi, dan dapatkan
-              analisis AI instan untuk performa Anda dengan sentuhan budaya Indonesia.</p>
-            <div class="action-buttons">
-              <button class="btn btn-primary gamelan-animation" onclick="window.location.href='videovr.html'">
-                <i class="fas fa-rocket"></i>
-                <span>Masuk ke Ruang VR</span>
-              </button>
-              <button class="btn btn-secondary gamelan-animation">
-                <i class="fas fa-gamepad"></i>
-                <span>Coba Demo Cepat</span>
-              </button>
-            </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-left">
+        <div class="footer-stats">
+          <div class="footer-stat">
+            <i class="fas fa-clock"></i>
+            <span>Total Waktu: 18j 45m</span>
           </div>
-
-          <div class="session-stats">
-            <div class="last-session">Sesi Terakhir</div>
-            <div class="session-date">12 April 2025</div>
-            <div class="session-score text-emerald">Skor: 78/100</div>
-          </div>
-        </section>
-
-        <!-- Stats Grid -->
-        <section class="stats-grid">
-          <div class="stat-card gamelan-animation">
-            <div class="stat-header">
-              <i class="fas fa-chart-bar stat-icon"></i>
-              <div class="stat-title">Skor Keseluruhan</div>
-            </div>
-            <div class="stat-value text-accent">78/100</div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 78%; background: var(--gradient-gold);"></div>
-            </div>
-            <div class="stat-description">Performa rata-rata dari semua sesi</div>
-          </div>
-
-          <div class="stat-card gamelan-animation">
-            <div class="stat-header">
-              <i class="fas fa-volume-up stat-icon"></i>
-              <div class="stat-title">Intonasi & Suara</div>
-            </div>
-            <div class="stat-value" style="color: var(--accent-emerald);">82/100</div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 82%; background: var(--gradient-primary);"></div>
-            </div>
-            <div class="stat-description">Kekuatan, kejelasan, dan variasi suara</div>
-          </div>
-
-          <div class="stat-card gamelan-animation">
-            <div class="stat-header">
-              <i class="fas fa-hands stat-icon"></i>
-              <div class="stat-title">Gestur & Bahasa Tubuh</div>
-            </div>
-            <div class="stat-value" style="color: var(--accent-orange);">74/100</div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 74%; background: var(--gradient-warning);"></div>
-            </div>
-            <div class="stat-description">Gestur alami dan kontak mata</div>
-          </div>
-        </section>
-
-        <!-- VR Stage Section -->
-        <section class="vr-stage-section gamelan-animation">
-          <div class="vr-preview">
-            <div class="vr-container">
-              <div class="vr-icon">
-                <i class="fas fa-vr-cardboard"></i>
-              </div>
-              <div class="vr-preview-text">
-                <div>Pratinjau Lingkungan VR</div>
-                <div class="text-muted mt-sm">Auditorium dengan motif batik dan 50 virtual audience</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="vr-options">
-            <h3 class="section-heading">Pilih Skenario Latihan</h3>
-            <p class="section-subtitle">Pilih jenis acara yang ingin Anda simulasi dalam lingkungan VR dengan nuansa Indonesia</p>
-
-            <div class="scenario-grid">
-              <button class="scenario-btn active gamelan-animation">
-                <i class="fas fa-school"></i>
-                <span>Presentasi Kelas</span>
-              </button>
-              <button class="scenario-btn gamelan-animation">
-                <i class="fas fa-microphone"></i>
-                <span>Pidato Formal</span>
-              </button>
-              <button class="scenario-btn gamelan-animation">
-                <i class="fas fa-briefcase"></i>
-                <span>Wawancara Kerja</span>
-              </button>
-              <button class="scenario-btn gamelan-animation">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Presentasi Tugas Akhir</span>
-              </button>
-              <button class="scenario-btn gamelan-animation">
-                <i class="fas fa-users"></i>
-                <span>Rapat Bisnis</span>
-              </button>
-              <button class="scenario-btn gamelan-animation">
-                <i class="fas fa-theater-masks"></i>
-                <span>TED-style Talk</span>
-              </button>
-            </div>
-
-            <button class="btn btn-primary gamelan-animation" style="width: 100%" onclick="window.location.href='videovr.html'">
-              <i class="fas fa-rocket"></i>
-              <span>Mulai Sesi VR</span>
-            </button>
-          </div>
-        </section>
-
-        <!-- Analysis Section -->
-        <div class="analysis-section">
-          <div class="left-analysis">
-            <!-- AI Analysis -->
-            <div class="ai-analysis gamelan-animation">
-              <h3 class="ai-header">
-                <i class="fas fa-robot ai-icon"></i>
-                <span>Analisis AI - Ringkasan Performa</span>
-              </h3>
-
-              <div class="metrics-grid">
-                <div class="metric-item">
-                  <div class="metric-header">
-                    <span class="metric-name">Intonasi</span>
-                    <span class="metric-value">82</span>
-                  </div>
-                  <div class="metric-bar">
-                    <div class="metric-fill" style="width: 82%; background: var(--gradient-primary);"></div>
-                  </div>
-                </div>
-
-                <div class="metric-item">
-                  <div class="metric-header">
-                    <span class="metric-name">Gestur</span>
-                    <span class="metric-value">74</span>
-                  </div>
-                  <div class="metric-bar">
-                    <div class="metric-fill" style="width: 74%; background: var(--gradient-warning);"></div>
-                  </div>
-                </div>
-
-                <div class="metric-item">
-                  <div class="metric-header">
-                    <span class="metric-name">Kecepatan Bicara</span>
-                    <span class="metric-value">68</span>
-                  </div>
-                  <div class="metric-bar">
-                    <div class="metric-fill" style="width: 68%; background: var(--gradient-premium);"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="ai-notes">
-                <p><strong>Catatan AI:</strong> Intonasi Anda sudah baik, namun perlu memperbaiki kontak mata dengan
-                  audiens virtual. Coba kurangi pengulangan kata "jadi" dan "baik". Latih variasi nada suara pada bagian
-                  penutup presentasi dengan gaya bicara yang santun seperti budaya Indonesia.</p>
-              </div>
-            </div>
-
-            <!-- Recommendations -->
-            <div class="recommendations gamelan-animation">
-              <h4>Rekomendasi Latihan Hari Ini</h4>
-              <div class="rec-list">
-                <div class="rec-item">
-                  <div class="rec-content">
-                    <div class="rec-title">Latihan Intonasi & Penekanan</div>
-                    <div class="rec-duration">Durasi: 10 menit</div>
-                  </div>
-                  <button class="rec-action gamelan-animation">Mulai</button>
-                </div>
-
-                <div class="rec-item">
-                  <div class="rec-content">
-                    <div class="rec-title">Kontak Mata dengan Audiens Virtual</div>
-                    <div class="rec-duration">Durasi: 5 menit</div>
-                  </div>
-                  <button class="rec-action gamelan-animation">Mulai</button>
-                </div>
-
-                <div class="rec-item">
-                  <div class="rec-content">
-                    <div class="rec-title">Gestur Tangan yang Terarah</div>
-                    <div class="rec-duration">Durasi: 8 menit</div>
-                  </div>
-                  <button class="rec-action gamelan-animation">Mulai</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Sidebar -->
-          <div class="right-sidebar">
-            <!-- Session History -->
-            <div class="sidebar-card gamelan-animation">
-              <h4>Riwayat Sesi</h4>
-              <ul class="history-list">
-                <li class="history-item">
-                  <span class="history-date">12 April 2025</span>
-                  <span class="history-score text-accent">78</span>
-                </li>
-                <li class="history-item">
-                  <span class="history-date">9 April 2025</span>
-                  <span class="history-score">72</span>
-                </li>
-                <li class="history-item">
-                  <span class="history-date">1 April 2025</span>
-                  <span class="history-score">69</span>
-                </li>
-                <li class="history-item">
-                  <span class="history-date">28 Maret 2025</span>
-                  <span class="history-score">65</span>
-                </li>
-                <li class="history-item">
-                  <span class="history-date">22 Maret 2025</span>
-                  <span class="history-score">71</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Profile Details -->
-            <div class="sidebar-card gamelan-animation">
-              <h4>Profil Singkat</h4>
-              <div class="profile-details">
-                <div class="profile-row">
-                  <span class="profile-label">Nama:</span>
-                  <span class="profile-value">Bintang Permana</span>
-                </div>
-                <div class="profile-row">
-                  <span class="profile-label">Level:</span>
-                  <span class="profile-value text-accent">Menengah</span>
-                </div>
-                <div class="profile-row">
-                  <span class="profile-label">Total Sesi:</span>
-                  <span class="profile-value">8 sesi</span>
-                </div>
-                <div class="profile-row">
-                  <span class="profile-label">Bergabung:</span>
-                  <span class="profile-value">Mar 2025</span>
-                </div>
-              </div>
-              <button class="btn btn-secondary gamelan-animation" style="width: 100%;">
-                <i class="fas fa-user-edit"></i>
-                <span>Edit Profil</span>
-              </button>
-            </div>
+          <div class="footer-stat">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Minggu Ini: 3j 20m</span>
           </div>
         </div>
-      </main>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="app-footer">
-      <p>© 2025 SpeakLab VR. All rights reserved. | Simulator Public Speaking dengan Teknologi Realitas Virtual dan Nuansa Budaya Indonesia</p>
-      <p class="text-muted mt-sm">Versi Beta 1.2 | Menggabungkan teknologi modern dengan kearifan lokal</p>
+      </div>
+      
+      <div class="footer-center">
+        <button class="footer-btn" onclick="showQuickSettings()">
+          <i class="fas fa-cog"></i>
+          <span>Pengaturan</span>
+        </button>
+        <button class="footer-btn" onclick="showHelp()">
+          <i class="fas fa-question-circle"></i>
+          <span>Bantuan</span>
+        </button>
+        <button class="footer-btn" onclick="toggleSound()">
+          <i class="fas fa-volume-up"></i>
+          <span>Suara: ON</span>
+        </button>
+        <button class="footer-btn" onclick="showNotifications()">
+          <i class="fas fa-bell"></i>
+          <span>Notifikasi</span>
+        </button>
+      </div>
+      
+      <div class="footer-right">
+        <div class="connection-status">
+          <div class="status-indicator"></div>
+          <span>VR Siap</span>
+        </div>
+        <div class="version">v1.3.0 Neon</div>
+      </div>
     </footer>
   </div>
 
   <script>
-    // ===== INTERACTIVITY =====
-    document.addEventListener('DOMContentLoaded', function () {
-      // Add Indonesian theme to notification function
-      function showNotification(message) {
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: var(--card-dark);
-          color: var(--text-primary);
-          padding: ${window.innerWidth <= 768 ? '16px' : '12px 20px'};
-          border-radius: var(--radius-md);
-          border-left: 4px solid var(--accent-gold);
-          box-shadow: var(--shadow-lg);
-          z-index: 1000;
-          animation: slideIn 0.3s ease-out;
-          max-width: ${window.innerWidth <= 768 ? '90%' : '300px'};
-          word-wrap: break-word;
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(212, 175, 55, 0.3);
-      `;
-
-        notification.innerHTML = `
-        <div style="display: flex; align-items: flex-start; gap: 10px;">
-            <i class="fas fa-info-circle" style="color: var(--accent-gold); margin-top: 2px;"></i>
-            <span style="font-size: ${window.innerWidth <= 768 ? '14px' : '13px'}">${message}</span>
-        </div>
-    `;
-
-        document.body.appendChild(notification);
-
-        // Auto-remove notification
-        setTimeout(() => {
-          notification.style.opacity = '0';
-          notification.style.transform = 'translateX(20px)';
-          notification.style.transition = 'all 0.3s';
-
-          setTimeout(() => {
-            if (notification.parentNode) {
-              notification.parentNode.removeChild(notification);
-            }
-          }, 300);
-        }, 3000);
-
-        // Allow manual close on mobile
-        if (window.innerWidth <= 768) {
-          notification.addEventListener('click', function () {
-            this.style.opacity = '0';
-            setTimeout(() => {
-              if (this.parentNode) {
-                this.parentNode.removeChild(this);
-              }
-            }, 200);
-          });
-        }
-      }
-
-      // Scenario Selection
-      const scenarioButtons = document.querySelectorAll('.scenario-btn');
-      scenarioButtons.forEach(button => {
-        button.addEventListener('click', function () {
-          scenarioButtons.forEach(btn => btn.classList.remove('active'));
-          this.classList.add('active');
-
-          // Update VR preview based on selected scenario
-          updateVRPreview(this);
-        });
-
-        // Touch support for mobile
-        button.addEventListener('touchstart', function (e) {
-          if (window.innerWidth <= 768) {
-            this.style.transform = 'scale(0.98)';
-          }
-        });
-
-        button.addEventListener('touchend', function (e) {
-          if (window.innerWidth <= 768) {
-            this.style.transform = 'scale(1)';
-          }
-        });
-      });
-
-      // Update VR preview with Indonesian themes
-      function updateVRPreview(selectedButton) {
-        const scenarioText = selectedButton.querySelector('span').textContent;
-        const vrPreviewText = document.querySelector('.vr-preview-text div:first-child');
-        const vrSubText = document.querySelector('.vr-preview-text .text-muted');
-
-        const scenarios = {
-          'Presentasi Kelas': ['Ruang Kelas Virtual', 'Simulasi presentasi di depan 30 mahasiswa dengan dekorasi batik'],
-          'Pidato Formal': ['Panggung Konferensi', 'Auditori formal dengan motif ukiran tradisional'],
-          'Wawancara Kerja': ['Ruang Wawancara', 'Simulasi wawancara dengan panel HR virtual dan nuansa Indonesia'],
-          'Presentasi Tugas Akhir': ['Sidang Skripsi', 'Dewan penguji virtual di ruang sidang dengan sentuhan lokal'],
-          'Rapat Bisnis': ['Ruang Rapat Perusahaan', 'Meeting dengan rekan kerja virtual dan budaya kerja Indonesia'],
-          'TED-style Talk': ['Panggung TEDx', 'Lingkungan panggung dengan nuansa Nusantara']
-        };
-
-        if (scenarios[scenarioText]) {
-          vrPreviewText.textContent = scenarios[scenarioText][0];
-          vrSubText.textContent = scenarios[scenarioText][1];
-
-          // Show notification on mobile
-          if (window.innerWidth <= 768) {
-            showNotification(`Skenario dipilih: ${scenarioText} dengan nuansa Indonesia`);
-          }
-        }
-      }
-
-      // Recommendation Buttons
-      const recButtons = document.querySelectorAll('.rec-action');
-      recButtons.forEach(button => {
-        button.addEventListener('click', function () {
-          const exerciseName = this.closest('.rec-item').querySelector('.rec-title').textContent;
-          startExercise(this, exerciseName);
-        });
-
-        // Touch support
-        button.addEventListener('touchstart', function () {
-          this.style.opacity = '0.8';
-        });
-
-        button.addEventListener('touchend', function () {
-          this.style.opacity = '1';
-        });
-      });
-
-      function startExercise(button, exerciseName) {
-        const originalText = button.textContent;
-
-        button.textContent = 'Memulai...';
-        button.style.background = 'rgba(212, 175, 55, 0.3)';
-        button.disabled = true;
-
-        // Simulate loading
-        setTimeout(() => {
-          button.textContent = 'Selesai';
-          button.style.background = 'rgba(212, 175, 55, 0.2)';
-
-          // Show notification with Indonesian theme
-          showNotification(`Latihan "${exerciseName}" telah dimulai! Semangat berlatih!`);
-
-          // Update stats for demo
-          updateExerciseStats();
-
-          // Reset button after 3 seconds
-          setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = '';
-            button.disabled = false;
-          }, 3000);
-        }, 1500);
-      }
-
-      // Login Button with Indonesian theme
-      const loginBtn = document.querySelector('.auth-section .btn-primary');
-      loginBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        simulateLogin(this);
-      });
-
-      function simulateLogin(button) {
-        const emailInput = document.querySelector('input[type="email"]');
-        const passwordInput = document.querySelector('input[type="password"]');
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        const originalText = button.textContent;
-
-        if (!email || !password) {
-          button.textContent = 'Isi email & sandi!';
-          button.style.background = 'linear-gradient(135deg, #b22222, #ff6b6b)';
-
-          setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = '';
-          }, 1500);
-
-          // Add shake animation for empty fields
-          if (!email) emailInput.classList.add('shake');
-          if (!password) passwordInput.classList.add('shake');
-
-          setTimeout(() => {
-            emailInput.classList.remove('shake');
-            passwordInput.classList.remove('shake');
-          }, 500);
-
-          return;
-        }
-
-        button.textContent = 'Memeriksa...';
-        button.style.background = 'linear-gradient(135deg, #2a6b3f, #1e4e2f)';
-        button.disabled = true;
-
-        // Simulate API call
-        setTimeout(() => {
-          button.textContent = 'Berhasil Masuk!';
-          button.style.background = 'linear-gradient(135deg, var(--accent-emerald), var(--accent-blue))';
-
-          // Update user profile
-          const username = email.split('@')[0];
-          document.querySelector('.user-name').textContent = username;
-          document.querySelector('.user-level').textContent = 'Level: Lanjutan';
-          document.querySelector('.user-level').style.background = 'rgba(212, 175, 55, 0.2)';
-
-          // Update welcome message
-          const welcomeTitle = document.querySelector('.welcome-text h2');
-          welcomeTitle.textContent = `Selamat datang, ${username}! 👋`;
-
-          showNotification('Berhasil masuk! Selamat berlatih dengan nuansa Indonesia.');
-
-          // Hide auth section on mobile
-          if (window.innerWidth <= 768) {
-            const authSection = document.querySelector('.auth-section');
-            authSection.style.display = 'none';
-
-            // Show logout option
-            const navMenu = document.querySelector('.nav-menu');
-            const logoutItem = document.createElement('li');
-            logoutItem.className = 'nav-item';
-            logoutItem.innerHTML = '<i class="fas fa-sign-out-alt"></i><span>Keluar</span>';
-            logoutItem.addEventListener('click', function () {
-              location.reload(); // Simple logout by reloading
-            });
-            navMenu.appendChild(logoutItem);
-          }
-
-          // Reset button
-          setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = '';
-            button.disabled = false;
-
-            // Clear form
-            emailInput.value = '';
-            passwordInput.value = '';
-          }, 2000);
-        }, 1500);
-      }
-
-      // Guest Mode
-      const guestOption = document.querySelector('.guest-option');
-      guestOption.addEventListener('click', toggleGuestMode);
-
-      function toggleGuestMode() {
-        const authSection = document.querySelector('.auth-section');
-        const guestOption = document.querySelector('.guest-option');
-        const formInputs = authSection.querySelectorAll('.form-input');
-        const loginBtn = authSection.querySelector('.btn-primary');
-        const signupBtn = authSection.querySelector('.btn-secondary');
-
-        if (authSection.style.opacity !== '0.7') {
-          // Activate guest mode
-          authSection.style.opacity = '0.7';
-          authSection.style.pointerEvents = 'none';
-          document.querySelector('.section-title').textContent = 'Mode Tamu Aktif';
-          guestOption.textContent = 'Beralih ke Login';
-          guestOption.style.background = 'rgba(212, 175, 55, 0.2)';
-
-          // Disable form inputs
-          formInputs.forEach(input => {
-            input.disabled = true;
-            input.placeholder = 'Tidak tersedia di mode tamu';
-          });
-
-          loginBtn.disabled = true;
-          signupBtn.disabled = true;
-
-          // Update user to guest
-          document.querySelector('.user-name').textContent = 'Pengguna Tamu';
-          document.querySelector('.user-level').textContent = 'Level: Pemula';
-          document.querySelector('.user-level').style.background = 'rgba(212, 175, 55, 0.1)';
-
-          // Update welcome message
-          document.querySelector('.welcome-text h2').textContent = 'Selamat datang, Tamu! 👋';
-
-          showNotification('Anda masuk sebagai tamu. Fitur terbatas. Coba nuansa Indonesia!');
-        } else {
-          // Switch back to login mode
-          authSection.style.opacity = '1';
-          authSection.style.pointerEvents = 'auto';
-          document.querySelector('.section-title').textContent = 'Masuk / Daftar';
-          guestOption.textContent = 'Coba sebagai Tamu';
-          guestOption.style.background = 'rgba(212, 175, 55, 0.1)';
-
-          // Enable form inputs
-          formInputs.forEach(input => {
-            input.disabled = false;
-            input.placeholder = input.type === 'email' ? 'Email' : 'Kata Sandi';
-          });
-
-          loginBtn.disabled = false;
-          signupBtn.disabled = false;
-
-          // Reset user
-          document.querySelector('.user-name').textContent = 'Bintang Permana';
-          document.querySelector('.user-level').textContent = 'Level: Menengah';
-          document.querySelector('.user-level').style.background = 'rgba(212, 175, 55, 0.1)';
-          document.querySelector('.welcome-text h2').textContent = 'Selamat datang, Bintang! 👋';
-
-          showNotification('Mode login diaktifkan. Selamat berlatih dengan budaya Indonesia!');
-        }
-      }
-
-      // Main VR Button
-      const mainVRButton = document.querySelector('.vr-options .btn-primary');
-      mainVRButton.addEventListener('click', startVRSession);
-
-      function startVRSession() {
-        const button = document.querySelector('.vr-options .btn-primary');
-        const activeScenario = document.querySelector('.scenario-btn.active span').textContent;
-        const originalHTML = button.innerHTML;
-
-        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Mempersiapkan VR...</span>';
-        button.style.background = 'linear-gradient(135deg, #8b5cf6, #a78bfa)';
-        button.disabled = true;
-
-        // Simulate VR loading
-        setTimeout(() => {
-          button.innerHTML = '<i class="fas fa-check"></i> <span>Masuk ke VR!</span>';
-          button.style.background = 'linear-gradient(135deg, var(--accent-emerald), var(--accent-gold))';
-
-          showNotification(`Memulai sesi VR: ${activeScenario}. Siapkan headset Anda! Nuansa Indonesia aktif.`);
-
-          // For mobile, show different message
-          if (window.innerWidth <= 768) {
-            showNotification('Mode VR aktif! Gunakan headset atau lanjutkan di layar dengan nuansa Indonesia.');
-          }
-
-          // Simulate session recording
-          simulateVRSession();
-
-          // Reset button
-          setTimeout(() => {
-            button.innerHTML = originalHTML;
-            button.style.background = '';
-            button.disabled = false;
-          }, 3000);
-        }, 2500);
-      }
-
-      // Stat Cards Hover Effect (desktop only)
-      const statCards = document.querySelectorAll('.stat-card');
-      statCards.forEach(card => {
-        card.addEventListener('mouseenter', function () {
-          if (window.innerWidth > 768) {
-            this.style.transform = 'translateY(-4px)';
-          }
-        });
-
-        card.addEventListener('mouseleave', function () {
-          if (window.innerWidth > 768) {
-            this.style.transform = 'translateY(0)';
-          }
-        });
-
-        // Touch support for mobile
-        card.addEventListener('touchstart', function () {
-          if (window.innerWidth <= 768) {
-            this.style.transform = 'translateY(-2px)';
-          }
-        });
-
-        card.addEventListener('touchend', function () {
-          if (window.innerWidth <= 768) {
-            this.style.transform = 'translateY(0)';
-          }
-        });
-      });
-
-      // Navigation items
-      const navItems = document.querySelectorAll('.nav-item');
-      navItems.forEach(item => {
-        item.addEventListener('click', function () {
-          navItems.forEach(nav => nav.classList.remove('active'));
-          this.classList.add('active');
-
-          // For mobile, show notification
-          if (window.innerWidth <= 768) {
-            const menuText = this.querySelector('span').textContent;
-            showNotification(`Navigasi ke: ${menuText}`);
-          }
-        });
-
-        // Touch support
-        item.addEventListener('touchstart', function () {
-          if (window.innerWidth <= 768) {
-            this.style.opacity = '0.8';
-          }
-        });
-
-        item.addEventListener('touchend', function () {
-          if (window.innerWidth <= 768) {
-            this.style.opacity = '1';
-          }
-        });
-      });
-
-      // Edit Profile Button
-      const editProfileBtn = document.querySelector('.sidebar-card .btn-secondary');
-      editProfileBtn.addEventListener('click', function () {
-        showNotification('Fitur edit profil akan segera hadir dengan tema Indonesia!');
-      });
-
-      // Demo buttons
-      const demoBtn = document.querySelector('.action-buttons .btn-secondary');
-      demoBtn.addEventListener('click', function () {
-        startDemoMode(this);
-      });
-
-      function startDemoMode(button) {
-        const originalText = button.textContent;
-        button.textContent = 'Memuat Demo...';
-        button.disabled = true;
-
-        // Show demo message with Indonesian theme
-        showNotification('Demo cepat dimulai! Simulasi 2 menit dengan nuansa Indonesia.');
-
-        // Simulate demo progress
-        setTimeout(() => {
-          button.textContent = 'Demo Berjalan';
-          button.style.background = 'var(--gradient-primary)';
-
-          // Simulate demo completion
-          setTimeout(() => {
-            button.textContent = 'Demo Selesai!';
-            showNotification('Demo selesai! Coba sesi penuh untuk pengalaman lengkap dengan budaya Indonesia.');
-
-            // Reset button
-            setTimeout(() => {
-              button.textContent = originalText;
-              button.style.background = '';
-              button.disabled = false;
-            }, 2000);
-          }, 2000);
-        }, 1000);
-      }
-
-      // Setup mobile features
-      setupMobileFeatures();
-
-      // Update Last Session (Demo)
-      updateLastSession();
-      setInterval(updateLastSession, 30000);
-
-      // Adjust layout on resize
-      window.addEventListener('resize', adjustLayoutForMobile);
-
-      // Initialize scenario grid columns
-      adjustScenarioGrid();
+    // Initialize dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      setupEventListeners();
+      setupKeyboardShortcuts();
+      setupAnimations();
     });
 
-    // ===== FUNCTIONS =====
-    function simulateVRSession() {
-      // Simulate a VR session with progress updates
-      const progressBar = document.createElement('div');
-      progressBar.style.cssText = `
+    // Create background particles
+    function createParticles() {
+      const particlesContainer = document.createElement('div');
+      particlesContainer.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
-        width: 0%;
-        height: 4px;
-        background: var(--gradient-gold);
-        z-index: 9999;
-        transition: width 0.3s;
-    `;
-      document.body.appendChild(progressBar);
-
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += 10;
-        progressBar.style.width = `${progress}%`;
-
-        if (progress >= 100) {
-          clearInterval(interval);
-
-          // Simulate session completion
-          setTimeout(() => {
-            progressBar.style.height = '0';
-
-            // Update last session
-            updateLastSession();
-
-            // Show completion message with Indonesian theme
-            showNotification('Sesi VR selesai! Analisis AI sedang diproses dengan kearifan lokal...');
-
-            // Simulate AI analysis after session
-            setTimeout(() => {
-              updateAIAnalysis();
-              showNotification('Analisis AI siap! Lihat rekomendasi terbaru dengan pendekatan Indonesia.');
-            }, 1500);
-
-            // Remove progress bar
-            setTimeout(() => {
-              if (progressBar.parentNode) {
-                progressBar.parentNode.removeChild(progressBar);
-              }
-            }, 500);
-          }, 500);
-        }
-      }, 300);
-    }
-
-    function updateLastSession() {
-      const now = new Date();
-      const options = { day: 'numeric', month: 'long', year: 'numeric' };
-      const formattedDate = now.toLocaleDateString('id-ID', options);
-
-      document.querySelector('.session-date').textContent = formattedDate;
-
-      // Generate random score for demo
-      const randomScore = Math.floor(Math.random() * 20) + 75;
-      document.querySelector('.session-score').innerHTML = `Skor: <span class="text-emerald">${randomScore}/100</span>`;
-
-      // Update overall score
-      const overallScoreElement = document.querySelector('.stat-card:nth-child(1) .stat-value');
-      const progressFill = document.querySelector('.stat-card:nth-child(1) .progress-fill');
-
-      if (overallScoreElement && progressFill) {
-        overallScoreElement.textContent = `${randomScore}/100`;
-        progressFill.style.width = `${randomScore}%`;
-      }
-
-      // Add to history
-      addToHistory(formattedDate, randomScore);
-    }
-
-    function addToHistory(date, score) {
-      const historyList = document.querySelector('.history-list');
-      if (!historyList) return;
-
-      // Create new history item
-      const historyItem = document.createElement('li');
-      historyItem.className = 'history-item';
-      historyItem.innerHTML = `
-        <span class="history-date">${date}</span>
-        <span class="history-score text-accent">${score}</span>
-    `;
-
-      // Insert at the beginning
-      historyList.insertBefore(historyItem, historyList.firstChild);
-
-      // Limit to 10 items
-      const items = historyList.querySelectorAll('.history-item');
-      if (items.length > 10) {
-        historyList.removeChild(items[items.length - 1]);
-      }
-    }
-
-    function updateAIAnalysis() {
-      // Randomly update AI metrics for demo
-      const metrics = [
-        { name: 'Intonasi', element: '.metric-item:nth-child(1) .metric-value', bar: '.metric-item:nth-child(1) .metric-fill' },
-        { name: 'Gestur', element: '.metric-item:nth-child(2) .metric-value', bar: '.metric-item:nth-child(2) .metric-fill' },
-        { name: 'Kecepatan Bicara', element: '.metric-item:nth-child(3) .metric-value', bar: '.metric-item:nth-child(3) .metric-fill' }
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      `;
+      
+      const colors = [
+        'rgba(138, 43, 226, 0.3)',
+        'rgba(65, 105, 225, 0.3)',
+        'rgba(0, 255, 255, 0.3)',
+        'rgba(255, 0, 255, 0.3)',
+        'rgba(0, 255, 136, 0.3)',
+        'rgba(255, 170, 0, 0.3)'
       ];
-
-      metrics.forEach(metric => {
-        const newScore = Math.floor(Math.random() * 15) + 70;
-        const valueElement = document.querySelector(metric.element);
-        const barElement = document.querySelector(metric.bar);
-
-        if (valueElement && barElement) {
-          // Animate the change
-          valueElement.style.transform = 'scale(1.1)';
-          valueElement.style.color = newScore > 80 ? 'var(--accent-emerald)' : newScore > 70 ? 'var(--accent-orange)' : '#b22222';
-          valueElement.textContent = newScore;
-
-          barElement.style.width = `${newScore}%`;
-          barElement.style.background = newScore > 80 ? 'var(--gradient-primary)' :
-            newScore > 70 ? 'var(--gradient-warning)' :
-              'linear-gradient(135deg, #b22222, #ff6b6b)';
-
-          setTimeout(() => {
-            valueElement.style.transform = 'scale(1)';
-          }, 300);
-        }
-      });
-
-      // Update recommendations
-      updateRecommendations();
-    }
-
-    function updateRecommendations() {
-      const recommendations = [
-        { title: 'Latihan Pernapasan Diafragma', duration: 'Durasi: 7 menit' },
-        { title: 'Vokal Projection Training', duration: 'Durasi: 12 menit' },
-        { title: 'Improvisasi dan Adaptasi', duration: 'Durasi: 15 menit' }
-      ];
-
-      const recItems = document.querySelectorAll('.rec-item');
-      recItems.forEach((item, index) => {
-        if (recommendations[index]) {
-          const titleElement = item.querySelector('.rec-title');
-          const durationElement = item.querySelector('.rec-duration');
-
-          if (titleElement && durationElement) {
-            titleElement.textContent = recommendations[index].title;
-            durationElement.textContent = recommendations[index].duration;
-
-            // Add animation
-            item.style.transform = 'translateX(-10px)';
-            setTimeout(() => {
-              item.style.transform = 'translateX(0)';
-            }, 300);
-          }
-        }
-      });
-    }
-
-    function updateExerciseStats() {
-      // Update voice stats slightly after exercise
-      const voiceStat = document.querySelector('.stat-card:nth-child(2) .stat-value');
-      const voiceBar = document.querySelector('.stat-card:nth-child(2) .progress-fill');
-
-      if (voiceStat && voiceBar) {
-        const currentScore = parseInt(voiceStat.textContent);
-        const newScore = Math.min(100, currentScore + 1);
-
-        voiceStat.textContent = `${newScore}/100`;
-        voiceBar.style.width = `${newScore}%`;
-
-        // Animate
-        voiceStat.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-          voiceStat.style.transform = 'scale(1)';
-        }, 300);
+      
+      for (let i = 0; i < 40; i++) {
+        const particle = document.createElement('div');
+        const size = Math.random() * 4 + 1;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        particle.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size}px;
+          background: ${color};
+          border-radius: 50%;
+          top: ${Math.random() * 100}%;
+          left: ${Math.random() * 100}%;
+          animation: particleFloat ${Math.random() * 15 + 10}s infinite linear;
+          box-shadow: 0 0 10px ${color};
+        `;
+        particlesContainer.appendChild(particle);
       }
-    }
-
-    function setupMobileFeatures() {
-      // Add shake animation CSS with Indonesian colors
+      
+      document.body.appendChild(particlesContainer);
+      
+      // Add CSS animation for particles
       const style = document.createElement('style');
       style.textContent = `
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        @keyframes particleFloat {
+          0% { 
+            transform: translateY(0) translateX(0) rotate(0deg); 
+            opacity: 0;
+          }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { 
+            transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px) rotate(${Math.random() * 360}deg); 
+            opacity: 0;
+          }
         }
-        
-        .shake {
-            animation: shake 0.5s;
-            border-color: #b22222 !important;
-        }
-        
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes gamelan {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(2deg); }
-            75% { transform: rotate(-2deg); }
-            100% { transform: rotate(0deg); }
-        }
-        
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .btn, .scenario-btn {
-                min-height: 44px;
-            }
-            
-            .form-input {
-                font-size: 16px; /* Prevents iOS zoom */
-            }
-            
-            /* Larger tap targets */
-            .nav-item, .history-item, .rec-item {
-                padding: 12px;
-            }
-        }
-    `;
+      `;
       document.head.appendChild(style);
+    }
 
-      // Add back to top button for mobile with Indonesian theme
-      if (window.innerWidth <= 768) {
-        const backToTop = document.createElement('button');
-        backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
-        backToTop.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient-gold);
-            color: white;
-            border: none;
-            font-size: 20px;
-            z-index: 999;
-            display: none;
-            box-shadow: var(--shadow-lg);
-            cursor: pointer;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        `;
-
-        backToTop.addEventListener('click', function () {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Setup animations
+    function setupAnimations() {
+      // Add hover effects to all interactive elements
+      const interactiveElements = document.querySelectorAll('.stat-item, .metric-card, .rec-card, .scenario-btn, .nav-item, .footer-btn');
+      
+      interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+          this.style.transform = this.style.transform.replace(/translateY\([^)]+\)/, 'translateY(-5px)');
         });
+        
+        element.addEventListener('mouseleave', function() {
+          this.style.transform = this.style.transform.replace(/translateY\([^)]+\)/, 'translateY(0)');
+        });
+      });
+      
+      // Animate stats on load
+      setTimeout(() => {
+        document.querySelectorAll('.stat-value, .metric-value').forEach(el => {
+          el.style.transition = 'transform 0.3s';
+          el.style.transform = 'scale(1.1)';
+          setTimeout(() => {
+            el.style.transform = 'scale(1)';
+          }, 300);
+        });
+      }, 500);
+    }
 
-        document.body.appendChild(backToTop);
-
-        // Show/hide based on scroll
-        window.addEventListener('scroll', function () {
-          if (window.scrollY > 500) {
-            backToTop.style.display = 'flex';
-            backToTop.style.alignItems = 'center';
-            backToTop.style.justifyContent = 'center';
-          } else {
-            backToTop.style.display = 'none';
+    // Setup event listeners
+    function setupEventListeners() {
+      // Navigation items
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+          if (this.getAttribute('href') === '#') {
+            e.preventDefault();
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+            this.style.animation = 'none';
+            setTimeout(() => {
+              this.style.animation = '';
+            }, 10);
+            showNotification(`Navigasi ke ${this.querySelector('span').textContent} 🚀`);
           }
         });
+      });
+
+      // Scenario buttons
+      document.querySelectorAll('.scenario-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          this.style.transform = 'translateY(-5px) scale(1.05)';
+          setTimeout(() => {
+            this.style.transform = 'translateY(-5px)';
+          }, 300);
+          updateVRPreview(this.querySelector('span').textContent);
+        });
+      });
+
+      // Metric cards
+      document.querySelectorAll('.metric-card').forEach(card => {
+        card.addEventListener('click', function() {
+          const metricName = this.querySelector('.metric-name').textContent;
+          const metricValue = this.querySelector('.metric-value').textContent;
+          showNotification(`📊 ${metricName}: ${metricValue} - Melihat detail...`);
+          
+          // Animate the metric bar
+          const bar = this.querySelector('.metric-fill');
+          bar.style.animation = 'barShine 0.5s';
+          setTimeout(() => {
+            bar.style.animation = 'barShine 2s infinite';
+          }, 500);
+        });
+      });
+
+      // Recommendation cards
+      document.querySelectorAll('.rec-card').forEach(card => {
+        card.addEventListener('click', function() {
+          const exerciseName = this.querySelector('.rec-name').textContent;
+          const progressFill = this.querySelector('.rec-progress-fill');
+          
+          // Animate progress bar
+          const currentWidth = parseInt(progressFill.style.width) || 0;
+          const newWidth = Math.min(100, currentWidth + 25);
+          
+          progressFill.style.transition = 'width 0.5s ease';
+          progressFill.style.width = `${newWidth}%`;
+          
+          startExercise(exerciseName.toLowerCase());
+        });
+      });
+
+      // Activity items
+      document.querySelectorAll('.activity-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const action = this.querySelector('.activity-action').textContent;
+          const score = this.querySelector('.activity-score').textContent;
+          showNotification(`📝 ${action} ${score}`);
+          
+          // Add pulse animation
+          this.style.animation = 'pulse 0.5s';
+          setTimeout(() => {
+            this.style.animation = '';
+          }, 500);
+        });
+      });
+
+      // Stat items
+      document.querySelectorAll('.stat-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const statLabel = this.querySelector('.stat-label').textContent;
+          const statValue = this.querySelector('.stat-value').textContent;
+          showNotification(`📈 ${statLabel}: ${statValue}`);
+          
+          // Add scale animation
+          this.style.transform = 'translateY(-5px) scale(1.05)';
+          setTimeout(() => {
+            this.style.transform = 'translateY(-5px)';
+          }, 300);
+        });
+      });
+    }
+
+    // Core functions
+    function selectScenario(scenario) {
+      const scenarios = {
+        'presentation': { 
+          title: 'Mode Presentasi', 
+          audience: 'Kelas (30 siswa)',
+          gradient: 'var(--gradient-1)'
+        },
+        'interview': { 
+          title: 'Simulasi Wawancara', 
+          audience: 'Panel HR (5 pewawancara)',
+          gradient: 'var(--gradient-2)'
+        },
+        'pitch': { 
+          title: 'Arena Startup Pitch', 
+          audience: 'Investor (10 VC)',
+          gradient: 'var(--gradient-3)'
+        },
+        'ted': { 
+          title: 'Panggung TED Talk', 
+          audience: 'Konferensi (500 peserta)',
+          gradient: 'var(--gradient-4)'
+        }
+      };
+      
+      if (scenarios[scenario]) {
+        const vrStatus = document.querySelector('.vr-status');
+        const vrIcon = document.querySelector('.vr-icon');
+        const vrPreview = document.querySelector('.vr-preview');
+        
+        vrStatus.innerHTML = `
+          <div>${scenarios[scenario].title}</div>
+          <div class="text-glow">${scenarios[scenario].audience} • Siap diluncurkan</div>
+        `;
+        
+        vrIcon.style.background = scenarios[scenario].gradient;
+        vrIcon.style.webkitBackgroundClip = 'text';
+        vrIcon.style.backgroundClip = 'text';
+        
+        vrPreview.style.borderColor = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.6)`;
+        
+        showNotification(`🎮 Dipilih: ${scenarios[scenario].title}`);
       }
     }
 
-    function adjustLayoutForMobile() {
-      const isMobile = window.innerWidth <= 768;
+    function startVRSession() {
+      const btn = document.querySelector('.start-vr-btn');
+      const originalHTML = btn.innerHTML;
+      const originalGradient = btn.style.background;
+      
+      // Loading state
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> MELUNCURKAN...';
+      btn.disabled = true;
+      btn.style.background = 'var(--gradient-5)';
+      
+      showNotification('🚀 Meluncurkan sesi Metaverse...');
+      
+      // Animate VR preview
+      const vrPreview = document.querySelector('.vr-preview');
+      vrPreview.style.animation = 'pulse 0.5s infinite';
+      
+      // Simulate loading
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-check"></i> DIMULAI!';
+        btn.style.background = 'var(--gradient-3)';
+        vrPreview.style.animation = 'pulse 2s infinite';
+        
+        // Update activity feed
+        addActivity('Sesi VR Diluncurkan', '+25 XP');
+        
+        // Update stats
+        updateStats();
+        
+        // Update energy
+        updateEnergy(-15);
+        
+        // Reset button after 2 seconds
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.disabled = false;
+          btn.style.background = originalGradient;
+          vrPreview.style.animation = 'pulse 2s infinite';
+          
+          showNotification('🎉 Sesi Metaverse aktif! Periksa kinerja Anda secara real-time.');
+        }, 2000);
+      }, 2000);
+    }
 
-      // Adjust scenario grid
-      adjustScenarioGrid();
+    function startExercise(exercise) {
+      const exercises = {
+        'eye-contact': { name: 'Latihan Kontak Mata', duration: '5 menit', difficulty: 'Mudah' },
+        'voice-mod': { name: 'Modulasi Suara', duration: '8 menit', difficulty: 'Sedang' },
+        'gesture': { name: 'Tantangan Gerakan', duration: '10 menit', difficulty: 'Sulit' },
+        'improv': { name: 'Pertempuran Improvisasi', duration: '12 menit', difficulty: 'Expert' }
+      };
+      
+      if (exercises[exercise]) {
+        const exerciseInfo = exercises[exercise];
+        showNotification(`🏋️‍♂️ Memulai ${exerciseInfo.name} (${exerciseInfo.duration}, ${exerciseInfo.difficulty})...`);
+        
+        // Add activity
+        addActivity(`Memulai ${exerciseInfo.name}`, '+15 XP');
+        
+        // Update energy
+        updateEnergy(-5);
+        
+        // Update stats after completion simulation
+        setTimeout(() => {
+          updateStats();
+          showNotification(`✅ ${exerciseInfo.name} selesai! +15 XP didapatkan`);
+          
+          // Randomly improve a metric
+          const metrics = document.querySelectorAll('.metric-card');
+          const randomMetric = metrics[Math.floor(Math.random() * metrics.length)];
+          const metricValue = randomMetric.querySelector('.metric-value');
+          const metricBar = randomMetric.querySelector('.metric-fill');
+          
+          const currentValue = parseInt(metricValue.textContent);
+          const newValue = Math.min(100, currentValue + Math.floor(Math.random() * 5) + 1);
+          
+          metricValue.textContent = newValue + '%';
+          metricBar.style.width = newValue + '%';
+          
+          // Animate the improvement
+          metricValue.style.transform = 'scale(1.2)';
+          metricBar.style.animation = 'barShine 0.5s';
+          setTimeout(() => {
+            metricValue.style.transform = 'scale(1)';
+            metricBar.style.animation = 'barShine 2s infinite';
+          }, 300);
+          
+        }, 1500);
+      }
+    }
 
-      // Adjust navigation
-      const navItems = document.querySelectorAll('.nav-item span');
-      navItems.forEach(span => {
-        if (isMobile && window.innerWidth <= 480) {
-          span.style.display = 'inline';
-        } else if (isMobile) {
-          span.style.display = 'none';
-        } else {
-          span.style.display = 'inline';
+    function updateStats() {
+      // Update random stats for demo
+      const stats = document.querySelectorAll('.stat-value');
+      stats.forEach(stat => {
+        const current = parseInt(stat.textContent.replace('%', '').replace('#', ''));
+        const change = Math.random() > 0.3 ? 1 : -1;
+        const newValue = stat.textContent.includes('%') 
+          ? Math.max(0, Math.min(100, current + change))
+          : Math.max(0, current + change);
+        stat.textContent = stat.textContent.includes('%') ? newValue + '%' : '#' + newValue;
+        
+        // Animation
+        stat.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+          stat.style.transform = 'scale(1)';
+        }, 300);
+      });
+      
+      // Update metrics
+      const metrics = document.querySelectorAll('.metric-value');
+      metrics.forEach(metric => {
+        const current = parseInt(metric.textContent);
+        const change = Math.random() > 0.4 ? 1 : 0;
+        const newValue = Math.min(100, current + change);
+        metric.textContent = newValue + '%';
+        
+        // Update progress bar
+        const bar = metric.parentElement.querySelector('.metric-fill');
+        if (bar) {
+          bar.style.width = `${newValue}%`;
         }
       });
     }
 
-    function adjustScenarioGrid() {
-      const scenarioGrid = document.querySelector('.scenario-grid');
-      if (!scenarioGrid) return;
-
-      const width = window.innerWidth;
-
-      if (width <= 480) {
-        scenarioGrid.style.gridTemplateColumns = '1fr';
-      } else if (width <= 768) {
-        scenarioGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    function updateEnergy(change) {
+      const energyElement = document.querySelector('.user-level');
+      const energyText = energyElement.textContent;
+      const currentEnergy = parseInt(energyText.match(/\d+/)[0]);
+      const newEnergy = Math.max(0, Math.min(100, currentEnergy + change));
+      
+      energyElement.innerHTML = `<i class="fas fa-bolt"></i> Energi: ${newEnergy}/100`;
+      
+      // Change color based on energy level
+      if (newEnergy < 20) {
+        energyElement.style.background = 'rgba(255, 50, 50, 0.2)';
+        energyElement.style.color = '#ff5555';
+      } else if (newEnergy < 50) {
+        energyElement.style.background = 'rgba(255, 170, 0, 0.2)';
+        energyElement.style.color = '#ffaa00';
       } else {
-        scenarioGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(150px, 1fr))';
+        energyElement.style.background = 'rgba(0, 255, 136, 0.2)';
+        energyElement.style.color = '#00ff88';
+      }
+      
+      // Animate energy change
+      energyElement.style.transform = 'scale(1.1)';
+      setTimeout(() => {
+        energyElement.style.transform = 'scale(1)';
+      }, 300);
+      
+      return newEnergy;
+    }
+
+    function addActivity(action, xp) {
+      const activityList = document.querySelector('.activity-list');
+      const activityItem = document.createElement('div');
+      activityItem.className = 'activity-item';
+      activityItem.innerHTML = `
+        <div class="activity-icon" style="background: var(--gradient-${Math.floor(Math.random() * 5) + 1});">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <div class="activity-details">
+          <div class="activity-action">${action}</div>
+          <div class="activity-time">Baru saja</div>
+        </div>
+        <div class="activity-score">${xp}</div>
+      `;
+      
+      activityList.insertBefore(activityItem, activityList.firstChild);
+      
+      // Animate new item
+      activityItem.style.opacity = '0';
+      activityItem.style.transform = 'translateY(-20px)';
+      setTimeout(() => {
+        activityItem.style.transition = 'all 0.3s';
+        activityItem.style.opacity = '1';
+        activityItem.style.transform = 'translateY(0)';
+      }, 10);
+      
+      // Limit to 4 items
+      if (activityList.children.length > 4) {
+        activityList.removeChild(activityList.lastChild);
       }
     }
 
-    // Initialize mobile layout on load
-    window.addEventListener('load', function () {
-      adjustLayoutForMobile();
-      adjustScenarioGrid();
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      const notificationId = 'notification-' + Date.now();
+      notification.id = notificationId;
+      
+      // Random gradient for notification
+      const gradients = [
+        'var(--gradient-1)',
+        'var(--gradient-2)', 
+        'var(--gradient-3)',
+        'var(--gradient-4)',
+        'var(--gradient-5)'
+      ];
+      const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+      
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(20, 20, 40, 0.95);
+        color: white;
+        padding: 14px 18px;
+        border-radius: 14px;
+        border-left: 4px solid;
+        border-image: ${randomGradient};
+        border-image-slice: 1;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(138, 43, 226, 0.3);
+        z-index: 1000;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 300px;
+        transform: translateX(120%);
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        font-size: 13px;
+        font-weight: 500;
+        overflow: hidden;
+      `;
+      
+      notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="font-size: 18px;">${message.includes('🚀') ? '🚀' : message.includes('🎮') ? '🎮' : message.includes('📊') ? '📊' : message.includes('🏋️‍♂️') ? '🏋️‍♂️' : message.includes('✅') ? '✅' : message.includes('🎉') ? '🎉' : '✨'}</div>
+          <span>${message}</span>
+        </div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: ${randomGradient};"></div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Animate in
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 10);
+      
+      // Auto remove
+      setTimeout(() => {
+        notification.style.transform = 'translateX(120%)';
+        setTimeout(() => {
+          if (document.getElementById(notificationId)) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 400);
+      }, 4000);
+    }
+
+    function toggleProfile() {
+      showNotification('👤 Menu profil akan segera hadir! Kustomisasi avatar dan pengaturan Anda.');
+    }
+
+    function showQuickSettings() {
+      showNotification('⚙️ Pengaturan cepat dibuka. Atur VR, audio, dan preferensi tampilan.');
+    }
+
+    function showHelp() {
+      showNotification('❓ Pusat bantuan dibuka. Cek tutorial dan FAQ.');
+    }
+
+    function toggleSound() {
+      const btn = document.querySelector('.footer-btn:nth-child(3)');
+      const isOn = btn.textContent.includes('ON');
+      btn.innerHTML = `<i class="fas fa-volume-${isOn ? 'mute' : 'up'}"></i><span>Suara: ${isOn ? 'OFF' : 'ON'}</span>`;
+      btn.style.background = isOn ? 'rgba(255, 50, 50, 0.2)' : 'var(--gradient-1)';
+      showNotification(`🔊 Suara di${isOn ? 'matikan' : 'nyalakan'}`);
+    }
+
+    function showNotifications() {
+      showNotification('🔔 Panel notifikasi dibuka. Cek pembaruan terbaru Anda.');
+    }
+
+    function updateVRPreview(scenarioName) {
+      const vrStatus = document.querySelector('.vr-status');
+      vrStatus.innerHTML = `
+        <div>Mode ${scenarioName}</div>
+        <div class="text-glow">Penonton virtual dimuat • Siap diluncurkan</div>
+      `;
+    }
+
+    // Keyboard shortcuts
+    function setupKeyboardShortcuts() {
+      document.addEventListener('keydown', function(e) {
+        // Space to start VR session
+        if (e.code === 'Space' && !e.target.matches('button, input, textarea')) {
+          e.preventDefault();
+          startVRSession();
+        }
+        
+        // Number keys 1-4 for scenarios
+        if (e.code >= 'Digit1' && e.code <= 'Digit4') {
+          const index = parseInt(e.code.replace('Digit', '')) - 1;
+          const scenarioBtns = document.querySelectorAll('.scenario-btn');
+          if (scenarioBtns[index]) {
+            scenarioBtns[index].click();
+          }
+        }
+        
+        // E key for energy info
+        if (e.code === 'KeyE' && !e.target.matches('button, input, textarea')) {
+          e.preventDefault();
+          const currentEnergy = parseInt(document.querySelector('.user-level').textContent.match(/\d+/)[0]);
+          showNotification(`⚡ Energi: ${currentEnergy}/100 - Pulih 10 energi per jam`);
+        }
+        
+        // H key for help
+        if (e.code === 'KeyH' && !e.target.matches('button, input, textarea')) {
+          e.preventDefault();
+          showHelp();
+        }
+      });
+    }
+
+    // Make responsive on resize
+    window.addEventListener('resize', function() {
+      const isMobile = window.innerWidth <= 768;
+      document.querySelector('.dashboard-container').style.overflow = isMobile ? 'auto' : 'hidden';
+      
+      // Update animations for mobile
+      if (isMobile) {
+        document.querySelectorAll('.float, .pulse').forEach(el => {
+          el.style.animation = 'none';
+        });
+      } else {
+        document.querySelectorAll('.float, .pulse').forEach(el => {
+          el.style.animation = '';
+        });
+      }
     });
+
+    // Add interactive background click effects
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('dashboard-container') || 
+          e.target.classList.contains('bg-gradient')) {
+        createClickEffect(e.clientX, e.clientY);
+      }
+    });
+
+    function createClickEffect(x, y) {
+      const effect = document.createElement('div');
+      effect.style.cssText = `
+        position: fixed;
+        top: ${y}px;
+        left: ${x}px;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(138, 43, 226, 0.3), transparent);
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 9999;
+        animation: clickEffect 0.6s forwards;
+      `;
+      
+      document.body.appendChild(effect);
+      
+      setTimeout(() => {
+        effect.remove();
+      }, 600);
+      
+      // Add CSS for the effect
+      if (!document.querySelector('#click-effect-style')) {
+        const style = document.createElement('style');
+        style.id = 'click-effect-style';
+        style.textContent = `
+          @keyframes clickEffect {
+            0% { width: 0; height: 0; opacity: 0.8; }
+            100% { width: 200px; height: 200px; opacity: 0; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
   </script>
 </body>
-
 </html>
