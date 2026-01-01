@@ -61,7 +61,6 @@
     }
     
     html, body {
-      height: 100%;
       font-family: 'Poppins', sans-serif;
       background: var(--bg-dark);
       color: var(--text-primary);
@@ -70,8 +69,8 @@
     
     body {
       padding: 10px;
-      min-height: 100vh;
       position: relative;
+      min-height: 100vh;
     }
     
     /* ===== EFEK BACKGROUND ===== */
@@ -104,12 +103,13 @@
     
     /* ===== KONTAINER UTAMA ===== */
     .main-container {
-      min-height: 100%;
       display: flex;
       flex-direction: column;
       gap: 15px;
       position: relative;
       z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     
     /* ===== HEADER ===== */
@@ -122,7 +122,6 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      flex-shrink: 0;
     }
     
     .flow-header::before {
@@ -159,10 +158,10 @@
     /* ===== BAR STATISTIK ===== */
     .stats-bar {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
       margin-top: 15px;
-      flex-wrap: wrap;
     }
     
     .stat-badge {
@@ -187,10 +186,9 @@
     
     /* ===== LAYOUT KONTEN UTAMA ===== */
     .main-content {
-      flex: 1;
       display: flex;
+      flex-wrap: wrap;
       gap: 15px;
-      min-height: 0;
     }
     
     /* ===== PANEL KIRI - LANGKAH PERJALANAN ===== */
@@ -203,8 +201,7 @@
       padding: 20px;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      min-height: 0;
+      min-width: 0;
     }
     
     .journey-title {
@@ -216,7 +213,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-shrink: 0;
     }
     
     .journey-title i {
@@ -224,13 +220,10 @@
     }
     
     .journey-steps {
-      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      overflow-y: auto;
       padding-right: 5px;
-      min-height: 0;
     }
     
     /* ===== GAYA ITEM LANGKAH ===== */
@@ -241,10 +234,10 @@
       border: 2px solid rgba(138, 43, 226, 0.1);
       transition: var(--transition-bounce);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       cursor: pointer;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 15px;
     }
     
@@ -341,22 +334,6 @@
       white-space: nowrap;
     }
     
-    /* ===== PENGHUBUNG TIMELINE ===== */
-    .timeline-connector {
-      position: absolute;
-      left: 22px;
-      top: 58px;
-      bottom: -16px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--vibe-purple), var(--neon-pink));
-      z-index: 1;
-      opacity: 0.5;
-    }
-    
-    .step-item:last-child .timeline-connector {
-      display: none;
-    }
-    
     /* ===== PANEL KANAN - INFORMASI PERJALANAN ===== */
     .journey-info {
       flex: 1;
@@ -364,7 +341,6 @@
       flex-direction: column;
       gap: 15px;
       min-width: 0;
-      min-height: 0;
     }
     
     /* ===== PANEL LANGKAH SAAT INI ===== */
@@ -374,11 +350,9 @@
       border: 2px solid rgba(138, 43, 226, 0.3);
       border-radius: var(--radius-xl);
       padding: 20px;
-      flex: 1;
       display: flex;
       flex-direction: column;
-      min-height: 0;
-      overflow: hidden;
+      min-height: 400px;
     }
     
     .current-step-header {
@@ -386,7 +360,6 @@
       align-items: center;
       gap: 12px;
       margin-bottom: 15px;
-      flex-shrink: 0;
     }
     
     .current-step-icon {
@@ -416,7 +389,6 @@
       flex: 1;
       overflow-y: auto;
       margin-bottom: 15px;
-      min-height: 0;
       padding-right: 10px;
     }
     
@@ -458,7 +430,7 @@
       display: flex;
       gap: 10px;
       margin-top: auto;
-      flex-shrink: 0;
+      flex-wrap: wrap;
     }
     
     /* ===== PROGRES PERJALANAN ===== */
@@ -469,7 +441,6 @@
       border-radius: var(--radius-xl);
       padding: 20px;
       text-align: center;
-      flex-shrink: 0;
     }
     
     .progress-title {
@@ -573,10 +544,9 @@
     /* ===== TOMBOL AKSI ===== */
     .action-buttons {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       margin-top: 15px;
-      flex-shrink: 0;
-      flex-wrap: wrap;
     }
     
     .flow-btn {
@@ -652,7 +622,6 @@
       font-size: 11px;
       border-top: 1px solid rgba(138, 43, 226, 0.2);
       margin-top: 10px;
-      flex-shrink: 0;
     }
     
     .social-links {
@@ -745,17 +714,13 @@
     /* ===== GAYA RESPONSIF ===== */
     @media (max-width: 1200px) {
       .main-content {
-        flex-direction: column;
-        height: auto;
+        flex-direction: row;
       }
       
-      .journey-container, .journey-info {
-        flex: none;
-        min-height: 400px;
-      }
-      
-      .journey-steps {
-        max-height: 300px;
+      .journey-container,
+      .journey-info {
+        flex: 1;
+        min-width: 100%;
       }
       
       .progress-stats {
@@ -768,16 +733,13 @@
     }
     
     @media (max-width: 992px) {
-      .main-content {
-        gap: 20px;
-      }
-      
-      .journey-container {
-        min-height: 350px;
+      .journey-container,
+      .journey-info {
+        min-height: auto;
       }
       
       .current-step {
-        min-height: 400px;
+        min-height: 350px;
       }
       
       .progress-stats {
@@ -793,7 +755,6 @@
     @media (max-width: 768px) {
       body {
         padding: 8px;
-        overflow-y: auto;
       }
       
       .flow-title {
@@ -805,9 +766,6 @@
       }
       
       .stats-bar {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
         gap: 10px;
       }
       
@@ -817,73 +775,12 @@
       }
       
       .main-content {
-        display: flex;
         flex-direction: column;
         gap: 15px;
       }
       
-      .journey-container, .current-step {
-        min-height: 350px;
-      }
-      
-      .action-buttons {
-        flex-direction: row;
-        justify-content: center;
-      }
-      
-      .flow-btn {
-        min-width: 140px;
-        flex: none;
-      }
-      
-      .flow-btn-sm {
-        min-width: 120px;
-      }
-      
-      .social-links {
-        gap: 8px;
-      }
-      
-      .progress-stats {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-      }
-      
-      .progress-value {
-        font-size: 22px;
-      }
-    }
-    
-    @media (max-width: 576px) {
-      body {
-        padding: 5px;
-      }
-      
-      .flow-header {
-        padding: 15px;
-      }
-      
-      .flow-title {
-        font-size: 20px;
-      }
-      
-      .flow-subtitle {
-        font-size: 11px;
-      }
-      
-      .stats-bar {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-      }
-      
-      .stat-badge {
-        width: 100%;
-        max-width: 280px;
-        justify-content: center;
-      }
-      
-      .journey-container, .journey-info {
+      .journey-container,
+      .current-step {
         padding: 15px;
       }
       
@@ -892,9 +789,9 @@
       }
       
       .step-item {
-        flex-direction: row;
-        gap: 12px;
         padding: 12px;
+        gap: 12px;
+        align-items: flex-start;
       }
       
       .step-number {
@@ -904,20 +801,15 @@
       }
       
       .step-title {
-        font-size: 14px;
+        font-size: 15px;
       }
       
       .step-description {
         font-size: 11px;
-      }
-      
-      .timeline-connector {
-        left: 20px;
-        top: 52px;
+        -webkit-line-clamp: 2;
       }
       
       .current-step-header {
-        flex-direction: row;
         gap: 10px;
       }
       
@@ -939,18 +831,22 @@
         font-size: 12px;
       }
       
-      .action-buttons {
-        flex-direction: column;
-        align-items: center;
+      .step-actions {
+        flex-direction: row;
+        justify-content: center;
       }
       
       .flow-btn {
-        width: 100%;
-        max-width: 280px;
+        min-width: 140px;
+        flex: 1;
       }
       
-      .step-actions {
-        flex-direction: column;
+      .flow-btn-sm {
+        min-width: 120px;
+      }
+      
+      .action-buttons {
+        justify-content: center;
       }
       
       .progress-stats {
@@ -959,7 +855,167 @@
       }
       
       .progress-value {
+        font-size: 24px;
+      }
+      
+      .social-links {
+        gap: 8px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      body {
+        padding: 5px;
+      }
+      
+      .flow-header {
+        padding: 15px;
+      }
+      
+      .flow-title {
         font-size: 20px;
+        line-height: 1.2;
+      }
+      
+      .flow-subtitle {
+        font-size: 11px;
+      }
+      
+      .stats-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .stat-badge {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        text-align: center;
+        padding: 8px 15px;
+      }
+      
+      .journey-container,
+      .journey-info {
+        padding: 12px;
+      }
+      
+      .journey-title {
+        font-size: 17px;
+        margin-bottom: 12px;
+      }
+      
+      .step-item {
+        flex-direction: row;
+        gap: 12px;
+        padding: 10px;
+        margin-bottom: 0;
+        overflow: visible;
+      }
+      
+      .step-number {
+        min-width: 38px;
+        height: 38px;
+        font-size: 15px;
+        flex-shrink: 0;
+      }
+      
+      .step-title {
+        font-size: 14px;
+        line-height: 1.3;
+      }
+      
+      .step-description {
+        font-size: 11px;
+        line-height: 1.4;
+        margin-bottom: 6px;
+        -webkit-line-clamp: 3;
+      }
+      
+      .step-tags {
+        gap: 4px;
+        margin-top: 6px;
+      }
+      
+      .step-tag {
+        font-size: 9px;
+        padding: 3px 6px;
+      }
+      
+      .current-step-header {
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      
+      .current-step-header h3 {
+        font-size: 16px;
+        line-height: 1.2;
+      }
+      
+      .current-step-icon {
+        min-width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      
+      .step-detail h4 {
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+      
+      .step-detail p {
+        font-size: 12px;
+        line-height: 1.4;
+        margin-bottom: 12px;
+      }
+      
+      .step-tip {
+        padding: 12px;
+        margin: 15px 0;
+      }
+      
+      .step-tip p {
+        font-size: 11px;
+      }
+      
+      .step-actions {
+        flex-direction: row;
+        gap: 8px;
+      }
+      
+      .flow-btn {
+        width: 100%;
+        max-width: none;
+        padding: 12px 10px;
+        font-size: 11px;
+        min-width: 0;
+      }
+      
+      .flow-btn-sm {
+        padding: 10px;
+        font-size: 10px;
+        min-width: 0;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .flow-btn {
+        max-width: 280px;
+        width: 100%;
+      }
+      
+      .progress-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      
+      .progress-value {
+        font-size: 22px;
         height: 30px;
       }
       
@@ -969,6 +1025,8 @@
       
       .flow-footer p {
         font-size: 10px;
+        line-height: 1.4;
+        padding: 0 10px;
       }
     }
     
@@ -977,36 +1035,50 @@
         font-size: 18px;
       }
       
+      .flow-subtitle {
+        font-size: 10px;
+      }
+      
       .step-item {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row;
         gap: 10px;
+        align-items: flex-start;
       }
       
       .step-content {
-        text-align: center;
+        flex: 1;
+        min-width: 0;
       }
       
       .step-title {
-        justify-content: center;
+        justify-content: flex-start;
+        gap: 6px;
       }
       
       .step-tags {
-        justify-content: center;
-      }
-      
-      .timeline-connector {
-        display: none;
+        justify-content: flex-start;
       }
       
       .current-step-header {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row;
+        gap: 8px;
+      }
+      
+      .current-step-header h3 {
+        font-size: 15px;
       }
       
       .progress-stats {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      
+      .progress-value {
+        font-size: 20px;
+      }
+      
+      .progress-label {
+        font-size: 9px;
       }
       
       .social-links {
@@ -1017,6 +1089,39 @@
         width: 26px;
         height: 26px;
         font-size: 11px;
+      }
+    }
+    
+    /* Perbaikan khusus untuk layar sangat kecil */
+    @media (max-width: 360px) {
+      .step-item {
+        padding: 8px;
+        gap: 8px;
+      }
+      
+      .step-number {
+        min-width: 35px;
+        height: 35px;
+        font-size: 14px;
+      }
+      
+      .step-title {
+        font-size: 13px;
+      }
+      
+      .step-description {
+        font-size: 10px;
+        -webkit-line-clamp: 2;
+      }
+      
+      .step-tag {
+        font-size: 8px;
+        padding: 2px 5px;
+      }
+      
+      .flow-btn {
+        font-size: 10px;
+        padding: 10px 8px;
       }
     }
     
@@ -1033,10 +1138,6 @@
       
       .flow-subtitle {
         font-size: 11px;
-      }
-      
-      .journey-container, .current-step {
-        min-height: 300px;
       }
       
       .journey-steps {
@@ -1384,7 +1485,6 @@
           
           stepItem.innerHTML = `
             <div class="step-number">${step.number}</div>
-            ${index < totalStepsCount - 1 ? '<div class="timeline-connector"></div>' : ''}
             <div class="step-content">
               <div class="step-title">
                 <i class="${step.icon}"></i>
