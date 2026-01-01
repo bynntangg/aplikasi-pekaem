@@ -41,13 +41,13 @@
     }
 
     html, body {
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
+      min-height: 100vh;
+      width: 100%;
       font-family: var(--font-main);
       background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
       color: var(--text-primary);
       position: relative;
+      overflow-x: hidden;
     }
 
     /* ===== BACKGROUND EFFECTS ===== */
@@ -66,14 +66,13 @@
 
     /* ===== MAIN CONTAINER ===== */
     .dashboard-container {
-      height: 100vh;
-      width: 100vw;
+      min-height: 100vh;
+      width: 100%;
       padding: 16px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
+      display: flex;
+      flex-direction: column;
       gap: 16px;
       position: relative;
-      overflow: hidden;
     }
 
     /* ===== HEADER ===== */
@@ -87,9 +86,10 @@
       border: 1px solid var(--border-glow);
       backdrop-filter: blur(15px);
       box-shadow: var(--shadow-glow);
-      height: 80px;
+      min-height: 80px;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .header::before {
@@ -217,7 +217,7 @@
       display: grid;
       grid-template-columns: 220px 1fr 220px;
       gap: 20px;
-      height: calc(100vh - 180px);
+      flex: 1;
       min-height: 500px;
     }
 
@@ -237,7 +237,7 @@
       border: 1px solid var(--border-glow);
       backdrop-filter: blur(15px);
       box-shadow: var(--shadow-glow);
-      height: 160px;
+      min-height: 160px;
       position: relative;
       overflow: hidden;
     }
@@ -1047,12 +1047,13 @@
       border: 1px solid var(--border-glow);
       backdrop-filter: blur(15px);
       box-shadow: var(--shadow-glow);
-      height: 70px;
+      min-height: 70px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .footer::before {
@@ -1253,23 +1254,46 @@
 
     @media (max-width: 992px) {
       .main-content {
-        grid-template-columns: 180px 1fr;
-        grid-template-rows: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 20px;
+      }
+      
+      .left-sidebar {
+        flex-direction: row;
+        height: auto;
+      }
+      
+      .quick-stats {
+        flex: 1;
+        height: auto;
+      }
+      
+      .navigation {
+        flex: 2;
+        height: auto;
+        max-height: 300px;
       }
       
       .right-sidebar {
-        grid-column: 1 / -1;
-        grid-row: 2;
         flex-direction: row;
+        height: auto;
       }
       
       .activity-feed, .recommendations {
         flex: 1;
+        height: 300px;
+      }
+      
+      .vr-container {
+        grid-template-columns: 1fr;
+        height: auto;
       }
       
       .footer {
         flex-wrap: wrap;
-        height: auto;
         padding: 12px;
         gap: 12px;
       }
@@ -1278,31 +1302,31 @@
         order: 3;
         width: 100%;
         justify-content: center;
+        flex-wrap: wrap;
       }
     }
 
     @media (max-width: 768px) {
       body {
-        overflow: auto;
+        overflow-y: auto;
       }
       
       .dashboard-container {
-        height: auto;
         min-height: 100vh;
-        overflow: auto;
-      }
-      
-      .main-content {
-        display: flex;
-        flex-direction: column;
-        height: auto;
+        padding: 12px;
+        overflow: visible;
       }
       
       .header {
-        padding: 12px 16px;
         flex-direction: column;
-        height: auto;
-        gap: 12px;
+        gap: 15px;
+        padding: 15px;
+      }
+      
+      .logo-brand {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
       }
       
       .brand-text h1 {
@@ -1314,29 +1338,35 @@
         justify-content: center;
       }
       
+      .main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
       .left-sidebar {
-        flex-direction: row;
-      }
-      
-      .quick-stats {
-        flex: 1;
-        height: auto;
-      }
-      
-      .navigation {
-        flex: 2;
-      }
-      
-      .vr-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .scenario-grid {
-        grid-template-columns: repeat(3, 1fr);
+        flex-direction: column;
       }
       
       .right-sidebar {
         flex-direction: column;
+      }
+      
+      .activity-feed, .recommendations {
+        height: auto;
+        min-height: 250px;
+      }
+      
+      .vr-stage {
+        min-height: 300px;
+      }
+      
+      .scenario-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .metrics-grid {
+        grid-template-columns: 1fr;
       }
       
       .footer {
@@ -1349,34 +1379,134 @@
         width: 100%;
         justify-content: center;
       }
-    }
-
-    @media (max-width: 576px) {
-      .left-sidebar {
-        flex-direction: column;
-      }
-      
-      .scenario-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .metrics-grid {
-        grid-template-columns: 1fr;
-      }
       
       .footer-stats {
         flex-direction: column;
-        width: 100%;
+        align-items: center;
+        gap: 8px;
       }
       
       .footer-center {
         flex-wrap: wrap;
+        justify-content: center;
       }
       
       .footer-btn {
-        flex: 1;
-        min-width: 120px;
+        min-width: 140px;
+      }
+      
+      .rec-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .dashboard-container {
+        padding: 10px;
+        gap: 12px;
+      }
+      
+      .header {
+        border-radius: 16px;
+      }
+      
+      .logo {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+      
+      .brand-text h1 {
+        font-size: 18px;
+      }
+      
+      .brand-text p {
+        font-size: 10px;
+      }
+      
+      .user-profile {
+        padding: 6px 15px;
+      }
+      
+      .nav-list {
+        gap: 6px;
+      }
+      
+      .nav-item {
+        padding: 12px;
+        font-size: 12px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      
+      .vr-container {
+        gap: 15px;
+      }
+      
+      .scenario-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .scenario-btn {
+        min-height: 60px;
+        padding: 12px;
+      }
+      
+      .start-vr-btn {
+        padding: 14px;
+        font-size: 14px;
+      }
+      
+      .vr-preview {
+        padding: 20px;
+      }
+      
+      .vr-icon {
+        font-size: 36px;
+      }
+      
+      .ai-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      
+      .ai-title {
+        font-size: 16px;
+      }
+      
+      .footer-btn {
+        width: 100%;
         justify-content: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .user-profile {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+      }
+      
+      .user-info {
+        align-items: center;
+      }
+      
+      .vr-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .user-level {
+        align-self: stretch;
+      }
+      
+      .vr-container {
+        gap: 10px;
       }
     }
   </style>
@@ -1398,7 +1528,7 @@
         </div>
       </div>
       
-      <div class="user-profile" onclick="toggleProfile()">
+       <div class="user-profile slide-in" style="animation-delay: 0.1s">
         <img src="bintang.jpg" alt="Profil Bintang Permana" class="user-avatar">
         <div class="user-info">
           <div class="user-name">Bintang Permana</div>
@@ -1722,7 +1852,36 @@
       setupEventListeners();
       setupKeyboardShortcuts();
       setupAnimations();
+      adjustForMobile();
     });
+
+    // Adjust layout for mobile
+    function adjustForMobile() {
+      const isMobile = window.innerWidth <= 768;
+      const dashboard = document.querySelector('.dashboard-container');
+      
+      if (isMobile) {
+        document.body.style.overflow = 'auto';
+        dashboard.style.minHeight = 'auto';
+        dashboard.style.height = 'auto';
+        
+        // Remove fixed animations on mobile
+        document.querySelectorAll('.float, .pulse').forEach(el => {
+          el.style.animation = 'none';
+        });
+      } else {
+        document.body.style.overflow = 'hidden';
+        dashboard.style.minHeight = '100vh';
+        
+        // Restore animations on desktop
+        document.querySelectorAll('.float').forEach(el => {
+          el.style.animation = 'float 4s ease-in-out infinite';
+        });
+        document.querySelectorAll('.pulse').forEach(el => {
+          el.style.animation = 'pulse 2s infinite';
+        });
+      }
+    }
 
     // Create background particles
     function createParticles() {
@@ -1747,7 +1906,10 @@
         'rgba(255, 170, 0, 0.3)'
       ];
       
-      for (let i = 0; i < 40; i++) {
+      // Reduce particles on mobile
+      const particleCount = window.innerWidth <= 768 ? 20 : 40;
+      
+      for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         const size = Math.random() * 4 + 1;
         const color = colors[Math.floor(Math.random() * colors.length)];
@@ -1794,11 +1956,15 @@
       
       interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', function() {
-          this.style.transform = this.style.transform.replace(/translateY\([^)]+\)/, 'translateY(-5px)');
+          if (window.innerWidth > 768) {
+            this.style.transform = this.style.transform.replace(/translateY\([^)]+\)/, 'translateY(-5px)');
+          }
         });
         
         element.addEventListener('mouseleave', function() {
-          this.style.transform = this.style.transform.replace(/translateY\([^)]+\)/, 'translateY(0)');
+          if (window.innerWidth > 768) {
+            this.style.transform = this.style.transform.replace(/translateY\([^)]+\)/, 'translateY(0)');
+          }
         });
       });
       
@@ -1823,10 +1989,6 @@
             e.preventDefault();
             document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
             this.classList.add('active');
-            this.style.animation = 'none';
-            setTimeout(() => {
-              this.style.animation = '';
-            }, 10);
             showNotification(`Navigasi ke ${this.querySelector('span').textContent} 🚀`);
           }
         });
@@ -1837,10 +1999,6 @@
         btn.addEventListener('click', function() {
           document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
           this.classList.add('active');
-          this.style.transform = 'translateY(-5px) scale(1.05)';
-          setTimeout(() => {
-            this.style.transform = 'translateY(-5px)';
-          }, 300);
           updateVRPreview(this.querySelector('span').textContent);
         });
       });
@@ -1851,13 +2009,6 @@
           const metricName = this.querySelector('.metric-name').textContent;
           const metricValue = this.querySelector('.metric-value').textContent;
           showNotification(`📊 ${metricName}: ${metricValue} - Melihat detail...`);
-          
-          // Animate the metric bar
-          const bar = this.querySelector('.metric-fill');
-          bar.style.animation = 'barShine 0.5s';
-          setTimeout(() => {
-            bar.style.animation = 'barShine 2s infinite';
-          }, 500);
         });
       });
 
@@ -1865,15 +2016,6 @@
       document.querySelectorAll('.rec-card').forEach(card => {
         card.addEventListener('click', function() {
           const exerciseName = this.querySelector('.rec-name').textContent;
-          const progressFill = this.querySelector('.rec-progress-fill');
-          
-          // Animate progress bar
-          const currentWidth = parseInt(progressFill.style.width) || 0;
-          const newWidth = Math.min(100, currentWidth + 25);
-          
-          progressFill.style.transition = 'width 0.5s ease';
-          progressFill.style.width = `${newWidth}%`;
-          
           startExercise(exerciseName.toLowerCase());
         });
       });
@@ -1884,12 +2026,6 @@
           const action = this.querySelector('.activity-action').textContent;
           const score = this.querySelector('.activity-score').textContent;
           showNotification(`📝 ${action} ${score}`);
-          
-          // Add pulse animation
-          this.style.animation = 'pulse 0.5s';
-          setTimeout(() => {
-            this.style.animation = '';
-          }, 500);
         });
       });
 
@@ -1899,12 +2035,6 @@
           const statLabel = this.querySelector('.stat-label').textContent;
           const statValue = this.querySelector('.stat-value').textContent;
           showNotification(`📈 ${statLabel}: ${statValue}`);
-          
-          // Add scale animation
-          this.style.transform = 'translateY(-5px) scale(1.05)';
-          setTimeout(() => {
-            this.style.transform = 'translateY(-5px)';
-          }, 300);
         });
       });
     }
@@ -1937,7 +2067,6 @@
       if (scenarios[scenario]) {
         const vrStatus = document.querySelector('.vr-status');
         const vrIcon = document.querySelector('.vr-icon');
-        const vrPreview = document.querySelector('.vr-preview');
         
         vrStatus.innerHTML = `
           <div>${scenarios[scenario].title}</div>
@@ -1947,8 +2076,6 @@
         vrIcon.style.background = scenarios[scenario].gradient;
         vrIcon.style.webkitBackgroundClip = 'text';
         vrIcon.style.backgroundClip = 'text';
-        
-        vrPreview.style.borderColor = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.6)`;
         
         showNotification(`🎮 Dipilih: ${scenarios[scenario].title}`);
       }
@@ -2019,27 +2146,6 @@
         setTimeout(() => {
           updateStats();
           showNotification(`✅ ${exerciseInfo.name} selesai! +15 XP didapatkan`);
-          
-          // Randomly improve a metric
-          const metrics = document.querySelectorAll('.metric-card');
-          const randomMetric = metrics[Math.floor(Math.random() * metrics.length)];
-          const metricValue = randomMetric.querySelector('.metric-value');
-          const metricBar = randomMetric.querySelector('.metric-fill');
-          
-          const currentValue = parseInt(metricValue.textContent);
-          const newValue = Math.min(100, currentValue + Math.floor(Math.random() * 5) + 1);
-          
-          metricValue.textContent = newValue + '%';
-          metricBar.style.width = newValue + '%';
-          
-          // Animate the improvement
-          metricValue.style.transform = 'scale(1.2)';
-          metricBar.style.animation = 'barShine 0.5s';
-          setTimeout(() => {
-            metricValue.style.transform = 'scale(1)';
-            metricBar.style.animation = 'barShine 2s infinite';
-          }, 300);
-          
         }, 1500);
       }
     }
@@ -2054,12 +2160,6 @@
           ? Math.max(0, Math.min(100, current + change))
           : Math.max(0, current + change);
         stat.textContent = stat.textContent.includes('%') ? newValue + '%' : '#' + newValue;
-        
-        // Animation
-        stat.style.transform = 'scale(1.2)';
-        setTimeout(() => {
-          stat.style.transform = 'scale(1)';
-        }, 300);
       });
       
       // Update metrics
@@ -2098,12 +2198,6 @@
         energyElement.style.color = '#00ff88';
       }
       
-      // Animate energy change
-      energyElement.style.transform = 'scale(1.1)';
-      setTimeout(() => {
-        energyElement.style.transform = 'scale(1)';
-      }, 300);
-      
       return newEnergy;
     }
 
@@ -2124,15 +2218,6 @@
       
       activityList.insertBefore(activityItem, activityList.firstChild);
       
-      // Animate new item
-      activityItem.style.opacity = '0';
-      activityItem.style.transform = 'translateY(-20px)';
-      setTimeout(() => {
-        activityItem.style.transition = 'all 0.3s';
-        activityItem.style.opacity = '1';
-        activityItem.style.transform = 'translateY(0)';
-      }, 10);
-      
       // Limit to 4 items
       if (activityList.children.length > 4) {
         activityList.removeChild(activityList.lastChild);
@@ -2142,7 +2227,6 @@
     function showNotification(message) {
       const notification = document.createElement('div');
       const notificationId = 'notification-' + Date.now();
-      notification.id = notificationId;
       
       // Random gradient for notification
       const gradients = [
@@ -2197,7 +2281,7 @@
         notification.style.transform = 'translateX(120%)';
         setTimeout(() => {
           if (document.getElementById(notificationId)) {
-            notification.parentNode.removeChild(notification);
+            notification.remove();
           }
         }, 400);
       }, 4000);
@@ -2270,25 +2354,14 @@
 
     // Make responsive on resize
     window.addEventListener('resize', function() {
-      const isMobile = window.innerWidth <= 768;
-      document.querySelector('.dashboard-container').style.overflow = isMobile ? 'auto' : 'hidden';
-      
-      // Update animations for mobile
-      if (isMobile) {
-        document.querySelectorAll('.float, .pulse').forEach(el => {
-          el.style.animation = 'none';
-        });
-      } else {
-        document.querySelectorAll('.float, .pulse').forEach(el => {
-          el.style.animation = '';
-        });
-      }
+      adjustForMobile();
+      createParticles();
     });
 
     // Add interactive background click effects
     document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('dashboard-container') || 
-          e.target.classList.contains('bg-gradient')) {
+      if (window.innerWidth > 768 && (e.target.classList.contains('dashboard-container') || 
+          e.target.classList.contains('bg-gradient'))) {
         createClickEffect(e.clientX, e.clientY);
       }
     });

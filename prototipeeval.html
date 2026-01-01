@@ -50,18 +50,16 @@
     }
     
     html, body {
-      height: 100%;
-      overflow: hidden;
       font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
     
     body {
-      background: var(--bg-dark);
-      color: var(--text-primary);
-      padding: 12px;
-      height: 100vh;
       position: relative;
-      overflow-x: hidden;
+      padding: 12px;
     }
     
     /* Background effects */
@@ -140,15 +138,16 @@
     }
     
     .main-container {
-      height: 100%;
       display: flex;
       flex-direction: column;
       gap: 12px;
       position: relative;
       z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     
-    /* Header */
+    /* DASHBOARD HEADER - VERSI LAMA */
     .dashboard-header {
       background: rgba(26, 26, 46, 0.8);
       backdrop-filter: blur(10px);
@@ -163,6 +162,10 @@
       overflow: hidden;
     }
     
+    .header-left {
+      flex: 1;
+    }
+    
     .header-left h1 {
       font-size: 22px;
       font-weight: 800;
@@ -172,6 +175,9 @@
       color: transparent;
       letter-spacing: -0.5px;
       margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     
     .header-left p {
@@ -196,6 +202,7 @@
       border: 1px solid var(--border-glow);
       transition: var(--transition-fast);
       cursor: pointer;
+      min-width: 200px;
     }
     
     .user-profile:hover {
@@ -248,6 +255,7 @@
       display: flex;
       align-items: center;
       gap: 5px;
+      white-space: nowrap;
     }
     
     .quick-stats {
@@ -265,6 +273,7 @@
       align-items: center;
       gap: 5px;
       transition: var(--transition-fast);
+      white-space: nowrap;
     }
     
     .stat-chip:hover {
@@ -284,18 +293,15 @@
     
     /* Main Content */
     .content-area {
-      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      overflow: hidden;
     }
     
-    .top-row, .bottom-row {
+    .row {
       display: flex;
+      flex-wrap: wrap;
       gap: 12px;
-      flex: 1;
-      min-height: 0;
     }
     
     /* Cards */
@@ -311,7 +317,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      min-height: 0;
+      min-height: 300px;
     }
     
     .card::before {
@@ -350,6 +356,7 @@
       font-size: 20px;
       color: white;
       box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+      flex-shrink: 0;
     }
     
     .card-title {
@@ -366,6 +373,7 @@
       border-radius: 12px;
       font-size: 10px;
       font-weight: 600;
+      white-space: nowrap;
     }
     
     .card-content {
@@ -377,7 +385,7 @@
     /* Score Cards */
     .score-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
       margin-top: 10px;
     }
@@ -525,6 +533,7 @@
       border-radius: 10px;
       font-size: 9px;
       font-weight: 600;
+      white-space: nowrap;
     }
     
     /* History Items */
@@ -550,6 +559,10 @@
       box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
     }
     
+    .history-info {
+      flex: 1;
+    }
+    
     .history-info h4 {
       font-size: 14px;
       font-weight: 600;
@@ -573,6 +586,7 @@
       color: transparent;
       position: relative;
       padding: 0 10px;
+      text-align: center;
     }
     
     .history-score::after {
@@ -649,7 +663,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-top: 10px;
+      margin-top: 20px;
     }
     
     .stat-card {
@@ -805,6 +819,14 @@
       transform: translateY(-2px);
     }
     
+    /* Layout utilities */
+    .col-1 { flex: 1; }
+    .col-2 { flex: 2; }
+    .col-3 { flex: 3; }
+    
+    .h-100 { height: 100%; }
+    .w-100 { width: 100%; }
+    
     /* Animations */
     @keyframes float {
       0%, 100% {
@@ -855,48 +877,6 @@
       animation: glow 2s infinite;
     }
     
-    /* Responsive */
-    @media (max-width: 1100px) {
-      .top-row, .bottom-row {
-        flex-direction: column;
-      }
-      
-      .score-grid, .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .quick-stats {
-        flex-wrap: wrap;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .dashboard-header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
-      
-      .header-right {
-        width: 100%;
-        justify-content: center;
-      }
-      
-      .score-grid, .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .action-buttons {
-        flex-direction: column;
-      }
-      
-      .dashboard-footer {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-      }
-    }
-    
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
@@ -912,13 +892,151 @@
       border-radius: 3px;
     }
     
-    /* Layout utilities */
-    .col-1 { flex: 1; }
-    .col-2 { flex: 2; }
-    .col-3 { flex: 3; }
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .col-1, .col-2, .col-3 {
+        min-width: 100%;
+      }
+      
+      .card {
+        min-height: 250px;
+      }
+      
+      .score-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
     
-    .h-100 { height: 100%; }
-    .w-100 { width: 100%; }
+    @media (max-width: 992px) {
+      .dashboard-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      
+      .header-right {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .quick-stats {
+        justify-content: center;
+      }
+      
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 8px;
+      }
+      
+      .dashboard-header {
+        padding: 15px;
+      }
+      
+      .user-profile {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .quick-stats {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .card {
+        padding: 15px;
+        min-height: auto;
+      }
+      
+      .card-header {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .card-title {
+        font-size: 14px;
+      }
+      
+      .card-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+      
+      .history-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .history-meta {
+        justify-content: center;
+      }
+      
+      .history-score {
+        order: -1;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .dashboard-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-left h1 {
+        font-size: 18px;
+      }
+      
+      .header-left p {
+        font-size: 11px;
+      }
+      
+      .card-title {
+        font-size: 13px;
+      }
+      
+      .score-value {
+        font-size: 20px;
+      }
+      
+      .history-info h4 {
+        font-size: 13px;
+      }
+      
+      .history-meta {
+        font-size: 10px;
+      }
+      
+      .history-score {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -930,7 +1048,7 @@
   </div>
   
   <div class="main-container">
-    <!-- Header -->
+    <!-- Header - VERSI LAMA -->
     <header class="dashboard-header slide-in">
       <div class="header-left">
         <h1><i class="fas fa-vr-cardboard"></i> VRSPEAK-ID Dashboard</h1>
@@ -970,8 +1088,8 @@
     
     <!-- Main Content -->
     <div class="content-area">
-      <!-- Top Row -->
-      <div class="top-row">
+      <!-- Row 1 -->
+      <div class="row">
         <!-- Score Summary -->
         <div class="card col-2 slide-in" style="animation-delay: 0.2s">
           <div class="card-header">
@@ -1072,8 +1190,8 @@
         </div>
       </div>
       
-      <!-- Bottom Row -->
-      <div class="bottom-row">
+      <!-- Row 2 -->
+      <div class="row">
         <!-- Recent History -->
         <div class="card col-2 slide-in" style="animation-delay: 0.4s">
           <div class="card-header">

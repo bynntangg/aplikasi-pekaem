@@ -65,12 +65,12 @@
       font-family: 'Poppins', sans-serif;
       background: var(--bg-dark);
       color: var(--text-primary);
-      overflow: hidden;
+      overflow-x: hidden;
     }
     
     body {
       padding: 10px;
-      height: 100vh;
+      min-height: 100vh;
       position: relative;
     }
     
@@ -104,7 +104,7 @@
     
     /* ===== KONTAINER UTAMA ===== */
     .main-container {
-      height: 100%;
+      min-height: 100%;
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -162,6 +162,7 @@
       justify-content: center;
       gap: 15px;
       margin-top: 15px;
+      flex-wrap: wrap;
     }
     
     .stat-badge {
@@ -175,6 +176,7 @@
       border: 1px solid rgba(138, 43, 226, 0.3);
       transition: var(--transition-bounce);
       cursor: pointer;
+      white-space: nowrap;
     }
     
     .stat-badge:hover {
@@ -228,6 +230,7 @@
       gap: 12px;
       overflow-y: auto;
       padding-right: 5px;
+      min-height: 0;
     }
     
     /* ===== GAYA ITEM LANGKAH ===== */
@@ -272,6 +275,7 @@
       position: relative;
       z-index: 2;
       border: 2px solid rgba(164, 255, 0, 0.3);
+      flex-shrink: 0;
     }
     
     .step-number::before {
@@ -299,11 +303,13 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
     
     .step-title i {
       color: var(--cyber-lime);
       font-size: 14px;
+      flex-shrink: 0;
     }
     
     .step-description {
@@ -332,6 +338,7 @@
       font-size: 10px;
       font-weight: 700;
       border: 1px solid rgba(138, 43, 226, 0.3);
+      white-space: nowrap;
     }
     
     /* ===== PENGHUBUNG TIMELINE ===== */
@@ -410,21 +417,7 @@
       overflow-y: auto;
       margin-bottom: 15px;
       min-height: 0;
-      padding-right: 5px;
-    }
-    
-    .step-detail::-webkit-scrollbar {
-      width: 4px;
-    }
-    
-    .step-detail::-webkit-scrollbar-track {
-      background: rgba(138, 43, 226, 0.05);
-      border-radius: 2px;
-    }
-    
-    .step-detail::-webkit-scrollbar-thumb {
-      background: var(--gradient-vibe);
-      border-radius: 2px;
+      padding-right: 10px;
     }
     
     .step-detail h4 {
@@ -477,7 +470,6 @@
       padding: 20px;
       text-align: center;
       flex-shrink: 0;
-      min-height: fit-content;
     }
     
     .progress-title {
@@ -584,6 +576,7 @@
       gap: 10px;
       margin-top: 15px;
       flex-shrink: 0;
+      flex-wrap: wrap;
     }
     
     .flow-btn {
@@ -604,6 +597,7 @@
       overflow: hidden;
       letter-spacing: 0.5px;
       text-transform: uppercase;
+      min-width: 180px;
     }
     
     .flow-btn::before {
@@ -647,6 +641,7 @@
     .flow-btn-sm {
       padding: 12px 15px;
       font-size: 11px;
+      min-width: 140px;
     }
     
     /* ===== FOOTER ===== */
@@ -665,6 +660,7 @@
       justify-content: center;
       gap: 10px;
       margin-top: 8px;
+      flex-wrap: wrap;
     }
     
     .social-link {
@@ -746,24 +742,11 @@
       border-radius: 3px;
     }
     
-    .journey-steps::-webkit-scrollbar {
-      width: 6px;
-    }
-    
-    .journey-steps::-webkit-scrollbar-track {
-      background: rgba(138, 43, 226, 0.05);
-      border-radius: 3px;
-    }
-    
-    .journey-steps::-webkit-scrollbar-thumb {
-      background: var(--gradient-vibe);
-      border-radius: 3px;
-    }
-    
     /* ===== GAYA RESPONSIF ===== */
     @media (max-width: 1200px) {
       .main-content {
         flex-direction: column;
+        height: auto;
       }
       
       .journey-container, .journey-info {
@@ -778,25 +761,23 @@
       .progress-stats {
         grid-template-columns: repeat(3, 1fr);
       }
+      
+      .flow-btn {
+        min-width: 150px;
+      }
     }
     
-    @media (max-width: 768px) {
-      .flow-title {
-        font-size: 22px;
+    @media (max-width: 992px) {
+      .main-content {
+        gap: 20px;
       }
       
-      .stats-bar {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
+      .journey-container {
+        min-height: 350px;
       }
       
-      .action-buttons {
-        flex-direction: column;
-      }
-      
-      .social-links {
-        gap: 8px;
+      .current-step {
+        min-height: 400px;
       }
       
       .progress-stats {
@@ -809,7 +790,71 @@
       }
     }
     
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
+      body {
+        padding: 8px;
+        overflow-y: auto;
+      }
+      
+      .flow-title {
+        font-size: 22px;
+      }
+      
+      .flow-subtitle {
+        font-size: 12px;
+      }
+      
+      .stats-bar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      
+      .stat-badge {
+        font-size: 11px;
+        padding: 6px 12px;
+      }
+      
+      .main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .journey-container, .current-step {
+        min-height: 350px;
+      }
+      
+      .action-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
+      
+      .flow-btn {
+        min-width: 140px;
+        flex: none;
+      }
+      
+      .flow-btn-sm {
+        min-width: 120px;
+      }
+      
+      .social-links {
+        gap: 8px;
+      }
+      
+      .progress-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      
+      .progress-value {
+        font-size: 22px;
+      }
+    }
+    
+    @media (max-width: 576px) {
       body {
         padding: 5px;
       }
@@ -822,14 +867,132 @@
         font-size: 20px;
       }
       
+      .flow-subtitle {
+        font-size: 11px;
+      }
+      
+      .stats-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .stat-badge {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+      
       .journey-container, .journey-info {
         padding: 15px;
+      }
+      
+      .journey-title {
+        font-size: 18px;
+      }
+      
+      .step-item {
+        flex-direction: row;
+        gap: 12px;
+        padding: 12px;
+      }
+      
+      .step-number {
+        min-width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      
+      .step-title {
+        font-size: 14px;
+      }
+      
+      .step-description {
+        font-size: 11px;
+      }
+      
+      .timeline-connector {
+        left: 20px;
+        top: 52px;
+      }
+      
+      .current-step-header {
+        flex-direction: row;
+        gap: 10px;
+      }
+      
+      .current-step-header h3 {
+        font-size: 16px;
+      }
+      
+      .current-step-icon {
+        min-width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+      
+      .step-detail h4 {
+        font-size: 15px;
+      }
+      
+      .step-detail p {
+        font-size: 12px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .flow-btn {
+        width: 100%;
+        max-width: 280px;
+      }
+      
+      .step-actions {
+        flex-direction: column;
+      }
+      
+      .progress-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      
+      .progress-value {
+        font-size: 20px;
+        height: 30px;
+      }
+      
+      .progress-label {
+        font-size: 10px;
+      }
+      
+      .flow-footer p {
+        font-size: 10px;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .flow-title {
+        font-size: 18px;
       }
       
       .step-item {
         flex-direction: column;
         text-align: center;
         gap: 10px;
+      }
+      
+      .step-content {
+        text-align: center;
+      }
+      
+      .step-title {
+        justify-content: center;
+      }
+      
+      .step-tags {
+        justify-content: center;
       }
       
       .timeline-connector {
@@ -839,16 +1002,70 @@
       .current-step-header {
         flex-direction: column;
         text-align: center;
-        gap: 10px;
-      }
-      
-      .current-step-header h3 {
-        font-size: 16px;
       }
       
       .progress-stats {
         grid-template-columns: 1fr;
         gap: 15px;
+      }
+      
+      .social-links {
+        gap: 6px;
+      }
+      
+      .social-link {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+      }
+    }
+    
+    /* Gaya untuk layar yang sangat pendek */
+    @media (max-height: 700px) {
+      .flow-header {
+        padding: 15px 20px;
+      }
+      
+      .flow-title {
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+      
+      .flow-subtitle {
+        font-size: 11px;
+      }
+      
+      .journey-container, .current-step {
+        min-height: 300px;
+      }
+      
+      .journey-steps {
+        gap: 8px;
+      }
+      
+      .step-item {
+        padding: 10px 12px;
+      }
+      
+      .step-number {
+        min-width: 35px;
+        height: 35px;
+        font-size: 14px;
+      }
+      
+      .step-title {
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+      
+      .step-description {
+        font-size: 10px;
+        -webkit-line-clamp: 1;
+      }
+      
+      .step-tag {
+        font-size: 9px;
+        padding: 3px 6px;
       }
     }
   </style>
@@ -1385,6 +1602,14 @@
       
       // Mulai aplikasi
       initializeApp();
+      
+      // Handle responsif pada resize
+      window.addEventListener('resize', function() {
+        // Reset animasi untuk item langkah agar sesuai dengan ukuran layar
+        document.querySelectorAll('.step-item').forEach((item, index) => {
+          item.style.animationDelay = `${index * 0.05}s`;
+        });
+      });
     });
   </script>
 </body>
